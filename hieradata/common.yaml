@@ -1,2 +1,4 @@
 ---
-message: "This node is using common data"
+profile::windows::app::packages:
+  - packer
+  - notepadplusplus

@@ -1,5 +1,11 @@
-class profile::base {
+# == Class: profile::base
+class profile::base (
+  $packages,
+) {
+  include chocolatey
 
-  #the base profile should include component modules that will be on all nodes
-
+  Package {
+    ensure => latest,
+    provider => chocolatey,
+  }
 }
