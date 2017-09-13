@@ -8,4 +8,10 @@ class profile::base (
     ensure => latest,
     provider => chocolatey,
   }
+
+  # Dynamic installed packages (Defined in Heira)
+  each ($packages) | $package | {
+    package { $package: }
+  }
+    
 }
