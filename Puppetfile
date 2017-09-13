@@ -9,7 +9,7 @@ mod 'puppetlabs-stdlib', '4.17.1'
 mod 'puppetlabs-registry', '1.1.4'
 mod 'puppetlabs-chocolatey', '3.0.0'
 mod 'puppet-windowsfeature', '2.1.0'
-mod 'puppetlabs-iis', '4.0.0'
+mod 'puppetlabs-iis', '4.1.0'
 mod 'puppet-download_file', '2.1.0'
 
 # Modules from Git
