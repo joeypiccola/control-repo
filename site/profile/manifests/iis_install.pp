@@ -1,7 +1,6 @@
 # == Class: profile::iis_install
 class profile::iis_install (
 ) {
-  include iis
 
   $iis_features = ['web-server','web-webserver','Web-Common-Http','Web-Static-Content']
   
