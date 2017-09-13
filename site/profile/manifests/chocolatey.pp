@@ -5,11 +5,11 @@ class profile::chocolatey (
 ) {
   include chocolatey
 
-  chocolateysource {'chocolatey':
+  chocolateysource_community {'chocolatey':
     ensure => disabled,
   }
 
-  chocolateysource {'chocolatey':
+  chocolateysource_private {'chocolatey':
     ensure   => present,
     location => $location,
     priority => 1,
