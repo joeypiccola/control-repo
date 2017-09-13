@@ -1,7 +1,7 @@
 # == Class: profile::iis_config
 class profile::iis_config (
 ) {
-  include iis
+  include iis_site
 
   file { ['d:\\iserver', 'd:\\iserver\\DefaultWebSite']:
     ensure => 'directory'
