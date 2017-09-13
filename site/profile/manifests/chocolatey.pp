@@ -1,7 +1,7 @@
 # == Class: profile::chocolatey
 class profile::chocolatey (
-  $chocolatey_download_url
-  $location
+  $chocolatey_download_url,
+  $location,
 ) {
   include chocolatey
 
