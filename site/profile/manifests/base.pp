@@ -1,6 +1,7 @@
 # == Class: profile::base
 class profile::base (
 ) {
-  include profile::chocolatey
-  include profile::packages
+  include profile::choco_install
+  include profile::choco_config
+  include profile::choco_packages
 }
