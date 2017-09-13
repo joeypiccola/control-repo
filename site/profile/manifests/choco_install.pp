@@ -2,7 +2,6 @@
 class profile::choco_install (
   $chocolatey_download_url,
 ) {
-  include chocolatey
 
   class {'chocolatey':
     chocolatey_download_url       => $chocolatey_download_url,
