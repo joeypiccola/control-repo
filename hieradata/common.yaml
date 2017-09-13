@@ -1,4 +1,4 @@
 ---
-profile::windows::app::packages:
+profile::base:
   - packer
   - notepadplusplus
