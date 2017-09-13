@@ -1,4 +1,4 @@
 ---
-profile::base:
+profile::base::packages:
   - packer
   - notepadplusplus
