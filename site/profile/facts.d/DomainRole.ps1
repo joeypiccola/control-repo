@@ -1,21 +1,21 @@
 switch ((Get-WmiObject -Class Win32_ComputerSystem).DomainRole)
 {
     '0' {
-        Write-Output 'Standalone Workstation'
+        Write-Output 'domainrole=Standalone Workstation'
     }
     '1' {
-        Write-Output 'Member Workstation'
+        Write-Output 'domainrole=Member Workstation'
     }
     '2' {
-        Write-Output 'Standalone Server'
+        Write-Output 'domainrole=Standalone Server'
     }
     '3' {
-        Write-Output 'Member Server'
+        Write-Output 'domainrole=Member Server'
     }
     '4' {
-        Write-Output 'Backup Domain Controller'
+        Write-Output 'domainrole=Backup Domain Controller'
     }
     '5' {
-        Write-Output 'Primary Domain Controller'
+        Write-Output 'domainrole=Primary Domain Controller'
     }
 }
