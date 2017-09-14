@@ -6,7 +6,7 @@ class profile::wsus_config (
     server_url                => 'http://box.ad.piccola.us:8530',
     enable_status_server      => true,
     auto_update_option        => 'AutoNotify',
-    detection_frequency_hours => 4,
+    detection_frequency_hours => 1,
     target_group              => 'ad.piccola.us',
     notify                    => Reboot['reboot_after']
   }
