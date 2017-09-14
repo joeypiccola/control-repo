@@ -13,6 +13,7 @@ mod 'puppetlabs-iis', '4.1.0'
 mod 'puppet-download_file', '2.1.0'
 mod 'puppetlabs-wsus_client', '1.0.3'
 mod 'trlinkin-domain_membership', '1.1.2'
+mod 'puppet-hiera', '3.1.0'
 
 # Modules from Git
 # Examples: https://github.com/puppetlabs/r10k/blob/master/doc/puppetfile.mkd#examples
