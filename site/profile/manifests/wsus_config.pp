@@ -8,10 +8,11 @@ class profile::wsus_config (
     auto_update_option        => 'AutoNotify',
     detection_frequency_hours => 4,
     target_group              => 'ad.piccola.us',
+    notify                    => Reboot['reboot_after']
   }
 
-  reboot { 'after':
-    subscribe => class['wsus_client'],
+  reboot { 'reboot_after':
+    apply => finished,
   }
-  
+
 }
