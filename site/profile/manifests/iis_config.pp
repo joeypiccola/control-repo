@@ -4,11 +4,11 @@ class profile::iis_config (
 
   file { ['d:\\iserver', 'd:\\iserver\\DefaultWebSite']:
     ensure => 'directory'
-  }
+  } ->
 
   file { ['d:\\Logs', 'd:\\Logs\\IIS']:
     ensure => 'directory'
-  }
+  } ->
 
   iis_site { 'Default Web Site':
     logpath      => 'd:\\logs\\IIS',
