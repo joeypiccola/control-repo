@@ -13,5 +13,6 @@ class profile::iis_config (
   iis_site { 'Default Web Site':
     logpath      => 'd:\\logs\\IIS',
     physicalpath => 'd:\\iserver\\DefaultWebSite',
+    ensure       => 'started',
   }
 }
