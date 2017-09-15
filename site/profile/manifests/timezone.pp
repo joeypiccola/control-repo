@@ -3,7 +3,7 @@ class profile::timezone (
   $timezone
 ) {
 
-  class { '::timezone':
+  class { 'timezone':
     timezone => $timezone
   }
 
