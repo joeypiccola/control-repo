@@ -8,7 +8,7 @@ class profile::reboot (
     repeat => 1,
   }
 
-  reboot { 'reboot_after':
+  reboot { 'reboot':
     timeout  => 10,
     schedule => 'maint'
   }
