@@ -1,2 +1,2 @@
 ---
-profile::wsus_config::server_url: 'las1_wsus'
+profile::wsus_config::server_url: 'https://las1_wsus.piccola.us'
