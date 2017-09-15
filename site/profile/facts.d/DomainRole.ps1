@@ -1,5 +1,4 @@
-switch ((Get-WmiObject -Class Win32_ComputerSystem).DomainRole)
-{
+switch ((Get-WmiObject -Class Win32_ComputerSystem).DomainRole) {
     '0' {
         Write-Output 'domainrole=Standalone Workstation'
     }
