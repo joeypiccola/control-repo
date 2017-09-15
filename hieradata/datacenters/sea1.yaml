@@ -1,0 +1,2 @@
+---
+profile::wsus_config::server_url: 'sea1_wsus'

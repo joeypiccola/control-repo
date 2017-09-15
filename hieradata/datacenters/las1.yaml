@@ -1,0 +1,2 @@
+---
+profile::wsus_config::server_url: 'las1_wsus'
