@@ -16,6 +16,10 @@ mod 'trlinkin-domain_membership', '1.1.2'
 mod 'puppet-hiera', '3.1.0'
 
 # Modules from Git
+#mod 'apache',
+  :git    => 'https://github.com/joeypiccola/timezone_win',
+  :branch => 'master'
+
 # Examples: https://github.com/puppetlabs/r10k/blob/master/doc/puppetfile.mkd#examples
 #mod 'apache',
 #  :git    => 'https://github.com/puppetlabs/puppetlabs-apache',
