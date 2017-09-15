@@ -5,4 +5,5 @@ class profile::base (
   include profile::choco_config
   include profile::choco_packages
   include profile::wsus_config
+  include profile::timezone
 }
