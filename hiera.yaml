@@ -17,7 +17,7 @@ hierarchy:
     path: "nodes/%{trusted.certname}.yaml"
 
   - name: "Per-Datacenter defaults"
-    path: "datacenters/%{facts.datacenter}.yaml"
+    path: "datacenters/%{facts.datacenters}.yaml"
 
   - name: "Common data"
     path: "common.yaml"
