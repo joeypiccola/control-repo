@@ -1,2 +1,2 @@
 ---
-profile::wsus_config: 'den3_wsus'
+profile::wsus_config::server_url: 'http://box.ad.piccola.us:8530'
