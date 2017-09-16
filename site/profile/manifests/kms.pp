@@ -5,8 +5,8 @@ class profile::kms (
 ) {
 
   class { 'kms_win':
-    KeyManagementServiceName =>
-    KeyManagementServicePort => 
+    KeyManagementServiceName => $KeyManagementServiceName,
+    KeyManagementServicePort => $KeyManagementServicePort,
   }
 
 }
