@@ -20,7 +20,7 @@ hierarchy:
     path: "datacenters/%{facts.datacenter}.yaml"
 
   - name: "Per-domain defaults"
-    path: "domains/%{facts.ad_domain}.yaml"   
+    path: "domains/%{facts.win_domain}.yaml"   
 
   - name: "Common data"
     path: "common.yaml"
