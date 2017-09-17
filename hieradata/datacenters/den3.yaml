@@ -3,4 +3,5 @@ profile::wsus_config::server_url: 'http://box.ad.piccola.us:8530'
 profile::timezone::timezone: 'Mountain Standard Time'
 profile::nameservers::nameservers:
   - '10.0.3.21'
+  - '8.8.8.8'
   - '8.8.4.4'
