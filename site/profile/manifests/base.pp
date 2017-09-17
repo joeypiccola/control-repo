@@ -8,4 +8,5 @@ class profile::base (
   include profile::reboot
   include profile::timezone
   include profile::kms
+  include profile:nameservers
 }
