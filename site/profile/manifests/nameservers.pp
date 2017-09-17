@@ -3,7 +3,7 @@ class profile::nameservers (
   $nameservers,
 ) {
 
-  $net_interfaces = $facts['interfaces']
+  $net_interfaces = split($facts['interfaces'], ',')
 
   $net_interfaces.each |String $net_interface| {
     dsc_xdnsserveraddress { $net_interface:
