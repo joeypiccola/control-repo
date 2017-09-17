@@ -1,12 +1,12 @@
 # == Class: profile::kms
 class profile::kms (
-  $KeyManagementServiceName,
-  $KeyManagementServicePort,
+  $key_management_service_name,
+  $key_management_service_port,
 ) {
 
   class { 'kms_win':
-    KeyManagementServiceName => $keymanagementservicename,
-    KeyManagementServicePort => $keymanagementmerviceport,
+    KeyManagementServiceName => $key_management_service_name,
+    KeyManagementServicePort => $key_management_service_port,
   }
 
 }
