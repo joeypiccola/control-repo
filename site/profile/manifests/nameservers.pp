@@ -5,7 +5,7 @@ class profile::nameservers (
 
   $net_interfaces = $facts['interfaces']
 
-  $net_interfaces.each |string $net_interface| {
+  $net_interfaces.each |String $net_interface| {
     dsc_xdnsserveraddress { $net_interface:
       dsc_address        => $nameservers,
       dsc_interfacealias => $net_interface,
