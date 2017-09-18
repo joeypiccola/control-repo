@@ -3,7 +3,7 @@ class profile::firewall_config (
 ) {
 
   class { 'windows_firewall':
-    ensure => 'stopped'
+    ensure => 'running'
   }
 
 }
