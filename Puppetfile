@@ -14,6 +14,7 @@ mod 'puppet-download_file', '2.1.0'
 mod 'puppetlabs-wsus_client', '1.0.3'
 mod 'trlinkin-domain_membership', '1.1.2'
 mod 'puppet-hiera', '3.1.0'
+mod 'jonnyx-msuac', '0.0.3'
 
 # Modules from Git
 mod 'timezone_win',
