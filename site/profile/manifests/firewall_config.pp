@@ -2,8 +2,10 @@
 class profile::firewall_config (
 ) {
 
-  class { 'windows_firewall':
-    ensure => 'running'
+  class { 'firewallprofile_win':
+    standard_profile => true
+    public_profile   => true
+    domain_profile   => true
   }
 
 }
