@@ -15,6 +15,7 @@ mod 'puppetlabs-wsus_client', '1.0.3'
 mod 'trlinkin-domain_membership', '1.1.2'
 mod 'puppet-hiera', '3.1.0'
 mod 'jonnyx-msuac', '0.0.3'
+mod 'puppet-windows_firewall', '1.1.0'
 
 # Modules from Git
 mod 'timezone_win',
