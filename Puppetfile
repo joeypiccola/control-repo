@@ -27,6 +27,10 @@ mod 'kms_win',
   :git    => 'https://github.com/joeypiccola/kms_win',
   :branch => 'master'
 
+mod 'firewallprofile_win',
+  :git    => 'https://github.com/joeypiccola/firewall_win',
+  :branch => 'master'  
+
 # Examples: https://github.com/puppetlabs/r10k/blob/master/doc/puppetfile.mkd#examples
 #mod 'apache',
 #  :git    => 'https://github.com/puppetlabs/puppetlabs-apache',
