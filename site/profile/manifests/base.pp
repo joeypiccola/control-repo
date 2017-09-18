@@ -9,4 +9,5 @@ class profile::base (
   include profile::timezone
   include profile::kms
   include profile::nameservers
+  include profile::uac_config
 }
