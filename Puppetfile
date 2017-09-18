@@ -16,7 +16,6 @@ mod 'trlinkin-domain_membership', '1.1.2'
 mod 'puppet-hiera', '3.1.0'
 mod 'jonnyx-msuac', '0.0.3'
 mod 'puppet-windows_firewall', '1.1.0'
-mod 'martezr-rdp', '0.1.2'
 
 # Modules from Git
 mod 'timezone_win',
@@ -28,7 +27,7 @@ mod 'kms_win',
   :branch => 'master'
 
 mod 'firewallprofile_win',
-  :git    => 'https://github.com/joeypiccola/firewall_win',
+  :git    => 'https://github.com/joeypiccola/firewallprofile_win',
   :branch => 'master'  
 
 # Examples: https://github.com/puppetlabs/r10k/blob/master/doc/puppetfile.mkd#examples
