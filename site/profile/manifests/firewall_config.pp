@@ -7,7 +7,7 @@ class profile::firewall_config (
     public_profile       => 'disabled',
     domain_profile       => 'disabled',
     service_status       => 'running',
-    service_startup_type => 'automatic',
+    service_startup_type => 'disabled',
   }
 
 }
