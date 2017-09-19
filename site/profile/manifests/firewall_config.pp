@@ -4,9 +4,9 @@ class profile::firewall_config (
 
   class { 'firewallprofile_win':
     standard_profile => 'disabled',
-    public_profile   => 'enabled',
+    public_profile   => 'disabled',
     domain_profile   => 'enabled',
-    service_state    => 'running',
+    service_state    => 'stopped',
   }
 
 }
