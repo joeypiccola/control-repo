@@ -1,0 +1,26 @@
+---
+version: 5
+
+defaults:  
+  datadir: hieradata
+  data_hash: yaml_data
+
+hierarchy:
+#  - name: "Secrets"
+#    path: "secrets.eyaml"
+#    lookup_key: eyaml_lookup_key
+#    options:
+#      pkcs7_private_key: /etc/puppetlabs/puppet/eyaml/private_key.pkcs7.pem
+#      pkcs7_public_key:  /etc/puppetlabs/puppet/eyaml/public_key.pkcs7.pem
+
+  - name: "Per-node data"
+    path: "nodes/%{trusted.certname}.yaml"
+
+  - name: "Per-datacenter defaults"
+    path: "datacenters/%{facts.datacenter}.yaml"
+
+  - name: "Per-domain defaults"
+    path: "domains/%{facts.win_domain}.yaml"   
+
+  - name: "Common data"
+    path: "common.yaml"

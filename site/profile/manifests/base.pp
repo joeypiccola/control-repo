@@ -1,5 +1,14 @@
-class profile::base {
-
-  #the base profile should include component modules that will be on all nodes
-
+# == Class: profile::base
+class profile::base (
+) {
+  include profile::choco_install
+  include profile::choco_config
+  include profile::choco_packages
+  include profile::wsus_config
+  include profile::reboot
+  include profile::timezone
+  include profile::kms
+  include profile::nameservers
+  include profile::uac_config
+  include profile::firewall_config
 }
