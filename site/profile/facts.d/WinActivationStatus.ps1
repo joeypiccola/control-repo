@@ -1,4 +1,4 @@
-switch ((Get-WmiObject -Class SoftwareLicensingProduct | Where-Object {$_.ApplicationID -eq "55c92734-d682-4d71-983e-d6ec3f16059f" -AND $_.PartialProductKey -ne $null}).LicenseStatus ) {
+switch ((Get-WmiObject -Class SoftwareLicensingProduct -Filter "ApplicationID='55c92734-d682-4d71-983e-d6ec3f16059f' AND PartialProductKey IS NOT NULL").LicenseStatus ) {
     '0' {
         Write-Output 'winactivationstatus=Unactivated'
     }
