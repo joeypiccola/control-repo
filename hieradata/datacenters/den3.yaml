@@ -4,4 +4,4 @@ profile::timezone::timezone: 'Mountain Standard Time'
 profile::nameservers::nameservers:
   - '10.0.3.21'
   - '8.8.8.8'
-  - '8.8.4.4'
+  - '8.8.8.8'
