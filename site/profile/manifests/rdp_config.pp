@@ -2,7 +2,7 @@
 class profile::rdp_config (
 ) {
 
-  class { 'remotedesktop' : 
+  class { 'remotedesktop' :
     ensure => present,
     nla    => absent,
   }
