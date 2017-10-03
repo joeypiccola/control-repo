@@ -17,16 +17,10 @@ mod 'puppet-hiera', '3.2.0'
 mod 'puppetlabs-inifile', '2.0.0'
 mod 'jonnyx-msuac', '0.0.3'
 mod 'puppet-windows_firewall', '1.1.0'
+mod 'jpi-kms_win', '0.1.1'
+mod 'jpi-timezone_win', '0.1.2'
 
 # Modules from Git
-mod 'timezone_win',
-  :git    => 'https://github.com/joeypiccola/timezone_win',
-  :branch => 'master'
-
-mod 'kms_win',
-  :git    => 'https://github.com/joeypiccola/kms_win',
-  :branch => 'master'
-
 mod 'firewallprofile_win',
   :git    => 'https://github.com/joeypiccola/firewallprofile_win',
   :branch => 'master'  
