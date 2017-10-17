@@ -7,10 +7,10 @@ class profile::domain_join (
 ) {
 
   $win_domain = $facts['win_domain']
-  
+
   if ($facts['domainrole'] == 'Standalone Workstation') or ($facts['domainrole'] == 'Standalone Server') {
     class { 'domain_membership':
-      domain       => $win_domain,
+      domain       => 'ad.piccola.us',
       username     => $username,
       password     => $password,
       join_options => $join_options,
