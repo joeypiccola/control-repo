@@ -11,4 +11,5 @@ class profile::base (
   include profile::nameservers
   include profile::uac_config
   include profile::firewall_config
+  include profile::domain_join
 }
