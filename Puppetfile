@@ -19,6 +19,7 @@ mod 'jonnyx-msuac', '0.0.3'
 mod 'puppet-windows_firewall', '1.1.0'
 mod 'jpi-kms_win', '0.1.2'
 mod 'jpi-timezone_win', '0.1.2'
+mod 'puppetlabs-puppet_agent', '1.4.1'
 
 # Modules from Git
 mod 'firewallprofile_win',
