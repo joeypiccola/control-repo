@@ -12,4 +12,5 @@ class profile::base (
   include profile::uac_config
   include profile::firewall_config
   include profile::domain_join
+  include profile::puppet_agent
 }
