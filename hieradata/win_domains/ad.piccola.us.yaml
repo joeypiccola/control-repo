@@ -1,0 +1,4 @@
+---
+profile::kms::key_management_service_name: 'mono.piccola.us'
+profile::domain_join::username: 'svc_djoin_puppet'
+profile::domain_join::join_options: '3'

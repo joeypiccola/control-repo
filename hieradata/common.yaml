@@ -2,6 +2,7 @@
 profile::choco_packages::packages:
   - packer
   - notepadplusplus
+  - checksum
 
 profile::choco_config::location: 'http://nuget.ad.piccola.us:8080/chocolatey'
 profile::choco_install::chocolatey_download_url: 'http://nuget.ad.piccola.us:8081/chocolatey.0.10.8.nupkg'
