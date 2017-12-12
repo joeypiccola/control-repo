@@ -8,3 +8,4 @@ class role::web_server {
   include profile::iis_config
 
 }
+}
