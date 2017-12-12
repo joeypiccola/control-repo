@@ -4,4 +4,4 @@ class profile::puppet_agent (
     class { 'puppet_agent' :
     package_version => '5.3.2',
   }
-}}
+}

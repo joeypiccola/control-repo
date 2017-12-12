@@ -11,4 +11,4 @@ class profile::wsus_config (
     target_group              => 'ad.piccola.us',
   }
 
-}{
+}
