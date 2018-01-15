@@ -15,7 +15,7 @@ class profile::testing (
   }
 
   exec { 'puppet_win_psexec':
-    command   => "& C:\windows\temp\Test-Param.ps1 -Value ${value}",
+    command   => "& C:\\windows\\temp\\Test-Param.ps1 -Value ${value}",
     provider  => 'powershell',
     logoutput => true,
   }
