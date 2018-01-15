@@ -11,6 +11,12 @@ class profile::testing (
     valuetwo           => $valuetwo,
     pswindowsupdateurl => $pswindowsupdateurl,
     wsusscnurl         => $wsusscnurl,
+    schedule           => 'daily',
+  }
+
+  schedule { 'daily':
+    period => daily,
+    repeat => 4,
   }
 
 }
