@@ -5,4 +5,4 @@ profile::nameservers::nameservers:
   - '10.0.3.21'
   - '8.8.8.8'
   - '8.8.8.8'
-profile::testing::value: 'my_hiera_value'
+profile::testing::value: 'my_den3_hiera_value'
