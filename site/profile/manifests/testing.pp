@@ -9,7 +9,7 @@ class profile::testing (
   file { 'puppet_win_psfile':
     ensure => 'present',
     source => 'puppet:///modules/puppet_win/Test-Param.ps1',
-    path   => 'c:/windows/temp',
+    path   => 'c:/windows/temp/Test-Param.ps1',
     before => Exec['puppet_win_psexec'],
   }
 
