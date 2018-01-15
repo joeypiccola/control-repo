@@ -1,10 +1,14 @@
 # == Class: profile::testing
 class profile::testing (
   $value,
+  $pswindowsupdateurl,
+  $wsusscnurl,
 ) {
 
   class { 'puppet_win':
-    value => $value,
+    value              => $value,
+    pswindowsupdateurl => $pswindowsupdateurl,
+    wsusscnurl         => $wsusscnurl,
   }
 
 }
