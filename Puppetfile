@@ -24,6 +24,10 @@ mod 'puppetlabs-puppet_agent', '1.4.1'
 # Modules from Git
 mod 'firewallprofile_win',
   :git    => 'https://github.com/joeypiccola/firewallprofile_win',
+  :branch => 'master'
+
+  mod 'firewallprofile_win',
+  :git    => 'https://github.com/joeypiccola/puppet_win',
   :branch => 'master'  
 
 # Examples: https://github.com/puppetlabs/r10k/blob/master/doc/puppetfile.mkd#examples
