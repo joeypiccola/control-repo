@@ -6,6 +6,6 @@ profile::nameservers::nameservers:
   - '8.8.4.4'
   - '8.8.4.4'
 profile::testing::value: 'my_las1_hiera_value'
-profile::testing::value: 'value_2'
+profile::testing::valuetwo: 'value_2'
 profile::testing::pswindowsupdateurl: 'http://nuget.ad.piccola.us:8081/pswindowsupdate.zip'
 profile::testing::wsusscnurl: 'http://nuget.ad.piccola.us:8081/wsusscn2.cab'
