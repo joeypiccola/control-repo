@@ -1,5 +1,6 @@
 # == Class: profile::testing
 class profile::testing (
+  $value,
 ) {
 
   class { 'puppet_win':
@@ -14,7 +15,7 @@ class profile::testing (
   }
 
   exec { 'puppet_win_psexec':
-    command   => '& C:\windows\temp\Test-Param.ps1 -Value blahblah',
+    command   => "& C:\windows\temp\Test-Param.ps1 -Value ${value}",
     provider  => 'powershell',
     logoutput => true,
   }
