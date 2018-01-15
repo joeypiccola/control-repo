@@ -4,7 +4,7 @@ class profile::testing (
 ) {
 
   class { 'puppet_win':
-    value => 'the value i want ps to output'
+    value => $value,
   }
 
   file { 'puppet_win_psfile':
@@ -19,4 +19,11 @@ class profile::testing (
     provider  => 'powershell',
     logoutput => true,
   }
+
+  exec { 'puppet_win_psexec_file':
+    command   => file("puppet_win/Test-Param.ps1 -Value ${value}"),
+    provider  => 'powershell',
+    logoutput => true,
+  }
+
 }
