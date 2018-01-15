@@ -5,4 +5,4 @@ profile::nameservers::nameservers:
   - '10.0.3.21'
   - '8.8.4.4'
   - '8.8.4.4'
-  profile::testing::value: 'my_las1_hiera_value'
+profile::testing::value: 'my_las1_hiera_value'
