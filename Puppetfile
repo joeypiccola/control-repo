@@ -26,7 +26,7 @@ mod 'firewallprofile_win',
   :git    => 'https://github.com/joeypiccola/firewallprofile_win',
   :branch => 'master'
 
-  mod 'firewallprofile_win',
+mod 'puppet_win',
   :git    => 'https://github.com/joeypiccola/puppet_win',
   :branch => 'master'  
 
