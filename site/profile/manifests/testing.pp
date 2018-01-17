@@ -1,7 +1,6 @@
 # == Class: profile::testing
 class profile::testing (
-  $value,
-  $valuetwo,
+  $downloaddirectory,
   $pswindowsupdateurl,
   $wsusscnurl,
 ) {
@@ -15,6 +14,7 @@ class profile::testing (
   class { 'puppet_win':
     pswindowsupdateurl => $pswindowsupdateurl,
     wsusscnurl         => $wsusscnurl,
+    downloaddirectory  => $downloaddirectory,
     schedule           => 'scan',
   }
 
