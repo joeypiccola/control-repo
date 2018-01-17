@@ -21,6 +21,7 @@ mod 'jpi-kms_win', '0.1.2'
 mod 'jpi-timezone_win', '0.1.3'
 mod 'puppetlabs-puppet_agent', '1.4.1'
 mod 'tvories-showhidden_win', '0.1.0'
+mod 'puppetlabs-scheduled_task', '0.1.0'
 
 # Modules from Git
 mod 'firewallprofile_win',
