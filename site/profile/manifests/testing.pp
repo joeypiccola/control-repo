@@ -15,7 +15,7 @@ class profile::testing (
   class { 'puppet_win':
     pswindowsupdateurl => $pswindowsupdateurl,
     wsusscnurl         => $wsusscnurl,
-    schedule           => 'daily',
+    schedule           => 'scan',
   }
 
 }
