@@ -6,14 +6,13 @@ class profile::testing (
   $wsusscnurl,
 ) {
 
-  schedule { 'daily':
+  schedule { 'scan':
+    range  => '21 - 3',
     period => daily,
-    repeat => 4,
+    repeat => 1,
   }
 
   class { 'puppet_win':
-    value              => $value,
-    valuetwo           => $valuetwo,
     pswindowsupdateurl => $pswindowsupdateurl,
     wsusscnurl         => $wsusscnurl,
     schedule           => 'daily',
