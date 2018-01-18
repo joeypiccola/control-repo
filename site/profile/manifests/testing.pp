@@ -6,7 +6,7 @@ class profile::testing (
 ) {
 
   schedule { 'scan':
-    range  => '21 - 3',
+    range  => '6 - 12',
     period => daily,
     repeat => 1,
   }
