@@ -9,6 +9,7 @@ class profile::testing (
     pswindowsupdateurl => $pswindowsupdateurl,
     wsusscnurl         => $wsusscnurl,
     downloaddirectory  => $downloaddirectory,
+    dayofweek          => 'sun',
   }
 
 }
