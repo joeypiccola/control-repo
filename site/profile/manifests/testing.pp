@@ -1,15 +1,14 @@
 # == Class: profile::testing
 class profile::testing (
-  $downloaddirectory,
-  $pswindowsupdateurl,
-  $wsusscnurl,
+  $download_directory,
+  $pswindowsupdate_url,
+  $wsusscn_url,
 ) {
 
   class { 'puppet_win':
-    pswindowsupdateurl => $pswindowsupdateurl,
-    wsusscnurl         => $wsusscnurl,
-    downloaddirectory  => $downloaddirectory,
-    dayofweek          => 'fri',
+    pswindowsupdate_url => $pswindowsupdate_url,
+    wsusscn_url         => $wsusscn_url,
+    download_directory  => $download_directory,
   }
 
 }
