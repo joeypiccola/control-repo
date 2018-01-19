@@ -8,7 +8,7 @@ profile::nameservers::nameservers:
 profile::testing::pswindowsupdate_url: 'http://nuget.ad.piccola.us:8081/pswindowsupdate.zip'
 profile::testing::wsusscn_url: 'http://nuget.ad.piccola.us:8081/wsusscn2.cab'
 profile::testing::download_directory: 'c:/windows/temp/ISG-Puppet/updatereporting_win'
-profile::testing::task_day_of_week: 'sat'
+profile::testing::task_day_of_week: 'mon'
 profile::testing::task_every: 1
 profile::testing::task_ensure: 'present'
 profile::testing::task_schedule: 'daily'
