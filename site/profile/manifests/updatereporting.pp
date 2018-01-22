@@ -1,5 +1,5 @@
-# == Class: profile::testing
-class profile::testing (
+# == Class: profile::updatereporting
+class profile::updatereporting (
   $download_directory,
   $pswindowsupdate_url,
   $pswindowsupdate_force_download,
@@ -11,7 +11,7 @@ class profile::testing (
   $task_ensure,
 ) {
 
-  class { 'puppet_win':
+  class { 'updatereporting_win':
     pswindowsupdate_url            => $pswindowsupdate_url,
     pswindowsupdate_force_download => $pswindowsupdate_force_download,
     wsusscn_url                    => $wsusscn_url,
