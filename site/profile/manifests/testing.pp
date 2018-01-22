@@ -16,7 +16,7 @@ class profile::testing (
     download_directory  => $download_directory,
     task_day_of_week    => $task_day_of_week,
     task_every          => $task_every,
-    task_ensure         => $task_ensure,
+    task_ensure         => 'absent',
     task_schedule       => $task_schedule,
     task_enabled        => $task_enabled,
   }

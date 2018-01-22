@@ -28,8 +28,8 @@ mod 'firewallprofile_win',
   :git    => 'https://github.com/joeypiccola/firewallprofile_win',
   :branch => 'master'
 
-mod 'puppet_win',
-  :git    => 'https://github.com/joeypiccola/puppet_win',
+mod 'updatereporting_win',
+  :git    => 'https://github.com/joeypiccola/updatereporting_win',
   :branch => 'master'  
 
 # Examples: https://github.com/puppetlabs/r10k/blob/master/doc/puppetfile.mkd#examples
