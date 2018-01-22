@@ -20,7 +20,7 @@ class profile::updatereporting (
     task_every                     => $task_every,
     task_ensure                    => $task_ensure,
     task_schedule                  => $task_schedule,
-    task_enabled                   => $task_enabled,
+    task_enabled                   => true,
   }
 
 }
