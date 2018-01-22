@@ -12,5 +12,5 @@ profile::updatereporting::task_day_of_week: 'mon'
 profile::updatereporting::task_every: 2
 profile::updatereporting::task_ensure: 'present'
 profile::updatereporting::task_schedule: 'weekly'
-profile::updatereporting::task_enabled: false
+profile::updatereporting::task_enabled: true
 profile::updatereporting::pswindowsupdate_force_download: true
