@@ -13,5 +13,5 @@ class profile::base (
   include profile::firewall_config
   include profile::domain_join
   include profile::puppet_agent
-  include profile::testing
+  include profile::updatereporting
 }
