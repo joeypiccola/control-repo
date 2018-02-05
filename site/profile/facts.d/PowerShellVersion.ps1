@@ -1,0 +1,1 @@
+Write-Output ($PSVersionTable.PSVersion | ConvertTo-Json -Depth 1 -Compress)

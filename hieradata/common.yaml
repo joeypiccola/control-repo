@@ -4,6 +4,14 @@ profile::choco_packages::packages:
   - notepadplusplus
   - checksum
   - putty
-
 profile::choco_config::location: 'http://nuget.ad.piccola.us:8080/chocolatey'
 profile::choco_install::chocolatey_download_url: 'http://nuget.ad.piccola.us:8081/chocolatey.0.10.8.nupkg'
+profile::updatereporting::pswindowsupdate_url: 'http://nuget.ad.piccola.us:8081/pswindowsupdate.zip'
+profile::updatereporting::wsusscn_url: 'http://nuget.ad.piccola.us:8081/wsusscn2.cab'
+profile::updatereporting::download_directory: 'c:/windows/temp/ISG-Puppet/updatereporting_win'
+profile::updatereporting::task_day_of_week: 'sat'
+profile::updatereporting::task_every: 1
+profile::updatereporting::task_ensure: 'present'
+profile::updatereporting::task_schedule: 'weekly'
+profile::updatereporting::task_enabled: true
+profile::updatereporting::pswindowsupdate_force_download: true

@@ -17,14 +17,24 @@ mod 'puppet-hiera', '3.2.0'
 mod 'puppetlabs-inifile', '2.0.0'
 mod 'jonnyx-msuac', '0.0.3'
 mod 'puppet-windows_firewall', '1.1.0'
-mod 'jpi-kms_win', '0.1.2'
-mod 'jpi-timezone_win', '0.1.2'
+#mod 'jpi-kms_win', '0.1.2'
+mod 'jpi-timezone_win', '0.1.3'
 mod 'puppetlabs-puppet_agent', '1.4.1'
+mod 'tvories-showhidden_win', '0.1.0'
+mod 'puppetlabs-scheduled_task', '0.1.0'
 
 # Modules from Git
 mod 'firewallprofile_win',
   :git    => 'https://github.com/joeypiccola/firewallprofile_win',
-  :branch => 'master'  
+  :branch => 'master'
+
+mod 'updatereporting_win',
+  :git    => 'https://github.com/joeypiccola/updatereporting_win',
+  :branch => 'master'
+
+  mod 'kms_win',
+  :git    => 'https://github.com/joeypiccola/kms_win',
+  :branch => 'dev'  
 
 # Examples: https://github.com/puppetlabs/r10k/blob/master/doc/puppetfile.mkd#examples
 #mod 'apache',
