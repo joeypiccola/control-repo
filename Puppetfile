@@ -30,7 +30,7 @@ mod 'firewallprofile_win',
 
 mod 'updatereporting_win',
   :git    => 'https://github.com/joeypiccola/updatereporting_win',
-  :branch => 'master' 
+  :branch => 'tasksupport' 
 
 # Examples: https://github.com/puppetlabs/r10k/blob/master/doc/puppetfile.mkd#examples
 #mod 'apache',
