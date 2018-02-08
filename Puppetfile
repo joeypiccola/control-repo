@@ -22,15 +22,16 @@ mod 'jpi-timezone_win', '0.1.3'
 mod 'puppetlabs-puppet_agent', '1.4.1'
 mod 'tvories-showhidden_win', '0.1.0'
 mod 'puppetlabs-scheduled_task', '0.1.0'
+mod 'jpi-updatereporting_win', '0.1.1'
 
 # Modules from Git
 mod 'firewallprofile_win',
   :git    => 'https://github.com/joeypiccola/firewallprofile_win',
   :branch => 'master'
 
-mod 'updatereporting_win',
-  :git    => 'https://github.com/joeypiccola/updatereporting_win',
-  :branch => 'updateapi' 
+#mod 'updatereporting_win',
+#  :git    => 'https://github.com/joeypiccola/updatereporting_win',
+#  :branch => 'updateapi' 
 
 # Examples: https://github.com/puppetlabs/r10k/blob/master/doc/puppetfile.mkd#examples
 #mod 'apache',
