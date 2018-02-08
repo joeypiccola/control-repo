@@ -22,7 +22,7 @@ mod 'jpi-timezone_win', '0.1.3'
 mod 'puppetlabs-puppet_agent', '1.4.1'
 mod 'tvories-showhidden_win', '0.1.0'
 mod 'puppetlabs-scheduled_task', '0.1.0'
-#mod 'jpi-updatereporting_win', '0.1.1'
+mod 'jpi-updatereporting_win', '0.1.1'
 
 # Modules from Git
 mod 'firewallprofile_win',
