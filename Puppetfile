@@ -18,7 +18,7 @@ mod 'puppetlabs-inifile', '2.0.0'
 mod 'jonnyx-msuac', '0.0.3'
 mod 'puppet-windows_firewall', '1.1.0'
 mod 'jpi-kms_win', '0.1.3'
-#mod 'jpi-timezone_win', '0.1.3'
+mod 'jpi-timezone_win', '0.1.4'
 mod 'puppetlabs-puppet_agent', '1.4.1'
 mod 'tvories-showhidden_win', '0.1.0'
 mod 'puppetlabs-scheduled_task', '0.1.0'
@@ -29,9 +29,6 @@ mod 'firewallprofile_win',
   :git    => 'https://github.com/joeypiccola/firewallprofile_win',
   :branch => 'master'
 
-mod 'timezone_win',
-  :git    => 'https://github.com/joeypiccola/timezone_win',
-  :branch => 'dev'
 #mod 'updatereporting_win',
 #  :git    => 'https://github.com/joeypiccola/updatereporting_win',
 #  :branch => 'updateapi' 
