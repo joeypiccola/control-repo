@@ -26,9 +26,7 @@ pipeline {
             }
         }
         stage('puppet-token') {
-            steps {
-                puppet.credentials 'dc0758a9-9f9b-48cd-84ab-e86c6884d93d'
-            }
+            puppet.credentials 'dc0758a9-9f9b-48cd-84ab-e86c6884d93d'
         }
         stage('deploy') {
             steps {
