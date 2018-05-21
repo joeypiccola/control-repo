@@ -30,15 +30,15 @@ node {
         foreach ($ps1 in (Get-ChildItem -path .\\ -Recurse -Include *.ps1))
         {
             $contents = Get-Content -Path $ps1
-            
+
             if ($null -eq $contents)
             {
                 continue
             }
-            
+
             $errors = $null
             $null = [System.Management.Automation.PSParser]::Tokenize($contents, [ref]$errors)
-            
+
             $file = $null
             $file = New-Object psobject -Property @{
                 Path = $ps1
@@ -53,14 +53,14 @@ node {
    stage ('get puppet token') {
      puppet.credentials 'dc0758a9-9f9b-48cd-84ab-e86c6884d93d'
    }
-  stage ('deploy to test') {
-      lock('puppet-code-test') {
-      puppet.codeDeploy 'test'
+  stage ('deploy to nonproduction') {
+      lock('puppet-code-nonproduction') {
+      puppet.codeDeploy 'nonproduction'
     }
   }
-  stage ('run in test') {
-      lock('puppet-code-test') {
-      puppet.job 'test', query: 'nodes { catalog_environment = "test" }'
+  stage ('run in nonproduction') {
+      lock('puppet-code-nonproduction') {
+      puppet.job 'nonproduction', query: 'nodes { catalog_environment = "nonproduction" }'
     }
-  }  
+  }
 }
