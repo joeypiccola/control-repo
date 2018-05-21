@@ -1,14 +1,12 @@
 # == Class: profile::wsus_config
 class profile::wsus_config (
-  $server_url
 ) {
 
   class { 'wsus_client':
-    server_url                => $server_url,
-    enable_status_server      => true,
-    auto_update_option        => 'AutoNotify',
-    detection_frequency_hours => 1,
-    target_group              => 'ad.piccola.us',
+    auto_update_option        => "Scheduled",
+    scheduled_install_day     => "Monday",
+    scheduled_install_hour    => 2,
+    detection_frequency_hours => 6,
   }
 
 }
