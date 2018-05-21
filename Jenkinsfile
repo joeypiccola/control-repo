@@ -5,8 +5,7 @@ pipeline {
     }
     stages {
         stage('puppet parse') {
-            powershell ''
-            '
+            powershell '''
             foreach($pp in (Get - ChildItem - path.\\ - Recurse - Include * .pp)) { &
                 puppet parser validate $pp--environment production
                 if ($LASTEXITCODE - ne 0) {
@@ -14,12 +13,10 @@ pipeline {
                 }
             }
             Write - Output 'No parsing errors found'
-            ''
-            '
+            '''
         }
         stage('puppet lint') {
-            powershell ''
-            '
+            powershell '''
             $LintResults = @()
             foreach($pp in (Get - ChildItem - path.\\ - Recurse - Include * .pp)) {
                 $LintResult = & puppet - lint $pp--with - filename--no - 140 chars - check
@@ -29,12 +26,10 @@ pipeline {
             if ($LintResults | Select - String - Pattern 'error') {
                 exit 1
             }
-            ''
-            '
+            '''
         }
         stage('powershell parse') {
-            powershell ''
-            '
+            powershell '''
             $files = @()
             foreach($ps1 in (Get - ChildItem - path.\\ - Recurse - Include * .ps1)) {
                 $contents = Get - Content - Path $ps1
@@ -59,8 +54,7 @@ pipeline {
                 }) {
                 exit 1
             }
-            ''
-            '
+            '''
         }
         stage('get puppet token') {
             puppet.credentials 'dc0758a9-9f9b-48cd-84ab-e86c6884d93d'
