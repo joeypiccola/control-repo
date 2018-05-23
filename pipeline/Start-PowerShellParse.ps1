@@ -1,3 +1,6 @@
+$InformationPreference = 'continue'
+$ErrorActionPreference = 'stop'
+
 $files = @()
 foreach ($ps1 in (Get-ChildItem -path ..\ -Recurse -Include *.ps1)) {
     $contents = Get-Content -Path $ps1
@@ -13,5 +16,5 @@ foreach ($ps1 in (Get-ChildItem -path ..\ -Recurse -Include *.ps1)) {
     }
     $files += $file
 }
-Write-Output $files
+Write-Information $files
 if ($files |?{$_.syntaxerrorsfound -eq $true}) {exit 1}
