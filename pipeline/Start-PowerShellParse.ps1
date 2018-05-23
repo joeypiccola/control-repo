@@ -1,5 +1,5 @@
 $files = @()
-foreach ($ps1 in (Get-ChildItem -path .\\ -Recurse -Include *.ps1)) {
+foreach ($ps1 in (Get-ChildItem -path ..\ -Recurse -Include *.ps1)) {
     $contents = Get-Content -Path $ps1
     if ($null -eq $contents) {
         continue
