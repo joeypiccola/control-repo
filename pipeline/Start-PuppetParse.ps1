@@ -1,8 +1,18 @@
-$InformationPreference = 'continue'
-$ErrorActionPreference = 'stop'
+$InformationPreference = 'Continue'
+$ErrorActionPreference = 'Continue'
+$fail = $false
 
 foreach ($pp in (Get-ChildItem -path .\ -Recurse -Include *.pp)) {
-    & puppet parser validate $pp --environment production
-    if ($LASTEXITCODE -ne 0) {exit 1}
+    Write-Information "Parsing $($pp.FullName)"
+    & puppet parser validate $pp.FullName --environment production
+    if ($LASTEXITCODE -ne 0) {$fail = $true}
 }
-Write-Information 'No parsing errors found'
+switch ($fail) {
+    $true {
+        Write-Information 'Parsing errors found'
+        exit 1
+    }
+    $false {
+        Write-Information 'No parsing errors found'
+    }
+}
