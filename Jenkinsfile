@@ -7,21 +7,21 @@ pipeline {
         stage('puppet-parse') {
             steps {
                 powershell '''
-                    .\\Start-PuppetParse.ps1
+                    .\\pipeline\\Start-PuppetParse.ps1
                 '''
             }
         }
         stage('puppet-lint') {
             steps {
                 powershell '''
-                    .\\Start-PuppetLint.ps1
+                    .\\pipeline\\Start-PuppetLint.ps1
                 '''
             }
         }
         stage('powershell-parse') {
             steps {
                 powershell '''
-                    .\\Start-PowerShellParse.ps1
+                    .\\pipeline\\Start-PowerShellParse.ps1
                 '''
             }
         }
