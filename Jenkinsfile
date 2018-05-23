@@ -4,25 +4,29 @@ pipeline {
         timeout(time: 1, unit: 'HOURS')
     }
 	stages {
-        stage('puppet-parse') {
-            steps {
-                powershell '''
-                    .\\pipeline\\Start-PuppetParse.ps1
-                '''
-            }
-        }
-        stage('puppet-lint') {
-            steps {
-                powershell '''
-                    .\\pipeline\\Start-PuppetLint.ps1
-                '''
-            }
-        }
-        stage('powershell-parse') {
-            steps {
-                powershell '''
-                    .\\pipeline\\Start-PowerShellParse.ps1
-                '''
+        stage('run tests') {
+            parallel {
+                stage('puppet-parse') {
+                    steps {
+                        powershell '''
+                            .\\pipeline\\Start-PuppetParse.ps1
+                        '''
+                    }
+                }
+                stage('puppet-lint') {
+                    steps {
+                        powershell '''
+                            .\\pipeline\\Start-PuppetLint.ps1
+                        '''
+                    }
+                }
+                stage('powershell-parse') {
+                    steps {
+                        powershell '''
+                            .\\pipeline\\Start-PowerShellParse.ps1
+                        '''
+                    }
+                }
             }
         }
         stage('puppet-token') {
