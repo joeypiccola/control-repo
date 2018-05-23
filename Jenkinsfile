@@ -26,19 +26,27 @@ pipeline {
             }
         }
         stage('puppet-token') {
-            puppet.credentials 'dc0758a9-9f9b-48cd-84ab-e86c6884d93d'
+            steps {
+                script {
+                    puppet.credentials 'dc0758a9-9f9b-48cd-84ab-e86c6884d93d'
+                }
+            }
         }
         stage('deploy') {
             steps {
-                lock('puppet-code-nonproduction') {
-                    puppet.codeDeploy 'nonproduction'
+                script {
+                    lock('puppet-code-nonproduction') {
+                        puppet.codeDeploy 'nonproduction'
+                    }
                 }
             }
         }
         stage('run') {
             steps {
-                lock('puppet-code-nonproduction') {
-                    puppet.job 'nonproduction', query: 'nodes { catalog_environment = "nonproduction" }'
+                script {
+                    lock('puppet-code-nonproduction') {
+                        puppet.job 'nonproduction', query: 'nodes { catalog_environment = "nonproduction" }'
+                    }
                 }
             }
         }
