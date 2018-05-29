@@ -13,4 +13,5 @@ class profile::base (
   include profile::domain_join
   include profile::puppet_agent
   include profile::updatereporting
+  include profile::wsus_config
 }
