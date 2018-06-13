@@ -15,9 +15,13 @@ profile::base::choco_install::chocolatey_download_url: 'http://nuget.ad.piccola.
 profile::base::choco_packages::packages:
   packer:
     ensure: '1.0.4'
+    provider: 'chocolatey'
   notepadplusplus:
     ensure: '7.5.1'
+    provider: 'chocolatey'
   checksum:
     ensure: '0.2.0'
+    provider: 'chocolatey'
   putty:
     ensure: '0.70'
+    provider: 'chocolatey'
