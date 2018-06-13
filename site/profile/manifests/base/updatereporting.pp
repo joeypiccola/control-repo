@@ -1,5 +1,5 @@
-# == Class: profile::updatereporting
-class profile::updatereporting (
+# == Class: profile::base::updatereporting
+class profile::base::updatereporting (
   $wsusscn_url,
 ) {
 

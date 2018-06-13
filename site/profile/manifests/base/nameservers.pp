@@ -1,5 +1,5 @@
-# == Class: profile::nameservers
-class profile::nameservers (
+# == Class: profile::base::nameservers
+class profile::base::nameservers (
   $nameservers,
 ) {
 

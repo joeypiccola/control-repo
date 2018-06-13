@@ -1,5 +1,5 @@
-# == Class: profile::iis_config
-class profile::iis_config (
+# == Class: profile::web::config
+class profile::web::config (
 ) {
 
   file { ['d:\\iserver', 'd:\\iserver\\DefaultWebSite']:
