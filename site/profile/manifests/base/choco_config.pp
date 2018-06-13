@@ -1,5 +1,5 @@
-# == Class: profile::choco_config
-class profile::choco_config (
+# == Class: profile::base::choco_config
+class profile::base::choco_config (
   $location,
 ) {
   include chocolatey

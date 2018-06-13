@@ -1,5 +1,5 @@
-# == Class: profile::firewall_config
-class profile::firewall_config (
+# == Class: profile::base::firewall_config
+class profile::base::firewall_config (
 ) {
 
   class { 'firewallprofile_win':

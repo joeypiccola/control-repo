@@ -1,5 +1,5 @@
-# == Class: profile::wsus_config
-class profile::wsus_config (
+# == Class: profile::base::wsus_config
+class profile::base::wsus_config (
 ) {
 
   class { 'wsus_client':

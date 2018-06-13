@@ -1,5 +1,5 @@
-# == Class: profile::uac_config
-class profile::uac_config (
+# == Class: profile::base::uac_config
+class profile::base::uac_config (
 ) {
 
   class { 'msuac':

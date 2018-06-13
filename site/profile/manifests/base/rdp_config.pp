@@ -1,5 +1,5 @@
-# == Class: profile::rdp_config
-class profile::rdp_config (
+# == Class: profile::base::rdp_config
+class profile::base::rdp_config (
 ) {
 
   class { 'remotedesktop' :

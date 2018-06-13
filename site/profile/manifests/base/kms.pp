@@ -1,5 +1,5 @@
-# == Class: profile::kms
-class profile::kms (
+# == Class: profile::base::kms
+class profile::base::kms (
   $key_management_service_name,
 ) {
 

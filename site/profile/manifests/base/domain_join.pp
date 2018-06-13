@@ -1,5 +1,5 @@
-# == Class: profile::domain_join
-class profile::domain_join (
+# == Class: profile::base::domain_join
+class profile::base::domain_join (
   $username,
   $password,
   $join_options,
