@@ -1,7 +1,6 @@
 ---
-profile::wsus_config::server_url: 'http://box.ad.piccola.us:8530'
-profile::timezone::timezone: 'Pacific Standard Time'
-profile::nameservers::nameservers:
+profile::base::timezone::timezone: 'Pacific Standard Time'
+profile::base::nameservers::nameservers:
   - '10.0.3.21'
-  - '8.8.4.4'
-  - '8.8.4.4'
+  - '10.0.3.22'
+  - '8.8.8.8'

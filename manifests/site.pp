@@ -34,7 +34,7 @@ node default {
     include "role::${facts['role']}"
   }
   else {
-    # noop
+    include profile::puppet_agent
   }
   # This is where you can declare classes for all nodes.
   # Example:

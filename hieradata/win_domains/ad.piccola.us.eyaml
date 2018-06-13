@@ -1,5 +1,5 @@
 ---
-profile::domain_join::password: >
+profile::base::domain_join::password: >
     ENC[PKCS7,MIIBiQYJKoZIhvcNAQcDoIIBejCCAXYCAQAxggEhMIIBHQIBADAFMAACAQEw
     DQYJKoZIhvcNAQEBBQAEggEAXMmasZHUrKa2O5rvqoahJm41x7Tt66cgbOuZ
     PKBcHHitRDyxBsoCyC7SchaJAdozNABMppwhwUtC1T/Ryp7e3HzN5PERBpQB

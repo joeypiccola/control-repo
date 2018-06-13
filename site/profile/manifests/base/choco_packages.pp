@@ -1,5 +1,5 @@
-# == Class: profile::choco_packages
-class profile::choco_packages (
+# == Class: profile::base::choco_packages
+class profile::base::choco_packages (
   $packages
 ) {
   include chocolatey

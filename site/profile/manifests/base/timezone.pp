@@ -1,5 +1,5 @@
-# == Class: profile::timezone
-class profile::timezone (
+# == Class: profile::base::timezone
+class profile::base::timezone (
   $timezone
 ) {
 

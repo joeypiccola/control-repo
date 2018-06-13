@@ -1,5 +1,5 @@
-# == Class: profile::choco_install
-class profile::choco_install (
+# == Class: profile::base::choco_install
+class profile::base::choco_install (
   $chocolatey_download_url,
 ) {
 
