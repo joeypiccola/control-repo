@@ -1,6 +1,6 @@
 ---
-profile::timezone::timezone: 'Pacific Standard Time'
-profile::nameservers::nameservers:
+profile::base::timezone::timezone: 'Pacific Standard Time'
+profile::base::nameservers::nameservers:
   - '10.0.3.21'
   - '10.0.3.22'
   - '8.8.8.8'
