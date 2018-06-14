@@ -41,7 +41,7 @@ pipeline {
             steps {
                 script {
                     lock('puppet-code-nonproduction') {
-                        puppet.codeDeploy env.ghprbSourceBranch
+                        puppet.codeDeploy "${env.ghprbSourceBranch}"
                     }
                 }
             }
