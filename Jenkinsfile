@@ -43,8 +43,7 @@ pipeline {
         stage('deploy') {
             steps {
                 script {
-                    // puppet.codeDeploy "${env.ghprbSourceBranch}"
-                    puppet.job 'nonproduction', query: 'nodes { catalog_environment = "nonproduction" }'
+                    puppet.codeDeploy ghprbSourceBranch
                 }
             }
         }
@@ -52,7 +51,8 @@ pipeline {
             steps {
                 script {
                     // puppet.job "${env.ghprbSourceBranch}", query: 'nodes { catalog_environment = "nonproduction" }'
-                    puppet.job "${env.ghprbSourceBranch}", nodes: ['jenkins.ad.piccola.us']
+                    // puppet.job 'nonproduction', query: 'nodes { catalog_environment = "nonproduction" }'
+                    puppet.job ghprbSourceBranch, nodes: ['jenkins.ad.piccola.us']
                 }
             }
         }
