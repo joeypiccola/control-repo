@@ -4,7 +4,15 @@ pipeline {
         timeout(time: 1, unit: 'HOURS')
     }
 	stages {
-        stage('run tests') {
+        stage('setup') {
+            steps {
+                script {
+                    puppet.credentials 'dc0758a9-9f9b-48cd-84ab-e86c6884d93d'
+                    currentBuild.description = "Processing pull request ${env.ghprbPullTitle}."
+                }
+            }
+        }
+        stage('test') {
             parallel {
                 stage('puppet-parse') {
                     steps {
@@ -29,27 +37,11 @@ pipeline {
                 }
             }
         }
-        stage('puppet-token') {
-            steps {
-                script {
-                    puppet.credentials 'dc0758a9-9f9b-48cd-84ab-e86c6884d93d'
-                }
-            }
-        }
         stage('deploy') {
             steps {
                 script {
                     lock('puppet-code-nonproduction') {
-                        puppet.codeDeploy 'nonproduction'
-                    }
-                }
-            }
-        }
-        stage('run') {
-            steps {
-                script {
-                    lock('puppet-code-nonproduction') {
-                        puppet.job 'nonproduction', query: 'nodes { catalog_environment = "nonproduction" }'
+                        puppet.codeDeploy env.ghprbSourceBranch
                     }
                 }
             }
