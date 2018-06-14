@@ -4,12 +4,10 @@ class profile::base::choco_packages (
 ) {
   include chocolatey
 
-  Package {
-    ensure => latest,
-    provider => chocolatey,
+  $packages.each | String $package, Hash $attributes | {
+    Package { $package:
+      * => $attributes
+    }
   }
 
-  each ($packages) | $package | {
-    package { $package: }
-  }
 }
