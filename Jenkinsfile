@@ -1,3 +1,5 @@
+def ghprbSourceBranch = "${env.ghprbSourceBranch}"
+
 pipeline {
 	agent any
     options {
@@ -9,6 +11,7 @@ pipeline {
                 script {
                     puppet.credentials 'dc0758a9-9f9b-48cd-84ab-e86c6884d93d'
                     currentBuild.description = "Processing pull request ${env.ghprbPullTitle}."
+                    echo ghprbSourceBranch
                 }
             }
         }
@@ -40,9 +43,16 @@ pipeline {
         stage('deploy') {
             steps {
                 script {
-                    lock('puppet-code-nonproduction') {
-                        puppet.codeDeploy env.ghprbSourceBranch
-                    }
+                    puppet.codeDeploy ghprbSourceBranch
+                }
+            }
+        }
+        stage('run') {
+            steps {
+                script {
+                    // puppet.job "${env.ghprbSourceBranch}", query: 'nodes { catalog_environment = "nonproduction" }'
+                    // puppet.job 'nonproduction', query: 'nodes { catalog_environment = "nonproduction" }'
+                    puppet.job ghprbSourceBranch, nodes: ['jenkins.ad.piccola.us']
                 }
             }
         }
