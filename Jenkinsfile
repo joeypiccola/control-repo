@@ -1,5 +1,3 @@
-def ghprbSourceBranch = "${env.ghprbSourceBranch}"
-
 pipeline {
 	agent any
     options {
@@ -43,7 +41,7 @@ pipeline {
         stage('deploy') {
             steps {
                 script {
-                    puppet.codeDeploy ghprbSourceBranch
+                    puppet.codeDeploy env.ghprbSourceBranch
                 }
             }
         }
@@ -52,7 +50,7 @@ pipeline {
                 script {
                     // puppet.job "${env.ghprbSourceBranch}", query: 'nodes { catalog_environment = "nonproduction" }'
                     // puppet.job 'nonproduction', query: 'nodes { catalog_environment = "nonproduction" }'
-                    puppet.job ghprbSourceBranch, nodes: ['jenkins.ad.piccola.us']
+                    puppet.job env.ghprbSourceBranch, nodes: ['jenkins.ad.piccola.us']
                 }
             }
         }
