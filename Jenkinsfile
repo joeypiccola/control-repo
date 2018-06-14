@@ -1,4 +1,4 @@
-def ghprbSourceBranch = env.ghprbSourceBranch
+def ghprbSourceBranch = "${env.ghprbSourceBranch}"
 
 pipeline {
 	agent any
