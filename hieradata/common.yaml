@@ -11,7 +11,7 @@ profile::base::updatereporting::pswindowsupdate_force_download: true
 
 profile::base::choco_config::location: 'http://nuget.ad.piccola.us:8080/chocolatey'
 profile::base::choco_install::chocolatey_version: 0.10.11
-profile::base::choco_install::chocolatey_download_url: 'http://nuget.ad.piccola.us:8081/chocolatey.0.10.8.nupkg'
+profile::base::choco_install::chocolatey_download_url: 'http://nuget.ad.piccola.us:8081/chocolatey.0.10.11.nupkg'
 profile::base::choco_packages::packages:
   packer:
     ensure: '1.2.4'
