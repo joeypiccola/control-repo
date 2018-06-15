@@ -6,7 +6,7 @@ Table of Contents | puppet.piccola.us
     * [Copy This Repo Into Your Own Git Server](#copy-this-repo-into-your-own-git-server)
       * [GitLab](#gitlab)
       * [Stash](#stash)
-      * [GitHub](#github)
+      * [GitHub](#github)ab
 
 Created by [gh-md-toc](https://github.com/ekalinin/github-markdown-toc.go)
 
