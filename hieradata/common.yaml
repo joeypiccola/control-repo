@@ -25,3 +25,6 @@ profile::base::choco_packages::packages:
   putty:
     ensure: '0.70'
     provider: 'chocolatey'
+  chocolatey:
+    ensure: '0.10.11'
+    provider: 'chocolatey'
