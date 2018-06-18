@@ -19,7 +19,7 @@ pipeline {
                 }
                 stage ('setup for pull request') {
                     when {
-                        expression { "${env.GIT_BRANCH}" ==~ "/origin//pr//*/" }
+                        expression { env.GIT_BRANCH ==~ "origin//pr//*" }
                     }
                     steps {
                         script {
