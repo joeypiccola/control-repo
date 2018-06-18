@@ -21,20 +21,24 @@ pipeline {
                     when {
                         branch "origin/pr*"
                     }
-                    script {
-                        currentBuild.description = "Processing pull request ${env.ghprbPullTitle}."
+                    step {
+                        script {
+                            currentBuild.description = "Processing pull request ${env.ghprbPullTitle}."
+                        }
                     }
                 }
                 stage ('setup for feature branch') {
                     when {
                         not {
-                            anyof {
+                            anyOf {
                                 branch 'production'; branch 'nonproduction'; branch 'development'
                             }
                         }
                     }
-                    script {
-                        currentBuild.description = "Processing feature branch ${env.GIT_BRANCH}."
+                    step {
+                        script {
+                            currentBuild.description = "Processing feature branch ${env.GIT_BRANCH}."
+                        }
                     }
                 }
             }
