@@ -21,7 +21,7 @@ pipeline {
                     when {
                         branch "origin/pr*"
                     }
-                    step {
+                    steps {
                         script {
                             currentBuild.description = "Processing pull request ${env.ghprbPullTitle}."
                         }
@@ -35,7 +35,7 @@ pipeline {
                             }
                         }
                     }
-                    step {
+                    steps {
                         script {
                             currentBuild.description = "Processing feature branch ${env.GIT_BRANCH}."
                         }
