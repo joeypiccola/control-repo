@@ -7,7 +7,7 @@ pipeline {
 	stages {
         stage('setup') {
             parallel {
-                stage ('acquire puppet credentials a') {
+                stage ('acquire puppet credentials b') {
                     steps {
                         script {
                             puppet.credentials 'dc0758a9-9f9b-48cd-84ab-e86c6884d93d'
