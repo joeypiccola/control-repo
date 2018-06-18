@@ -72,6 +72,7 @@ pipeline {
             steps {
                 script {
                     // puppet.codeDeploy env.ghprbSourceBranch
+                    echo 'hi'
                 }
             }
         }
@@ -81,6 +82,7 @@ pipeline {
                     // puppet.job "${env.ghprbSourceBranch}", query: 'nodes { catalog_environment = "nonproduction" }'
                     // puppet.job 'nonproduction', query: 'nodes { catalog_environment = "nonproduction" }'
                     // puppet.job env.ghprbSourceBranch, nodes: ['jenkins.ad.piccola.us']
+                    echo 'oi'
                 }
             }
         }
