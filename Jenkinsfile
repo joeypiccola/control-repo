@@ -19,7 +19,7 @@ pipeline {
                 }
                 stage ('setup for pull request') {
                     when {
-                        branch "origin/pr*"
+                        expression { "${env.GIT_BRANCH}" == 'origin/pr/*' }
                     }
                     steps {
                         script {
@@ -29,11 +29,7 @@ pipeline {
                 }
                 stage ('setup for feature branch') {
                     when {
-                        not {
-                            anyOf {
-                                branch 'production'; branch 'nonproduction'; branch 'development'
-                            }
-                        }
+                        expression { "${env.GIT_BRANCH}" == 'origin/feature_new' }
                     }
                     steps {
                         script {
