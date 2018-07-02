@@ -1,5 +1,5 @@
 ---
-profile::base::timezone::timezone: 'Pacific Standard Time'
+timezone_win::timezone: 'Pacific Standard Time'
 profile::base::nameservers::nameservers:
   - '10.0.3.21'
   - '10.0.3.22'
