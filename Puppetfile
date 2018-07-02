@@ -26,6 +26,11 @@ mod 'puppetlabs-transition', '0.1.1'
 mod 'puppetlabs-apt', '2.4.0'
 
 # Modules from Git
+mod 'crypto_win',
+  :git    => 'https://github.com/joeypiccola/crypto_win',
+  :branch => 'master'
+
+# Modules from Git
 mod 'firewallprofile_win',
   :git    => 'https://github.com/joeypiccola/firewallprofile_win',
   :branch => 'master'
