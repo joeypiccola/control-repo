@@ -1,4 +1,4 @@
 ---
-profile::base::kms::key_management_service_name: 'kms.ad.piccola.us'
+kms_win::key_management_service_name: 'kms.ad.piccola.us'
 profile::base::domain_join::username: 'svc_djoin_puppet'
 profile::base::domain_join::join_options: '3'

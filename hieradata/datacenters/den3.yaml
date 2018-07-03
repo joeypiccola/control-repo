@@ -1,5 +1,5 @@
 ---
-profile::base::timezone::timezone: 'Mountain Standard Time'
+timezone_win::timezone: 'Mountain Standard Time'
 profile::base::nameservers::nameservers:
   - '10.0.3.21'
   - '10.0.3.22'
