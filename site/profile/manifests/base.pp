@@ -4,6 +4,7 @@ class profile::base (
   include profile::base::choco_install
   include profile::base::choco_config
   include profile::base::choco_packages
+  include profile::base::crypto
   include profile::base::timezone
   include profile::base::kms
   include profile::base::nameservers
