@@ -9,6 +9,7 @@ profile::base::updatereporting::task_schedule: 'weekly'
 profile::base::updatereporting::task_enabled: true
 profile::base::updatereporting::pswindowsupdate_force_download: true
 crypto_win::tls_1_0_client: true
+crypto_win::sha: true
 
 profile::base::choco_config::location: 'http://nuget.ad.piccola.us:8080/chocolatey'
 profile::base::choco_install::chocolatey_version: 0.10.11
