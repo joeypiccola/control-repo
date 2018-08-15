@@ -40,25 +40,25 @@ pipeline {
                 }
             }
         }
-        stage('pdk tests') {
-            failFast false
-            parallel {
-                stage('puppet') {
-                    steps {
-                        powershell '''
-                            .\\build\\Invoke-PDKValidate.ps1 -test puppet
-                        '''
-                    }
-                }
-                stage('ruby') {
-                    steps {
-                        powershell '''
-                            .\\build\\Invoke-PDKValidate.ps1 -test ruby
-                        '''
-                    }
-                }
-            }
-        }
+        // stage('pdk tests') {
+        //     failFast false
+        //     parallel {
+        //         stage('puppet') {
+        //             steps {
+        //                 powershell '''
+        //                     .\\build\\Invoke-PDKValidate.ps1 -test puppet
+        //                 '''
+        //             }
+        //         }
+        //         stage('ruby') {
+        //             steps {
+        //                 powershell '''
+        //                     .\\build\\Invoke-PDKValidate.ps1 -test ruby
+        //                 '''
+        //             }
+        //         }
+        //     }
+        // }
         stage('powershell tests') {
             failFast false
             parallel {
