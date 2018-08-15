@@ -149,17 +149,17 @@ pipeline {
     post {
        success {
                powershell '''
-                   .\\build\\Send-Pushover.ps1 -user $env.pushover_key -token $env.pushover_tok -branch $env.BRANCH -status 'succeeded' -buildid $env.build_id
+                   .\\build\\Send-Pushover.ps1 -user $env.pushover_key -token $env.pushover_tok -branch $env.BRANCH -status 'succeeded' -build_id $env.build_id
                '''
        }
        aborted {
                powershell '''
-                   .\\build\\Send-Pushover.ps1 -user $env.pushover_key -token $env.pushover_tok -branch $env.BRANCH -status 'aborted' -buildid $env.build_id
+                   .\\build\\Send-Pushover.ps1 -user $env.pushover_key -token $env.pushover_tok -branch $env.BRANCH -status 'aborted' -build_id $env.build_id
                '''
        }
        failure {
                powershell '''
-                   .\\build\\Send-Pushover.ps1 -user $env.pushover_key -token $env.pushover_tok -branch $env.BRANCH -status 'failed' -buildid $env.build_id
+                   .\\build\\Send-Pushover.ps1 -user $env.pushover_key -token $env.pushover_tok -branch $env.BRANCH -status 'failed' -build_id $env.build_id
                '''
        }
     }
