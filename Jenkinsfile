@@ -148,26 +148,19 @@ pipeline {
     }
     post {
        success {
-           steps {
                powershell '''
                    .\\build\\Send-Pushover.ps1 -user $env.pushover_key -token $env.pushover_tok -branch $env.BRANCH -status 'succeeded' -buildid $env.build_id
                '''
-           }
        }
        aborted {
-           steps {
                powershell '''
                    .\\build\\Send-Pushover.ps1 -user $env.pushover_key -token $env.pushover_tok -branch $env.BRANCH -status 'aborted' -buildid $env.build_id
                '''
-           }
        }
        failure {
-           steps {
                powershell '''
                    .\\build\\Send-Pushover.ps1 -user $env.pushover_key -token $env.pushover_tok -branch $env.BRANCH -status 'failed' -buildid $env.build_id
                '''
-           }
        }
     }
-
 }
