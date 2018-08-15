@@ -7,6 +7,11 @@ Param(
 
 $ErrorActionPreference = 'Stop'
 $InformationPreference = 'Continue'
+$psModule = 'PuppetDevelopmentdKit'
 
-Import-Module -Name 'PuppetDevelopmentKit'
-pdk validate $test
+if (Get-Module $psModule -ListAvailable) {
+    Import-Module -Name $psModule
+    pdk validate $test
+} else {
+    Write-Error "$psModule not installed on system"
+}
