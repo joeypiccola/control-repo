@@ -14,7 +14,7 @@ Param(
 $parameters = @{
     token   = $token
     user    = $user
-    message = "Build #$build_id - $branch $status"
+    message = "Build #$build_id - $($branch.Split('/')[1]) $status"
     title   = "Puppet Code Deploy CI"
 }
 
