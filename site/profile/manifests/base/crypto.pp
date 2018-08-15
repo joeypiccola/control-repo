@@ -2,6 +2,6 @@
 class profile::base::crypto (
 ) {
 
-include crypto_win
+  include crypto_win
 
 }
