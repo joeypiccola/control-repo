@@ -7,7 +7,7 @@ Param(
 
 $ErrorActionPreference = 'Stop'
 $InformationPreference = 'Continue'
-$psModule = 'PuppetDevelopmentdKit'
+$psModule = 'PuppetDevelopmentKit'
 
 if (Get-Module $psModule -ListAvailable) {
     Import-Module -Name $psModule
