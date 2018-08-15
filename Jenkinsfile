@@ -42,7 +42,7 @@ pipeline {
         }
         stage('pdk tests') {
             failFast false
-            parallel {
+            stages {
                 stage('puppet') {
                     steps {
                         powershell '''
