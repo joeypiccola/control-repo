@@ -1,7 +1,12 @@
 def BRANCH = EVENT_BRANCH.split('/')[1]
 
+
 pipeline {
 	agent any
+    environment {
+        pushover_key = credentials('010aab6d-4f68-494e-a75a-eebbb45d8be1')
+        pushover_tok = credentials('9b338657-a114-46d6-b099-e676b35ec664')
+    }
     options {
         timeout(time: 1, unit: 'HOURS')
     }
@@ -141,15 +146,28 @@ pipeline {
             }
         }
     }
-    // post {
-    //     success {
-    //         hipchatSend color: 'GREEN', failOnError: true, message: "[#${BUILD_NUMBER}] ${BRANCH} succeeded.", textFormat: true, room: hipChatRoom, token: hipChatToken
-    //     }
-    //     aborted {
-    //         hipchatSend color: 'YELLOW', failOnError: true, message: "[#${BUILD_NUMBER}] ${BRANCH} aborted.", textFormat: true, room: hipChatRoom, token: hipChatToken
-    //     }
-    //     failure {
-    //         hipchatSend color: 'RED', failOnError: true, message: "[#${BUILD_NUMBER}] ${BRANCH} failed.", textFormat: true, room: hipChatRoom, token: hipChatToken
-    //     }
-    // }
+    post {
+       success {
+           steps {
+               powershell '''
+                   .\\build\\Send-Pushover.ps1 -user $env.pushover_key -token $env.pushover_tok -branch $env.BRANCH -status 'succeeded' -buildid $env.build_id
+               '''
+           }
+       }
+       aborted {
+           steps {
+               powershell '''
+                   .\\build\\Send-Pushover.ps1 -user $env.pushover_key -token $env.pushover_tok -branch $env.BRANCH -status 'aborted' -buildid $env.build_id
+               '''
+           }
+       }
+       failure {
+           steps {
+               powershell '''
+                   .\\build\\Send-Pushover.ps1 -user $env.pushover_key -token $env.pushover_tok -branch $env.BRANCH -status 'failed' -buildid $env.build_id
+               '''
+           }
+       }
+    }
+
 }
