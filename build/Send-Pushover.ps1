@@ -18,4 +18,4 @@ $parameters = @{
     title   = "Puppet Code Deploy CI"
 }
 
-$parameters | Invoke-RestMethod -Method Post -Uri "https://api.pushover.net/1/messages.json"
+Invoke-RestMethod -Method Post -Uri "https://api.pushover.net/1/messages.json" -Body $parameters
