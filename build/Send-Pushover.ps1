@@ -14,8 +14,10 @@ Param(
 $parameters = @{
     token   = $token
     user    = $user
-    message = "Build #$build_id - $branch $status"
+    message = "Build #$build_id - $($branch.Split('/')[1]) $status"
     title   = "Puppet Code Deploy CI"
 }
 
-$parameters | Invoke-RestMethod -Method Post -Uri "https://api.pushover.net/1/messages.json"
+write-output $parameters
+
+Invoke-RestMethod -Method Post -Uri "https://api.pushover.net/1/messages.json" -Body $parameters
