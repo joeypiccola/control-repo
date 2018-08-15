@@ -1,0 +1,39 @@
+# -*- mode: ruby -*-
+# vi: set ft=ruby :
+
+# Prerequisites:
+# A windows box with...
+# - puppet-agent
+# - git
+# - ruby
+# - r10k
+
+Vagrant.configure(2) do |config|
+  config.vm.box = "win12r2"
+  config.vm.guest = :windows
+  config.vm.communicator = "winrm"
+  config.vm.boot_timeout = 300
+
+ # copy over control repo to local system and modify environment.conf for windows
+ config.vm.provision "control_repo", type: "shell",
+    inline: "robocopy /MIR c:\\vagrant c:\\ProgramData\\PuppetLabs\\code\\environments\\production;
+    (Get-Content 'C:\\ProgramData\\PuppetLabs\\code\\environments\\production\\environment.conf').Replace(':',';') | Select-String -Pattern 'config_version' -NotMatch | Set-Content 'C:\\ProgramData\\PuppetLabs\\code\\environments\\production\\environment.conf'"
+  # download modules to local system
+  config.vm.provision "r10k_modules", type: "shell",
+    inline: "cd c:\\ProgramData\\PuppetLabs\\code\\environments\\production; r10k puppetfile install"
+
+  config.vm.provision "puppet" do |puppet|
+    puppet.options = "--disable_warnings deprecations"
+    puppet.manifest_file = "site.pp"
+    puppet.facter = {
+      "datacenter" => "den3",
+      "role"       => "base"
+    }
+  end
+
+  config.vm.provider "virtualbox" do |vb|
+    vb.gui = true
+    vb.memory = 2048
+  end
+
+end
