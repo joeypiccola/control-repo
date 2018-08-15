@@ -1,0 +1,1 @@
+Get-SmbServerConfiguration | select enablesm* | ConvertTo-Json
