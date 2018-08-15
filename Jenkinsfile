@@ -42,7 +42,7 @@ pipeline {
         }
         stage('pdk tests') {
             failFast false
-            stages {
+            parallel {
                 stage('puppet') {
                     steps {
                         powershell '''
@@ -50,13 +50,13 @@ pipeline {
                         '''
                     }
                 }
-                stage('ruby') {
-                    steps {
-                        powershell '''
-                            .\\build\\Invoke-PDKValidate.ps1 -test ruby
-                        '''
-                    }
-                }
+                //stage('ruby') {
+                //    steps {
+                //        powershell '''
+                //            .\\build\\Invoke-PDKValidate.ps1 -test ruby
+                //        '''
+                //    }
+                //}
             }
         }
         stage('powershell tests') {
