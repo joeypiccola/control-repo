@@ -1,0 +1,11 @@
+{
+    "puppet_task_version": 1,
+    "description": "A task to query for a specific Microsoft KB.",
+    "input_method": "powershell",
+    "parameters": {
+        "kb": {
+            "description": "The Microsoft KB to query for (e.g. KB4343887).",
+            "type": "String"
+        }
+    }
+}
