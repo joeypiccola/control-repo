@@ -6,8 +6,7 @@ Param (
 
 try {
     $kb_query = Get-HotFix -Id $kb
-}
-catch {
+} catch {
     Write-Information "$kb was not found"
 }
 
@@ -21,7 +20,7 @@ if (!$kb_query) {
 }
 
 if ($kb_query) {
-    Write-Output ($kb_query | Select-Object @{Name="Source";Expression={$_.CSName}}, Description, HotFixID, InstalledBy, @{Name="InstalledOn";Expression={$_.InstalledOn.datetime}} | ConvertTo-Json -Depth 1)
+    Write-Output ($kb_query | Select-Object @{Name = "Source"; Expression = {$_.CSName}}, Description, HotFixID, InstalledBy, @{Name = "InstalledOn"; Expression = {$_.InstalledOn.datetime}} | ConvertTo-Json -Depth 1)
 } else {
     Write-Output "$kb not found."
 }
