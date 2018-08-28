@@ -2,6 +2,8 @@
 class profile::patching::pswindowsupdate_config (
 ) {
 
+  include profile::base::chocolatey
+
   exec { 'pswindowsupdate':
     command  => "Remove-Item 'C:/Program Files/WindowsPowerShell/Modules/PSWindowsUpdate' -Recurse -Force -ErrorAction SilentlyContinue
                  Import-Module -Name 'BitsTransfer' -ErrorAction Stop
