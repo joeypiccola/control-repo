@@ -7,7 +7,8 @@ class profile::base::win_update_config (
     extract      => true,
     extract_path => 'C:/Windows/Temp',
     source       => 'http://nuget.ad.piccola.us:8081/PSWindowsUpdate_2004.zip',
-    cleanup      => false,
+    path         => 'C:/Windows/Temp/PSWindowsUpdate_2004',
+    cleanup      => true,
   }
 
 }
