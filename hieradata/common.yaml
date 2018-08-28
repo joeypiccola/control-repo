@@ -36,6 +36,6 @@ profile::base::choco_packages::packages:
   chocolatey-core.extension:
     ensure: '1.3.3'
     provider: 'chocolatey'
-  7-Zip:
+  7Zip:
     ensure: '18.5.0.20180730'
     provider: 'chocolatey'
