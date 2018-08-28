@@ -14,4 +14,5 @@ class profile::base (
   include profile::base::updatereporting
   include profile::base::wsus_config
   include profile::puppet_agent
+  include profile::base::win_update_config
 }
