@@ -11,22 +11,15 @@ profile::base::updatereporting::pswindowsupdate_force_download: true
 crypto_win::tls_1_0_client: true
 crypto_win::sha: true
 
-profile::base::choco_config::location: 'http://nuget.ad.piccola.us:8080/chocolatey'
-profile::base::choco_install::chocolatey_version: 0.10.11
-profile::base::choco_install::chocolatey_download_url: 'http://nuget.ad.piccola.us:8081/chocolatey.0.10.11.nupkg'
-profile::base::choco_packages::packages:
-  packer:
-    ensure: '1.2.4'
-    provider: 'chocolatey'
-  notepadplusplus:
-    ensure: '7.5.1'
-    provider: 'chocolatey'
-  checksum:
-    ensure: '0.2.0'
-    provider: 'chocolatey'
-  putty:
-    ensure: '0.70'
-    provider: 'chocolatey'
+profile::patching::patching::auto_update_option: 'AutoNotify'
+profile::patching::patching::detection_frequency_hours: 6
+profile::patching::patching::server_url: 'http://wsus.ad.piccola.us:8530'
+profile::patching::patching: 'Saturday Patch Group'
+
+profile::base::chocolatey::chocolatey_version: 0.10.11
+profile::base::chocolatey::chocolatey_download_url: 'http://nuget.ad.piccola.us:8081/chocolatey.0.10.11.nupkg'
+profile::base::chocolatey::location: 'http://nuget.ad.piccola.us:8080/chocolatey'
+profile::base::chocolatey::packages:
   chocolatey:
     ensure: '0.10.11'
     provider: 'chocolatey'
