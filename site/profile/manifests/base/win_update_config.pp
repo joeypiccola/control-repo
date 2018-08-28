@@ -12,9 +12,11 @@ class profile::base::win_update_config (
   # }
 
   exec { 'ps_pswindowsupdate':
-    command  => "Import-Module -Name 'BitsTransfer'
-                 Start-BitsTransfer -Source 'http://nuget.ad.piccola.us:8081/PSWindowsUpdate.zip' -Destination 'C:/Windows/Temp'
-                 7z e -spf 'c:/Windows/Temp/PSWindowsUpdate.zip' -o'C:/Program Files/WindowsPowerShell/Modules'",
+    command  => "Remove-Item 'C:/Program Files/WindowsPowerShell/Modules/PSWindowsUpdate' -Recurse -Force -ErrorAction SilentlyContinue
+                 Import-Module -Name 'BitsTransfer' -ErrorAction Stop
+                 Start-BitsTransfer -Source 'http://nuget.ad.piccola.us:8081/PSWindowsUpdate.zip' -Destination 'C:/Windows/Temp' -ErrorAction Stop
+                 7z e -spf 'c:/Windows/Temp/PSWindowsUpdate.zip' -o'C:/Program Files/WindowsPowerShell/Modules'
+                 Remove-Item -Recurse C:/Windows/Temp/PSWindowsUpdate.zip -ErrorAction Stop",
     onlyif   => "if ([string](Get-Module -ListAvailable -Name 'PSWindowsUpdate').version -eq '2.0.0.4') { 1 } else { 0 }",
     provider => 'powershell',
     require  => Package['7zip'],
