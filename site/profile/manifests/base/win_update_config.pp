@@ -12,16 +12,16 @@ class profile::base::win_update_config (
   # }
 
   exec { 'ps_pswindowsupdate':
-    command  => "Import-Module -Name BitsTransfer
+    command  => "Import-Module -Name 'BitsTransfer'
                  Start-BitsTransfer -Source 'http://nuget.ad.piccola.us:8081/PSWindowsUpdate.zip' -Destination 'C:/Windows/Temp'
                  7z e -spf 'c:/Windows/Temp/PSWindowsUpdate.zip' -o'C:/Program Files/WindowsPowerShell/Modules'",
-    onlyif   => "if (Get-Module -ListAvailable -Name 'PSWindowsUpdate') {
-                   exit 1
-                 } else {
-                   exit 0
-                 }",
+    onlyif   => "if (Get-Module -ListAvailable -Name 'PSWindowsUpdate') { exit 1 } else { exit 0 }",
     provider => 'powershell',
+    require  => Package['7zip'],
   }
 
-
+  package { '7zip':
+    ensure   => '18.5.0.20180730',
+    provider => 'chocolatey',
+  }
 }
