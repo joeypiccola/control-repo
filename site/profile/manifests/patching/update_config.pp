@@ -1,5 +1,5 @@
-# == Class: profile::base::win_update_config
-class profile::base::win_update_config (
+# == Class: profile::patching::update_config
+class profile::patching::update_config (
 ) {
 
   # archive { 'pswindowsupdate':
@@ -11,7 +11,7 @@ class profile::base::win_update_config (
   #   cleanup      => true,
   # }
 
-  exec { 'ps_pswindowsupdate':
+  exec { 'pswindowsupdate':
     command  => "Remove-Item 'C:/Program Files/WindowsPowerShell/Modules/PSWindowsUpdate' -Recurse -Force -ErrorAction SilentlyContinue
                  Import-Module -Name 'BitsTransfer' -ErrorAction Stop
                  Start-BitsTransfer -Source 'http://nuget.ad.piccola.us:8081/PSWindowsUpdate.zip' -Destination 'C:/Windows/Temp' -ErrorAction Stop
