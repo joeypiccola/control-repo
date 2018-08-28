@@ -33,3 +33,9 @@ profile::base::choco_packages::packages:
   powershell:
     ensure: latest
     provider: 'chocolatey'
+  chocolatey-core.extension:
+    ensure: '1.3.3'
+    provider: 'chocolatey'
+  7-Zip:
+    ensure: '18.5.0.20180730'
+    provider: 'chocolatey'
