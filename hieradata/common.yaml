@@ -11,13 +11,13 @@ profile::base::updatereporting::pswindowsupdate_force_download: true
 crypto_win::tls_1_0_client: true
 crypto_win::sha: true
 
-profile::patching::patching::auto_update_option: 'AutoNotify'
-profile::patching::patching::detection_frequency_hours: 6
-profile::patching::patching::server_url: 'http://wsus.ad.piccola.us:8530'
-profile::patching::patching: 'Saturday Patch Group'
+wsus_client::auto_update_option: 'AutoNotify'
+wsus_client::detection_frequency_hours: 6
+wsus_client::server_url: 'http://wsus.ad.piccola.us:8530'
+profile::patching::patching::patchgroup: 'Saturday Patch Group'
 
-profile::base::chocolatey::chocolatey_version: 0.10.11
-profile::base::chocolatey::chocolatey_download_url: 'http://nuget.ad.piccola.us:8081/chocolatey.0.10.11.nupkg'
+chocolatey::chocolatey_version: 0.10.11
+chocolatey::chocolatey_download_url: 'http://nuget.ad.piccola.us:8081/chocolatey.0.10.11.nupkg'
 profile::base::chocolatey::location: 'http://nuget.ad.piccola.us:8080/chocolatey'
 profile::base::chocolatey::packages:
   chocolatey:
