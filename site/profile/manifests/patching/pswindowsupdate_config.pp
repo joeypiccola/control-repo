@@ -2,17 +2,6 @@
 class profile::patching::pswindowsupdate_config (
 ) {
 
-  # archive { 'pswindowsupdate':
-  #   ensure       => present,
-  #   extract      => true,
-  #   extract_path => 'C:/Windows/Temp',
-  #   source       => 'http://nuget.ad.piccola.us:8081/PSWindowsUpdate_2004.zip',
-  #   path         => 'C:/Program Files/WindowsPowerShell/Modules',
-  #   cleanup      => true,
-  # }
-
-  # you need some logic here to ensure choco has been configured require or something?
-
   exec { 'pswindowsupdate':
     command  => "Remove-Item 'C:/Program Files/WindowsPowerShell/Modules/PSWindowsUpdate' -Recurse -Force -ErrorAction SilentlyContinue
                  Import-Module -Name 'BitsTransfer' -ErrorAction Stop
@@ -28,4 +17,5 @@ class profile::patching::pswindowsupdate_config (
     ensure   => '18.5.0.20180730',
     provider => 'chocolatey',
   }
+
 }
