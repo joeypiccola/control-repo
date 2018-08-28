@@ -1,5 +1,5 @@
-# == Class: profile::patching::update_config
-class profile::patching::update_config (
+# == Class: profile::patching::pswindowsupdate_config
+class profile::patching::pswindowsupdate_config (
 ) {
 
   # archive { 'pswindowsupdate':
@@ -10,6 +10,8 @@ class profile::patching::update_config (
   #   path         => 'C:/Program Files/WindowsPowerShell/Modules',
   #   cleanup      => true,
   # }
+
+  # you need some logic here to ensure choco has been configured require or something?
 
   exec { 'pswindowsupdate':
     command  => "Remove-Item 'C:/Program Files/WindowsPowerShell/Modules/PSWindowsUpdate' -Recurse -Force -ErrorAction SilentlyContinue
