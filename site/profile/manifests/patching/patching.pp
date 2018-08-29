@@ -22,9 +22,10 @@ class profile::patching::patching (
   }
 
   exec { 'wuauserv_svc':
-    provider => 'powershell',
-    command  => "Get-Service wuauserv | Restart-Service
-                 wuauclt.exe /detectnow",
+    provider    => 'powershell',
+    command     => "Get-Service wuauserv | Restart-Service
+                    wuauclt.exe /detectnow",
+    refreshonly => true,
   }
 
 }
