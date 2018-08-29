@@ -14,7 +14,6 @@ crypto_win::sha: true
 wsus_client::auto_update_option: 'AutoNotify'
 wsus_client::detection_frequency_hours: 6
 wsus_client::server_url: 'http://wsus.ad.piccola.us:8530'
-profile::patching::patching::patchgroup: 'Saturday Patch Group'
 
 chocolatey::chocolatey_version: 0.10.11
 chocolatey::chocolatey_download_url: 'http://nuget.ad.piccola.us:8081/chocolatey.0.10.11.nupkg'
