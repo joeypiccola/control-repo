@@ -9,5 +9,6 @@ class profile::base (
   include profile::base::timezone
   include profile::base::uac_config
   include profile::base::updatereporting
+  include profile::base::powershell
   include profile::puppet_agent
 }

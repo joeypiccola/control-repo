@@ -21,9 +21,6 @@ profile::base::chocolatey::packages:
   chocolatey:
     ensure: '0.10.11'
     provider: 'chocolatey'
-  powershell:
-    ensure: latest
-    provider: 'chocolatey'
   chocolatey-core.extension:
     ensure: '1.3.3'
     provider: 'chocolatey'
