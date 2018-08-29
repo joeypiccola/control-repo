@@ -1,33 +1,49 @@
 ---
 version: 5
 
-defaults:  
+defaults:
   datadir: hieradata
-  data_hash: yaml_data
+  lookup_key: eyaml_lookup_key
+  options:
+    pkcs7_private_key: /etc/puppetlabs/code/keys/private_key.pkcs7.pem
+    pkcs7_public_key:  /etc/puppetlabs/code/keys/public_key.pkcs7.pem
 
 hierarchy:
-#  - name: "Secrets"
-#    path: "secrets.eyaml"
-#    lookup_key: eyaml_lookup_key
-#    options:
-#      pkcs7_private_key: /etc/puppetlabs/puppet/eyaml/private_key.pkcs7.pem
-#      pkcs7_public_key:  /etc/puppetlabs/puppet/eyaml/public_key.pkcs7.pem
-
   - name: "Per-node data"
     path: "nodes/%{trusted.certname}.yaml"
 
-  - name: "Per-datacenter defaults"
-    path: "datacenters/%{facts.datacenter}.yaml"
+  - name: "Project Data"
+    paths:
+      # project/ewp/ewp_sitecore_app/production.yaml
+      - "project/%{project}/%{application}/%{application_environment}.yaml"
+      # project/ewp/ewp_sitecore_app/ewp_sitecore_app.yaml
+      - "project/%{project}/%{application}/%{application}.yaml"
+      # project/ewp/ewp_sitecore_app/DEFAULT/production.yaml
+      - "project/%{project}/DEFAULT/%{application_environment}.yaml"
+      # project/ewp/ewp.yaml
+      - "project/%{project}/%{project}.yaml"
 
-  - name: "Per-win_domain secret data (encrypted)"
-    lookup_key: eyaml_lookup_key   # Uses non-default backend.
-    path: "win_domains/%{facts.win_domain}.eyaml"
-    options:
-      pkcs7_private_key: /etc/puppetlabs/puppet/eyaml/private_key.pkcs7.pem
-      pkcs7_public_key:  /etc/puppetlabs/puppet/eyaml/public_key.pkcs7.pem
+  - name: "Domain specific team data"
+    # team/isg/davita.corp-isg.yaml
+    mapped_paths: [teams, team, "team/%{team}/%{win_domain}-%{team}.yaml"]
 
-  - name: "Per-win_domain defaults"
-    path: "win_domains/%{facts.win_domain}.yaml"   
+  - name: "Team data"
+    # team/isg/isg.yaml
+    mapped_paths: [teams, team, "team/%{team}/%{team}.yaml"]
+
+  - name: "Domain data"
+    # domain/davita.corp.yaml
+    path: "domain/%{win_domain}.yaml"
+
+  - name: "Datacenter"
+    path: "datacenter/%{datacenter}.yaml"
+
+  - name: "Operating System"
+    paths:
+      - "os/%{facts.os.name}-%{facts.os.release.major}.yaml"
+      - "os/%{facts.os.name}.yaml"
+      - "osfamily/%{osfamily}-%{facts.os.release.major}.yaml"
+      - "osfamily/%{osfamily}.yaml"
 
   - name: "Common data"
     path: "common.yaml"
