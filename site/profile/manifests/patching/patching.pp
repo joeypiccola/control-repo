@@ -1,6 +1,6 @@
 # == Class: profile::patching::patching
 class profile::patching::patching (
-  Optional[String] $patchgroup = undef,
+  Optional[String] $patchgroup = 'Undefined Patch Group',
 ) {
 
   include profile::base::chocolatey
