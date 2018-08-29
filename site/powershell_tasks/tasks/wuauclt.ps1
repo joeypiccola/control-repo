@@ -1,7 +1,7 @@
 [CmdletBinding()]
 Param (
     [Parameter()]
-    ValidateSet('detectnow','reportnow')]
+    [ValidateSet('detectnow','reportnow')]
     [string]$job
 )
 
