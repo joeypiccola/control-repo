@@ -2,7 +2,7 @@
 class profile::base::notify (
 ) {
 
-  case $facts[powershell_version] {
+  case $facts['powershell_version'] {
     /^('5.')$/: {
       notify { 'ps_five':
         name    => '5 name',
