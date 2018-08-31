@@ -28,4 +28,21 @@ class profile::patching::patching (
     refreshonly => true,
   }
 
+  scheduled_task { 'windows_update':
+    ensure    => present,
+    name      => 'Windows Update (Puppet Managed Scheduled Task)',
+    enabled   => false,
+    command   => 'C:\\Windows\\System32\\WindowsPowerShell\\v1.0\\powershell.exe',
+    arguments => "-WindowStyle Hidden -ExecutionPolicy Bypass 'c:\\new-file.ps1'",
+    provider  => 'taskscheduler_api2',
+    trigger   => {
+      schedule    => 'daily',
+      every       => 1,
+      day_of_week => 'all',
+      start_time  => '16:00',
+      minutes_interval => 1,
+      minutes_duration => 5,
+    }
+  }
+
 }
