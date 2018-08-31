@@ -7,26 +7,26 @@ class profile::base::powershell (
     require profile::base::chocolatey
     case $facts['powershell_version'] {
       /^4\.|5\./: {
-        package { 'powershell4or5':
+        package { 'powershell5':
           ensure   => '5.1.14409.20180811',
           name     => 'powershell',
           provider => 'chocolatey',
         }
         if $reboot == true {
           reboot { 'powershell_upgrade_reboot':
-            subscribe => Package['powershell4or5']
+            subscribe => Package['powershell5']
           }
         }
       }
       /^3\./: {
-        package { 'powershell3':
+        package { 'powershell4':
           ensure   => '4.0.20141001',
           name     => 'powershell',
           provider => 'chocolatey',
         }
         if $reboot == true {
           reboot { 'powershell_upgrade_reboot':
-            subscribe => Package['powershell3']
+            subscribe => Package['powershell4']
           }
         }
       }
