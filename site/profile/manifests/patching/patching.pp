@@ -3,7 +3,7 @@ class profile::patching::patching (
   Optional[String] $patchgroup = 'Undefined Patch Group',
 ) {
 
-  include profile::base::chocolatey
+  require profile::base::chocolatey
 
   package { '7zip':
     ensure   => '18.5.0.20180730',
