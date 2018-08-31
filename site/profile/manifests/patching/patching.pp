@@ -30,7 +30,6 @@ class profile::patching::patching (
 
   scheduled_task { 'windows_update':
     ensure        => present,
-    compatibility => 2,
     name          => 'Windows Update (Puppet Managed Scheduled Task)',
     enabled       => true,
     command       => 'C:\\Windows\\System32\\WindowsPowerShell\\v1.0\\powershell.exe',
@@ -41,7 +40,7 @@ class profile::patching::patching (
       schedule         => 'daily',
       every            => 1,
       day_of_week      => 'all',
-      start_time       => '16:25',
+      start_time       => '16:29',
       minutes_interval => 1,
       minutes_duration => 5,
     }]
