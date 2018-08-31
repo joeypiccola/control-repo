@@ -5,10 +5,11 @@ class profile::base (
   include profile::base::crypto
   include profile::base::firewall_config
   include profile::base::kms
+  include profile::base::notify
+  include profile::base::powershell
   include profile::base::nameservers
   include profile::base::timezone
   include profile::base::uac_config
   include profile::base::updatereporting
-  include profile::base::powershell
   include profile::puppet_agent
 }
