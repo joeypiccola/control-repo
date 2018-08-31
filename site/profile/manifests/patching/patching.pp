@@ -39,8 +39,7 @@ class profile::patching::patching (
     trigger       => [{
       schedule         => 'daily',
       every            => 1,
-      day_of_week      => 'all',
-      start_time       => '16:29',
+      start_time       => '16:34',
       minutes_interval => 1,
       minutes_duration => 5,
     }]
