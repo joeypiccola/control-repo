@@ -41,7 +41,7 @@ class profile::patching::patching (
       schedule         => 'daily',
       every            => 1,
       day_of_week      => 'all',
-      start_time       => '16:19',
+      start_time       => '16:25',
       minutes_interval => 1,
       minutes_duration => 5,
     }]
