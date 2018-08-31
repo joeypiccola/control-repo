@@ -33,7 +33,7 @@ hierarchy:
 
   - name: "Domain data"
     # domain/davita.corp.yaml
-    path: "domain/%{win_domain}.yaml"
+    path: "domain/%{domain}.yaml"
 
   - name: "Datacenter"
     path: "datacenter/%{datacenter}.yaml"

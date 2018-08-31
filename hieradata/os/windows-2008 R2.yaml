@@ -1,0 +1,2 @@
+---
+crypto_win::tls_1_0_server: true
