@@ -1,6 +1,6 @@
 # == Class: profile::base::powershell
 class profile::base::powershell (
-  $powershell_upgrade_reboot = undef,
+  $reboot = undef,
   $upgrade = undef
 ) {
 
@@ -15,7 +15,7 @@ class profile::base::powershell (
           name     => 'powershell',
           provider => 'chocolatey',
         }
-        if $powershell_upgrade_reboot == true {
+        if $reboot == true {
           reboot { 'powershell_upgrade_reboot':
             subscribe => Package['powershell4or5']
           }
@@ -27,7 +27,7 @@ class profile::base::powershell (
           name     => 'powershell',
           provider => 'chocolatey',
         }
-        if $powershell_upgrade_reboot == true {
+        if $reboot == true {
           reboot { 'powershell_upgrade_reboot':
             subscribe => Package['powershell3']
           }
