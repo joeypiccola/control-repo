@@ -31,8 +31,10 @@ class profile::base::notify (
   }
 
   $psmajor = split($facts['powershell_version'], '[.]')
-  notify { 'psmajor':
-    name    => 'maybe this is the version of powershell.major',
-    message => $psmajor[0],
+  if $psmajor[0] == 5 {
+    notify { 'psmajor':
+      name    => 'maybe this is the version of powershell.major',
+      message => $psmajor[0],
+    }
   }
 }
