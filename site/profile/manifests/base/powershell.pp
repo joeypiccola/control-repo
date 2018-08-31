@@ -10,10 +10,15 @@ class profile::base::powershell (
       /^4\.|5\./: {
         # this is where we begin management of powershell.
         # if we're on some version of 5 the ensure we're on the following version.
-        package { 'powershell5':
+        package { 'powershell4or5':
           ensure   => '5.1.14409.20180811',
           name     => 'powershell',
           provider => 'chocolatey',
+        }
+        if $powershell_upgrade_reboot == true {
+          reboot { 'powershell_upgrade_reboot':
+            subscribe => Package['powershell4or5']
+          }
         }
       }
       /^3\./: {
@@ -22,19 +27,17 @@ class profile::base::powershell (
           name     => 'powershell',
           provider => 'chocolatey',
         }
-      }
-      default: {
-        notify { 'noMatch':
-          name    => 'no match',
-          message => 'no match',
+        if $powershell_upgrade_reboot == true {
+          reboot { 'powershell_upgrade_reboot':
+            subscribe => Package['powershell3']
+          }
         }
       }
-    }
-    if $powershell_upgrade_reboot == true {
-      reboot { 'powershell_upgrade_reboot':
-        subscribe => [Package['powershell5'],Package['powershell3']]
+      default: {
+        notice("No upgrade logic of PowerShell Version ${facts['powershell_version']}")
       }
     }
+
   }
 
 }
