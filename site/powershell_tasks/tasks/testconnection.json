@@ -1,0 +1,15 @@
+{
+    "puppet_task_version": 1,
+    "description": "A task to test the connectivity between two hosts.",
+    "input_method": "powershell",
+    "parameters": {
+        "hostname": {
+            "description": "The hostname of the destination.",
+            "type": "String"
+        },
+        "port": {
+            "description": "The port of the destination.",
+            "type": "Integer"
+        }
+    }
+}
