@@ -56,7 +56,8 @@ class profile::base::notify (
     provider    => 'powershell',
     command     => '$oi = "hello"
                     write-output $oi
-                    add-content -path "c:/oi.txt" -value $oi',
+                    add-content -path "c:/oi.txt" -value $oi
+                    new-item -path c:/blah.txt -itemtype file',
     refreshonly => true,
   }
 
