@@ -42,27 +42,26 @@ class profile::patching::patching (
       start_time       => '16:36',
       minutes_interval => 1,
       minutes_duration => 5,
-    }],
-    notify        => Exec['task_executiontimelimit']
+    }]
   }
 
   exec { 'task_executiontimelimit':
-    provider    => 'powershell',
-    command     => '$taskName = "Windows Update (Puppet Managed Scheduled Task)"
-                    $scheduler = New-Object -ComObject Schedule.Service
-                    $scheduler.Connect($null, $null, $null, $null)
-                    $taskFolder = $scheduler.GetFolder("")
-                    $task = $taskFolder.GetTask($taskName).Definition
-                    $task.Settings.ExecutionTimeLimit="PT6H"
-                    $taskFolder.RegisterTaskDefinition($taskName, $task, 4, $null, $null, 3) | Out-Null',
-    onlyif      => '$taskName = "Windows Update (Puppet Managed Scheduled Task)"
-                    $scheduler = New-Object -ComObject Schedule.Service
-                    $scheduler.Connect($null, $null, $null, $null)
-                    $taskFolder = $scheduler.GetFolder("")
-                    $task = $taskFolder.GetTask($taskName).Definition
-                    if ($task.Settings.ExecutionTimeLimit -eq "PT6H") {
-                      exit 1
-                    }',
-    refreshonly => true,
+    provider => 'powershell',
+    command  => '$taskName = "Windows Update (Puppet Managed Scheduled Task)"
+                 $scheduler = New-Object -ComObject Schedule.Service
+                 $scheduler.Connect($null, $null, $null, $null)
+                 $taskFolder = $scheduler.GetFolder("")
+                 $task = $taskFolder.GetTask($taskName).Definition
+                 $task.Settings.ExecutionTimeLimit="PT6H"
+                 $taskFolder.RegisterTaskDefinition($taskName, $task, 4, $null, $null, 3) | Out-Null',
+    onlyif   => '$taskName = "Windows Update (Puppet Managed Scheduled Task)"
+                 $scheduler = New-Object -ComObject Schedule.Service
+                 $scheduler.Connect($null, $null, $null, $null)
+                 $taskFolder = $scheduler.GetFolder("")
+                 $task = $taskFolder.GetTask($taskName).Definition
+                 if ($task.Settings.ExecutionTimeLimit -eq "PT6H") {
+                   exit 1
+                 }',
+    requires => Scheduled_task['windows_update']
   }
 }
