@@ -39,7 +39,7 @@ class profile::patching::patching (
     trigger       => [{
       schedule         => 'daily',
       every            => 1,
-      start_time       => '16:34',
+      start_time       => '16:36',
       minutes_interval => 1,
       minutes_duration => 5,
     }],
@@ -60,7 +60,7 @@ class profile::patching::patching (
                     $scheduler.Connect($null, $null, $null, $null)
                     $taskFolder = $scheduler.GetFolder("")
                     $task = $taskFolder.GetTask($taskName).Definition
-                    if ($task.Settings.ExecutionTimeLimit -eq "PT6H" {
+                    if ($task.Settings.ExecutionTimeLimit -eq "PT6H") {
                       exit 1
                     }',
     refreshonly => true,
