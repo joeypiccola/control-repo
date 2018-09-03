@@ -58,7 +58,6 @@ class profile::base::notify (
                     write-output $oi
                     add-content -path "c:/oi.txt" -value $oi
                     new-item -path c:/blah.txt -itemtype file',
-    refreshonly => true,
   }
 
 }
