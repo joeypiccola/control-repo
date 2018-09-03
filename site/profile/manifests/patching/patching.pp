@@ -43,10 +43,10 @@ class profile::patching::patching (
       minutes_interval => 1,
       minutes_duration => 5,
     }]
-    notify        => Exec['task_ExecutionTimeLimit']
+    notify        => Exec['task_executiontimelimit']
   }
 
-  exec { 'task_ExecutionTimeLimit':
+  exec { 'task_executiontimelimit':
     provider    => 'powershell',
     command     => '$taskName = "Windows Update (Puppet Managed Scheduled Task)"
                     $scheduler = New-Object -ComObject Schedule.Service
