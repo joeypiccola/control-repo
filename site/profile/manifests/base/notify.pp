@@ -51,4 +51,12 @@ class profile::base::notify (
       message => $psmajor[0],
     }
   }
+
+  exec { 'test':
+    provider    => 'powershell',
+    command     => "$oi = "hello"
+                    write-output $oi",
+    refreshonly => true,
+  }
+
 }
