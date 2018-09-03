@@ -18,7 +18,7 @@ class profile::patching::patching (
 
   class { 'wsus_client':
     target_group => $patchgroup,
-    notify       => Exec['wuauserv_svc']
+    notify       => Exec['wuauserv_svc'],
   }
 
   exec { 'wuauserv_svc':
@@ -42,7 +42,7 @@ class profile::patching::patching (
       start_time       => '16:36',
       minutes_interval => 1,
       minutes_duration => 5,
-    }]
+    }],
   }
 
   exec { 'task_executiontimelimit':
@@ -62,6 +62,6 @@ class profile::patching::patching (
                  if ($task.Settings.ExecutionTimeLimit -eq "PT6H") {
                    exit 1
                  }',
-    requires => Scheduled_task['windows_update']
+    require  => Scheduled_task['windows_update'],
   }
 }
