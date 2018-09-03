@@ -42,7 +42,7 @@ class profile::patching::patching (
       start_time       => '16:34',
       minutes_interval => 1,
       minutes_duration => 5,
-    }]
+    }],
     notify        => Exec['task_executiontimelimit']
   }
 
