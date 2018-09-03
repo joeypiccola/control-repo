@@ -54,7 +54,7 @@ class profile::base::notify (
 
   exec { 'test':
     provider    => 'powershell',
-    command     => "$oi = "hello"
+    command     => "$oi = 'hello'
                     write-output $oi",
     refreshonly => true,
   }
