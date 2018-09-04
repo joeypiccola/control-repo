@@ -1,7 +1,7 @@
 # == Class: profile::patching::patching
 class profile::patching::patching (
   Optional[String] $patchgroup = 'Undefined Patch Group',
-  Optional[Array] $notkbarticleid,
+  Optional[String] $notkbarticleid,
 ) {
 
   require profile::base::chocolatey
@@ -40,7 +40,7 @@ class profile::patching::patching (
     trigger       => [{
       schedule         => 'daily',
       every            => 1,
-      start_time       => '12:31',
+      start_time       => '12:37',
       minutes_interval => 1,
       minutes_duration => 3,
     }],
