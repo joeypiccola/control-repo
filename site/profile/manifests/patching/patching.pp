@@ -1,6 +1,7 @@
 # == Class: profile::patching::patching
 class profile::patching::patching (
   Optional[String] $patchgroup = 'Undefined Patch Group',
+  Optional[Array] notkbarticleid,
 ) {
 
   require profile::base::chocolatey
@@ -33,15 +34,15 @@ class profile::patching::patching (
     name          => 'Windows Update (Puppet Managed Scheduled Task)',
     enabled       => true,
     command       => 'C:\\Windows\\System32\\WindowsPowerShell\\v1.0\\powershell.exe',
-    arguments     => "-WindowStyle Hidden -ExecutionPolicy Bypass -File \"c:/new-file.ps1\"",
+    arguments     => "-WindowStyle Hidden -ExecutionPolicy Bypass -File \"c:/new-file.ps1 -NotKBArticleID:${notkbarticleid}\"",
     provider      => 'taskscheduler_api2',
     user          => 'system',
     trigger       => [{
       schedule         => 'daily',
       every            => 1,
-      start_time       => '22:37',
+      start_time       => '12:31',
       minutes_interval => 1,
-      minutes_duration => 10,
+      minutes_duration => 3,
     }],
     require      => File['patch_script'],
   }

@@ -1,3 +1,14 @@
+[CmdletBinding()]
+Param (
+    [Parameter()]
+    [String[]]$NotKBArticleID
+)
+
 $oi = Get-Random -Minimum 1000000 -Maximum 9999999
-New-Item -Path c:\deploy -ItemType File -Name "$oi`_file.txt" -Force
+$blah = [PSCustomObject]@{
+    NotKBArticleID = $NotKBArticleID
+}
+
+$json = $blah | convertto-json
+Add-Content -Path "C:\deploy\$oi`_json.txt" -Value $json -Force
 start-sleep -Seconds 100
