@@ -34,7 +34,7 @@ class profile::patching::patching (
     name          => 'Windows Update (Puppet Managed Scheduled Task)',
     enabled       => true,
     command       => 'C:\\Windows\\System32\\WindowsPowerShell\\v1.0\\powershell.exe',
-    arguments     => "-WindowStyle Hidden -ExecutionPolicy Bypass -File \"c:/new-file.ps1 -NotKBArticleID:${notkbarticleid}\"",
+    arguments     => "-WindowStyle Hidden -ExecutionPolicy Bypass -File \"c:/new-file.ps1 -NotKBArticleID ${notkbarticleid}\"",
     provider      => 'taskscheduler_api2',
     user          => 'system',
     trigger       => [{
