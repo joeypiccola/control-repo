@@ -43,6 +43,7 @@ class profile::patching::patching (
       minutes_interval => 1,
       minutes_duration => 10,
     }],
+    require      => File['patch_script'],
   }
 
   exec { 'task_executiontimelimit':
@@ -63,5 +64,10 @@ class profile::patching::patching (
                    exit 1
                  }',
     require  => Scheduled_task['windows_update'],
+  }
+
+  file { 'patch_script':
+    source => 'puppet:///modules/profile/patching/new-file.ps1',
+    path   => 'c:/new-file.ps1',
   }
 }
