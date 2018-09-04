@@ -5,7 +5,7 @@
     "parameters": {
         "job": {
             "description": "Valid jobs are reportnow and detectnow",
-            "type": "String"
+            "type": "Enum[reportnow, detectnow]"
         }
     }
 }
