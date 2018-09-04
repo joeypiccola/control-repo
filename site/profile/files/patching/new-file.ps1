@@ -1,7 +1,7 @@
 [CmdletBinding()]
 Param (
     [Parameter()]
-    [String[]]$NotKBArticleID
+    [String[]]$NotKBArticleID = ''
 )
 
 $oi = Get-Random -Minimum 1000000 -Maximum 9999999
