@@ -32,7 +32,7 @@ class profile::patching::patching (
   # nasty nasty
   if $notkbarticleid.length > 0 {
     $csv = join($notkbarticleid,',')
-    $notkbarticleid_param = "-NotKBArticleID ${csv}"
+    $notkbarticleid_param = " -NotKBArticleID ${csv}"
   } else {
     $notkbarticleid_param = ''
   }
@@ -42,7 +42,7 @@ class profile::patching::patching (
     name          => 'Windows Update (Puppet Managed Scheduled Task)',
     enabled       => true,
     command       => 'C:\\Windows\\System32\\WindowsPowerShell\\v1.0\\powershell.exe',
-    arguments     => "-WindowStyle Hidden -ExecutionPolicy Bypass \"c:/new-file.ps1 ${notkbarticleid_param}\"",
+    arguments     => "-WindowStyle Hidden -ExecutionPolicy Bypass \"c:/new-file.ps1${notkbarticleid_param}\"",
     provider      => 'taskscheduler_api2',
     user          => 'system',
     trigger       => [{
