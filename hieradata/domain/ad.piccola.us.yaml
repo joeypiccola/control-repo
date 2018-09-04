@@ -2,7 +2,7 @@
 kms_win::key_management_service_name: 'kms.ad.piccola.us'
 profile::base::localaccounts::users:
   joey:
-    ensure: presnet
+    ensure: present
     groups: administrators
     comment: a local account created by puppet
   vagrant:
@@ -11,3 +11,4 @@ profile::base::localaccounts::groups:
   Administrators:
     members:
       - ad.piccola.us\isg - admin
+      - ad.piccola.us\joey.piccola
