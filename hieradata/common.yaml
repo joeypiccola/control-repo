@@ -26,5 +26,7 @@ profile::base::chocolatey::packages:
   chocolatey-core.extension:
     ensure: '1.3.3'
     provider: 'chocolatey'
-
-profile::patching::patching::notkbarticleid: 'a'
+profile::patching::patching::notkbarticleid:
+  - kb1
+  - kb2
+  - kb3
