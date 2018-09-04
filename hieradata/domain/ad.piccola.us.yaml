@@ -5,6 +5,7 @@ profile::base::localaccounts::users:
     ensure: present
     groups: administrators
     comment: a local account created by puppet
+    forcelocal: true
   vagrant:
     ensure: absent
 profile::base::localaccounts::groups:
