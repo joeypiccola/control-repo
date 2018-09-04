@@ -1,7 +1,7 @@
 # == Class: profile::patching::patching
 class profile::patching::patching (
   Optional[String] $patchgroup = 'Undefined Patch Group',
-  Optional[Array] notkbarticleid,
+  Optional[Array] $notkbarticleid,
 ) {
 
   require profile::base::chocolatey
