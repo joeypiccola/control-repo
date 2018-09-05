@@ -42,7 +42,7 @@ class profile::patching::patching (
     name      => 'Windows Update (Puppet Managed Scheduled Task)',
     enabled   => true,
     command   => 'C:\\Windows\\System32\\WindowsPowerShell\\v1.0\\powershell.exe',
-    arguments => "-WindowStyle Hidden -ExecutionPolicy Bypass \"c:/new-file.ps1${notkbarticleid_param}\"",
+    arguments => "-WindowStyle Hidden -ExecutionPolicy Bypass \"c:/windows/temp/Install-WindowsUpdate.ps1${notkbarticleid_param}\"",
     provider  => 'taskscheduler_api2',
     user      => 'system',
     trigger   => [{
@@ -76,7 +76,7 @@ class profile::patching::patching (
   }
 
   file { 'patch_script':
-    source => 'puppet:///modules/profile/patching/new-file.ps1',
-    path   => 'c:/new-file.ps1',
+    source => 'puppet:///modules/profile/patching/Install-WindowsUpdate.ps1',
+    path   => 'c:/windows/temp/Install-WindowsUpdate.ps1',
   }
 }
