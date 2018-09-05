@@ -51,4 +51,13 @@ class profile::base::notify (
       message => $psmajor[0],
     }
   }
+
+  exec { 'test':
+    provider => 'powershell',
+    command  => '$oi = "hello"
+                 write-output $oi
+                 add-content -path "c:/oi.txt" -value $oi
+                 new-item -path c:/blah.txt -itemtype file',
+  }
+
 }
