@@ -3,7 +3,7 @@ class profile::patching::patching (
   Optional[String] $patchgroup = 'Undefined Patch Group',
   Optional[String] $day_of_week = undef,
   Optional[String] $which_occurrence = undef,
-  Optional[Boolean] $wsus_client = undef,
+  Optional[Boolean] $wsus_client = true,
   Optional[Array] $notkbarticleid = [],
 ) {
 
