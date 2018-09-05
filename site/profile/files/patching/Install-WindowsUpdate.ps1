@@ -30,7 +30,7 @@ if ($modules) {
 
 # get missing updates
 Write-EventLog -LogName $logName -Source $source -EntryType Information -EventId 23 -Message "Initiating Windows Update scan."
-$updates = Get-WindowsUpdate -NotKBArticleID
+$updates = Get-WindowsUpdate -NotKBArticleID $NotKBArticleID
 if ($updates.count -gt 0) {
     Write-EventLog -LogName $logName -Source $source -EntryType Information -EventId 24 -Message "$($updates.count)x updates missing."
     foreach ($update in $updates) {
