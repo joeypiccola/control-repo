@@ -48,9 +48,9 @@ class profile::patching::patching (
     trigger   => [{
       schedule         => 'daily',
       every            => 1,
-      start_time       => '19:46',
+      start_time       => '21:30',
       minutes_interval => 5,
-      minutes_duration => 30,
+      minutes_duration => 90,
     }],
     require   => File['patch_script'],
   }
