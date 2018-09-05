@@ -3,6 +3,7 @@ class profile::patching::patching (
   Optional[String] $patchgroup = 'Undefined Patch Group',
   Optional[String] $day_of_week = undef,
   Optional[String] $which_occurrence = undef,
+  Optional[Boolean] $wsus_client = undef,
   Optional[Array] $notkbarticleid = [],
 ) {
 
@@ -19,16 +20,18 @@ class profile::patching::patching (
     require  => Package['7zip'],
   }
 
-  class { 'wsus_client':
-    target_group => $patchgroup,
-    notify       => Exec['wuauserv_svc'],
-  }
+  if $wsus_client {
+    class { 'wsus_client':
+      target_group => $patchgroup,
+      notify       => Exec['wuauserv_svc'],
+    }
 
-  exec { 'wuauserv_svc':
-    provider    => 'powershell',
-    command     => "Get-Service wuauserv | Restart-Service
-                    wuauclt.exe /detectnow",
-    refreshonly => true,
+    exec { 'wuauserv_svc':
+      provider    => 'powershell',
+      command     => "Get-Service wuauserv | Restart-Service
+                      wuauclt.exe /detectnow",
+      refreshonly => true,
+    }
   }
 
   # fix the -NotKBArticleID. if needed then supply param with csv. if not needed then leave out.
