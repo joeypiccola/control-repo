@@ -63,7 +63,7 @@ if ($updates.count -gt 0) {
     # force UTF8 with no BOM to make facter happy (Out-File -Encoding UTF8 does not work, Add-Content does not work, >> does not work)
     $Utf8NoBomEncoding = New-Object System.Text.UTF8Encoding $False
     [System.IO.File]::WriteAllLines($factPath, $factContent, $Utf8NoBomEncoding)
-    shutdown /s /t 10 /f /d p:4:1 /c "Windows Update Restart"
+    shutdown /r /t 10 /f /d p:4:1 /c "Windows Update Restart"
     Start-Sleep -Seconds 10
 } else {
     Write-EventLog -LogName $logName -Source $source -EntryType Information -EventId 27 -Message "$($updates.count)x updates missing. Exiting Windows Update."
