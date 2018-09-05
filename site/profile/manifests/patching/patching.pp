@@ -1,6 +1,8 @@
 # == Class: profile::patching::patching
 class profile::patching::patching (
   Optional[String] $patchgroup = 'Undefined Patch Group',
+  Optional[String] $day_of_week = undef,
+  Optional[String] $which_occurrence = undef,
   Optional[Array] $notkbarticleid = [],
 ) {
 
@@ -46,11 +48,12 @@ class profile::patching::patching (
     provider  => 'taskscheduler_api2',
     user      => 'system',
     trigger   => [{
-      schedule         => 'daily',
-      every            => 1,
-      start_time       => '21:30',
-      minutes_interval => 5,
-      minutes_duration => 90,
+      schedule         => 'monthly',
+      start_time       => '22:00',
+      day_of_week      => $day_of_week,
+      which_occurrence => $which_occurrence,
+      minutes_interval => 10,
+      minutes_duration => 60,
     }],
     require   => File['patch_script'],
   }
