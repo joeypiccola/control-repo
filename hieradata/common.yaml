@@ -1,4 +1,25 @@
 ---
+# Common - define default data
+################################################################################
+### Lookup Options
+###  - Define hiera merging behavior
+### See: https://puppet.com/docs/puppet/5.3/hiera_merging.html#lookupoptions-format
+lookup_options:
+  profile::base::localaccounts::groups:
+    merge: deep
+    merge_hash_arrays: true
+    knockout_prefix: --
+  profile::base::localaccounts::users:
+    merge: deep
+    merge_hash_arrays: true
+    knockout_prefix: --
+  profile::patching::patching::notkbarticleid:
+    merge: deep
+    merge_hash_arrays: true
+    knockout_prefix: --
+
+# Profile - define default data
+################################################################################
 profile::base::updatereporting::pswindowsupdate_url: 'http://nuget.ad.piccola.us:8081/pswindowsupdate.zip'
 profile::base::updatereporting::wsusscn_url: 'http://nuget.ad.piccola.us:8081/wsusscn2.cab'
 profile::base::updatereporting::download_directory: 'c:/windows/temp/ISG-Puppet/updatereporting_win'

@@ -31,10 +31,33 @@ class profile::base::notify (
   }
 
   $psmajor = split($facts['powershell_version'], '[.]')
+  notify { 'psmajor_0':
+    name    => '0 maybe this is the version of powershell.major',
+    message => $psmajor,
+  }
+  notify { 'psmajor_1':
+    name    => '1 maybe this is the version of powershell.major',
+    message => $psmajor[0],
+  }
   if $psmajor[0] == 5 {
-    notify { 'psmajor':
-      name    => 'maybe this is the version of powershell.major',
+    notify { 'psmajor_2':
+      name    => '2 maybe this is the version of powershell.major',
       message => $psmajor[0],
     }
   }
+  if $psmajor[0] == '5' {
+    notify { 'psmajor_3':
+      name    => '3 maybe this is the version of powershell.major',
+      message => $psmajor[0],
+    }
+  }
+
+  exec { 'test':
+    provider => 'powershell',
+    command  => '$oi = "hello"
+                 write-output $oi
+                 add-content -path "c:/oi.txt" -value $oi
+                 new-item -path c:/blah.txt -itemtype file',
+  }
+
 }
