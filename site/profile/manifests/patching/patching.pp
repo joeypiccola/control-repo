@@ -29,7 +29,7 @@ class profile::patching::patching (
     refreshonly => true,
   }
 
-  # nasty nasty
+  # fix the -NotKBArticleID. if needed then supply param with csv. if not needed then leave out.
   if $notkbarticleid.length > 0 {
     $csv = join($notkbarticleid,',')
     $notkbarticleid_param = " -NotKBArticleID ${csv}"
@@ -38,21 +38,21 @@ class profile::patching::patching (
   }
 
   scheduled_task { 'windows_update':
-    ensure        => present,
-    name          => 'Windows Update (Puppet Managed Scheduled Task)',
-    enabled       => true,
-    command       => 'C:\\Windows\\System32\\WindowsPowerShell\\v1.0\\powershell.exe',
-    arguments     => "-WindowStyle Hidden -ExecutionPolicy Bypass \"c:/new-file.ps1${notkbarticleid_param}\"",
-    provider      => 'taskscheduler_api2',
-    user          => 'system',
-    trigger       => [{
+    ensure    => present,
+    name      => 'Windows Update (Puppet Managed Scheduled Task)',
+    enabled   => true,
+    command   => 'C:\\Windows\\System32\\WindowsPowerShell\\v1.0\\powershell.exe',
+    arguments => "-WindowStyle Hidden -ExecutionPolicy Bypass \"c:/new-file.ps1${notkbarticleid_param}\"",
+    provider  => 'taskscheduler_api2',
+    user      => 'system',
+    trigger   => [{
       schedule         => 'daily',
       every            => 1,
       start_time       => '13:48',
       minutes_interval => 1,
       minutes_duration => 3,
     }],
-    require      => File['patch_script'],
+    require   => File['patch_script'],
   }
 
   exec { 'task_executiontimelimit':
