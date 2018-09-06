@@ -1,0 +1,2 @@
+---
+profile::patching::patching::wsus_client: true
