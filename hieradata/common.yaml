@@ -29,8 +29,8 @@ profile::base::updatereporting::task_ensure: 'present'
 profile::base::updatereporting::task_schedule: 'weekly'
 profile::base::updatereporting::task_enabled: true
 profile::base::updatereporting::pswindowsupdate_force_download: true
-profile::base::powershell::reboot: true
-profile::base::powershell::upgrade: true
+profile::base::powershell::reboot: false
+profile::base::powershell::upgrade: false
 crypto_win::tls_1_0_client: true
 crypto_win::sha: true
 
