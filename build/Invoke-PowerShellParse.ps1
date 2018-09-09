@@ -3,7 +3,7 @@ $ErrorActionPreference = 'Stop'
 
 $files = @()
 
-$ps1Files = Get-ChildItem -path $pwd -Recurse -Include "*.ps1"
+$ps1Files = Get-ChildItem -path $pwd -Recurse -Include "*.ps1" --Exclude 'disablesmbv1.ps1'
 
 foreach ($ps1File in $ps1Files) {
     Write-Information "Parsing $($ps1File.FullName)"

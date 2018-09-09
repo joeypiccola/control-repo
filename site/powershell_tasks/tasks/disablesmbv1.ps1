@@ -1,13 +1,13 @@
 Param (
     [Parameter(Mandatory=$True)]
-    [ValidateSet('test', 'set')]
+    [ValidateSet('get', 'set')]
     [string]$action
 )
 
 $ErrorActionPreference = 'Stop'
 
 switch ($action) {
-    'test' {
+    'get' {
         switch -Regex ((Get-WmiObject -Class win32_operatingsystem).version) {
             '6.1' {
                 if ($key = Get-ItemProperty -Path 'HKLM:\SYSTEM\CurrentControlSet\Services\LanmanServer\Parameters\' -name 'smb1' -ErrorAction SilentlyContinue) {
@@ -31,30 +31,34 @@ switch ($action) {
                 }
             }
         }
-        Write-Outout ($test | ConvertTo-Json)
+        Write-Output ($test | ConvertTo-Json)
     }
     'set' {
-        switch -Regex ((Get-WmiObject -Class win32_operatingsystem).version) {
-            '6.1' {
-                # does the key  exist?
-                if ($key = Get-ItemProperty -Path 'HKLM:\SYSTEM\CurrentControlSet\Services\LanmanServer\Parameters\' -name 'smb1' -ErrorAction SilentlyContinue) {
-                    # yes. if smb1 is enabled then disable it
-                    if ($key.smb1 -eq 1) {
+        try {
+            switch -Regex ((Get-WmiObject -Class win32_operatingsystem).version) {
+                '6.1' {
+                    # does the key  exist?
+                    if ($key = Get-ItemProperty -Path 'HKLM:\SYSTEM\CurrentControlSet\Services\LanmanServer\Parameters\' -name 'smb1' -ErrorAction SilentlyContinue) {
+                        # yes. if smb1 is enabled then disable it
+                        if ($key.smb1 -eq 1) {
+                            Set-ItemProperty -Path "HKLM:\SYSTEM\CurrentControlSet\Services\LanmanServer\Parameters" SMB1 -Type DWORD -Value 0 –Force
+                        }
+                    } else {
+                        # no. the key does not exist, assume smb1 is enabled and disable it
                         Set-ItemProperty -Path "HKLM:\SYSTEM\CurrentControlSet\Services\LanmanServer\Parameters" SMB1 -Type DWORD -Value 0 –Force
                     }
-                } else {
-                    # no. the key does not exist, assume smb1 is enabled and disable it
-                    Set-ItemProperty -Path "HKLM:\SYSTEM\CurrentControlSet\Services\LanmanServer\Parameters" SMB1 -Type DWORD -Value 0 –Force
+                }
+                Default {
+                    # if smb1 is enabled then disable it
+                    if (Get-SmbServerConfiguration | Select-Object EnableSMB1Protocol) {
+                        Set-SmbServerConfiguration -EnableSMB1Protocol $false -Confirm:$false
+                    }
+                    # remove feature for good measure
+                    Remove-WindowsFeature -Name fs-smb1 -Confirm:$false
                 }
             }
-            Default {
-                # if smb1 is enabled then disable it
-                if (Get-SmbServerConfiguration | Select-Object EnableSMB1Protocol) {
-                    Set-SmbServerConfiguration -EnableSMB1Protocol $false -Confirm:$false
-                }
-                # remove feature for good measure
-                Remove-WindowsFeature -Name fs-smb1 -Confirm:$false
-            }
+        } catch {
+            Write-Error $_.Exception.Message
         }
     }
 }
