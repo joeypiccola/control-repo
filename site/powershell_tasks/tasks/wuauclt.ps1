@@ -1,5 +1,5 @@
 Param (
-    [Parameter(Mandatory=$True)]
+    [Parameter(Mandatory = $True)]
     [ValidateSet('detectnow', 'reportnow')]
     [string]$job
 )
