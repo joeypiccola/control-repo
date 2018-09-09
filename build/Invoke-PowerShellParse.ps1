@@ -22,6 +22,10 @@ foreach ($ps1File in $ps1Files) {
     $files += $file
 }
 
+foreach ($file in $files) {
+    Write-Output $file
+}
+
 if ($files | Where-Object {$_.syntaxerrorsfound -eq $true}) {
     exit 1
 }
