@@ -58,7 +58,7 @@ switch ($action) {
                         Set-SmbServerConfiguration -EnableSMB1Protocol $false -Confirm:$false
                     }
                     # remove feature for good measure
-                    Remove-WindowsFeature -Name fs-smb1 -Confirm:$false
+                    Remove-WindowsFeature -Name 'fs-smb1' -Confirm:$false
                 }
             }
         } catch {
