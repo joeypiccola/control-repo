@@ -26,6 +26,7 @@ mod 'puppetlabs-transition', '0.1.1'
 mod 'puppetlabs-apt', '2.4.0'
 mod 'jpi-crypto_win', '0.1.0'
 mod 'puppet-archive', '3.2.0'
+mod 'puppetlabs-dsc_lite', '1.0.0'
 
 # Modules from Git
 

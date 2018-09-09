@@ -1,4 +1,3 @@
-[CmdletBinding()]
 Param (
     [Parameter()]
     [string]$kb

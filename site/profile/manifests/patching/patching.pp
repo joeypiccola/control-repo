@@ -75,7 +75,9 @@ class profile::patching::patching (
                  $scheduler.Connect($null, $null, $null, $null)
                  $taskFolder = $scheduler.GetFolder("")
                  $task = $taskFolder.GetTask($taskName).Definition
-                 if ($task.Settings.ExecutionTimeLimit -eq "PT6H") {
+                 $executionTimeLimit = $task.Settings.ExecutionTimeLimit
+                 # check both in H and S bc srv12 reports in H and srv08 reports in S.
+                 if (($executionTimeLimit -eq "PT6H")) -or ($executionTimeLimit -eq "PT21600S")) {
                    exit 1
                  }',
     require  => Scheduled_task['windows_update'],

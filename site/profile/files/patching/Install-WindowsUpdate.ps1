@@ -25,7 +25,8 @@ if ($modules) {
         Write-EventLog -LogName $logName -Source $source -EntryType Information -EventId 21 -Message "$($module.Name) v$($module.Version) found on local system."
     }
 } else {
-    Write-EventLog -LogName $logName -Source $source -EntryType Error -EventId 22 -Message "The PowerShell module PSWindowsUpdate not found."
+    Write-EventLog -LogName $logName -Source $source -EntryType Error -EventId 22 -Message "The PowerShell module PSWindowsUpdate was not found."
+    break
 }
 
 # get missing updates
