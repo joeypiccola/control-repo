@@ -58,7 +58,7 @@ switch ($action) {
         } catch {
             Write-Error $_.Exception.Message
         } finally {
-            # we did it!
+            write-host 'we did it!' | out-null
         }
     }
 }
