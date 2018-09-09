@@ -35,7 +35,20 @@ switch ($action) {
     }
     'set' {
         try {
-            Write-Output 'hi'
+            switch -Regex ((Get-WmiObject -Class win32_operatingsystem).version) {
+                '6.1' {
+                    # does the key  exist?
+                    write-output 'a'
+                }
+                Default {
+                    # if smb1 is enabled then disable it
+                    if (Get-SmbServerConfiguration | Select-Object EnableSMB1Protocol) {
+                        Set-SmbServerConfiguration -EnableSMB1Protocol $false -Confirm:$false
+                    }
+                    # remove feature for good measure
+                    Remove-WindowsFeature -Name fs-smb1 -Confirm:$false
+                }
+            }
         } catch {
             Write-Error $_.Exception.Message
         }
