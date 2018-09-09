@@ -1,3 +1,5 @@
+[Diagnostics.CodeAnalysis.SuppressMessageAttribute("PSUseConsistentWhitespace", "", Justification="just can't fix this")]
+
 Param (
     [Parameter(Mandatory=$True)]
     [ValidateSet('get', 'set')]
@@ -45,11 +47,9 @@ switch ($action) {
                         if ($key.smb1 -eq 1) {
                             Set-ItemProperty -Path "HKLM:\SYSTEM\CurrentControlSet\Services\LanmanServer\Parameters" SMB1 -Type DWORD -Value 0 -Force
                         }
-                        write-host 'b'
                     } else {
                         # no. the key does not exist, assume smb1 is enabled and disable it
                         Set-ItemProperty -Path "HKLM:\SYSTEM\CurrentControlSet\Services\LanmanServer\parameters" SMB1 -Type DWORD -Value 0 -Force
-                        write-host 'a'
                     }
                 }
                 Default {
