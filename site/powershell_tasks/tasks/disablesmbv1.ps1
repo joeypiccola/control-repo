@@ -1,5 +1,3 @@
-[Diagnostics.CodeAnalysis.SuppressMessageAttribute("PSUseConsistentWhitespace", "", Justification="just can't fix this")]
-
 Param (
     [Parameter(Mandatory=$True)]
     [ValidateSet('test', 'set')]
@@ -33,10 +31,9 @@ switch ($action) {
         }
         Write-Outout ($test | ConvertTo-Json)
     }
-    'set'{
+    'set' {
         try {
-            switch -Regex ((Get-WmiObject -Class win32_operatingsystem).version)
-            {
+            switch -Regex ((Get-WmiObject -Class win32_operatingsystem).version) {
                 '6.1' {
                     # does the key  exist?
                     if ($key = Get-ItemProperty -Path 'HKLM:\SYSTEM\CurrentControlSet\Services\LanmanServer\Parameters\' -name 'smb1' -ErrorAction SilentlyContinue) {
@@ -51,7 +48,7 @@ switch ($action) {
                 }
                 Default {
                     # if smb1 is enabled then disable it
-                    if (Get-SmbServerConfiguration | Select EnableSMB1Protocol) {
+                    if (Get-SmbServerConfiguration | Select-Object EnableSMB1Protocol) {
                         Set-SmbServerConfiguration -EnableSMB1Protocol $false -Confirm:$false
                     }
                     # remove feature for good measure
