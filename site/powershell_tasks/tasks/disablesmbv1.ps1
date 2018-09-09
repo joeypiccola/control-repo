@@ -42,13 +42,13 @@ switch ($action) {
 
                     if ($key) {
                         # yes. if smb1 is enabled then disable it
-                        #if ($key.smb1 -eq 1) {
-                        #    Set-ItemProperty -Path "HKLM:\SYSTEM\CurrentControlSet\Services\LanmanServer\Parameters" SMB1 -Type DWORD -Value 0 –Force
-                        #}
+                        if ($key.smb1 -eq 1) {
+                            Set-ItemProperty -Path "HKLM:\SYSTEM\CurrentControlSet\Services\LanmanServer\Parameters" SMB1 -Type DWORD -Value 0 -Force
+                        }
                         write-host 'b'
                     } else {
                         # no. the key does not exist, assume smb1 is enabled and disable it
-                        Set-ItemProperty -Path "HKLM:\SYSTEM\CurrentControlSet\Services\LanmanServer\Parameters" SMB1 -Type DWORD -Value 0 –Force
+                        Set-ItemProperty -Path "HKLM:\SYSTEM\CurrentControlSet\Services\LanmanServer\parameters" SMB1 -Type DWORD -Value 0 -Force
                         write-host 'a'
                     }
                 }

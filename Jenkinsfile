@@ -69,20 +69,20 @@ pipeline {
                         '''
                     }
                 }
-                // stage('PSSA default') {
-                //     steps {
-                //         powershell '''
-                //             .\\build\\Invoke-PSScriptAnalyzer.ps1 -test default
-                //         '''
-                //     }
-                // }
-                // stage('PSSA OTBS') {
-                //     steps {
-                //         powershell '''
-                //             .\\build\\Invoke-PSScriptAnalyzer.ps1 -test CodeFormattingOTBS
-                //         '''
-                //     }
-                // }
+                stage('PSSA default') {
+                    steps {
+                        powershell '''
+                            .\\build\\Invoke-PSScriptAnalyzer.ps1 -test default
+                        '''
+                    }
+                }
+                stage('PSSA OTBS') {
+                    steps {
+                        powershell '''
+                            .\\build\\Invoke-PSScriptAnalyzer.ps1 -test CodeFormattingOTBS
+                        '''
+                    }
+                }
             }
         }
         stage('yaml tests') {
