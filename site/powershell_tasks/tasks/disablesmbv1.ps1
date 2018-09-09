@@ -38,7 +38,16 @@ switch ($action) {
             switch -Regex ((Get-WmiObject -Class win32_operatingsystem).version) {
                 '6.1' {
                     # does the key  exist?
-                    write-output 'a'
+                    $key = Get-ItemProperty -Path 'HKLM:\SYSTEM\CurrentControlSet\Services\LanmanServer\Parameters\' -name 'smb1' -ErrorAction SilentlyContinue
+                    if ($key) {
+                        # yes. if smb1 is enabled then disable it
+                        if ($key.smb1 -eq 1) {
+                            Set-ItemProperty -Path "HKLM:\SYSTEM\CurrentControlSet\Services\LanmanServer\Parameters" SMB1 -Type DWORD -Value 0 –Force
+                        }
+                    } else {
+                        # no. the key does not exist, assume smb1 is enabled and disable it
+                        Set-ItemProperty -Path "HKLM:\SYSTEM\CurrentControlSet\Services\LanmanServer\Parameters" SMB1 -Type DWORD -Value 0 –Force
+                    }
                 }
                 Default {
                     # if smb1 is enabled then disable it
