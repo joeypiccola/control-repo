@@ -5,7 +5,7 @@
     "parameters": {
         "job": {
             "description": "Valid jobs are test and set.",
-            "type": "Enum[test, set]"
+            "type": "Enum[get, set]"
         }
     }
 }
