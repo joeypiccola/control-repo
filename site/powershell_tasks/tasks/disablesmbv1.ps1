@@ -1,3 +1,5 @@
+[Diagnostics.CodeAnalysis.SuppressMessageAttribute("PSUseConsistentWhitespace", "", Justification="just can't fix this")]
+
 Param (
     [Parameter(Mandatory=$True)]
     [ValidateSet('test', 'set')]
