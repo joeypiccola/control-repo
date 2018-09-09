@@ -29,7 +29,7 @@ switch ($action) {
                 }
             }
         }
-        Write-Outout ($test | ConvertTo-Json)
+        Write-Output ($test | ConvertTo-Json)
     }
     'set' {
         try {
