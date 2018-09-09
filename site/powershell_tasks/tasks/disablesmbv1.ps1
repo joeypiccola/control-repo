@@ -48,7 +48,7 @@ switch ($action) {
                         write-host 'b'
                     } else {
                         # no. the key does not exist, assume smb1 is enabled and disable it
-                        #Set-ItemProperty -Path "HKLM:\SYSTEM\CurrentControlSet\Services\LanmanServer\Parameters" SMB1 -Type DWORD -Value 0 –Force
+                        Set-ItemProperty -Path "HKLM:\SYSTEM\CurrentControlSet\Services\LanmanServer\Parameters" SMB1 -Type DWORD -Value 0 –Force
                         write-host 'a'
                     }
                 }
