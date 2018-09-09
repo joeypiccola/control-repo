@@ -23,7 +23,7 @@ foreach ($ps1File in $ps1Files) {
 }
 
 foreach ($file in $files) {
-    Write-Output $file
+    Write-Output "$($file.PathToThePs1Filez), $($file.SyntaxErrorsFound)"
 }
 
 if ($files | Where-Object {$_.syntaxerrorsfound -eq $true}) {
