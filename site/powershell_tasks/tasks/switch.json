@@ -1,0 +1,11 @@
+{
+    "puppet_task_version": 1,
+    "description": "A test task to learn how param type of Boolean passes to a PowerShell switch.",
+    "input_method": "powershell",
+    "parameters": {
+        "reboot": {
+            "description": "Do we want to reboot the system",
+            "type": "Boolean"
+        }
+    }
+}
