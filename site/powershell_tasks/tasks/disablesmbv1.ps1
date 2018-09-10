@@ -73,7 +73,7 @@ switch ($action) {
             if ($reboot) {
                 # do we want to reboot even on systems that received no change?
                 if ($change -or $forcereboot) {
-                    shutdown /s /t 10 /f /d p:4:1 /c "Puppet Task Reboot | Disable SMBv1"
+                    shutdown /r /t 10 /f /d p:4:1 /c "Puppet Task Reboot | Disable SMBv1"
                 }
             }
         } catch {
