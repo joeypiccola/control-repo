@@ -1,12 +1,15 @@
-[Diagnostics.CodeAnalysis.SuppressMessageAttribute("PSUseConsistentWhitespace", "", Justification="just can't fix this")]
+[Diagnostics.CodeAnalysis.SuppressMessageAttribute("PSUseConsistentWhitespace", "", Justification="bug")]
 
 Param (
     [Parameter(Mandatory=$True)]
     [ValidateSet('get', 'set')]
-    [string]$action
+    [string]$action,
+    [switch]$reboot = $false,
+    [switch]$forcereboot = $false
 )
 
 $ErrorActionPreference = 'Stop'
+$change = $false
 
 switch ($action) {
     'get' {
@@ -46,19 +49,31 @@ switch ($action) {
                         # yes. if smb1 is enabled then disable it
                         if ($key.smb1 -eq 1) {
                             Set-ItemProperty -Path "HKLM:\SYSTEM\CurrentControlSet\Services\LanmanServer\Parameters" SMB1 -Type DWORD -Value 0 -Force
+                            $change = $true
                         }
                     } else {
                         # no. the key does not exist, assume smb1 is enabled and disable it
                         Set-ItemProperty -Path "HKLM:\SYSTEM\CurrentControlSet\Services\LanmanServer\parameters" SMB1 -Type DWORD -Value 0 -Force
+                        $change = $true
                     }
                 }
                 Default {
                     # if smb1 is enabled then disable it
                     if (Get-SmbServerConfiguration | Select-Object EnableSMB1Protocol) {
                         Set-SmbServerConfiguration -EnableSMB1Protocol $false -Confirm:$false
+                        if ((Get-WindowsFeature -Name 'fs-smb1').Installed) {
+                            # remove feature for good measure
+                            Uninstall-WindowsFeature -Name 'fs-smb1' -Confirm:$false
+                        }
+                        $change = $true
                     }
-                    # remove feature for good measure
-                    Remove-WindowsFeature -Name 'fs-smb1' -Confirm:$false
+                }
+            }
+            # if reboot requested then Q a reboot
+            if ($reboot) {
+                # do we want to reboot even on systems that received no change?
+                if ($change -or $forcereboot) {
+                    shutdown /s /t 10 /f /d p:4:1 /c "Puppet Task Reboot | Disable SMBv1"
                 }
             }
         } catch {
