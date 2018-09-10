@@ -3,8 +3,8 @@
     "description": "A task to test if SMBv1 is enabled and optionally disable it.",
     "input_method": "powershell",
     "parameters": {
-        "job": {
-            "description": "Valid jobs are test and set.",
+        "action": {
+            "description": "Valid actions are get and set.",
             "type": "Enum[get, set]"
         }
     }

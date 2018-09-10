@@ -29,7 +29,7 @@ switch ($action) {
             Default {
                 $test = [PSCustomObject]@{
                     Enable_SMB1Protocol    = (Get-SmbServerConfiguration).EnableSMB1Protocol
-                    Installed_SMB1Protocol = (Get-WindowsFeature -Name fs-smb1).Installed
+                    Installed_SMB1Protocol = (Get-WindowsFeature -Name 'fs-smb1').Installed
                 }
             }
         }
