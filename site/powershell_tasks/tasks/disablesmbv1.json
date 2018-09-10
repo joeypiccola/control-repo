@@ -9,11 +9,11 @@
         },
         "reboot": {
             "description": "Do we want to reboot the system if changes were made?",
-            "type": "Boolean"
+            "type": "Optional[Boolean]"
         },
         "forcereboot": {
             "description": "Do we want to reboot the system regardless if changes were made?",
-            "type": "Boolean"
+            "type": "Optional[Boolean]"
         }
     }
 }
