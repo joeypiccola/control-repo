@@ -6,6 +6,14 @@
         "action": {
             "description": "Valid actions are get and set.",
             "type": "Enum[get, set]"
+        },
+        "reboot": {
+            "description": "Do we want to reboot the system if changes were made?",
+            "type": "Boolean"
+        },
+        "forcereboot": {
+            "description": "Do we want to reboot the system regardless if changes were made?",
+            "type": "Boolean"
         }
     }
 }
