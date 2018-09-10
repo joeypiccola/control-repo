@@ -61,10 +61,11 @@ switch ($action) {
                     # if smb1 is enabled then disable it
                     if (Get-SmbServerConfiguration | Select-Object EnableSMB1Protocol) {
                         Set-SmbServerConfiguration -EnableSMB1Protocol $false -Confirm:$false
-                        if ((Get-WindowsFeature -Name 'fs-smb1').Installed) {
-                            # remove feature for good measure
-                            Uninstall-WindowsFeature -Name 'fs-smb1' -Confirm:$false
-                        }
+                        $change = $true
+                    }
+                    # if smb1 is installed then uninstall it
+                    if ((Get-WindowsFeature -Name 'fs-smb1').Installed) {
+                        Uninstall-WindowsFeature -Name 'fs-smb1' -Confirm:$false
                         $change = $true
                     }
                 }
@@ -73,7 +74,7 @@ switch ($action) {
             if ($reboot) {
                 # do we want to reboot even on systems that received no change?
                 if ($change -or $forcereboot) {
-                    shutdown /s /t 10 /f /d p:4:1 /c "Puppet Task Reboot | Disable SMBv1"
+                    shutdown /r /t 10 /f /d p:4:1 /c "Puppet Task Reboot | Disable SMBv1"
                 }
             }
         } catch {
