@@ -5,7 +5,7 @@
     "parameters": {
         "notkbarticleid": {
             "description": "An array of KB Article IDs not to be installed.",
-            "type": "Optional[String[]]"
+            "type": "Array[String]"
         }
     }
 }
