@@ -3,7 +3,7 @@
     "description": "A task to install Windows Updates.",
     "input_method": "powershell",
     "parameters": {
-        "NotKBArticleID": {
+        "notkbaticleid": {
             "description": "An array of KB Article IDs not to be installed.",
             "type": "Optional[String[]]"
         }
