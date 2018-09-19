@@ -43,7 +43,7 @@ class profile::patching::patching (
   }
 
   scheduled_task { 'windows_update':
-    ensure    => present,
+    ensure    => absent,
     name      => 'Windows Update (Puppet Managed Scheduled Task)',
     enabled   => true,
     command   => 'C:\\Windows\\System32\\WindowsPowerShell\\v1.0\\powershell.exe',
