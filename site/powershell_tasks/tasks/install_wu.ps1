@@ -11,7 +11,7 @@ Param (
 $logName = 'ISG Windows Update'
 $source = 'Windows Update'
 try {
-    Get-EventLog -LogName $logName -ErrorAction SilentlyContinue
+    $log = Get-EventLog -LogName $logName -ErrorAction SilentlyContinue
 } catch {
     New-EventLog -LogName $logName -Source $source
     Write-EventLog -LogName $logName -Source $source -EntryType Warning -EventId 10 -Message "Event Log $logName does not exist, creating it."
