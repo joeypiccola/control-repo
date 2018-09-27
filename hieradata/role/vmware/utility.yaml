@@ -1,0 +1,5 @@
+---
+profile::base::chocolatey::packages:
+  vmwarevsphereclient:
+    ensure: '6.0.0.5112508'
+    provider: 'chocolatey'
