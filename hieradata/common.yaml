@@ -17,6 +17,10 @@ lookup_options:
     merge: deep
     merge_hash_arrays: true
     knockout_prefix: --
+  profile::base::chocolatey::packages:
+    merge: deep
+    merge_hash_arrays: true
+    knockout_prefix: --
 
 # Profile - define default data
 ################################################################################
