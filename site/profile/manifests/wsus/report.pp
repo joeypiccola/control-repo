@@ -2,7 +2,6 @@
 class profile::wsus::report (
 ) {
 
-  require profile::wsus::client
   require profile::wsus::pswindowsupdate
 
   schedule { 'nightly':
