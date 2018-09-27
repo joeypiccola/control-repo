@@ -1,5 +1,5 @@
-# == Class: profile::jumphost::jumphost_install
-class profile::jumphost::jumphost_install (
+# == Class: profile::jumphost
+class profile::jumphost (
 ) {
   windowsfeature { 'RDS-RD-Server':
     ensure => present,
