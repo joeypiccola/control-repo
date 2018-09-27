@@ -1,38 +1,11 @@
-# == Class: profile::patching::patching
-class profile::patching::patching (
-  Optional[String] $patchgroup = 'Undefined Patch Group',
+# == Class: profile::wsus::patch
+class profile::wsus::patch (
   Optional[String] $day_of_week = undef,
   Optional[String] $which_occurrence = undef,
-  Optional[Boolean] $wsus_client = true,
   Optional[Array] $notkbarticleid = [],
 ) {
 
-  require profile::base::chocolatey
-
-  package { '7zip':
-    ensure   => '18.5.0.20180730',
-    provider => 'chocolatey',
-  }
-
-  package { 'pswindowsupdate':
-    ensure   => '2.0.0.4',
-    provider => 'chocolatey',
-    require  => Package['7zip'],
-  }
-
-  if $wsus_client {
-    class { 'wsus_client':
-      target_group => $patchgroup,
-      notify       => Exec['wuauserv_svc'],
-    }
-
-    exec { 'wuauserv_svc':
-      provider    => 'powershell',
-      command     => "Get-Service wuauserv | Restart-Service
-                      wuauclt.exe /detectnow",
-      refreshonly => true,
-    }
-  }
+  require profile::wsus::config
 
   # fix the -NotKBArticleID. if needed then supply param with csv. if not needed then leave out.
   if $notkbarticleid.length > 0 {
