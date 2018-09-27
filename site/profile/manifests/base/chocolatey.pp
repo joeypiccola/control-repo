@@ -16,7 +16,7 @@ class profile::base::chocolatey (
   }
 
   $packages.each | String $package, Hash $attributes | {
-    Package { $package:
+    package { $package:
       * => $attributes
     }
   }
