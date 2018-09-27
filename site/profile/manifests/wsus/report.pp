@@ -7,7 +7,7 @@ class profile::wsus::report (
   schedule { 'nightly':
     period => daily,
     range  => '18:00 - 23:00',
-    repead => 1,
+    repeat => 1,
   }
 
   exec { 'get_windowsupdate':
