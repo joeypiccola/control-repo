@@ -5,7 +5,8 @@ class profile::wsus::patch (
   Optional[Array] $notkbarticleid = [],
 ) {
 
-  require profile::wsus::config
+  require profile::wsus::client
+  require profile::wsus::pswindowsupdate
 
   ## fix the -NotKBArticleID. if needed then supply param with csv. if not needed then leave out.
   #if $notkbarticleid.length > 0 {

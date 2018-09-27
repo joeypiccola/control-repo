@@ -2,7 +2,8 @@
 class profile::wsus::report (
 ) {
 
-  require profile::wsus::config
+  require profile::wsus::client
+  require profile::wsus::pswindowsupdate
 
   schedule { 'nightly':
     period => daily,
@@ -13,7 +14,8 @@ class profile::wsus::report (
   exec { 'get_windowsupdate':
     provider => 'powershell',
     schedule => 'nightly',
-    command  => '$updateCollection = @()
+    command  => '$missingUpdates = Get-WindowsUpdate
+                 $updateCollection = @()
                  $missingUpdates | %{
                      $updateObject = $null
                      $updateObject = [pscustomobject]@{
@@ -62,4 +64,5 @@ class profile::wsus::report (
                      Write-Output $windowsupdatereporting_col
                  }',
   }
+
 }
