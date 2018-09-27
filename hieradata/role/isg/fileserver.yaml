@@ -3,4 +3,3 @@ profile::base::localaccounts::groups:
   Administrators:
     members:
       - ad.piccola.us\ISG Team - Privileged (File Server Only)
-      - ad.piccola.us\fake
