@@ -51,3 +51,5 @@ if (!($DoNotGeneratePuppetFact)) {
 } else {
     Write-Output $windowsupdatereporting_col
 }
+
+puppet facts upload

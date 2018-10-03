@@ -1,0 +1,11 @@
+---
+profile::base::chocolatey::packages:
+  rdcman:
+    ensure: '2.7.1406.20160916'
+    provider: 'chocolatey'
+  googlechrome:
+    ensure: '69.0.3497.10000'
+    provider: 'chocolatey'
+  firefox:
+    ensure: '6.20'
+    provider: 'chocolatey'

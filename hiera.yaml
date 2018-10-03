@@ -23,6 +23,10 @@ hierarchy:
       # project/ewp/ewp.yaml
       - "project/%{project}/%{project}.yaml"
 
+  - name: "Role specific team data"
+    # role/isg/jumphost.yaml
+    mapped_paths: [teams, team, "role/%{team}/%{role}.yaml"]
+
   - name: "Domain specific team data"
     # team/isg/ad.piccola.us-isg.yaml
     mapped_paths: [teams, team, "team/%{team}/%{win_domain}-%{team}.yaml"]
@@ -30,6 +34,10 @@ hierarchy:
   - name: "Team data"
     # team/isg/isg.yaml
     mapped_paths: [teams, team, "team/%{team}/%{team}.yaml"]
+
+  - name: "Role data"
+    # role/jumphost.yaml
+    path: "role/%{role}.yaml"
 
   - name: "Domain data"
     # domain/ad.piccola.us.yaml

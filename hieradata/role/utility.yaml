@@ -1,0 +1,11 @@
+---
+profile::base::chocolatey::packages:
+  googlechrome:
+    ensure: '69.0.3497.10000'
+    provider: 'chocolatey'
+  firefox:
+    ensure: '6.20'
+    provider: 'chocolatey'
+  putty:
+    ensure: '0.70'
+    provider: 'chocolatey'
