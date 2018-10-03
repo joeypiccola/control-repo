@@ -8,3 +8,6 @@ profile::base::localaccounts::groups:
     members:
       - ad.piccola.us\isg - admin
       - ad.piccola.us\joey.piccola
+  Backup Operators:
+    members:
+      - ad.piccola.us\USB Team - Privileged
