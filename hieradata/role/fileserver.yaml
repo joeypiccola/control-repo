@@ -1,8 +1,5 @@
 ---
 profile::base::chocolatey::packages:
-  diskcleanup:
-    ensure: '1.0'
-    provider: 'chocolatey'
   treesizefree:
     ensure: '4.2.2.1'
     provider: 'chocolatey'
