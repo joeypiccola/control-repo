@@ -1,7 +1,7 @@
 ---
 timezone_win::timezone: 'Mountain Standard Time'
 profile::base::nameservers::nameservers:
-  - '10.0.3.21'
+  - '10.0.3.24'
   - '10.0.3.22'
   - '8.8.8.8'
 wsus_client::server_url: 'http://den3-wsus.ad.piccola.us:8530'
