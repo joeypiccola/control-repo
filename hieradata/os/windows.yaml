@@ -1,1 +1,3 @@
 ---
+crypto_win::ssl_3_0_client: false
+crypto_win::ssl_3_0_server: false
