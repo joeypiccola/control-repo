@@ -33,3 +33,7 @@ mod 'puppetlabs-dsc_lite', '1.0.0'
 mod 'firewallprofile_win',
   :git    => 'https://github.com/joeypiccola/firewallprofile_win',
   :branch => 'master'
+
+mod 'lastbootuptime_win',
+  :git    => 'https://github.com/joeypiccola/lastbootuptime_win',
+  :branch => 'master'
