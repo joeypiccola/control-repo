@@ -112,7 +112,5 @@ function Test-PendingReboot {
 $fact = [PSCustomObject]@{
     pending_reboot = Test-PendingReboot -SkipConfigurationManagerClientCheck -Detailed
 }
-$factContent = $fact | ConvertTo-Json
-$factPath = 'C:\ProgramData\PuppetLabs\facter\facts.d\pending_reboot.json'
-$Utf8NoBomEncoding = New-Object System.Text.UTF8Encoding $False
-[System.IO.File]::WriteAllLines($factPath, $factContent, $Utf8NoBomEncoding)
+
+Write-Output ($fact | ConvertTo-Json)
