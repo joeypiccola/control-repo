@@ -1,4 +1,7 @@
 [Diagnostics.CodeAnalysis.SuppressMessageAttribute("PSUseConsistentWhitespace", "", Justification = "just can't fix this")]
+[CmdletBinding()]
+Param()
+
 $directorySearcher = New-Object System.DirectoryServices.DirectorySearcher
 $directorySearcher.Filter = "(&(objectCategory=Computer)(Name=$env:ComputerName))"
 $searcherPath = $directorySearcher.FindOne()
