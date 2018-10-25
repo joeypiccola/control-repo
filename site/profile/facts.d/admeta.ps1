@@ -3,9 +3,9 @@
 Param()
 
 # get the domain role of the machine
-$domainRole = (Get-WmiObject -Class Win32_ComputerSystem -Property DomainRole).DomainRole
+$DomainRole = (Get-WmiObject -Class Win32_ComputerSystem -Property DomainRole).DomainRole
 # if the machine is not a Standalone Workstation or a Standalone Server then attempt to query ad
-if ($domainRole -ne 0 -or $DomainRole -ne 2) {
+if ($DomainRole -match '^(1|3|4|5)') {
     # query ad
     $directorySearcher = New-Object System.DirectoryServices.DirectorySearcher
     $directorySearcher.Filter = "(&(objectCategory=Computer)(Name=$env:ComputerName))"
