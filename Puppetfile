@@ -4,7 +4,7 @@ forge "http://forge.puppetlabs.com"
 # Versions should be updated to be the latest at the time you start
 mod 'puppetlabs-powershell', '2.1.5'
 mod 'puppetlabs-dsc', '1.6.0'
-mod 'puppetlabs-reboot', '2.0.0'
+# mod 'puppetlabs-reboot', '2.0.0'
 mod 'puppetlabs-stdlib', '4.17.1'
 mod 'puppetlabs-registry', '2.0.1'
 mod 'puppetlabs-chocolatey', '3.0.0'
@@ -27,6 +27,7 @@ mod 'puppetlabs-apt', '2.4.0'
 mod 'jpi-crypto_win', '0.1.0'
 mod 'puppet-archive', '3.2.0'
 mod 'puppetlabs-dsc_lite', '1.0.0'
+mod 'puppetlabs-bolt_shim', '0.2.0'
 
 # Modules from Git
 
@@ -37,3 +38,7 @@ mod 'firewallprofile_win',
 mod 'lastbootuptime_win',
   :git    => 'https://github.com/joeypiccola/lastbootuptime_win',
   :branch => 'master'
+
+mod 'puppetlabs-reboot',
+  :git => 'https://github.com/puppetlabs/puppetlabs-reboot',
+  :ref => 'd4e8444c5ad7870b430bcb61ccfccd6d4ac19238'

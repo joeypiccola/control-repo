@@ -2,9 +2,18 @@
 class profile::base::rdp_config (
 ) {
 
-  class { 'remotedesktop' :
+  # rdp
+  registry_value { 'HKLM\System\CurrentControlSet\Control\Terminal Server\fDenyTSConnections':
     ensure => present,
-    nla    => absent,
+    type   => dword,
+    data   => 0,
+  }
+
+  # rdp-nla
+  registry_value { 'HKLM\System\CurrentControlSet\Control\Terminal Server\WinStations\RDP-Tcp':
+  ensure => present,
+  type   => dword,
+  data   => 0,
   }
 
 }
