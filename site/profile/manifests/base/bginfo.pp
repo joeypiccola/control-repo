@@ -10,9 +10,8 @@ class profile::base::bginfo (
   }
 
   file { 'bgi_config':
-    source  => 'puppet:///modules/profile/bginfo/default.bgi',
-    path    => 'c:/windows/temp/bginfo/default.bgi',
-    require => File['bgi_config_dir'],
+    source => 'puppet:///modules/profile/bginfo/default.bgi',
+    path   => 'c:/windows/temp/bginfo/default.bgi',
   }
 
   package { 'bginfo':
