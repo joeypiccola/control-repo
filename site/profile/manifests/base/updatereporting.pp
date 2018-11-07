@@ -6,4 +6,5 @@ class profile::base::updatereporting (
   class { 'updatereporting_win':
     wsusscn_url => $wsusscn_url,
   }
+
 }

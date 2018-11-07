@@ -3,6 +3,7 @@ class profile::base::powershell (
   $reboot = undef,
   $upgrade = undef
 ) {
+
   if $upgrade == true {
     require profile::base::chocolatey
     case $facts['powershell_version'] {
@@ -35,4 +36,5 @@ class profile::base::powershell (
       }
     }
   }
+
 }

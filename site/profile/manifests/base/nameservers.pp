@@ -2,6 +2,7 @@
 class profile::base::nameservers (
   $nameservers,
 ) {
+
   # if we're on ps v5 and not 2008 then lets do stuff with DSC!
   $psmajor = split($facts['powershell_version'], '[.]')
   $osmajor = $facts['os']['release']['major']
@@ -16,4 +17,5 @@ class profile::base::nameservers (
       }
     }
   }
+
 }

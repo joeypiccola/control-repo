@@ -2,6 +2,6 @@
 class profile::base::kms (
 ) {
 
-include kms_win
+  include kms_win
 
 }

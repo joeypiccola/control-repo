@@ -2,6 +2,6 @@
 class profile::base::timezone (
 ) {
 
-include timezone_win
+  include timezone_win
 
 }
