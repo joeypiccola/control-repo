@@ -1,0 +1,22 @@
+User:
+User Name:	<Logon Domain>\<User Name>
+
+System:
+Host Name:	<Host Name>
+OS Version:	<OS Version>
+Machine Domain:	<Machine Domain>
+Logon Domain:	<Logon Domain>
+Logon Server:	<Logon Server>
+Boot Time:	<Boot Time>
+
+Network:
+IP Address:	<IP Address>
+Subnet Mask:	<Subnet Mask>
+Default Gateway:	<Default Gateway>
+DNS Server:	<DNS Server>
+
+Configuration:
+CPU:	<CPU>
+Memory:	<Memory>
+Volumes:	<Volumes>
+Free Space:	<Free Space>
