@@ -21,7 +21,7 @@ class profile::base::bginfo (
   }
 
   file { 'bgi_launch':
-    source  => 'puppet:///modules/profile/bgfino/bginfo.bat',
+    source  => 'puppet:///modules/profile/bginfo/bginfo.bat',
     path    => 'C:/ProgramData/Microsoft/Windows/Start Menu/Programs/StartUp/bginfo.bat',
     require => Package['bginfo'],
   }
