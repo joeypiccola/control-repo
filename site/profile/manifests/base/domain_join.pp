@@ -15,4 +15,5 @@ class profile::base::domain_join (
       join_options => $join_options,
     }
   }
+
 }

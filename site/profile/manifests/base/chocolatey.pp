@@ -3,6 +3,7 @@ class profile::base::chocolatey (
   $location,
   $packages,
 ) {
+
   include chocolatey
 
   chocolateysource {'chocolatey':

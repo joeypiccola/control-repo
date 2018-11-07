@@ -1,6 +1,7 @@
 # == Class: profile::base
 class profile::base (
 ) {
+  include profile::base::bginfo
   include profile::base::chocolatey
   include profile::base::crypto
   include profile::base::firewall_config

@@ -3,6 +3,7 @@ class profile::base::localaccounts (
   Hash $groups = {},
   Hash $users  = {},
 ) {
+
   $groups.each | String $group, Hash $attributes | {
     group { $group:
       * => $attributes
@@ -14,4 +15,5 @@ class profile::base::localaccounts (
       * => $attributes
     }
   }
+
 }
