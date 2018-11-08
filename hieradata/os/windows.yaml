@@ -1,3 +1,7 @@
 ---
 crypto_win::ssl_3_0_client: false
 crypto_win::ssl_3_0_server: false
+profile::base::chocolatey::packages:
+  notepadplusplus:
+    ensure: '7.5.9'
+    provider: 'chocolatey'
