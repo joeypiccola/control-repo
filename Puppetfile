@@ -2,29 +2,29 @@ forge "http://forge.puppetlabs.com"
 
 # Modules from the Puppet Forge
 # Versions should be updated to be the latest at the time you start
-mod 'puppetlabs-powershell', '2.1.5'
-mod 'puppetlabs-dsc', '1.6.0'
-# mod 'puppetlabs-reboot', '2.0.0'
-mod 'puppetlabs-stdlib', '4.17.1'
-mod 'puppetlabs-registry', '2.0.1'
-mod 'puppetlabs-chocolatey', '3.0.0'
-mod 'puppet-windowsfeature', '3.2.0'
-mod 'puppetlabs-iis', '4.3.0'
-mod 'puppet-download_file', '2.1.0'
-mod 'puppetlabs-wsus_client', '1.0.3'
+mod 'puppetlabs-powershell', '2.2.0'
+mod 'puppetlabs-dsc', '1.7.0'
+mod 'puppetlabs-reboot', '2.0.0'
+mod 'puppetlabs-stdlib', '5.1.0'
+mod 'puppetlabs-registry', '2.1.0'
+mod 'puppetlabs-chocolatey', '3.1.0'
+mod 'puppet-windowsfeature', '3.2.2'
+mod 'puppetlabs-iis', '4.5.0'
+mod 'puppet-download_file', '3.2.0'
+mod 'puppetlabs-wsus_client', '1.1.0'
 mod 'trlinkin-domain_membership', '1.1.2'
-mod 'puppet-hiera', '3.2.0'
-mod 'puppetlabs-inifile', '1.6.0'
+mod 'puppet-hiera', '3.3.4'
+mod 'puppetlabs-inifile', '2.4.0'
 mod 'jpi-kms_win', '0.1.3'
 mod 'jpi-timezone_win', '0.1.5'
-mod 'puppetlabs-puppet_agent', '1.6.0'
+mod 'puppetlabs-puppet_agent', '1.7.0'
 mod 'tvories-showhidden_win', '0.1.0'
-mod 'puppetlabs-scheduled_task', '0.4.0'
+mod 'puppetlabs-scheduled_task', '1.0.0'
 mod 'jpi-updatereporting_win', '0.1.7'
 mod 'puppetlabs-transition', '0.1.1'
-mod 'puppetlabs-apt', '2.4.0'
+mod 'puppetlabs-apt', '6.1.1'
 mod 'jpi-crypto_win', '0.1.0'
-mod 'puppet-archive', '3.2.0'
+mod 'puppet-archive', '3.2.1'
 mod 'puppetlabs-dsc_lite', '1.0.0'
 mod 'puppetlabs-bolt_shim', '0.2.0'
 
@@ -38,6 +38,6 @@ mod 'lastbootuptime_win',
   :git    => 'https://github.com/joeypiccola/lastbootuptime_win',
   :branch => 'master'
 
-mod 'puppetlabs-reboot',
-  :git => 'https://github.com/puppetlabs/puppetlabs-reboot',
-  :ref => 'd4e8444c5ad7870b430bcb61ccfccd6d4ac19238'
+#mod 'puppetlabs-reboot',
+#  :git => 'https://github.com/puppetlabs/puppetlabs-reboot',
+#  :ref => 'd4e8444c5ad7870b430bcb61ccfccd6d4ac19238'
