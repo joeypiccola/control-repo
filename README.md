@@ -1,5 +1,5 @@
 
-Table of Contents | puppet.piccola.us 6
+Table of Contents | puppet.piccola.us 7
 =================
 
   * [Where Did All The Previous Code Go?](#where-did-all-the-previous-code-go)

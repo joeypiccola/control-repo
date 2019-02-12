@@ -1,2 +1,3 @@
 ---
 crypto_win::tls_1_0_server: true
+profile::base::bginfo::bginfo_install: false
