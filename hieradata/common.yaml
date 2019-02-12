@@ -52,3 +52,9 @@ profile::base::chocolatey::packages:
   chocolatey-core.extension:
     ensure: '1.3.3'
     provider: 'chocolatey'
+
+
+#####
+# puppet_enterprise::profile::certificate_authority
+puppet_enterprise::profile::certificate_authority::client_whitelist:
+  - joey.piccola.us
