@@ -38,6 +38,9 @@ mod 'lastbootuptime_win',
   :git    => 'https://github.com/joeypiccola/lastbootuptime_win',
   :branch => 'master'
 
+mod 'puppet_cert_mgmt',
+  :git    => 'https://github.com/joeypiccola/puppet_cert_mgmt',
+  :branch => 'master'
 #mod 'puppetlabs-reboot',
 #  :git => 'https://github.com/puppetlabs/puppetlabs-reboot',
 #  :ref => 'd4e8444c5ad7870b430bcb61ccfccd6d4ac19238'
