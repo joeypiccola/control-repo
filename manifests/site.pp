@@ -26,17 +26,39 @@ File { backup => false }
 # specified in the console for that node.
 
 node default {
+  # Detect which role to use
   if $trusted['extensions']['pp_role'] {
-    include "role::${trusted['extensions']['pp_role']}"
+    # Trusted extension (fact) overrides regular fact
     $role = $trusted['extensions']['pp_role']
+  } elsif $facts['role'] {
+    $role = $facts['role']
+  } else {
+    notify { 'role_undefined':
+      message => 'NOTICE: The fact "role" is not defined! Defaulting to agent_only',
+    }
+    $role = 'agent_only'
   }
-  elsif $facts['role'] {
-    include "role::${facts['role']}"
+
+  # Support specifying "role::blah" or just "blah" for role
+  if $role =~ /^role::/ {
+    $role_class = $role
+  } elsif $role == '' { # Yes, we have seen blank roles (sigh)
+    notify { 'role_blank':
+      message => 'WARNING: The fact "role" is blank! Defaulting to agent_only',
+    }
+    $role_class = 'role::agent_only'
+  } else { # assume it is just the role_name
+    $role_class = "role::${role}"
   }
-  else {
-    include profile::puppet_agent
+
+  # Validate that $role_class exists before including it
+  if defined($role_class) {
+    include $role_class
+  } else {
+    notify { 'role_not_exist':
+      message => "WARNING: The fact \"role\" is set to \"${role}\", which does not exist. Defaulting to agent_only.",
+    }
+    include role::agent_only
   }
-  # This is where you can declare classes for all nodes.
-  # Example:
-  #   class { 'my_class': }
+
 }
