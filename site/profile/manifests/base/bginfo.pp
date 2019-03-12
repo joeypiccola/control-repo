@@ -10,9 +10,16 @@ class profile::base::bginfo (
       path   => 'c:/windows/temp/bginfo',
     }
 
-    file { 'bgi_config':
-      source => 'puppet:///modules/profile/bginfo/default.bgi',
-      path   => 'c:/windows/temp/bginfo/default.bgi',
+    if ((any2bool($facts['clustered'])) or (($facts['networking']['interfaces']).length > 1)) {
+      file { 'bgi_config':
+        source => 'puppet:///modules/profile/bginfo/cluster_or_multinic.bgi',
+        path   => 'c:/windows/temp/bginfo/default.bgi',
+      }
+    } else {
+      file { 'bgi_config':
+        source => 'puppet:///modules/profile/bginfo/default.bgi',
+        path   => 'c:/windows/temp/bginfo/default.bgi',
+      }
     }
 
     package { 'bginfo':
