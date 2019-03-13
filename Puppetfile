@@ -27,7 +27,7 @@ mod 'jpi-crypto_win', '0.1.0'
 mod 'puppet-archive', '3.2.1'
 mod 'puppetlabs-dsc_lite', '1.0.0'
 mod 'puppetlabs-bolt_shim', '0.2.0'
-mod 'jpi-node_certificate_mgmt', '0.1.0'
+mod 'jpi-node_certificate_mgmt', '0.1.1'
 
 # Modules from Git
 
