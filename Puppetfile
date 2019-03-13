@@ -27,6 +27,7 @@ mod 'jpi-crypto_win', '0.1.0'
 mod 'puppet-archive', '3.2.1'
 mod 'puppetlabs-dsc_lite', '1.0.0'
 mod 'puppetlabs-bolt_shim', '0.2.0'
+mod 'jpi-node_certificate_mgmt', '0.1.1'
 
 # Modules from Git
 
@@ -38,9 +39,9 @@ mod 'lastbootuptime_win',
   :git    => 'https://github.com/joeypiccola/lastbootuptime_win',
   :branch => 'master'
 
-mod 'node_certificate_mgmt',
-  :git    => 'https://github.com/joeypiccola/node_certificate_mgmt',
-  :branch => 'master'
+# mod 'node_certificate_mgmt',
+#   :git    => 'https://github.com/joeypiccola/node_certificate_mgmt',
+#   :branch => 'master'
 #mod 'puppetlabs-reboot',
 #  :git => 'https://github.com/puppetlabs/puppetlabs-reboot',
 #  :ref => 'd4e8444c5ad7870b430bcb61ccfccd6d4ac19238'
