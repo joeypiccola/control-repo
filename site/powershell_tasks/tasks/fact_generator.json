@@ -1,0 +1,19 @@
+{
+    "puppet_task_version": 1,
+    "description": "A task that creates simple key value pair custom facts.",
+    "input_method": "powershell",
+    "parameters": {
+        "action": {
+            "description": "The action to take for the desired fact.",
+            "type": "Enum[get, set, delete]"
+        },
+        "fact_name": {
+            "description": "The name of the fact to take action on.",
+            "type": "Optional[String]"
+        },
+        "fact_value": {
+            "description": "The value of the fact to take action on.",
+            "type": "Optional[String]"
+        }
+    }
+}
