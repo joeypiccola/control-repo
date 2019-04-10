@@ -1,7 +1,0 @@
----
-timezone_win::timezone: 'Pacific Standard Time'
-profile::base::nameservers::nameservers:
-  - '10.0.3.21'
-  - '10.0.3.22'
-  - '8.8.8.8'
-wsus_client::server_url: 'http://las1-wsus.ad.piccola.us:8530'
