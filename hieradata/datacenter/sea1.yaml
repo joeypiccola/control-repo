@@ -1,7 +1,8 @@
 ---
 timezone_win::timezone: 'Pacific Standard Time'
 profile::base::nameservers::nameservers:
-  - '10.0.3.21'
+  - '10.0.3.24'
   - '10.0.3.22'
   - '8.8.8.8'
 wsus_client::server_url: 'http://sea1-wsus.ad.piccola.us:8530'
+wsus_client::enable_status_server: true

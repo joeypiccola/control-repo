@@ -1,3 +1,0 @@
----
-profile::base::powershell::reboot: false
-profile::base::powershell::upgrade: false

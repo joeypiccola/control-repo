@@ -1,0 +1,1 @@
+Write-Output "datacenter=$($env:COMPUTERNAME.Substring(0,4).tolower())"
