@@ -2,6 +2,14 @@
 class profile::base::puppet_six_fixes (
 ) {
 
+  file { 'C:/ProgramData/PuppetLabs/pxp-agent/etc/pxp-agent.conf':
+    ensure => present
+  }
+
+  file { 'C:/ProgramData/PuppetLabs/puppet/cache/state/package_inventory_enabled':
+    ensure => present
+  }
+
   acl { 'C:/ProgramData/Puppetlabs/pxp-agent/etc/pxp-agent.conf':
     group                      => 'S-1-5-21-3043862061-291277752-2514396928-513',
     inherit_parent_permissions => false,
