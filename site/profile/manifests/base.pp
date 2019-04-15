@@ -12,7 +12,7 @@ class profile::base (
   include profile::base::timezone
   include profile::base::uac_config
   include profile::puppet_agent
-  include profile::base::puppet_six_fixes
+  #include profile::base::puppet_six_fixes
   #include profile::wsus::patch
   #include profile::wsus::pswindowsupdate
   #include profile::wsus::report
