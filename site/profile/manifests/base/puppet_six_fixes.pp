@@ -2,11 +2,11 @@
 class profile::base::puppet_six_fixes (
 ) {
 
-  file { 'C:/ProgramData/PuppetLabs/pxp-agent/etc/pxp-agent.conf':
+  file { 'C:\ProgramData/PuppetLabs/pxp-agent/etc/pxp-agent.conf':
     ensure => present
   }
 
-  file { 'C:/ProgramData/PuppetLabs/puppet/cache/state/package_inventory_enabled':
+  file { 'C:\ProgramData/PuppetLabs/puppet/cache/state/package_inventory_enabled':
     ensure => present
   }
 
@@ -20,7 +20,7 @@ class profile::base::puppet_six_fixes (
       {'identity'                => 'Everyone', 'rights' => ['mask_specific'], 'mask' => '1179776', 'affects' => 'self_only'},
       {'identity'                => 'NT AUTHORITY\SYSTEM', 'rights' => ['full'], 'affects' => 'self_only'}
     ],
-    require                    => File['C:/ProgramData/PuppetLabs/pxp-agent/etc/pxp-agent.conf'],
+    require                    => File['C:\ProgramData/PuppetLabs/pxp-agent/etc/pxp-agent.conf'],
   }
 
   acl { 'C:/ProgramData/PuppetLabs/puppet/cache/state/package_inventory_enabled':
@@ -33,7 +33,7 @@ class profile::base::puppet_six_fixes (
       {'identity'               => 'Everyone', 'rights' => ['read'], 'affects' => 'self_only'},
       {'identity'               => 'NT AUTHORITY\SYSTEM', 'rights' => ['full'], 'affects' => 'self_only'}
     ],
-    require                   => File['C:/ProgramData/PuppetLabs/puppet/cache/state/package_inventory_enabled'],
+    require                   => File['C:\ProgramData/PuppetLabs/puppet/cache/state/package_inventory_enabled'],
   }
 
 }
