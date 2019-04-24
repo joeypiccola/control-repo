@@ -1,4 +1,4 @@
-switch ($env:COMPUTERNAME.Substring(0,4).tolower()) {
+switch ($env:COMPUTERNAME.Substring(0, 4).tolower()) {
     'sea1' {
         Write-Output "datacenter=sea1"
     }
