@@ -2,6 +2,5 @@
 @{
     ExcludeRules = @(
         'PSAvoidUsingWMICmdlet'
-        'PSUseBOMForUnicodeEncodedFile'
     )
 }
