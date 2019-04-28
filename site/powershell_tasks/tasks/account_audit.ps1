@@ -1,4 +1,4 @@
-[Diagnostics.CodeAnalysis.SuppressMessageAttribute("PSAvoidUsingWMICmdlet", "", Justification = "I'll do it if want")]
+[Diagnostics.CodeAnalysis.SuppressMessageAttribute("PSAvoidUsingWMICmdlet", "", Justification = "Don't tell me what to do.")]
 
 $admins = Get-WmiObject -Class win32_groupuser | Where-Object { $_.groupcomponent -like '*"Administrators"' }
 
