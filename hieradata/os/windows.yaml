@@ -3,4 +3,3 @@ profile::base::chocolatey::packages:
   notepadplusplus:
     ensure: '7.5.9'
     provider: 'chocolatey'
-profile::base::bginfo::bginfo_install: true

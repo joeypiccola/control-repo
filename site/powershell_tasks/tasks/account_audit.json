@@ -1,0 +1,7 @@
+{
+    "puppet_task_version": 1,
+    "description": "A task to audit the local Administrators group.",
+    "input_method": "powershell",
+    "parameters": {
+    }
+}
