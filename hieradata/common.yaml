@@ -41,12 +41,12 @@ crypto_win::sha: true
 wsus_client::auto_update_option: 'AutoNotify'
 wsus_client::detection_frequency_hours: 1
 
-chocolatey::chocolatey_version: 0.10.11
-chocolatey::chocolatey_download_url: 'http://nuget.ad.piccola.us:8081/chocolatey.0.10.11.nupkg'
+chocolatey::chocolatey_version: 0.10.15
+chocolatey::chocolatey_download_url: 'http://nuget.ad.piccola.us:8081/chocolatey.0.10.15.nupkg'
 profile::base::chocolatey::location: 'http://nuget.ad.piccola.us:8080/chocolatey'
 profile::base::chocolatey::packages:
   chocolatey:
-    ensure: '0.10.11'
+    ensure: '0.10.15'
     provider: 'chocolatey'
   chocolatey-core.extension:
     ensure: '1.3.3'
