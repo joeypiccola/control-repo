@@ -2,6 +2,8 @@
 class profile::web::iis::apps::choco_server (
 ) {
 
+  require profile::web::install
+
   $_chocolatey_server_location = 'c:\websites\choco_server'
 
   file {$_chocolatey_server_location:
@@ -12,7 +14,6 @@ class profile::web::iis::apps::choco_server (
   -> iis_site {'Default Web Site':
       ensure          => absent,
       applicationpool => 'DefaultAppPool',
-      require         => Iis_feature['Web-WebServer'],
     }
 
   # application in iis
@@ -37,7 +38,7 @@ class profile::web::iis::apps::choco_server (
         'protocol'           => 'http'
       }
     ],
-    require         => Package['chocolatey.server'],
+    require         => File[$_chocolatey_server_location],
   }
 
   # lock down web directory
@@ -50,7 +51,7 @@ class profile::web::iis::apps::choco_server (
       { identity => 'IUSR', rights => ['read'] },
       { identity => "IIS APPPOOL\\chocolateyserver", rights => ['read'] }
     ],
-    require                    => Package['chocolatey.server'],
+    require                    => File[$_chocolatey_server_location],
   }
 
   -> acl { "${_chocolatey_server_location}/App_Data":
@@ -58,7 +59,7 @@ class profile::web::iis::apps::choco_server (
       { identity => "IIS APPPOOL\\chocolateyserver", rights => ['modify'] },
       { identity => 'IIS_IUSRS', rights => ['modify'] }
     ],
-    require     => Package['chocolatey.server'],
+    require     => File[$_chocolatey_server_location],
   }
 
 }
