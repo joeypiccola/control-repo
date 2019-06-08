@@ -2,12 +2,19 @@
 class profile::web::iis::apps::choco_server (
 ) {
 
-  require profile::web::install
+  include profile::web::install
 
-  $_chocolatey_server_location = 'c:\websites\choco_server'
+  file { 'choco_web_directories':
+    ensure => 'directory',
+    path   => ['c:/websites', 'c:/websites/choco_server'],
+  }
 
-  file {$_chocolatey_server_location:
-    ensure => 'directory'
+  file { 'choco_web_contents':
+    ensure  => 'directory',
+    source  => 'C:/Users/joey.piccola/Desktop/chocolatey.server',
+    target  => 'C:/websites/choco_server',
+    recurse => true,
+    require => File['choco_web_directories'],
   }
 
   # remove default web site
@@ -29,7 +36,7 @@ class profile::web::iis::apps::choco_server (
 
   -> iis_site {'chocolateyserver':
     ensure          => 'started',
-    physicalpath    => $_chocolatey_server_location,
+    physicalpath    => 'C:/websites/choco_server',
     applicationpool => 'chocolateyserver',
     preloadenabled  => true,
     bindings        =>  [
@@ -38,11 +45,11 @@ class profile::web::iis::apps::choco_server (
         'protocol'           => 'http'
       }
     ],
-    require         => File[$_chocolatey_server_location],
+    require         => File['choco_web_directories'],
   }
 
   # lock down web directory
-  -> acl { $_chocolatey_server_location:
+  -> acl { 'c:/websites/choco_server':
     purge                      => true,
     inherit_parent_permissions => false,
     permissions                => [
@@ -51,15 +58,15 @@ class profile::web::iis::apps::choco_server (
       { identity => 'IUSR', rights => ['read'] },
       { identity => "IIS APPPOOL\\chocolateyserver", rights => ['read'] }
     ],
-    require                    => File[$_chocolatey_server_location],
+    require                    => File['choco_web_directories'],
   }
 
-  -> acl { "${_chocolatey_server_location}/App_Data":
+  -> acl { 'C:/websites/choco_server/App_Data':
     permissions => [
       { identity => "IIS APPPOOL\\chocolateyserver", rights => ['modify'] },
       { identity => 'IIS_IUSRS', rights => ['modify'] }
     ],
-    require     => File[$_chocolatey_server_location],
+    require     => File['choco_web_contents'],
   }
 
 }
