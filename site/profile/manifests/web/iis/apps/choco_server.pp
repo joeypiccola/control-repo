@@ -4,9 +4,15 @@ class profile::web::iis::apps::choco_server (
 
   include profile::web::install
 
-  file { 'choco_web_directories':
+  file { 'websites_dir':
     ensure => 'directory',
-    path   => ['c:/websites', 'c:/websites/choco_server'],
+    path   => 'c:/websites',
+  }
+
+  file { 'choco_server_dir':
+    ensure  => 'directory',
+    path    => 'c:/websites/choco_server',
+    require => File['websites_dir'],
   }
 
   file { 'choco_web_contents':
@@ -14,7 +20,7 @@ class profile::web::iis::apps::choco_server (
     source  => 'C:/Users/joey.piccola/Desktop/chocolatey.server',
     target  => 'C:/websites/choco_server',
     recurse => true,
-    require => File['choco_web_directories'],
+    require => File['choco_server_dir'],
   }
 
   # remove default web site
@@ -45,7 +51,7 @@ class profile::web::iis::apps::choco_server (
         'protocol'           => 'http'
       }
     ],
-    require         => File['choco_web_directories'],
+    require         => File['choco_server_dir'],
   }
 
   # lock down web directory
@@ -58,7 +64,7 @@ class profile::web::iis::apps::choco_server (
       { identity => 'IUSR', rights => ['read'] },
       { identity => "IIS APPPOOL\\chocolateyserver", rights => ['read'] }
     ],
-    require                    => File['choco_web_directories'],
+    require                    => File['choco_server_dir'],
   }
 
   -> acl { 'C:/websites/choco_server/App_Data':
