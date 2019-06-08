@@ -1,18 +1,18 @@
 # == Class: profile::web::config
 class profile::web::config (
+  Optional[Boolean] $iis = undef
 ) {
 
-  file { ['d:\\iserver', 'd:\\iserver\\DefaultWebSite']:
-    ensure => 'directory'
+  # configure IIS based on the application fact
+  case $facts['application'] {
+    'choco_server' : {
+      include profile::web::iis::apps::choco_server
+    }
+    default: {
+      notify { 'iis_config_applicatoin_blank':
+        message => 'WARNING: The fact "applicatoin" is blank!',
+      }
+    }
   }
 
-  -> file { ['d:\\Logs', 'd:\\Logs\\IIS']:
-    ensure => 'directory'
-  }
-
-  -> iis_site { 'Default Web Site':
-    ensure       => 'started',
-    physicalpath => 'd:\\iserver\\DefaultWebSite',
-    logpath      => 'd:\\logs\\IIS',
-  }
 }
