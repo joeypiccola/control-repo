@@ -42,9 +42,9 @@ class profile::web::iis::apps::choco_server (
 
   -> iis_site {'chocolateyserver':
     ensure          => 'started',
-    physicalpath    => 'C:/websites/choco_server',
+    physicalpath    => 'C:\\websites\\choco_server',
     applicationpool => 'chocolateyserver',
-    preloadenabled  => false,
+    preloadenabled  => true,
     bindings        =>  [
       {
         'bindinginformation' => '*:80:',
