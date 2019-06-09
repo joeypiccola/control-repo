@@ -18,7 +18,7 @@ class profile::web::iis::apps::choco_server (
   file { 'choco_web_contents':
     ensure  => 'directory',
     source  => 'C:/Users/joey.piccola/Desktop/chocolatey.server',
-    target  => 'C:/websites/choco_server',
+    path    => 'C:/websites/choco_server',
     recurse => true,
     require => File['choco_server_dir'],
   }
