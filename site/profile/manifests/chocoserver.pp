@@ -48,7 +48,7 @@ class profile::chocoserver (
     preloadenabled  => true,
     bindings        =>  [
       {
-        'bindinginformation' => '*:80:',
+        'bindinginformation' => "*:${port}:",
         'protocol'           => 'http'
       }
     ],
