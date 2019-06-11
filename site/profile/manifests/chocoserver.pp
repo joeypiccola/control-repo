@@ -27,7 +27,6 @@ class profile::chocoserver (
     source  => 'C:/Users/joey.piccola/Desktop/chocolatey.server',
     path    => "c:/websites/${website_name}",
     recurse => true,
-    purge   => true,
     require => File['choco_server_dir'],
   }
 
