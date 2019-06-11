@@ -25,7 +25,7 @@ class profile::chocoserver (
   file { 'choco_web_contents':
     ensure  => 'directory',
     source  => 'C:/Users/joey.piccola/Desktop/chocolatey.server',
-    path    => "c:/websites/${website_name}",
+    path    => "C:/websites/${website_name}",
     recurse => true,
     require => File['choco_server_dir'],
   }
