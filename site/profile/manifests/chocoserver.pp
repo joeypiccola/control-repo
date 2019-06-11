@@ -1,8 +1,15 @@
-# == Class: profile::web::iis::apps::choco_server
-class profile::web::iis::apps::choco_server (
+# == Class: profile::chocoserver
+class profile::chocoserver (
+  String $website_name = 'chocolateyserver',
+  String $app_pool_name = 'chocolateyserver',
+  Integer $port = 8080,
 ) {
 
-  require profile::web::install
+  # iis features specific to chcoo/nuget
+  $iis_features = ['Web-Asp-Net45','Web-AppInit']
+  iis_feature { $iis_features:
+    ensure => 'present',
+  }
 
   file { 'websites_dir':
     ensure => 'directory',
@@ -11,26 +18,21 @@ class profile::web::iis::apps::choco_server (
 
   file { 'choco_server_dir':
     ensure  => 'directory',
-    path    => 'c:/websites/choco_server',
+    path    => "c:/websites/${website_name}",
     require => File['websites_dir'],
   }
 
   file { 'choco_web_contents':
     ensure  => 'directory',
     source  => 'C:/Users/joey.piccola/Desktop/chocolatey.server',
-    path    => 'C:/websites/choco_server',
+    path    => "c:/websites/${website_name}",
     recurse => true,
+    purge   => true,
     require => File['choco_server_dir'],
   }
 
-  # remove default web site
-  iis_site {'Default Web Site':
-    ensure          => absent,
-    applicationpool => 'DefaultAppPool',
-  }
-
   # application in iis
-  -> iis_application_pool {'chocolateyserver':
+  -> iis_application_pool { $app_pool_name:
     ensure                    => 'present',
     state                     => 'started',
     enable32_bit_app_on_win64 => true,
@@ -40,10 +42,10 @@ class profile::web::iis::apps::choco_server (
     restart_time_limit        => '00:00:00',
   }
 
-  -> iis_site {'chocolateyserver':
+  -> iis_site { $website_name:
     ensure          => 'started',
-    physicalpath    => 'C:\\websites\\choco_server',
-    applicationpool => 'chocolateyserver',
+    physicalpath    => "C:\\websites\\${website_name}",
+    applicationpool => $app_pool_name,
     preloadenabled  => true,
     bindings        =>  [
       {
@@ -55,21 +57,21 @@ class profile::web::iis::apps::choco_server (
   }
 
   # lock down web directory
-  -> acl { 'c:/websites/choco_server':
+  -> acl { "c:/websites/${website_name}":
     purge                      => true,
     inherit_parent_permissions => false,
     permissions                => [
       { identity => 'Administrators', rights => ['full'] },
       { identity => 'IIS_IUSRS', rights => ['read'] },
       { identity => 'IUSR', rights => ['read'] },
-      { identity => "IIS APPPOOL\\chocolateyserver", rights => ['read'] }
+      { identity => "IIS APPPOOL\\${app_pool_name}", rights => ['read'] }
     ],
     require                    => File['choco_server_dir'],
   }
 
-  -> acl { 'C:/websites/choco_server/App_Data':
+  -> acl { "C:/websites/${website_name}/App_Data":
     permissions => [
-      { identity => "IIS APPPOOL\\chocolateyserver", rights => ['modify'] },
+      { identity => "IIS APPPOOL\\${app_pool_name}", rights => ['modify'] },
       { identity => 'IIS_IUSRS', rights => ['modify'] }
     ],
     require     => File['choco_web_contents'],
