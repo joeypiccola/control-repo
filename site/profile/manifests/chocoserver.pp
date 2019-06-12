@@ -2,7 +2,7 @@
 class profile::chocoserver (
   String $website_name = 'chocolateyserver',
   String $app_pool_name = 'chocolateyserver',
-  Integer $port = 8080,
+  Integer $port = 80,
 ) {
 
   # iis features specific to chcoo/nuget
@@ -16,16 +16,10 @@ class profile::chocoserver (
     path   => 'c:/websites',
   }
 
-  file { 'choco_server_dir':
-    ensure  => 'directory',
-    path    => "c:/websites/${website_name}",
-    require => File['websites_dir'],
-  }
-
   file { 'choco_web_contents':
     ensure  => 'directory',
     source  => 'C:/Users/joey.piccola/Desktop/chocolatey.server',
-    path    => "C:/websites/${website_name}",
+    path    => "c:/websites/${website_name}",
     recurse => true,
     require => File['choco_server_dir'],
   }
