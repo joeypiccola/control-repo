@@ -21,7 +21,6 @@ class profile::chocoserver (
     source  => 'C:/Users/joey.piccola/Desktop/chocolatey.server',
     path    => "c:/websites/${website_name}",
     recurse => true,
-    require => File['choco_server_dir'],
   }
 
   # application in iis
@@ -46,7 +45,7 @@ class profile::chocoserver (
         'protocol'           => 'http'
       }
     ],
-    require         => File['choco_server_dir'],
+    require         => File['choco_web_contents'],
   }
 
   # lock down web directory
@@ -59,7 +58,7 @@ class profile::chocoserver (
       { identity => 'IUSR', rights => ['read'] },
       { identity => "IIS APPPOOL\\${app_pool_name}", rights => ['read'] }
     ],
-    require                    => File['choco_server_dir'],
+    require                    => File['choco_web_contents'],
   }
 
   -> acl { "C:/websites/${website_name}/App_Data":
