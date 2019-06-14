@@ -23,11 +23,11 @@ class profile::chocoserver (
   }
 
   file { 'choco_web_contents':
-    ensure   => 'directory',
-    source   => 'C:/tools/chocolatey.server',
-    path     => "c:/websites/${website_name}",
-    recurse  => true,
-    requires => Package['chocolatey.server'],
+    ensure  => 'directory',
+    source  => 'C:/tools/chocolatey.server',
+    path    => "c:/websites/${website_name}",
+    recurse => true,
+    require => Package['chocolatey.server'],
   }
 
   # application in iis
