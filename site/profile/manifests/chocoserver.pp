@@ -9,6 +9,7 @@ class profile::chocoserver (
     ensure          => installed,
     install_options => ['-i'],
     source          => 'https://chocolatey.org/api/v2',
+    provider        => 'chocolatey',
   }
 
   # iis features specific to chcoo/nuget
