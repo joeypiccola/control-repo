@@ -5,6 +5,12 @@ class profile::chocoserver (
   Integer $port = 80,
 ) {
 
+  package { 'chocolatey.server':
+    ensure          => installed,
+    install_options => ['-i'],
+    source          => 'https://chocolatey.org/api/v2',
+  }
+
   # iis features specific to chcoo/nuget
   $iis_features = ['Web-Asp-Net45','Web-AppInit']
   iis_feature { $iis_features:
@@ -17,10 +23,11 @@ class profile::chocoserver (
   }
 
   file { 'choco_web_contents':
-    ensure  => 'directory',
-    source  => 'C:/Users/joey.piccola/Desktop/chocolatey.server',
-    path    => "c:/websites/${website_name}",
-    recurse => true,
+    ensure   => 'directory',
+    source   => 'C:/tools/chocolatey.server',
+    path     => "c:/websites/${website_name}",
+    recurse  => true,
+    requires => Package['chocolatey.server'],
   }
 
   # application in iis
