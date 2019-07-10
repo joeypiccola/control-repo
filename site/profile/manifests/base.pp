@@ -4,6 +4,7 @@ class profile::base (
   include profile::base::bginfo
   include profile::base::chocolatey
   include profile::base::crypto
+  include profile::base::eventlog
   include profile::base::files
   include profile::base::firewall_config
   include profile::base::kms
