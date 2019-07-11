@@ -11,6 +11,7 @@ if ($DomainRole -notmatch '^(0|2)') {
     $directorySearcher.Filter = "(&(objectCategory=Computer)(Name=$env:ComputerName))"
     $searcherPath = $directorySearcher.FindOne()
     $getDirectoryEntry = $searcherPath.GetDirectoryEntry()
+    $adsite = [System.DirectoryServices.ActiveDirectory.ActiveDirectorySite]::GetComputerSite().Name
 
     # make the results pretty
     $dn = $getDirectoryEntry.distinguishedName
@@ -19,6 +20,7 @@ if ($DomainRole -notmatch '^(0|2)') {
         ou          = $dn.substring(($dn.split(',')[0].length + 1), ($dn.Length - ($dn.split(',')[0].length + 1)))
         whenCreated = $getDirectoryEntry.whenCreated.ToString()
         whenChanged = $getDirectoryEntry.whenChanged.ToString()
+        site = $adsite
     }
     $adobj = [PSCustomObject]@{
         activedirectory_meta = $compobj
