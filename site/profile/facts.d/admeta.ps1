@@ -20,7 +20,7 @@ if ($DomainRole -notmatch '^(0|2)') {
         ou          = $dn.substring(($dn.split(',')[0].length + 1), ($dn.Length - ($dn.split(',')[0].length + 1)))
         whenCreated = $getDirectoryEntry.whenCreated.ToString()
         whenChanged = $getDirectoryEntry.whenChanged.ToString()
-        site = $adsite
+        site        = $adsite
     }
     $adobj = [PSCustomObject]@{
         activedirectory_meta = $compobj
