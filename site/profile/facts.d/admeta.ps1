@@ -15,8 +15,8 @@ if ($DomainRole -notmatch '^(0|2)') {
     # make the results pretty
     $dn = $getDirectoryEntry.distinguishedName
     $compobj = [PSCustomObject]@{
-        dn          = $getDirectoryEntry.distinguishedName.ToString().tolower()
-        ou          = $dn.substring(($dn.split(',')[0].length + 1), ($dn.Length - ($dn.split(',')[0].length + 1))).tolower()
+        dn          = $getDirectoryEntry.distinguishedName.ToString().ToLower()
+        ou          = $dn.substring(($dn.split(',')[0].length + 1), ($dn.Length - ($dn.split(',')[0].length + 1))).ToLower()
         whenCreated = $getDirectoryEntry.whenCreated.ToString()
         whenChanged = $getDirectoryEntry.whenChanged.ToString()
         site        = [System.DirectoryServices.ActiveDirectory.ActiveDirectorySite]::GetComputerSite().Name.ToLower()
