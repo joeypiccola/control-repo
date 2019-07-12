@@ -13,7 +13,7 @@ if ($DomainRole -notmatch '^(0|2)') {
     $getDirectoryEntry = $searcherPath.GetDirectoryEntry()
 
     # make the results pretty
-    $dn = $getDirectoryEntry.distinguishedName
+    $dn = $getDirectoryEntry.distinguishedName.tostring() # <-- psv2 requires the tostring()
     $compobj = [PSCustomObject]@{
         dn          = $getDirectoryEntry.distinguishedName.ToString().ToLower()
         ou          = $dn.substring(($dn.split(',')[0].length + 1), ($dn.Length - ($dn.split(',')[0].length + 1))).ToLower()
@@ -37,7 +37,8 @@ if ($DomainRole -notmatch '^(0|2)') {
                 "ou": "$($compobj.ou)",
                 "whenCreated": "$($compobj.whenCreated)",
                 "whenChanged": "$($compobj.whenChanged)",
-                "site": "$($compobj.site)"
+                "site": "$($compobj.site)",
+                "ps": "$($compobj.ps)"
             }
         }
 "@
