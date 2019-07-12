@@ -1,5 +1,4 @@
 [Diagnostics.CodeAnalysis.SuppressMessageAttribute("PSUseConsistentWhitespace", "", Justification = "just can't fix this")]
-[Diagnostics.CodeAnalysis.SuppressMessageAttribute("PSUseConsistentWhitespace", "", Justification = "just can't fix this")]
 [CmdletBinding()]
 Param()
 
@@ -14,34 +13,33 @@ if ($DomainRole -notmatch '^(0|2)') {
     $getDirectoryEntry = $searcherPath.GetDirectoryEntry()
 
     # make the results pretty
-    #$dn = $getDirectoryEntry.distinguishedName
-    #$compobj = [PSCustomObject]@{
-    #    dn          = $getDirectoryEntry.distinguishedName.ToString().ToLower()
-    #    ou          = $dn.substring(($dn.split(',')[0].length + 1), ($dn.Length - ($dn.split(',')[0].length + 1))).ToLower()
-    #    whenCreated = $getDirectoryEntry.whenCreated.ToString()
-    #    whenChanged = $getDirectoryEntry.whenChanged.ToString()
-    #    site        = [System.DirectoryServices.ActiveDirectory.ActiveDirectorySite]::GetComputerSite().Name.ToLower()
-    #}
-    #$adobj = [PSCustomObject]@{
-    #    activedirectory_meta = $compobj
-    #}
-    # write it out
-    #Write-Output ($adobj | ConvertTo-Json)
-
-    $dn = $getDirectoryEntry.distinguishedName.ToString().ToLower()
-    $ou = $dn.substring(($dn.split(',')[0].length + 1), ($dn.Length - ($dn.split(',')[0].length + 1))).ToLower()
-    $whenCreated = $getDirectoryEntry.whenCreated.ToString()
-    $whenChanged = $getDirectoryEntry.whenChanged.ToString()
-    $site = [System.DirectoryServices.ActiveDirectory.ActiveDirectorySite]::GetComputerSite().Name.ToLower()
-    Write-Output @"
-    {
-        "activedirectory_meta": {
-            "dn": "$dn",
-            "ou": "$ou",
-            "whenCreated": "$whenCreated",
-            "whenChanged": "$whenChanged",
-            "site": "$site"
-        }
+    $dn = $getDirectoryEntry.distinguishedName
+    $compobj = [PSCustomObject]@{
+        dn          = $getDirectoryEntry.distinguishedName.ToString().ToLower()
+        ou          = $dn.substring(($dn.split(',')[0].length + 1), ($dn.Length - ($dn.split(',')[0].length + 1))).ToLower()
+        whenCreated = $getDirectoryEntry.whenCreated.ToString()
+        whenChanged = $getDirectoryEntry.whenChanged.ToString()
+        site        = [System.DirectoryServices.ActiveDirectory.ActiveDirectorySite]::GetComputerSite().Name.ToLower()
+        ps          = $host.Version.Major
     }
+    $adobj = [PSCustomObject]@{
+        activedirectory_meta = $compobj
+    }
+
+    # write out structurd info in a way that works on PSv2-*
+    if ($host.Version.Major -gt 2) {
+        Write-Output ($adobj | ConvertTo-Json)
+    } else {
+        Write-Output @"
+        {
+            "activedirectory_meta": {
+                "dn": "$($compobj.dn)",
+                "ou": "$($compobj.ou)",
+                "whenCreated": "$($compobj.whenCreated)",
+                "whenChanged": "$($compobj.whenChanged)",
+                "site": "$($compobj.site)"
+            }
+        }
 "@
+    }
 }
