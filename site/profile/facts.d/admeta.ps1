@@ -30,6 +30,17 @@ if ($DomainRole -notmatch '^(0|2)') {
     if ($host.Version.Major -gt 2) {
         Write-Output ($adobj | ConvertTo-Json)
     } else {
-        Write-Output "{`"activedirectory_meta`": {`"dn`": `"$($compobj.dn)`",`"ou`": `"$($compobj.ou)`",`"whenCreated`": `"$($compobj.whenCreated)`",`"whenChanged`": `"$($compobj.whenChanged)`",`"site`": `"$($compobj.site)`",`"outputMethod`": `"$($compobj.outputMethod)`"}}"
+        Write-Output @"
+        {
+            "activedirectory_meta": {
+                "dn": "$($compobj.dn)",
+                "ou": "$($compobj.ou)",
+                "whenCreated": "$($compobj.whenCreated)",
+                "whenChanged": "$($compobj.whenChanged)",
+                "site": "$($compobj.site)",
+                "outputMethod": "$($compobj.outputMethod)"
+            }
+        }
+"@
     }
 }
