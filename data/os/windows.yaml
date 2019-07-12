@@ -1,4 +1,5 @@
 ---
+profile::base::bginfo::bginfo_install: true
 profile::base::chocolatey::packages:
   notepadplusplus:
     ensure: '7.5.9'
