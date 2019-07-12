@@ -2,7 +2,7 @@
 version: 5
 
 defaults:
-  datadir: hieradata
+  datadir: data
   lookup_key: eyaml_lookup_key
   options:
     pkcs7_private_key: /etc/puppetlabs/code/keys/private_key.pkcs7.pem
@@ -44,7 +44,7 @@ hierarchy:
     path: "domain/%{win_domain}.yaml"
 
   - name: "Datacenter"
-    path: "datacenter/%{datacenter}.yaml"
+    path: "datacenter/%{activedirectory_meta.site}.yaml"
 
   - name: "Operating System"
     paths:
