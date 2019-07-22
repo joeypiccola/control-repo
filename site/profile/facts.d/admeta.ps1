@@ -13,17 +13,34 @@ if ($DomainRole -notmatch '^(0|2)') {
     $getDirectoryEntry = $searcherPath.GetDirectoryEntry()
 
     # make the results pretty
-    $dn = $getDirectoryEntry.distinguishedName
+    $dn = $getDirectoryEntry.distinguishedName.ToString() # <-- psv2 requires the tostring()
     $compobj = [PSCustomObject]@{
-        dn          = $getDirectoryEntry.distinguishedName.ToString().ToLower()
-        ou          = $dn.substring(($dn.split(',')[0].length + 1), ($dn.Length - ($dn.split(',')[0].length + 1))).ToLower()
-        whenCreated = $getDirectoryEntry.whenCreated.ToString()
-        whenChanged = $getDirectoryEntry.whenChanged.ToString()
-        site        = [System.DirectoryServices.ActiveDirectory.ActiveDirectorySite]::GetComputerSite().Name.ToLower()
+        dn           = $getDirectoryEntry.distinguishedName.ToString().ToLower()
+        ou           = $dn.substring(($dn.split(',')[0].length + 1), ($dn.Length - ($dn.split(',')[0].length + 1))).ToLower()
+        whenCreated  = $getDirectoryEntry.whenCreated.ToString()
+        whenChanged  = $getDirectoryEntry.whenChanged.ToString()
+        site         = [System.DirectoryServices.ActiveDirectory.ActiveDirectorySite]::GetComputerSite().Name.ToLower()
+        outputMethod = $host.Version.Major
     }
     $adobj = [PSCustomObject]@{
         activedirectory_meta = $compobj
     }
-    # write it out
-    Write-Output ($adobj | ConvertTo-Json)
+
+    # write out structured data in a way that works on PSv2-*
+    if ($host.Version.Major -gt 2) {
+        Write-Output ($adobj | ConvertTo-Json)
+    } else {
+        Write-Output @"
+        {
+            "activedirectory_meta": {
+                "dn": "$($compobj.dn)",
+                "ou": "$($compobj.ou)",
+                "whenCreated": "$($compobj.whenCreated)",
+                "whenChanged": "$($compobj.whenChanged)",
+                "site": "$($compobj.site)",
+                "outputMethod": "$($compobj.outputMethod)"
+            }
+        }
+"@
+    }
 }
