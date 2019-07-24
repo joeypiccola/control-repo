@@ -30,7 +30,9 @@ class profile::base::puppet_log {
       require => Registry_key['Puppet_Puppet'],
     }
     service { 'eventlog':
-      ensure => 'running'
+      ensure => 'running',
+      start  => 'net start eventlog',
+      stop   => 'net stop eventlog /y',
     }
   }
 }
