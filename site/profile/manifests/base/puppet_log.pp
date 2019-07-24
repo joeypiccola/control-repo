@@ -26,7 +26,7 @@ class profile::base::puppet_log {
       path    => 'HKLM\SYSTEM\CurrentControlSet\Services\EventLog\Puppet\Puppet\EventMessageFile',
       type    => string,
       data    => 'C:\Program Files\Puppet Labs\Puppet\puppet\bin\puppetres.dll',
-      notify  => Service['Force_restart_eventlog'],
+      notify  => Exec['Force_restart_eventlog'],
       require => Registry_key['Puppet_Puppet'],
     }
     exec { 'Force_restart_eventlog':
