@@ -48,8 +48,9 @@ class profile::puppet_agent (
       require => Registry_key['Puppet_Puppet'],
     }
     exec { 'Force_restart_eventlog':
-      command  => 'Restart-Service -Name EventLog -Force',
-      provider => powershell,
+      command     => 'Restart-Service -Name EventLog -Force',
+      refreshonly => true,
+      provider    => powershell,
     }
   }
 
