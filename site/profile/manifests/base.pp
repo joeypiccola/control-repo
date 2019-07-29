@@ -10,6 +10,7 @@ class profile::base (
   include profile::base::localaccounts
   #include profile::base::nameservers
   include profile::base::rdp_config
+  include profile::base::smbv1
   include profile::base::timezone
   include profile::base::uac_config
   include profile::puppet_agent
