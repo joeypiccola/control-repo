@@ -20,11 +20,38 @@ class profile::puppet_agent (
     $_package_version = $package_version
   }
 
-  ## This if statement will optionally exclude production like environments (for change control)
+  # This if statement will optionally exclude production like environments (for change control)
   if $manage_production or
     ( "${facts['application_environment']} " !~ /pro?d/ and $trusted['certname'] !~ /^.....1/ ) {
     class { 'puppet_agent':
       package_version => $_package_version,
     }
   }
+
+  # move puppet windows events out of the Application log into a new log named Puppet
+  if $facts['os']['family'] == 'windows' {
+    registry_key { 'Application_Puppet':
+      ensure => absent,
+      path   => 'HKLM\SYSTEM\CurrentControlSet\Services\EventLog\Application\Puppet',
+    }
+    registry_key { 'Puppet_Puppet':
+      ensure  => present,
+      path    => 'HKLM\SYSTEM\CurrentControlSet\Services\EventLog\Puppet\Puppet',
+      require => Registry_key['Application_Puppet'],
+    }
+    registry_value { 'EventMessageFile':
+      ensure  => present,
+      path    => 'HKLM\SYSTEM\CurrentControlSet\Services\EventLog\Puppet\Puppet\EventMessageFile',
+      type    => string,
+      data    => 'C:\Program Files\Puppet Labs\Puppet\puppet\bin\puppetres.dll',
+      notify  => Exec['Force_restart_eventlog'],
+      require => Registry_key['Puppet_Puppet'],
+    }
+    exec { 'Force_restart_eventlog':
+      command     => 'Restart-Service -Name EventLog -Force',
+      refreshonly => true,
+      provider    => powershell,
+    }
+  }
+
 }
