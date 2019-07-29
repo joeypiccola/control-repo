@@ -9,7 +9,7 @@ class profile::base::smbv1 {
     data   => 0,
   }
   # if we're on something greater than Windows Server 2008 R2 then also remove the feature
-  if $facts['os','releae','full'] =~ /^2012|2016|2019/{
+  if $facts['os']['release']['full'] =~ /^2012|2016|2019/{
     windowsfeature { 'fs-smb1':
       ensure => absent,
     }
