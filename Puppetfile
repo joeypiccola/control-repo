@@ -27,11 +27,11 @@ mod 'puppetlabs-transition', '0.1.1'
 mod 'puppetlabs-wsus_client', '1.1.0'
 mod 'trlinkin-domain_membership', '1.1.2'
 mod 'tvories-showhidden_win', '0.1.0'
-mod 'jpi-kms_win', '0.1.3'
-mod 'jpi-timezone_win', '0.1.5'
+mod 'jpi-kms_win', '0.1.4'
+mod 'jpi-timezone_win', '0.1.6'
 #mod 'jpi-updatereporting_win', '0.1.7'
 mod 'jpi-node_certificate_mgmt', '0.1.3'
-mod 'jpi-crypto_win', '0.1.0'
+mod 'jpi-crypto_win', '0.1.1'
 
 # Modules from Git
 
