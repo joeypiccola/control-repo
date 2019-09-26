@@ -29,7 +29,7 @@ mod 'trlinkin-domain_membership', '1.1.2'
 mod 'tvories-showhidden_win', '0.1.0'
 mod 'jpi-kms_win', '0.1.3'
 mod 'jpi-timezone_win', '0.1.5'
-mod 'jpi-updatereporting_win', '0.1.7'
+#mod 'jpi-updatereporting_win', '0.1.7'
 mod 'jpi-node_certificate_mgmt', '0.1.3'
 mod 'jpi-crypto_win', '0.1.0'
 
@@ -42,6 +42,10 @@ mod 'firewallprofile_win',
 mod 'lastbootuptime_win',
   :git    => 'https://github.com/joeypiccola/lastbootuptime_win',
   :branch => 'master'
+
+mod 'updatereporting_win',
+  :git    => 'https://github.com/joeypiccola/updatereporting_win',
+  :branch => 'dev'
 
 # mod 'node_certificate_mgmt',
 #   :git    => 'https://github.com/joeypiccola/node_certificate_mgmt',
