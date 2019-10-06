@@ -1,5 +1,8 @@
 # == Class: profile::base::updatereporting
 class profile::base::updatereporting (
 ) {
-  include updatereporting_win
+  $psmajor = split($facts['powershell_version'], '[.]')
+  if $psmajor[0] > 2 {
+    include updatereporting_win
+  }
 }
