@@ -24,17 +24,20 @@ lookup_options:
 
 # Profile - define default data
 ################################################################################
-profile::base::updatereporting::pswindowsupdate_url: 'http://nuget.ad.piccola.us:8081/pswindowsupdate.zip'
-profile::base::updatereporting::wsusscn_url: 'http://nuget.ad.piccola.us:8081/wsusscn2.cab'
-profile::base::updatereporting::download_directory: 'c:/windows/temp/ISG-Puppet/updatereporting_win'
-profile::base::updatereporting::task_day_of_week: 'sat'
-profile::base::updatereporting::task_every: 1
-profile::base::updatereporting::task_ensure: 'present'
-profile::base::updatereporting::task_schedule: 'weekly'
-profile::base::updatereporting::task_enabled: true
-profile::base::updatereporting::pswindowsupdate_force_download: true
+# profile::base::updatereporting::pswindowsupdate_url: 'http://nuget.ad.piccola.us:8081/pswindowsupdate.zip'
+# profile::base::updatereporting::wsusscn_url: 'http://nuget.ad.piccola.us:8081/wsusscn2.cab'
+# profile::base::updatereporting::download_directory: 'c:/windows/temp/ISG-Puppet/updatereporting_win'
+# profile::base::updatereporting::task_day_of_week: 'sat'
+# profile::base::updatereporting::task_every: 1
+# profile::base::updatereporting::task_ensure: 'present'
+# profile::base::updatereporting::task_schedule: 'weekly'
+# profile::base::updatereporting::task_enabled: true
+# profile::base::updatereporting::pswindowsupdate_force_download: true
 profile::base::powershell::reboot: false
 profile::base::powershell::upgrade: false
+
+updatereporting_win::wsusscn_url: 'http://nuget.ad.piccola.us:8081/wsusscn2.cab'
+updatereporting_win::wsusscn_force_download: true
 crypto_win::tls_1_0_client: true
 crypto_win::sha: true
 
