@@ -1,10 +1,8 @@
 # == Class: profile::base::updatereporting
 class profile::base::updatereporting (
-  $wsusscn_url,
 ) {
-
-  class { 'updatereporting_win':
-    wsusscn_url => $wsusscn_url,
+  $psmajor = split($facts['powershell_version'], '[.]')
+  if $psmajor[0] > 2 {
+    include updatereporting_win
   }
-
 }
