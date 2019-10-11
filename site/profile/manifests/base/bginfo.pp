@@ -23,7 +23,7 @@ class profile::base::bginfo (
     }
 
     package { 'bginfo':
-      ensure   => '4.27',
+      ensure   => 'latest',
       provider => 'chocolatey',
       require  => File['bgi_config'],
     }
