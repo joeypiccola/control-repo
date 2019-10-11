@@ -25,13 +25,15 @@ mod 'puppetlabs-scheduled_task', '1.0.1'
 mod 'puppetlabs-stdlib', '5.2.0'
 mod 'puppetlabs-transition', '0.1.1'
 mod 'puppetlabs-wsus_client', '1.1.0'
+mod 'tragiccode-wsusserver', '1.1.2'
 mod 'trlinkin-domain_membership', '1.1.2'
 mod 'tvories-showhidden_win', '0.1.0'
 mod 'jpi-kms_win', '0.1.4'
 mod 'jpi-timezone_win', '0.1.6'
-#mod 'jpi-updatereporting_win', '0.1.7'
+mod 'jpi-updatereporting_win', '0.1.8'
 mod 'jpi-node_certificate_mgmt', '0.1.3'
 mod 'jpi-crypto_win', '0.1.1'
+
 
 # Modules from Git
 
@@ -43,9 +45,9 @@ mod 'lastbootuptime_win',
   :git    => 'https://github.com/joeypiccola/lastbootuptime_win',
   :branch => 'master'
 
-mod 'updatereporting_win',
-  :git    => 'https://github.com/joeypiccola/updatereporting_win',
-  :branch => 'dev'
+# mod 'updatereporting_win',
+#   :git    => 'https://github.com/joeypiccola/updatereporting_win',
+#   :branch => 'dev'
 
 # mod 'node_certificate_mgmt',
 #   :git    => 'https://github.com/joeypiccola/node_certificate_mgmt',
