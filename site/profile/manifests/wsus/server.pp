@@ -15,13 +15,15 @@ class profile::wsus::server (
     update_languages                   => ['en'],
     products                           => [
       'Windows Server 2016',
+      'Windows Server 2008 R2',
+      'Windows Server 2012 R2',
     ],
     product_families                   => [
-      'SQL Server',
-      'System Center',
+      'Windows',
     ],
     update_classifications             => [
-        'Critical Updates'
+        'Critical Updates',
+        'Security Updates',
     ],
     targeting_mode                     => 'Client',
     host_binaries_on_microsoft_update  => false,
