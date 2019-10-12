@@ -17,9 +17,7 @@ class profile::wsus::server (
       'Windows Server 2016',
       'Windows Server 2008 R2',
       'Windows Server 2012 R2',
-    ],
-    product_families                   => [
-      'Windows',
+      'Windows Server 2019',
     ],
     update_classifications             => [
         'Critical Updates',
