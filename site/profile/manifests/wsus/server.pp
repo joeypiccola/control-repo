@@ -26,7 +26,7 @@ class profile::wsus::server (
     targeting_mode                     => 'Client',
     host_binaries_on_microsoft_update  => false,
     synchronize_automatically          => true,
-    synchronize_time_of_day            => '03:00:00', # 3AM ( UTC ) 24H Clock
+    synchronize_time_of_day            => '21:00:00', # 3AM ( UTC ) 24H Clock
     number_of_synchronizations_per_day => 1,
   }
 }
