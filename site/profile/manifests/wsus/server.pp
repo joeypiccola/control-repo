@@ -29,4 +29,8 @@ class profile::wsus::server (
     synchronize_time_of_day            => '20:00:00', # 3AM ( UTC ) 24H Clock
     number_of_synchronizations_per_day => 1,
   }
+
+  wsusserver_computer_target_group { ['Development', 'Staging', 'Production']:
+      ensure => 'present',
+  }
 }
