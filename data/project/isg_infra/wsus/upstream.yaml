@@ -7,18 +7,4 @@ wsusserver::products:
 wsusserver::update_classifications:
   - Critical Updates
   - Security Updates
-wsusserver::package_ensure: present
-wsusserver::include_management_console: true
-wsusserver::service_manage: true
-wsusserver::service_ensure: running
-wsusserver::service_enable: true
-wsusserver::wsus_directory: W:\\WSUS
-wsusserver::join_improvement_program: false
 wsusserver::sync_from_microsoft_update: true
-wsusserver::update_languages:
-  - en
-wsusserver::targeting_mode: Client
-wsusserver::host_binaries_on_microsoft_update: false
-wsusserver::synchronize_automatically: true
-wsusserver::synchronize_time_of_day: '20:00:00'
-wsusserver::number_of_synchronizations_per_day: 1
