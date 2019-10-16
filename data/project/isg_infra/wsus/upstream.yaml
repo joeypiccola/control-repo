@@ -1,10 +1,2 @@
 ---
-wsusserver::products:
-  - Windows Server 2016
-  - Windows Server 2008 R2
-  - Windows Server 2012 R2
-  - Windows Server 2019
-wsusserver::update_classifications:
-  - Critical Updates
-  - Security Updates
 wsusserver::sync_from_microsoft_update: true
