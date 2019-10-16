@@ -12,7 +12,7 @@ class profile::wsus::server (
   # for downstream server switch to replica mode
   if $facts['application_component'] == 'downstream' {
     exec { 'set downstream replica mode':
-      command  => "Set-WsusServerSynchronization -UpdateServer ${wsusserver::upstream_wsus_server_name} -PortNumber ${wsusserver::upstream_wsus_server_port} -Replica",
+      command  => "Set-WsusServerSynchronization -UssServerName ${wsusserver::upstream_wsus_server_name} -PortNumber ${wsusserver::upstream_wsus_server_port} -Replica",
       provider => powershell,
       onlyif   => 'if (((Get-WsusServer).GetConfiguration()).IsReplicaServer) {exit 1} else {exit 0}',
       require  => Class['wsusserver::service'],
