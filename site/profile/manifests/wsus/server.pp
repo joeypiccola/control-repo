@@ -1,13 +1,22 @@
 # == Class: profile::wsus::server
 
 class profile::wsus::server (
+  Array[String] $wsusserver_computer_target_groups = [],
 ) {
   # include wsusserver module
   include wsusserver
-  # if an upstream wsus server include the target_groups defined type
-  if $facts['application_component'] == 'upstream' {
-    wsusserver_computer_target_group { ['Development', 'Staging', 'Production']:
-        ensure => 'present',
+
+  # if wsusserver_computer_target_groups then add me some target groups (if in hiera)!
+  wsusserver_computer_target_group { $wsusserver_computer_target_groups: }
+
+  # for downstream server switch to replica mode
+  $checkfile = 'w:\\downstream_is_replica'
+  if $facts['application_component'] == 'downstream' {
+    exec { 'set downstream replica mode':
+      command  => "Set-WsusServerSynchronization -UpdateServer ${wsusserver::upstream_wsus_server_name} -PortNumber ${wsusserver::upstream_wsus_server_port} -Replica; if ($?) { echo hi > ${checkfile}}",
+      creates  => $checkfile,
+      provider => powershell,
+      require  => Class['wsusserver::service'],
     }
   }
 }
