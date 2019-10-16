@@ -14,13 +14,15 @@ hierarchy:
 
   - name: "Project Data"
     paths:
-      # project/ewp/ewp_sitecore_app/production.yaml
+      # project/isg_infra/wsus/production.yaml
       - "project/%{project}/%{application}/%{application_environment}.yaml"
-      # project/ewp/ewp_sitecore_app/ewp_sitecore_app.yaml
+      # project/isg_infra/wsus/wsus.yaml
       - "project/%{project}/%{application}/%{application}.yaml"
-      # project/ewp/ewp_sitecore_app/DEFAULT/production.yaml
+      # project/isg_infra/wsus/upstream.yaml
+      - "project/%{project}/%{application}/%{application_component}.yaml"
+      # project/isg_infra/DEFAULT/production.yaml
       - "project/%{project}/DEFAULT/%{application_environment}.yaml"
-      # project/ewp/ewp.yaml
+      # project/isg_infra/isg_infra.yaml
       - "project/%{project}/%{project}.yaml"
 
   - name: "Role specific team data"
