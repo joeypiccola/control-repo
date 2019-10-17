@@ -1,4 +1,4 @@
 ---
 wsusserver::upstream_wsus_server_name: wsus01.ad.piccola.us
 wsusserver::upstream_wsus_server_port: 8530
-wsusserver::sync_from_microsoft_update: false
+wsusserver::sync_from_microsoft_update: true
