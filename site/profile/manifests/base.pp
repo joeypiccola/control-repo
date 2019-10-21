@@ -13,5 +13,6 @@ class profile::base (
   include profile::base::timezone
   include profile::base::uac_config
   include profile::base::updatereporting
+  include profile::base::wsus::client
   include profile::puppet_agent
 }
