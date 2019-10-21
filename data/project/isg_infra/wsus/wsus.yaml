@@ -1,0 +1,23 @@
+---
+wsusserver::package_ensure: present
+wsusserver::include_management_console: true
+wsusserver::service_manage: true
+wsusserver::service_ensure: running
+wsusserver::service_enable: true
+wsusserver::wsus_directory: W:\\WSUS
+wsusserver::join_improvement_program: false
+wsusserver::update_languages:
+  - en
+wsusserver::targeting_mode: Client
+wsusserver::synchronize_automatically: true
+wsusserver::synchronize_time_of_day: '20:00:00'
+wsusserver::number_of_synchronizations_per_day: 1
+wsusserver::host_binaries_on_microsoft_update: false
+wsusserver::products:
+  - Windows Server 2016
+  - Windows Server 2008 R2
+  - Windows Server 2012 R2
+  - Windows Server 2019
+wsusserver::update_classifications:
+  - Critical Updates
+  - Security Updates

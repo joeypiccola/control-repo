@@ -14,4 +14,5 @@ class profile::base (
   include profile::base::uac_config
   include profile::base::updatereporting
   include profile::puppet_agent
+  include profile::wsus::client
 }
