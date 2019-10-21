@@ -1,0 +1,7 @@
+{
+    "puppet_task_version": 1,
+    "description": "A task to list needed updates as detected from a ssManagedServer.",
+    "input_method": "powershell",
+    "parameters": {
+    }
+}
