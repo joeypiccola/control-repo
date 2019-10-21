@@ -1,36 +1,21 @@
-# Class: profile::wsus::server
-#
-#
-class profile::wsus::server (
-) {
-  class { 'wsusserver':
-    package_ensure                     => 'present',
-    include_management_console         => true,
-    service_manage                     => true,
-    service_ensure                     => 'running',
-    service_enable                     => true,
-    wsus_directory                     => 'W:\\WSUS',
-    join_improvement_program           => false,
-    sync_from_microsoft_update         => true,
-    update_languages                   => ['en'],
-    products                           => [
-      'Windows Server 2016',
-      'Windows Server 2008 R2',
-      'Windows Server 2012 R2',
-      'Windows Server 2019',
-    ],
-    update_classifications             => [
-      'Critical Updates',
-      'Security Updates',
-    ],
-    targeting_mode                     => 'Client',
-    host_binaries_on_microsoft_update  => false,
-    synchronize_automatically          => true,
-    synchronize_time_of_day            => '20:00:00', # 3AM ( UTC ) 24H Clock
-    number_of_synchronizations_per_day => 1,
-  }
+# == Class: profile::wsus::server
 
-  wsusserver_computer_target_group { ['Development', 'Staging', 'Production']:
-      ensure => 'present',
+class profile::wsus::server (
+  Array[String] $wsusserver_computer_target_groups = [],
+) {
+  # include wsusserver module
+  include wsusserver
+
+  # if wsusserver_computer_target_groups then add me some target groups (if in hiera)!
+  wsusserver_computer_target_group { $wsusserver_computer_target_groups: }
+
+  # for downstream server switch to replica mode
+  if $facts['application_component'] == 'downstream' {
+    exec { 'set downstream replica mode':
+      command  => "Set-WsusServerSynchronization -UssServerName ${wsusserver::upstream_wsus_server_name} -PortNumber ${wsusserver::upstream_wsus_server_port} -Replica",
+      provider => powershell,
+      onlyif   => 'if (((Get-WsusServer).GetConfiguration()).IsReplicaServer) {exit 1} else {exit 0}',
+      require  => Class['wsusserver::service'],
+    }
   }
 }
