@@ -41,8 +41,13 @@ updatereporting_win::wsusscn_force_download: true
 crypto_win::tls_1_0_client: true
 crypto_win::sha: true
 
+# all things WSUS client
+profile::wsus::client::manage: true
 wsus_client::auto_update_option: 'AutoNotify'
 wsus_client::detection_frequency_hours: 1
+wsus_client::purge_values: true
+wsus_client::server_url: 'http://wsus-a.ad.piccola.us:8530'
+wsus_client::enable_status_server: true
 
 chocolatey::chocolatey_version: 0.10.15
 chocolatey::chocolatey_download_url: 'http://nuget.ad.piccola.us:8081/chocolatey.0.10.15.nupkg'
@@ -54,7 +59,6 @@ profile::base::chocolatey::packages:
   chocolatey-core.extension:
     ensure: '1.3.3'
     provider: 'chocolatey'
-
 
 #####
 # puppet_enterprise::profile::certificate_authority
