@@ -1,0 +1,7 @@
+{
+    "puppet_task_version": 1,
+    "description": "A task to reset windows update settings.",
+    "input_method": "powershell",
+    "parameters": {
+    }
+}
