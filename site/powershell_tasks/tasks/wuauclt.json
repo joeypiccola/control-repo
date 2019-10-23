@@ -4,8 +4,8 @@
     "input_method": "powershell",
     "parameters": {
         "job": {
-            "description": "Valid jobs are reportnow and detectnow",
-            "type": "Enum[reportnow, detectnow]"
+            "description": "Valid jobs are reportnow, detectnow, and resetauthorization.",
+            "type": "Enum[reportnow, detectnow, resetauthorization]"
         }
     }
 }
