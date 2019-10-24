@@ -44,6 +44,7 @@ if ('missing','both' -contains $UpdateReport) {
         }
     }
 }
+
 # get installed update data
 if ('installed','both' -contains $UpdateReport) {
     # define empty installed update collection
