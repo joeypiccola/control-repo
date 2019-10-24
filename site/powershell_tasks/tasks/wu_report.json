@@ -1,7 +1,11 @@
 {
     "puppet_task_version": 1,
-    "description": "A task to list needed updates as detected from a ssManagedServer.",
+    "description": "A task to list either missing, installed, or both missing and installed updates.",
     "input_method": "powershell",
     "parameters": {
+        "UpdateReport": {
+            "description": "Valid reports are, installed, missing or both.",
+            "type": "Enum[installed, missing, both]"
+        }
     }
 }
