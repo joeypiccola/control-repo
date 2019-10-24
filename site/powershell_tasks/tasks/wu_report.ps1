@@ -1,14 +1,14 @@
 Param (
     [Parameter(Mandatory = $True)]
     [ValidateSet('installed', 'missing', 'both')]
-    [string]$UpdateReport
+    [string]$update_report
 )
 
 # TODO
 # add better catch logic for when $updateSearcher.Search("IsInstalled=0") fails and resultCode is not 0
 
 # get missing update data
-if ('missing','both' -contains $UpdateReport) {
+if ('missing','both' -contains $update_report) {
     # Represents a session in which the caller can perform operations that involve updates.
     $session = New-Object -ComObject 'Microsoft.Update.Session'
     # Returns an IUpdateSearcher interface for this session.
@@ -46,7 +46,7 @@ if ('missing','both' -contains $UpdateReport) {
 }
 
 # get installed update data
-if ('installed','both' -contains $UpdateReport) {
+if ('installed','both' -contains $update_report) {
     # define empty installed update collection
     $installedUpdateCollection = @()
     # A collection of installed updates
@@ -74,7 +74,7 @@ $report_date = "$(Get-Date)" # string needed for proper json
 $last_boot_time = (Get-CimInstance Win32_OperatingSystem).LastBootUpTime.ToString("G")
 
 # build an object based on the selected update report
-switch ($UpdateReport) {
+switch ($update_report) {
     'missing' {
         # build an object with all the missing update info
         $update_meta = [PSCustomObject]@{
