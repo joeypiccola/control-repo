@@ -7,6 +7,7 @@ Param (
 # TODO
 # add better catch logic for when $updateSearcher.Search("IsInstalled=0") fails and resultCode is not 0
 
+# get missing update data
 if ('missing','both' -contains $UpdateReport) {
     # Represents a session in which the caller can perform operations that involve updates.
     $session = New-Object -ComObject 'Microsoft.Update.Session'
@@ -43,7 +44,7 @@ if ('missing','both' -contains $UpdateReport) {
         }
     }
 }
-
+# get installed update data
 if ('installed','both' -contains $UpdateReport) {
     # define empty installed update collection
     $installedUpdateCollection = @()
@@ -62,13 +63,13 @@ if ('installed','both' -contains $UpdateReport) {
             $installedUpdateCollection += $updateObject
         }
     }
-    # get and format some useful update install data
+    # get and format some useful installed update data
     $dateOfLastUpdateInstall = ($installedUpdates | Sort-Object -Property InstalledOn)[-1].InstalledOn
     $updatesLastInstalled = @($installedUpdates | Where-Object {$_.InstalledOn -eq $dateOfLastUpdateInstall} | ForEach-Object {$_.HotFixID})
 }
 
 # get and format some useful system data
-$report_date = "$(Get-Date)"
+$report_date = "$(Get-Date)" # string needed for proper json
 $last_boot_time = (Get-CimInstance Win32_OperatingSystem).LastBootUpTime.ToString("G")
 
 # build an object based on the selected update report
@@ -87,7 +88,7 @@ switch ($UpdateReport) {
         $update_meta = [PSCustomObject]@{
             installed_update_count      = $installedUpdateCollection.count
             installed_updates           = $installedUpdateCollection
-            date_of_last_update_install = "$dateOfLastUpdateInstall"
+            date_of_last_update_install = "$dateOfLastUpdateInstall" # string needed for proper json
             report_date                 = $report_date
             updates_last_installed      = $updatesLastInstalled
             last_boot_time              = $last_boot_time
@@ -100,7 +101,7 @@ switch ($UpdateReport) {
             missing_updates             = $missingUpdateCollection
             installed_update_count      = $installedUpdateCollection.count
             installed_updates           = $installedUpdateCollection
-            date_of_last_update_install = "$dateOfLastUpdateInstall"
+            date_of_last_update_install = "$dateOfLastUpdateInstall" # string needed for proper json
             report_date                 = $report_date
             updates_last_installed      = $updatesLastInstalled
             last_boot_time              = $last_boot_time
