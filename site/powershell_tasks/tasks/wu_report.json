@@ -3,7 +3,7 @@
     "description": "A task to list either missing, installed, or both missing and installed updates.",
     "input_method": "powershell",
     "parameters": {
-        "UpdateReport": {
+        "update_report": {
             "description": "Valid reports are, installed, missing or both.",
             "type": "Enum[installed, missing, both]"
         }
