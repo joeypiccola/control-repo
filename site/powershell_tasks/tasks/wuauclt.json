@@ -3,7 +3,7 @@
     "description": "A task to run the Windows Update Automatic Update Client (wuauclt.exe).",
     "input_method": "powershell",
     "parameters": {
-        "updatereport": {
+        "job": {
             "description": "Valid jobs are reportnow, detectnow, and resetauthorization.",
             "type": "Enum[reportnow, detectnow, resetauthorization]"
         }
