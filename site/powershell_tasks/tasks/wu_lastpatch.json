@@ -1,0 +1,7 @@
+{
+    "puppet_task_version": 1,
+    "description": "A task to get last patch info on a Windows system.",
+    "input_method": "powershell",
+    "parameters": {
+    }
+}
