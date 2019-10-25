@@ -4,8 +4,7 @@ Param (
     [string]$update_report
 )
 
-# TODO
-# add better catch logic for when $updateSearcher.Search("IsInstalled=0") fails and resultCode is not 0
+#TODO: add better catch logic for when $updateSearcher.Search("IsInstalled=0") fails and resultCode is not 0
 
 # get missing update data
 if ('missing','both' -contains $update_report) {
