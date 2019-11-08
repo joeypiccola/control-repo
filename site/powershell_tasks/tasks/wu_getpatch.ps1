@@ -5,8 +5,6 @@ Param (
 )
 
 # deifine pref vars
-$InformationPreference = "Continue"
-$VerbosePreference = "Continue"
 $ErrorActionPreference = "Stop"
 
 # make kb lowercase
