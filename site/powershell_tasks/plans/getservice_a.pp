@@ -1,4 +1,4 @@
-plan getservice_s (
+plan getservice_a (
   TargetSpec $nodes,
   String $service
 ) {
