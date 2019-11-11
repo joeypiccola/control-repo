@@ -1,4 +1,4 @@
-plan powershell_tasks::getservice (
+plan powershell_tasks::getservice_b (
   TargetSpec $nodes,
   String $service
 ) {
