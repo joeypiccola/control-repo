@@ -5,10 +5,13 @@ plan jpi::wu (
   $wu_report_task_result = run_task('jpi::wu_report', $nodes, update_report => 'missing')
   # nodes that succeeded to run the task
   $succeeded = $wu_report_task_result.ok_set
-  out::message("succeeded: ${succeeded}.names}")
+  # ok set dot names
+  $succeeded_names = $succeeded.names
+
+  out::message("succeeded: ${succeeded_names}}")
   # nodes that failed to run the task
   $failed = $wu_report_task_result.error_set
-  out::message("failed: ${failed}.names}")
+  out::message("failed: ${failed}}")
 
   # # parse out targets from the previous task that has missing updates
   # $targets_with_updates = $wu_report_task_result.filter_set |$result| { $result['missing_update_count'] > 0 }.targets
