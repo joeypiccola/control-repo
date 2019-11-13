@@ -1,4 +1,4 @@
-plan getservice_a (
+plan jpi::getservice_a (
   TargetSpec $nodes,
   String $service
 ) {

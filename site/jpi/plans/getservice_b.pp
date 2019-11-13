@@ -1,4 +1,4 @@
-plan powershell_tasks::getservice_b (
+plan jpi::getservice_b (
   TargetSpec $nodes,
   String $service
 ) {
