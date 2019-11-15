@@ -1,13 +1,11 @@
 # == Class: profile::master
 class profile::master {
-  class { 'hiera':
-          hiera_version   =>  "5",
-          hiera5_defaults =>  {"datadir" => "data", "data_hash" => "yaml_data"},
-          hierarchy       =>  [
-                                {"name" =>  "Per-node data", "path"  =>  "nodes/%{trusted.certname}.yaml"},
-                                {"name" =>  "Per-datacenter defaults", "path" =>  "datacenters/%{facts.datacenter}.yaml"},
-                                {"name" =>  "Per-domain defaults", "path" =>  "domains/%{facts.win_domain}.yaml"},
-                                {"name" =>  "Default yaml file", "path" =>  "common.yaml"},
-                              ],
+
+  class { 'puppet_metrics_collector':
+    metrics_server_type     => 'influxdb',
+    metrics_server_hostname => 'dockerlin.piccola.us',
+    metrics_server_port     => 8086,
+    metrics_server_db_name  => 'puppet_metrics',
   }
+
 }
