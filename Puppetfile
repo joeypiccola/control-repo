@@ -33,13 +33,17 @@ mod 'jpi-kms_win', '0.1.4'
 mod 'jpi-timezone_win', '0.1.6'
 mod 'jpi-updatereporting_win', '0.1.8'
 mod 'jpi-node_certificate_mgmt', '0.1.3'
-mod 'jpi-crypto_win', '0.1.1'
+# mod 'jpi-crypto_win', '0.1.1'
 
 
 # Modules from Git
 
 mod 'firewallprofile_win',
   :git    => 'https://github.com/joeypiccola/firewallprofile_win',
+  :branch => 'master'
+
+mod 'crypto_win',
+  :git    => 'https://github.com/joeypiccola/crypto_win',
   :branch => 'master'
 
 mod 'lastbootuptime_win',
