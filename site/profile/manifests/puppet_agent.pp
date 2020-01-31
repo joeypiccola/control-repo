@@ -43,7 +43,7 @@ class profile::puppet_agent (
       ensure  => present,
       path    => 'HKLM\SYSTEM\CurrentControlSet\Services\EventLog\Puppet\Puppet\EventMessageFile',
       type    => string,
-      data    => 'C:\Program Files\Puppet Labs\Puppet\puppet\bin\puppetres.dll',
+      data    => '%SystemRoot%\System32\EventCreate.exe',
       notify  => Exec['Force_restart_eventlog'],
       require => Registry_key['Puppet_Puppet'],
     }
