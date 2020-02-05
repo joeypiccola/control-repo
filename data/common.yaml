@@ -36,7 +36,7 @@ lookup_options:
 profile::base::powershell::reboot: false
 profile::base::powershell::upgrade: false
 
-profile::base::puppet_agent: 6.10.1
+profile::puppet_agent: 6.10.1
 
 updatereporting_win::wsusscn_url: 'http://nuget.ad.piccola.us:8081/wsusscn2.cab'
 updatereporting_win::wsusscn_force_download: true
