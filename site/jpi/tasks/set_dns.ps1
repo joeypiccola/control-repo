@@ -60,7 +60,7 @@ if ($host.Version.Major -gt 2) {
     $meta = @{
         before = $activeNICs | Select-Object -Property Index, IPAddress, DNSServerSearchOrder, MACAddress
         after  = $afterNICs | Select-Object -Property Index, IPAddress, DNSServerSearchOrder, MACAddress
-    } | ConvertTo-Json
+    } | ConvertTo-Json -Depth 5
     Write-Output $meta
 } else {
     $afterNICs | Format-Table -Property Index, IPAddress, DNSServerSearchOrder, MACAddress -AutoSize | Out-String -Width 4096
