@@ -8,6 +8,10 @@ Param(
     [IPAddress]$tertiary
 )
 
+# define pref vars
+$ErrorActionPreference = 'Stop'
+$WarningPreference = 'Continue'
+
 # define helper functions
 function Set-DnsClientServerAddress2 {
     [CmdletBinding()]

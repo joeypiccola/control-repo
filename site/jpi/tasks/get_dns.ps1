@@ -1,3 +1,7 @@
+# define pref vars
+$ErrorActionPreference = 'Stop'
+$WarningPreference = 'Continue'
+
 # find all the NICs with default gateway IPs (best effort logic to determine primary adapter)
 $DefaultIPGatewayNICs = Get-WmiObject -Class 'Win32_NetworkAdapterConfiguration' | Where-Object {$_.DefaultIPGateway -ne $null}
 
