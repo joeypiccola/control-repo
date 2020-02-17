@@ -9,5 +9,5 @@ $activeNICs = Get-WmiObject -Class 'Win32_NetworkAdapterConfiguration'| Where-Ob
 if ($host.Version.Major -gt 2) {
     $activeNICs | Select-Object -Property Index, IPAddress, DNSServerSearchOrder, MACAddress | ConvertTo-Json
 } else {
-    $activeNICs | Format-Table -Property Index, IPAddress, DNSServerSearchOrder, MACAddress -AutoSize
+    $activeNICs | Format-Table -Property Index, IPAddress, DNSServerSearchOrder, MACAddress -AutoSize | Out-String -Width 4096
 }
