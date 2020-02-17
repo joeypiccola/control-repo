@@ -1,27 +1,13 @@
 # define pref vars
 $ErrorActionPreference = 'Stop'
-$WarningPreference = 'Continue'
+$WarningPreference     = 'Continue'
+$VerbosePreference     = 'Continue'
 
-# find all the NICs with default gateway IPs (best effort logic to determine primary adapter)
-$DefaultIPGatewayNICs = Get-WmiObject -Class 'Win32_NetworkAdapterConfiguration' | Where-Object {$_.DefaultIPGateway -ne $null}
-
-# switch out depending on how many NICs with default gateway IPs were found
-switch (($DefaultIPGatewayNICs | Measure-Object).count) {
-    '0' {
-        Write-Error 'No NICs found with default gateways IPs.'
-    }
-    '1' {
-        if ($null -ne $DefaultIPGatewayNICs.DNSServerSearchOrder) {
-            if ($host.Version.Major -gt 2) {
-                $DefaultIPGatewayNICs.DNSServerSearchOrder | ConvertTo-Json
-            } else {
-                $DefaultIPGatewayNICs.DNSServerSearchOrder
-            }
-        } else {
-            Write-Error "Existing client DNS server settings not detected."
-        }
-    }
-    {$_ -gt 1} {
-        Write-Error 'More than one NIC found with default gateway IPs.'
-    }
+# get all NICs with IPs and DNS client server addresses
+$activeNICs = Get-WmiObject -Class 'Win32_NetworkAdapterConfiguration'| Where-Object { ($null -ne $_.IPAddress) -and ($null -ne $_.DNSServerSearchOrder) }
+# write out data on found NICs. JSON where we can :(
+if ($host.Version.Major -gt 2) {
+    $activeNICs | Select-Object -Property Index, IPAddress, DNSServerSearchOrder, MACAddress | ConvertTo-Json
+} else {
+    $activeNICs | Format-Table -Property Index, IPAddress, DNSServerSearchOrder, MACAddress | Out-String -Width 4096
 }
