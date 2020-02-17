@@ -12,7 +12,8 @@ Param(
 
 # define pref vars
 $ErrorActionPreference = 'Stop'
-$WarningPreference = 'Continue'
+$WarningPreference     = 'Continue'
+$VerbosePreference     = 'Continue'
 
 # define helper functions
 function Set-DnsClientServerAddress2 {
