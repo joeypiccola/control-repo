@@ -16,7 +16,7 @@
         "description": "Set the tertiary client DNS server.",
         "type": "Optional[String]"
       },
-      "processMultipleNICs": {
+      "processmultiplenics": {
         "description": "Process all NICs that have IPs and client DNS server addresses.",
         "type": "Boolean"
     }
