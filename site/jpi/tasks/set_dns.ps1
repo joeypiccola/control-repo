@@ -1,13 +1,13 @@
 [CmdletBinding()]
 Param(
     [Parameter(Mandatory = $true)]
-    [IPAddress]$Primary,
+    [IPAddress]$primary,
     [Parameter(Mandatory = $false)]
-    [IPAddress]$Secondary,
+    [IPAddress]$secondary,
     [Parameter(Mandatory = $false)]
-    [IPAddress]$Tertiary,
+    [IPAddress]$tertiary,
     [Parameter(Mandatory = $false)]
-    [Boolean]$ProcessMultipleNICs
+    [Boolean]$processMultipleNICs
 )
 
 # define pref vars
