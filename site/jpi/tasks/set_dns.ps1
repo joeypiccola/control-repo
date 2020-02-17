@@ -7,7 +7,7 @@ Param(
     [Parameter(Mandatory = $false)]
     [IPAddress]$tertiary,
     [Parameter(Mandatory = $false)]
-    [Boolean]$processMultipleNICs
+    [Boolean]$processMultipleNICs = $false
 )
 
 # define pref vars
