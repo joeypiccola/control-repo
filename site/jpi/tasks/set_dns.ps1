@@ -50,10 +50,10 @@ switch (($DefaultIPGatewayNICs | Measure-Object).count) {
                 Write-Error "Failed to set DNS client server addresses on Interface Index $($DefaultIPGatewayNICs.Index). Exception: $($_.Exception.Message)."
             }
         } else {
-            Write-Warning "Existing client DNS server settings not detected. No action taken."
+            Write-Error "Existing client DNS server settings not detected. No action taken."
         }
     }
     {$_ -gt 1} {
-        Write-Warning 'More than one NIC found with default gateway IPs.'
+        Write-Error 'More than one NIC found with default gateway IPs.'
     }
 }
