@@ -58,8 +58,8 @@ $afterNICs = Get-WmiObject -Class 'Win32_NetworkAdapterConfiguration' | Where-Ob
 # write out data on changed NICs. JSON where we can :(
 if ($host.Version.Major -gt 2) {
     $meta = @{
-        before = $activeNICs | Select-Object -Property Index, IPAddress, DNSServerSearchOrder, MACAddress
         after  = $afterNICs | Select-Object -Property Index, IPAddress, DNSServerSearchOrder, MACAddress
+        before = $activeNICs | Select-Object -Property Index, IPAddress, DNSServerSearchOrder, MACAddress
     } | ConvertTo-Json -Depth 5
     Write-Output $meta
 } else {
