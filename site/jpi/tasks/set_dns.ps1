@@ -1,11 +1,13 @@
 [CmdletBinding()]
 Param(
     [Parameter(Mandatory = $true)]
-    [IPAddress]$primary,
+    [IPAddress]$Primary,
     [Parameter(Mandatory = $false)]
-    [IPAddress]$secondary,
+    [IPAddress]$Secondary,
     [Parameter(Mandatory = $false)]
-    [IPAddress]$tertiary
+    [IPAddress]$Tertiary,
+    [Parameter(Mandatory = $false)]
+    [Boolean]$ProcessMultipleNICs
 )
 
 # define pref vars
@@ -22,38 +24,27 @@ function Set-DnsClientServerAddress2 {
         [Int]$InterfaceIndex
     )
     # get the NIC via the provided index
-    $activeNIC = Get-WmiObject -Class 'Win32_NetworkAdapterConfiguration' | Where-Object {$_.Index -eq $InterfaceIndex}
+    $funcInterface = Get-WmiObject -Class 'Win32_NetworkAdapterConfiguration' | Where-Object {$_.Index -eq $InterfaceIndex}
     # set static, gateway, netmase an dns
-    $activeNIC.SetDNSServerSearchOrder($ServerAddresses)
+    $funcInterface.SetDNSServerSearchOrder($ServerAddresses)
 }
 
-# build an empty array and only add provided DNS client server addresses by string to array
+# build an empty array and only add provided DNS client server addresses by string to array (strings required by SetDNSServerSearchOrder method)
 $ServerAddresses = @()
 $primary, $secondary, $tertiary | Where-Object { $null -ne $_ } | ForEach-Object { $ServerAddresses += $_.IPAddressToString }
 
-# find all the NICs with default gateway IPs (best effort logic to determine primary adapter)
-$DefaultIPGatewayNICs = Get-WmiObject -Class 'Win32_NetworkAdapterConfiguration' | Where-Object {$_.DefaultIPGateway -ne $null}
+# get all NICs with IPs and DNS client server addresses
+$activeNICs = Get-WmiObject -Class 'Win32_NetworkAdapterConfiguration'| Where-Object { ($null -ne $_.IPAddress) -and ($null -ne $_.DNSServerSearchOrder) }
 
-# switch out depending on how many NICs with default gateway IPs were found
-switch (($DefaultIPGatewayNICs | Measure-Object).count) {
-    '0' {
-        Write-Error 'No NICs found with default gateways IPs.'
-    }
-    '1' {
-        # for the single NIC detected as having a default gateway check to see if it currenlty has DNS servers set
-        if ($null -ne $DefaultIPGatewayNICs.DNSServerSearchOrder) {
-            # try and set DNS client server addresses on the single NIC detected as having a default gateway
-            try {
-                # call set function. da heck is this #2 biz?! Best effort to maintain Server 08r2 backwards compatibility
-                Set-DnsClientServerAddress2 -ServerAddresses $ServerAddresses -InterfaceIndex $DefaultIPGatewayNICs.Index
-            } catch {
-                Write-Error "Failed to set DNS client server addresses on Interface Index $($DefaultIPGatewayNICs.Index). Exception: $($_.Exception.Message)."
-            }
-        } else {
-            Write-Error "Existing client DNS server settings not detected. No action taken."
+# if we have a single NIC or ProcessMultipleNICs has been specified then proceed setting DNS client server addresses
+if ( (($activeNICs | Measure-Object).count -eq 1) -or ($ProcessMultipleNICs) ) {
+    foreach ($activeNIC in $activeNICs) {
+        # try and set DNS client server addresses on the current active NIC
+        try {
+            # call set function. da heck is this #2 biz?! Best effort to maintain Server 08r2 backwards compatibility
+            Set-DnsClientServerAddress2 -ServerAddresses $ServerAddresses -InterfaceIndex $activeNIC.Index
+        } catch {
+            Write-Error "Failed to set DNS client server addresses on Interface Index $($activeNIC.Index). Exception: $($_.Exception.Message)."
         }
-    }
-    {$_ -gt 1} {
-        Write-Error 'More than one NIC found with default gateway IPs.'
     }
 }

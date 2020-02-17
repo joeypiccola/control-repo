@@ -4,17 +4,21 @@
     "description": "Set client DNS server settings.",
     "input_method": "powershell",
     "parameters": {
-      "primary": {
+      "Primary": {
         "description": "Set the primary client DNS server.",
         "type": "String"
       },
-      "secondary": {
+      "Secondary": {
         "description": "Set the secondary client DNS server.",
         "type": "Optional[String]"
       },
-      "tertiary": {
+      "Tertiary": {
         "description": "Set the tertiary client DNS server.",
         "type": "Optional[String]"
-      }
+      },
+      "ProcessMultipleNICs": {
+        "description": "Process all NICs that have IPs and client DNS server addresses.",
+        "type": "Boolean"
+    }
     }
   }
