@@ -8,7 +8,7 @@ $DefaultIPGatewayNICs = Get-WmiObject -Class 'Win32_NetworkAdapterConfiguration'
 # switch out depending on how many NICs with default gateway IPs were found
 switch (($DefaultIPGatewayNICs | Measure-Object).count) {
     '0' {
-        Write-Warning 'No NICs found with default gateways IPs.'
+        Write-Error 'No NICs found with default gateways IPs.'
     }
     '1' {
         if ($null -ne $DefaultIPGatewayNICs.DNSServerSearchOrder) {
@@ -18,10 +18,10 @@ switch (($DefaultIPGatewayNICs | Measure-Object).count) {
                 $DefaultIPGatewayNICs.DNSServerSearchOrder
             }
         } else {
-            Write-Error "DNSServerSearchOrder is null."
+            Write-Error "Existing client DNS server settings not detected."
         }
     }
     {$_ -gt 1} {
-        Write-Warning 'More than one NIC found with default gateway IPs.'
+        Write-Error 'More than one NIC found with default gateway IPs.'
     }
 }
