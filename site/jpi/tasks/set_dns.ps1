@@ -53,7 +53,7 @@ switch (($DefaultIPGatewayNICs | Measure-Object).count) {
             Write-Warning "Existing client DNS server settings not detected. No action taken."
         }
     }
-    {$PSItem -gt 1} {
+    {$_ -gt 1} {
         Write-Warning 'More than one NIC found with default gateway IPs.'
     }
 }
