@@ -6,6 +6,10 @@
         "reboot": {
             "description": "Do we want to reboot the system",
             "type": "Boolean"
+        },
+        "mybool": {
+            "description": "Do we want to bool the system",
+            "type": "Boolean"
         }
     }
 }
