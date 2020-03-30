@@ -1,0 +1,18 @@
+{
+    "puppet_task_version": 1,
+    "description": "A task that creates simple key value pair patch_group fact.",
+    "input_method": "powershell",
+    "parameters": {
+        "action": {
+            "description": "The action to take for the patch_group fact.",
+            "type": "Enum[get, set, delete]"
+        },
+        "fact_value": {
+            "description": "The value of the patch_group fact.",
+            "type": "Enum[tuesday,thursday,sunday,friday-test,thursday-test,manual-itweekend,manual-wednesdaypm,dcs-odd,manual-wednesdayam,excluded,dcs-even,np-dc-manual,exchange servers,unassigned]"
+        }
+    }
+}
+
+
+
