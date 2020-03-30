@@ -3,7 +3,7 @@ Param (
     [ValidateSet('get', 'set', 'delete')]
     [string]$action,
     [Parameter()]
-    [string]$fact_value
+    [string]$patch_group
 )
 
 Write-Verbose 'this is a verbose test'
