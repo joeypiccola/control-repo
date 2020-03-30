@@ -6,12 +6,14 @@ Param (
     [string]$patch_group
 )
 
-Write-Verbose 'this is a verbose test'
 
 # define pref vars
 $ErrorActionPreference = 'Stop'
 $WarningPreference     = 'Continue'
 $VerbosePreference     = 'Continue'
+
+
+Write-Verbose 'this is a verbose test'
 
 if ($action -eq 'set' -and [string]::IsNullOrEmpty($patch_group)) {
     Write-Error "Action of $action was defined but no patch_group was provided."
