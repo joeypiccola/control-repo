@@ -9,7 +9,7 @@
         },
         "patch_group": {
             "description": "The value of the patch_group fact.",
-            "type": "Optional[Enum['tuesday','thursday','sunday','friday-test','thursday-test','manual-itweekend','manual-wednesdaypm','dcs-odd','manual-wednesdayam','excluded','dcs-even','np-dc-manual','exchange-servers','unassigned']]"
+            "type": "Optional[String]"
         },
         "verbose": {
             "description": "Enable verbose.",
