@@ -1,3 +1,4 @@
+[CmdletBinding()]
 Param (
     [Parameter(Mandatory = $True)]
     [ValidateSet('get', 'set', 'delete')]
@@ -9,7 +10,7 @@ Param (
 # define pref vars
 $ErrorActionPreference = 'Stop'
 $WarningPreference     = 'Continue'
-$VerbosePreference     = 'Continue'
+#$VerbosePreference     = 'Continue'
 
 
 if ($action -eq 'set' -and [string]::IsNullOrEmpty($patch_group)) {
