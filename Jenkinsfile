@@ -104,47 +104,47 @@ pipeline {
                 }
             }
         }
-        stage('run') {
-            parallel {
-                stage('development') {
-                    // when development and nodes are in development then run a job
-                    when {
-                        allOf {
-                            expression {
-                                BRANCH == 'development'
-                            }
-                            expression {
-                                puppet.query "nodes { catalog_environment = 'development' }"
-                            }
-                        }
-                    }
-                    steps {
-                        script {
-                            puppet.job 'development', query: 'nodes { catalog_environment = "development" }'
-                        }
-                    }
-                }
-                stage('feature') {
-                    // when not production or development and nodes are in feature then run a job
-                    when {
-                        allOf {
-                            expression {
-                                BRANCH != 'production' && BRANCH != 'development'
-                            }
-                            expression {
-                                puppet.query "nodes { catalog_environment = \"${BRANCH}\" }"
-                            }
-                        }
-                    }
-                    steps {
-                        script {
-                            String QUERY = "nodes { catalog_environment = \"${BRANCH}\" }"
-                            puppet.job BRANCH, query: QUERY
-                        }
-                    }
-                }
-            }
-        }
+        // stage('run') {
+        //     parallel {
+        //         stage('development') {
+        //             // when development and nodes are in development then run a job
+        //             when {
+        //                 allOf {
+        //                     expression {
+        //                         BRANCH == 'development'
+        //                     }
+        //                     expression {
+        //                         puppet.query "nodes { catalog_environment = 'development' }"
+        //                     }
+        //                 }
+        //             }
+        //             steps {
+        //                 script {
+        //                     puppet.job 'development', query: 'nodes { catalog_environment = "development" }'
+        //                 }
+        //             }
+        //         }
+        //         stage('feature') {
+        //             // when not production or development and nodes are in feature then run a job
+        //             when {
+        //                 allOf {
+        //                     expression {
+        //                         BRANCH != 'production' && BRANCH != 'development'
+        //                     }
+        //                     expression {
+        //                         puppet.query "nodes { catalog_environment = \"${BRANCH}\" }"
+        //                     }
+        //                 }
+        //             }
+        //             steps {
+        //                 script {
+        //                     String QUERY = "nodes { catalog_environment = \"${BRANCH}\" }"
+        //                     puppet.job BRANCH, query: QUERY
+        //                 }
+        //             }
+        //         }
+        //     }
+        // }
     }
     post {
        success {

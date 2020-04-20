@@ -1,0 +1,24 @@
+{
+    "puppet_task_version": 1,
+    "supports_noop": false,
+    "description": "Set client DNS server settings.",
+    "input_method": "powershell",
+    "parameters": {
+      "primary": {
+        "description": "Set the primary client DNS server.",
+        "type": "String"
+      },
+      "secondary": {
+        "description": "Set the secondary client DNS server.",
+        "type": "Optional[String]"
+      },
+      "tertiary": {
+        "description": "Set the tertiary client DNS server.",
+        "type": "Optional[String]"
+      },
+      "processmultiplenics": {
+        "description": "Process all NICs that have IPs and client DNS server addresses.",
+        "type": "Optional[Boolean]"
+      }
+    }
+  }

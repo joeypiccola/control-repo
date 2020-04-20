@@ -5,7 +5,11 @@
     "parameters": {
         "reboot": {
             "description": "Do we want to reboot the system",
-            "type": "Boolean"
+            "type": "Optional[Boolean]"
+        },
+        "mybool": {
+            "description": "Do we want to bool the system",
+            "type": "Optional[Boolean]"
         }
     }
 }
