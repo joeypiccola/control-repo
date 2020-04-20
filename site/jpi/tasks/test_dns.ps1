@@ -9,9 +9,9 @@ $ErrorActionPreference = 'stop'
 
 if ($host.Version.Major -gt 2) {
     try {
-        Resolve-DnsName -NoHostsFile -Name $client -Server $nameserver | Select-Object -Property name, ipaddress | ConvertTo-Json
+        Resolve-DnsName -NoHostsFile -Name $querystring -Server $nameserverip | Select-Object -Property name, ipaddress | ConvertTo-Json
     } catch {
-        Write-Error "Failed to query `"$client`" via name server `"$nameserver`". Error: $($_.Exception.Message)."
+        Write-Error "Failed to query `"$querystring`" via name server `"$nameserverip`". Error: $($_.Exception.Message)."
     }
 } else {
     $errFile = 'C:\Windows\Temp\test_dns_err'
@@ -20,7 +20,7 @@ if ($host.Version.Major -gt 2) {
         Wait                   = $true
         PassThru               = $true
         FilePath               = 'C:\Windows\System32\nslookup.exe'
-        ArgumentList           = @($client,$nameserver)
+        ArgumentList           = @($querystring,$nameserverip)
         RedirectStandardError  = $errFile
         RedirectStandardOutput = $outFile
     }
@@ -50,6 +50,6 @@ if ($host.Version.Major -gt 2) {
             Write-Output $outFileContent
         }
     } catch {
-        Write-Error "Failed to query `"$client`" via name server `"$nameserver`". Error: $($_.Exception.Message)."
+        Write-Error "Failed to query `"$querystring`" via name server `"$nameserverip`". Error: $($_.Exception.Message)."
     }
 }
