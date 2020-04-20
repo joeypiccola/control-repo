@@ -1,0 +1,8 @@
+{
+    "puppet_task_version": 1,
+    "supports_noop": false,
+    "description": "Get client DNS server settings.",
+    "input_method": "powershell",
+    "parameters": {
+    }
+  }

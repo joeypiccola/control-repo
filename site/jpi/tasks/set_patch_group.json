@@ -1,0 +1,22 @@
+{
+    "puppet_task_version": 1,
+    "description": "A task that creates simple key value pair patch_group fact.",
+    "input_method": "powershell",
+    "parameters": {
+        "action": {
+            "description": "The action to take for the patch_group fact.",
+            "type": "Enum[get, set, delete]"
+        },
+        "patch_group": {
+            "description": "The value of the patch_group fact.",
+            "type": "Optional[String]"
+        },
+        "verbose": {
+            "description": "Enable verbose.",
+            "type": "Optional[Boolean]"
+        }
+    }
+}
+
+
+
