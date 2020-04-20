@@ -10,6 +10,10 @@
         "port": {
             "description": "The port of the destination.",
             "type": "Integer"
+        },
+        "erroronfail": {
+          "description": "Generate a terminator error when unable to connect.",
+          "type": "Optional[Boolean]"
         }
     }
 }

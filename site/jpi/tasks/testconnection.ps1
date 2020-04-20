@@ -2,7 +2,8 @@
 Param (
     [Parameter()]
     [string]$hostname,
-    [int]$port
+    [int]$port,
+    [switch]$erroronfail
 )
 
 try {
@@ -12,4 +13,8 @@ try {
     $test = $false
 }
 
-Write-Output $test
+if ($erroronfail) {
+    Write-Error "Unable to connect to $hostname on tcp\$port."
+} else {
+    Write-Output $test
+}
