@@ -16,7 +16,7 @@ if ([version]$osVersion -ge [version]'6.3' ) {
     }
 } else {
     $errFile = 'C:\Windows\Temp\test_dns_err'
-    $outFile = 'C:\Windows\Temp\test_dns_our'
+    $outFile = 'C:\Windows\Temp\test_dns_out'
     $spSplat = @{
         Wait                   = $true
         PassThru               = $true
