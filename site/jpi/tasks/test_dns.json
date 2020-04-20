@@ -1,0 +1,16 @@
+{
+    "puppet_task_version": 1,
+    "supports_noop": false,
+    "description": "IP address of name server to test query against.",
+    "input_method": "powershell",
+    "parameters": {
+        "nameserverip": {
+            "description": "IP address of name server to test query against.",
+            "type": "String"
+        },
+        "querystring": {
+            "description": "Name or IP address to query against provided nameserver.",
+            "type": "String"
+        }
+    }
+}
