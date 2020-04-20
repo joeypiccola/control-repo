@@ -29,12 +29,14 @@ if ([version]$osVersion -ge [version]'6.3' ) {
     # try and 1) run nslookup, 2) write err/out to file, 3) get the files' contents and 4) remove the files
     try {
         $spResults = Start-Process @spSplat
+        Start-Sleep -Seconds 2
         $errFileContent = Get-Content -Path $errFile
         $outFileContent = Get-Content -Path $outFile
+        Start-Sleep -Seconds 2
     } catch {
         Write-Error $_.Exception.Message
     } finally {
-        Start-Sleep -Seconds 5
+        Start-Sleep -Seconds 2
         if (Test-Path -Path $errFile) {
             Remove-Item -Path $errFile
         }
