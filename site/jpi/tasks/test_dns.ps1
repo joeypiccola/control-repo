@@ -34,6 +34,7 @@ if ([version]$osVersion -ge [version]'6.3' ) {
     } catch {
         Write-Error $_.Exception.Message
     } finally {
+        Start-Sleep -Seconds 5
         if (Test-Path -Path $errFile) {
             Remove-Item -Path $errFile
         }
