@@ -7,7 +7,8 @@ Param(
 
 $ErrorActionPreference = 'stop'
 
-if ($host.Version.Major -gt 2) {
+$osVersion = [System.Environment]::OSVersion.Version
+if ([version]$osVersion -ge [version]'6.3' ) {
     try {
         Resolve-DnsName -NoHostsFile -Name $querystring -Server $nameserverip | Select-Object -Property name, ipaddress | ConvertTo-Json
     } catch {
