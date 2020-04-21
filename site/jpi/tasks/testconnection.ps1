@@ -10,4 +10,4 @@ try {
 } catch {
     Write-Error "Unable to connect to $hostname on tcp\$port. Error: $($_.Exception.Message)."
 }
-Write-Output "{`"message`": `"Successfully connected $hostname on tcp\$port.`"}"
+Write-Output "{`"result`": `"Successfully connected $hostname on tcp\$port.`"}"
