@@ -13,10 +13,11 @@ try {
     $test = $true
 } catch {
     $test = $false
+    $errorVar = $_.Exception.Message
 }
 
 if (($erroronfail) -and ($test -eq $false)) {
-    Write-Error "Unable to connect to $hostname on tcp\$port."
+    Write-Error "Unable to connect to $hostname on tcp\$port. Error: $errorVar."
 } else {
     Write-Output $test
 }
