@@ -6,6 +6,8 @@ Param (
     [switch]$erroronfail
 )
 
+$ErrorActionPreference = 'stop'
+
 try {
     (New-Object Net.Sockets.TcpClient).Connect($hostname, $port)
     $test = $true
