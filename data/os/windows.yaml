@@ -5,3 +5,4 @@ profile::base::chocolatey::packages:
     ensure: '7.5.9'
     provider: 'chocolatey'
 profile::base::smbv1::manage: true
+profile::puppet_agent::package_version: 6.12.0

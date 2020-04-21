@@ -1,34 +1,26 @@
 # == Class: profile::puppet_agent
 #
 # This class manages the Puppet Agent version and ensures that it
-# is running and enabled.
-#
+# is running and enabled.  Hiera data per-environment should be the
+# source of the puppet_agent $package_version
 # @param package_version - override package_version provided to the puppet_agent module
-#   Default: determine the version of the PE server and match that, or leave it undefined
-# @param manage_production - try to determine which machines are production based on facts and hostnames
-#    and not include the puppet_agent module there, in order to prevent agent upgrades in production.
+#   Default: Hiera data sets the version or leave it undefined
 #
 class profile::puppet_agent (
-  Optional[Pattern[/\d+\.\d+\.\d+/]] $package_version = undef,
-  Boolean $manage_production = true,
+  $package_version = undef,
 ) {
+  # Use puppet_agent module to manage puppet version
+  class { 'puppet_agent':
+    package_version => $package_version,
+  }
 
-  # PE Agent should, by default, automatically match the agent version on the PE Server
-  if $package_version == undef and is_function_available('pe_compiling_server_aio_build') {
-    $_package_version = pe_compiling_server_aio_build()
+  # If running an agent >= 6.12.0 then use EventCreate.exe else use puppetres.dll
+  if versioncmp($facts[aio_agent_version], '6.12.0') >= 0 {
+    $event_message_file_source = '%SystemRoot%\System32\EventCreate.exe'
   } else {
-    $_package_version = $package_version
+    $event_message_file_source = 'C:\Program Files\Puppet Labs\Puppet\puppet\bin\puppetres.dll'
   }
-
-  # This if statement will optionally exclude production like environments (for change control)
-  if $manage_production or
-    ( "${facts['application_environment']} " !~ /pro?d/ and $trusted['certname'] !~ /^.....1/ ) {
-    class { 'puppet_agent':
-      package_version => $_package_version,
-    }
-  }
-
-  # move puppet windows events out of the Application log into a new log named Puppet
+  # If running Windows then move the puppet event log from Application to Puppet
   if $facts['os']['family'] == 'windows' {
     registry_key { 'Application_Puppet':
       ensure => absent,
@@ -43,15 +35,8 @@ class profile::puppet_agent (
       ensure  => present,
       path    => 'HKLM\SYSTEM\CurrentControlSet\Services\EventLog\Puppet\Puppet\EventMessageFile',
       type    => string,
-      data    => '%SystemRoot%\System32\EventCreate.exe',
-      notify  => Exec['Force_restart_eventlog'],
+      data    => $event_message_file_source,
       require => Registry_key['Puppet_Puppet'],
     }
-    exec { 'Force_restart_eventlog':
-      command     => 'Restart-Service -Name EventLog -Force',
-      refreshonly => true,
-      provider    => powershell,
-    }
   }
-
 }
