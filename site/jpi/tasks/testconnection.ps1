@@ -15,7 +15,7 @@ try {
     $test = $false
 }
 
-if ($erroronfail) {
+if (($erroronfail) -and ($test -eq $false)) {
     Write-Error "Unable to connect to $hostname on tcp\$port."
 } else {
     Write-Output $test
