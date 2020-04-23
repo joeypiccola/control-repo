@@ -4,7 +4,7 @@ class profile::wsus::client (
 ) {
 
   # if not exchange or domaincontroller
-  if ((!($facts['exchange']) or (!$facts['domaincontroller']))) {
+  if !($facts['exchange'] or $facts['domaincontroller']) {
     if $manage {
       class { 'wsus_client':
         target_group => $facts['patch_group'],
