@@ -3,21 +3,24 @@ class profile::wsus::client (
     Optional[Boolean] $manage = true,
 ) {
 
-  if $manage {
-    if $facts['patch_group'] {
+  # if not exchange or domaincontroller
+  if (!($facts['exchange']) or (!$facts['domaincontroller'])) {
+    if $manage {
       class { 'wsus_client':
         target_group => $facts['patch_group'],
-        #notify       => Exec['wuauserv_svc'],
+        #notify       => Service['wuauserv'],
       }
     }
-
-
-    # exec { 'wuauserv_svc':
-    #   provider    => 'powershell',
-    #   command     => "Get-Service wuauserv | Restart-Service
-    #                   wuauclt.exe /detectnow",
-    #   refreshonly => true,
-    # }
   }
-
+  #service { 'wuauserv':
+  #  ensure => 'running',
+  #  enable => true,
+  #}
+  #exec { 'wuauserv':
+  #  provider    => 'powershell',
+  #  command     => "Get-Service wuauserv | Restart-Service
+  #                  wuauclt.exe /detectnow",
+  #  refreshonly => true,
+  #}
 }
+
