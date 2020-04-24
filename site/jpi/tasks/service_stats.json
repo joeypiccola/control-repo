@@ -6,6 +6,10 @@
         "servicename": {
             "description": "The name of the service.",
             "type": "String"
+        },
+        "stats": {
+          "description": "The stats to collect. Default: required.",
+          "type": "Optional[Enum[required, dependant, both]]"
         }
     }
 }

@@ -1,6 +1,9 @@
 Param (
     [Parameter(Mandatory = $True)]
-    [string]$servicename
+    [string]$servicename,
+    [Parameter(Mandatory = $True)]
+    [ValidateSet('required', 'dependant', 'both')]
+    $stats = 'required'
 )
 
 # https://dkalemis.wordpress.com/2015/03/02/visualize-the-services-graph-of-your-windows-os/
@@ -42,7 +45,19 @@ function List-ServicesDependedOn ($inputService, $inputPadding) {
 }
 
 $service = Get-Service -Name $servicename -erroraction stop
+
 $output = $service.DisplayName
 $output
-List-DependentServices $service ""
-List-ServicesDependedOn $service ""
+
+switch ($stats) {
+    'required' {
+        List-ServicesDependedOn $service ""
+    }
+    'dependant' {
+        List-DependentServices $service ""
+    }
+    'both' {
+        List-DependentServices $service ""
+        List-ServicesDependedOn $service ""
+    }
+}
