@@ -2,8 +2,8 @@ Param (
     [Parameter(Mandatory = $True)]
     [string]$servicename,
     [Parameter()]
-    [ValidateSet('dependanton', 'dependant', 'both')]
-    $stats = 'required'
+    [ValidateSet('dependedon', 'dependent', 'both')]
+    $stats = 'dependedon'
 )
 
 # https://dkalemis.wordpress.com/2015/03/02/visualize-the-services-graph-of-your-windows-os/
@@ -50,10 +50,10 @@ $output = $service.DisplayName
 $output
 
 switch ($stats) {
-    'dependanton' {
+    'dependedon' {
         List-ServicesDependedOn $service ""
     }
-    'dependant' {
+    'dependent' {
         List-DependentServices $service ""
     }
     'both' {
