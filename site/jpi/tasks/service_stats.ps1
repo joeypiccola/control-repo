@@ -2,7 +2,7 @@ Param (
     [Parameter(Mandatory = $True)]
     [string]$servicename,
     [Parameter()]
-    [ValidateSet('required', 'dependant', 'both')]
+    [ValidateSet('dependanton', 'dependant', 'both')]
     $stats = 'required'
 )
 
@@ -50,7 +50,7 @@ $output = $service.DisplayName
 $output
 
 switch ($stats) {
-    'required' {
+    'dependanton' {
         List-ServicesDependedOn $service ""
     }
     'dependant' {
