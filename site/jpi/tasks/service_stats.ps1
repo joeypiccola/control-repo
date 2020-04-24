@@ -1,7 +1,7 @@
 Param (
     [Parameter(Mandatory = $True)]
     [string]$servicename,
-    [Parameter(Mandatory = $True)]
+    [Parameter()]
     [ValidateSet('required', 'dependant', 'both')]
     $stats = 'required'
 )
