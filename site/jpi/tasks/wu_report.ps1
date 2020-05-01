@@ -1,3 +1,5 @@
+#Requires -Version 3
+
 Param (
     [Parameter(Mandatory = $True)]
     [ValidateSet('installed', 'missing', 'both')]

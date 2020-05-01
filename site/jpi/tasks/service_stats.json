@@ -1,0 +1,15 @@
+{
+    "puppet_task_version": 1,
+    "description": "A task that lists required and dependent services for a service.",
+    "input_method": "powershell",
+    "parameters": {
+        "servicename": {
+            "description": "The name of the service.",
+            "type": "String"
+        },
+        "stats": {
+          "description": "The stats to collect. Default: dependedon.",
+          "type": "Optional[Enum[dependedon, dependent, both]]"
+        }
+    }
+}
