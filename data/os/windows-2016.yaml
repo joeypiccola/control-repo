@@ -1,11 +1,4 @@
 ---
 profile::cluster::services::service_names:
   - Failover-Clustering
-  - Application-Server
   - Windows-Internal-DataBase
-  - AS-NET-Framework
-  - AS-Ent-Services
-  - AS-Dist-Transaction
-  - AS-Incoming-Trans
-  - AS-Outgoing-Trans
-  - AS-WS-Atomic
