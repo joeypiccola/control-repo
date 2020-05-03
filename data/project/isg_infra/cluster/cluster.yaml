@@ -1,0 +1,16 @@
+---
+profile::cluster::cluster::dsc_retryintervalsec: 60
+profile::cluster::cluster::dsc_retrycount: 60
+profile::cluster::cluster::dsc_domainadministratorcredential_user: blah
+profile::cluster::cluster::dsc_domainadministratorcredential_password: blah
+profile::cluster::test::dsc_psdscrunascredential_user: svc_ad_cluster
+profile::cluster::test::dsc_psdscrunascredential_password: >
+    ENC[PKCS7,MIIBiQYJKoZIhvcNAQcDoIIBejCCAXYCAQAxggEhMIIBHQIBADAFMAACAQEw
+    DQYJKoZIhvcNAQEBBQAEggEAPKWAfiWlGZf2mEff1Yoipe1d3mqBOULwDNqx
+    ij35jxAqzo5LkVhn15kKvJVBcBMiSL9884bdt7TImqvG4V7q3//F/+5i+b4z
+    guiwGpAbNrDGThszRYIumdSjjmtCN5MWljaBrUEPlbcMEzT30ROdB/6jL2vx
+    WJgeQi0AfEMDJf3nN5bTyraKJo/UE7OtPFdSxj+l+BGK8UCtyxSfs/HoQ6mu
+    08OR2J1KX5QPbZIOmwfokCRghZxcz9RuKshU4dB5kmBWMWlKFyo3m6GCLHb8
+    jXbIyl3+zTqmErcpUQo7oWicVUVhDrjrZP1hr5kvueY1Yc4qaVma3N9fcaF5
+    MgcfLTBMBgkqhkiG9w0BBwEwHQYJYIZIAWUDBAEqBBBhcDIoiVwVzGac2+HY
+    +qzSgCCpRsTxzeucnffHZkzheKQRMXckPQYuF3fMsaX0lOzGxA==]
