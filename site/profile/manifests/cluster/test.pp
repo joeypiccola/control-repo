@@ -7,6 +7,7 @@ class profile::cluster::test (
   dsc_file {'makeme':
     dsc_type                 => 'file',
     dsc_destinationpath      => 'c:/mydir/file.txt',
+    dsc_contents             => 'hi',
     dsc_psdscrunascredential => {
       'user'     => $dsc_psdscrunascredential_user,
       'password' => Sensitive($dsc_psdscrunascredential_password)
