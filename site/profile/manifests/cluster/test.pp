@@ -1,7 +1,7 @@
 # == Class: profile::cluster::test
 class profile::cluster::test (
-  String  $dsc_psdscrunascredential_password,
-  String  $dsc_psdscrunascredential_user,
+  String $dsc_psdscrunascredential_password,
+  String $dsc_psdscrunascredential_user,
 ) {
 
   dsc_file {'makeme':
