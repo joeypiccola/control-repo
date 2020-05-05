@@ -14,4 +14,15 @@ class profile::cluster::test (
     },
   }
 
+  dsc_adcomputer {'computer_test':
+    dsc_computername     => 'mySweetComputer',
+    dsc_enableoncreation => true,
+    dsc_path             => 'OU=Staging,OU=LabStuff,OU=Servers,DC=ad,DC=piccola,DC=us',
+    dsc_domaincontroller => 'dc04.ad.piccola.us',
+    dsc_credential       => {
+      'user'     => $dsc_psdscrunascredential_user,
+      'password' => Sensitive($dsc_psdscrunascredential_password)
+    },
+  }
+
 }
