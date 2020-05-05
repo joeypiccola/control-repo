@@ -2,5 +2,3 @@
 profile::cluster::cluster::dsc_master: cluster-a-01
 profile::cluster::cluster::dsc_name: cluster-a
 profile::cluster::cluster::dsc_staticipaddress: 10.0.3.227
-profile::cluster::test::dsc_psdscrunascredential_user: fake
-profile::cluster::test::dsc_psdscrunascredential_password: fake
