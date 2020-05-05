@@ -3,7 +3,7 @@ profile::cluster::cluster::dsc_retryintervalsec: 60
 profile::cluster::cluster::dsc_retrycount: 60
 profile::cluster::cluster::dsc_domainadministratorcredential_user: blah
 profile::cluster::cluster::dsc_domainadministratorcredential_password: blah
-profile::cluster::test::dsc_psdscrunascredential_user: svc_ad_cluster
+profile::cluster::test::dsc_psdscrunascredential_user: svc_ad_cluster@ad.piccola.us
 profile::cluster::test::dsc_psdscrunascredential_password: >
     ENC[PKCS7,MIIBiQYJKoZIhvcNAQcDoIIBejCCAXYCAQAxggEhMIIBHQIBADAFMAACAQEw
     DQYJKoZIhvcNAQEBBQAEggEAP2qXuqXJEX+KkEGWZBl50CWZepP///os6/cy
