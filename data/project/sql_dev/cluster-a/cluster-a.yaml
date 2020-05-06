@@ -5,4 +5,4 @@ profile::cluster::cluster::dsc_staticipaddress: 10.0.3.227
 profile::cluster::clusternetwork::dsc_address: 10.0.0.0
 profile::cluster::clusternetwork::dsc_addressmask: 255.255.255.0
 profile::cluster::clusternetwork::dsc_name: Cluster-Public-VLAN3
-profile::cluster::clusternetwork::dsc_role: 3
+profile::cluster::clusternetwork::dsc_role: '3'
