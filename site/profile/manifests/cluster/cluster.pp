@@ -25,8 +25,8 @@ class profile::cluster::cluster (
       dsc_retryintervalsec => $dsc_retryintervalsec,
     }
     dsc_xcluster {'add':
-      dsc_name  => $dsc_name,
-      requrires => Dsc_xWaitForCluster['wait'],
+      dsc_name => $dsc_name,
+      requrire => Dsc_xWaitForCluster['wait'],
     }
   }
 
