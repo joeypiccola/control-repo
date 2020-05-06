@@ -3,15 +3,15 @@ profile::cluster::cluster::dsc_retryintervalsec: 60
 profile::cluster::cluster::dsc_retrycount: 60
 profile::cluster::cluster::dsc_domainadministratorcredential_user: svc_ad_cluster@ad.piccola.us
 profile::cluster::cluster::dsc_domainadministratorcredential_password: >
-ENC[PKCS7,MIIBiQYJKoZIhvcNAQcDoIIBejCCAXYCAQAxggEhMIIBHQIBADAFMAACAQEw
-DQYJKoZIhvcNAQEBBQAEggEAP2qXuqXJEX+KkEGWZBl50CWZepP///os6/cy
-mGlGyFcAwDqqz4uFmwA0yg7up8UBUy8fLrsMY5ErG8D7uwsTxUIKSoWoPxkV
-0oDfw+i06OjmZqSgBW9Nc/idIBwapbfmyjt6VvPwiqjdc6ifpce+ATPChrWT
-zAFY7F1QQBW24fgDJsRM6bqjtUbJIQETN0uIcbSv3GEeL6DOoI4Trm+ibVCD
-ru8636z1YMRizbxWjGGYUnAVL+xTNx24S8kUzVvnvK8MSRvrcvT/Xls3F5UL
-4mYtO3PwnpLpvyrHlOMFWU31azhxjT1C69Ar/3ThZENXuSzg6c8cWL17DQu8
-IJKgojBMBgkqhkiG9w0BBwEwHQYJYIZIAWUDBAEqBBDYATMgIjYDJ8BALnjE
-p6+VgCCRkRlMqiE08bUL2V6Xe5uF7MzZTlY7Pi1Pm02wrTo/5Q==]
+  ENC[PKCS7,MIIBiQYJKoZIhvcNAQcDoIIBejCCAXYCAQAxggEhMIIBHQIBADAFMAACAQEw
+  DQYJKoZIhvcNAQEBBQAEggEAP2qXuqXJEX+KkEGWZBl50CWZepP///os6/cy
+  mGlGyFcAwDqqz4uFmwA0yg7up8UBUy8fLrsMY5ErG8D7uwsTxUIKSoWoPxkV
+  0oDfw+i06OjmZqSgBW9Nc/idIBwapbfmyjt6VvPwiqjdc6ifpce+ATPChrWT
+  zAFY7F1QQBW24fgDJsRM6bqjtUbJIQETN0uIcbSv3GEeL6DOoI4Trm+ibVCD
+  ru8636z1YMRizbxWjGGYUnAVL+xTNx24S8kUzVvnvK8MSRvrcvT/Xls3F5UL
+  4mYtO3PwnpLpvyrHlOMFWU31azhxjT1C69Ar/3ThZENXuSzg6c8cWL17DQu8
+  IJKgojBMBgkqhkiG9w0BBwEwHQYJYIZIAWUDBAEqBBDYATMgIjYDJ8BALnjE
+  p6+VgCCRkRlMqiE08bUL2V6Xe5uF7MzZTlY7Pi1Pm02wrTo/5Q==]
 profile::base::localaccounts::groups:
     Administrators:
       members:
