@@ -8,5 +8,8 @@ class profile::cluster {
   #include profile::cluster::clusterproperty
   #include profile::cluster::clusterquorum
   include profile::cluster::services
-  #include profile::cluster::waitforcluster
+
+  Class['profile::cluster::services']
+  -> Class['profile::cluster::cluster']
+  -> Class['profile::cluster::clusternetwork']
 }
