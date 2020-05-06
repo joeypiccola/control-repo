@@ -25,8 +25,12 @@ class profile::cluster::cluster (
       dsc_retryintervalsec => $dsc_retryintervalsec,
     }
     dsc_xcluster {'add':
-      dsc_name => $dsc_name,
-      require  => Dsc_xWaitForCluster['wait'],
+      dsc_domainadministratorcredential => {
+        'user'     => $dsc_domainadministratorcredential_user,
+        'password' => Sensitive($dsc_domainadministratorcredential_password)
+      },
+      dsc_name                          => $dsc_name,
+      require                           => Dsc_xWaitForCluster['wait'],
     }
   }
 
