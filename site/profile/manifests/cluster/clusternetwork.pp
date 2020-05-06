@@ -1,9 +1,9 @@
 # == Class: profile::cluster::clusternetwork
 class profile::cluster::clusternetwork (
-  String  $dsc_address,
-  String  $dsc_addressmask,
-  String  $dsc_name,
-  Integer $dsc_role,
+  String $dsc_address,
+  String $dsc_addressmask,
+  String $dsc_name,
+  String $dsc_role,
 ) {
 
   dsc_xclusternetwork {'properties':
