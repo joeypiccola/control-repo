@@ -1,5 +1,6 @@
 ---
 profile::cluster::cluster::dsc_master: cluster-a-01
+profile::cluster::clusterquorum::dsc_master: cluster-a-01
 profile::cluster::cluster::dsc_name: cluster-a
 profile::cluster::cluster::dsc_staticipaddress: 10.0.3.227
 profile::cluster::clusternetwork::dsc_client_address: 10.0.3.0
