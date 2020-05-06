@@ -26,7 +26,7 @@ class profile::cluster::cluster (
     }
     dsc_xcluster {'add':
       dsc_name => $dsc_name,
-      requrire => Dsc_xWaitForCluster['wait'],
+      require  => Dsc_xWaitForCluster['wait'],
     }
   }
 
