@@ -16,3 +16,12 @@ profile::base::localaccounts::groups:
     Administrators:
       members:
         - ad.piccola.us\svc_ad_cluster
+profile::cluster::clusterquorum::dsc_allocationunitsize: 4096
+profile::cluster::clusterquorum::dsc_driveletter: W
+profile::cluster::clusterquorum::dsc_drivelabel: Witness
+profile::cluster::clusterquorum::dsc_partitionstyle: GPT
+profile::cluster::clusterquorum::dsc_diskidtype: UniqueId
+profile::cluster::clusterquorum::dsc_issingleinstance: Yes
+profile::cluster::clusterquorum::dsc_type: DiskOnly
+profile::cluster::clusterquorum::dsc_retryintervalsec: 30
+profile::cluster::clusterquorum::dsc_retrycount: 10
