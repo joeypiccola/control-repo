@@ -31,18 +31,18 @@ class profile::cluster::clusterquorum (
       dsc_retrycount       => $dsc_retrycount,
     }
 
-    dsc_xclusterdisk {'quorum_cluster_disk':
-      dsc_number => $dsc_number,
-      dsc_label  => $dsc_drivelabel,
-      require    => Dsc_waitforvolume['quorum_disk_wait']
-    }
-
-    dsc_xclusterquorum {'SetQuorumToDiskOnly':
-      issingleinstance => $dsc_issingleinstance,
-      type             => $dsc_type,
-      resource         => $dsc_drivelabel,
-      require          => Dsc_xclusterdisk['quorum_cluster_disk']
-    }
+    # dsc_xclusterdisk {'quorum_cluster_disk':
+    #   dsc_number => $dsc_number,
+    #   dsc_label  => $dsc_drivelabel,
+    #   require    => Dsc_waitforvolume['quorum_disk_wait']
+    # }
+#
+    # dsc_xclusterquorum {'SetQuorumToDiskOnly':
+    #   issingleinstance => $dsc_issingleinstance,
+    #   type             => $dsc_type,
+    #   resource         => $dsc_drivelabel,
+    #   require          => Dsc_xclusterdisk['quorum_cluster_disk']
+    # }
   }
 
 }
