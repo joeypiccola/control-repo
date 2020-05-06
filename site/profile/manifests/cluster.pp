@@ -1,7 +1,7 @@
 # == Class: profile::cluster
 class profile::cluster {
-  include profile::cluster::test
-  #include profile::cluster::cluster
+  #include profile::cluster::test
+  include profile::cluster::cluster
   #include profile::cluster::clusterdisk
   #include profile::cluster::clusternetwork
   #include profile::cluster::clusterprefferedowner
