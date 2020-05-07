@@ -3,11 +3,12 @@ profile::cluster::cluster::dsc_master: cluster-a-01
 profile::cluster::cluster::dsc_name: cluster-a
 profile::cluster::cluster::dsc_staticipaddress: 10.0.3.227
 
-profile::cluster::clusterquorum::dsc_master: cluster-a-01
 profile::cluster::clusternetwork::dsc_client_address: 10.0.3.0
 profile::cluster::clusternetwork::dsc_client_addressmask: 255.255.255.0
 profile::cluster::clusternetwork::dsc_client_name: Client
 profile::cluster::clusternetwork::dsc_client_role: '3'
+
+profile::cluster::clusterquorum::dsc_master: cluster-a-01
 profile::cluster::clusterquorum::dsc_diskid: 600140535066864D66B8D4725DA3B7D6
 
 profile::cluster::clusterproperty::dsc_name: cluster-a
