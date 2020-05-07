@@ -41,28 +41,27 @@ class profile::cluster::clusterquorum (
       require  => Dsc_waitforvolume['quorum_disk_wait'],
     }
 
-    # exec {'quorum_cluster_disk_label':
-    #   provider => 'powershell',
-    #   command  => "$diskInstance = Get-CimInstance -ClassName MSCluster_Disk -Namespace \'Root\\MSCluster\' | Where-Object {$_.UniqueId -eq ${dsc_diskid}}
-    #                $diskResource = Get-ClusterResource |
-    #                                Where-Object -FilterScript { $_.ResourceType -eq 'Physical Disk' } |
-    #                                    Where-Object -FilterScript {
-    #                                        ($_ | Get-ClusterParameter -Name DiskIdGuid).Value -eq $diskInstance.Id
-    #                                    }
-    #                $diskResource.Name = ${dsc_fslabel}
-    #                $diskResource.Update()",
-    #   onlyif   => "$diskInstance = Get-CimInstance -ClassName MSCluster_Disk -Namespace \'Root\\MSCluster\' | Where-Object {$_.UniqueId -eq ${dsc_diskid}}
-    #                $diskResource = Get-ClusterResource |
-    #                                Where-Object -FilterScript { $_.ResourceType -eq 'Physical Disk' } |
-    #                                    Where-Object -FilterScript {
-    #                                        ($_ | Get-ClusterParameter -Name DiskIdGuid).Value -eq $diskInstance.Id
-    #                                    }
-    #                $diskResource | ConvertTo-Json -Depth 1 | out-file c:\\dr_label.json
-    #                if (${dsc_fslabel} -eq $diskResource.name) {
-    #                    exit 1
-    #                }",
-    #   require  => Exec['quorum_cluster_disk_add'],
-    # }
+    exec {'quorum_cluster_disk_label':
+      provider => 'powershell',
+      command  => "\$diskInstance = Get-CimInstance -ClassName MSCluster_Disk -Namespace \'Root\\MSCluster\' | Where-Object {\$_.UniqueId -eq '${dsc_diskid}'}
+                   \$diskResource = Get-ClusterResource |
+                                   Where-Object -FilterScript { \$_.ResourceType -eq 'Physical Disk' } |
+                                       Where-Object -FilterScript {
+                                           (\$_ | Get-ClusterParameter -Name DiskIdGuid).Value -eq \$diskInstance.Id
+                                       }
+                   \$diskResource.Name = '${dsc_fslabel}'
+                   \$diskResource.Update()",
+      onlyif   => "\$diskInstance = Get-CimInstance -ClassName MSCluster_Disk -Namespace \'Root\\MSCluster\' | Where-Object {\$_.UniqueId -eq '${dsc_diskid}'}
+                   \$diskResource = Get-ClusterResource |
+                                   Where-Object -FilterScript { \$_.ResourceType -eq 'Physical Disk' } |
+                                       Where-Object -FilterScript {
+                                           (\$_ | Get-ClusterParameter -Name DiskIdGuid).Value -eq \$diskInstance.Id
+                                       }
+                   if ('${dsc_fslabel}' -eq \$diskResource.name) {
+                       exit 1
+                   }",
+      require  => Exec['quorum_cluster_disk_add'],
+    }
 
     #dsc_xclusterquorum {'create_quorum':
     #  dsc_issingleinstance => $dsc_issingleinstance,
