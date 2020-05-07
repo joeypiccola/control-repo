@@ -7,7 +7,7 @@ class profile::cluster::clusterquorum (
   String  $dsc_driveletter,
   String  $dsc_issingleinstance,
   String  $dsc_master,
-  String  $dsc_number,
+  #String  $dsc_number,
   String  $dsc_partitionstyle,
   Integer $dsc_retrycount,
   Integer $dsc_retryintervalsec,
@@ -36,13 +36,13 @@ class profile::cluster::clusterquorum (
     #   dsc_label  => $dsc_drivelabel,
     #   require    => Dsc_waitforvolume['quorum_disk_wait']
     # }
-#
-    # dsc_xclusterquorum {'SetQuorumToDiskOnly':
-    #   issingleinstance => $dsc_issingleinstance,
-    #   type             => $dsc_type,
-    #   resource         => $dsc_drivelabel,
-    #   require          => Dsc_xclusterdisk['quorum_cluster_disk']
-    # }
+
+    dsc_xclusterquorum {'SetQuorumToDiskOnly':
+      issingleinstance => $dsc_issingleinstance,
+      type             => $dsc_type,
+      resource         => $dsc_fslabel,
+      require          => Dsc_xclusterdisk['quorum_cluster_disk']
+    }
   }
 
 }
