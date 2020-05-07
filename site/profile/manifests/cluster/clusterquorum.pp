@@ -7,7 +7,6 @@ class profile::cluster::clusterquorum (
   String  $dsc_driveletter,
   String  $dsc_issingleinstance,
   String  $dsc_master,
-  #String  $dsc_number,
   String  $dsc_partitionstyle,
   Integer $dsc_retrycount,
   Integer $dsc_retryintervalsec,
@@ -36,22 +35,22 @@ class profile::cluster::clusterquorum (
       command  => "Import-Module FailoverClusters
                    Get-Disk -UniqueId ${dsc_diskid} | Add-ClusterDisk",
       onlyif   => "$diskInstance = Get-CimInstance -ClassName MSCluster_Disk -Namespace \'Root\\MSCluster\' | Where-Object {$_.UniqueId -eq ${dsc_diskid}}
-                   if ($diskInstance.count -eq 1) {
+                   if ($null -eq $diskInstance) {
                      exit 1
                    }",
       require  => Dsc_waitforvolume['quorum_disk_wait'],
     }
 
-    #exec {'quorum_cluster_disk_label':
-    #  provider => 'powershell',
-    #  command  => "Import-Module FailoverClusters
-    #               Get-Disk -UniqueId ${dsc_diskid} | Add-ClusterDisk",
-    #  onlyif   => "$diskInstance = Get-CimInstance -ClassName MSCluster_Disk -Namespace 'Root\\MSCluster' -Filter "UniqueId = ${dsc_diskid}")
-    #               if ($diskInstance) {
-    #                 exit 1
-    #               }",
-    #  require  => Exec['quorum_cluster_disk_add'],
-    #}
+    exec {'quorum_cluster_disk_label':
+      provider => 'powershell',
+      command  => "Import-Module FailoverClusters
+                   Get-Disk -UniqueId ${dsc_diskid} | Add-ClusterDisk",
+      onlyif   => "$diskInstance = Get-CimInstance -ClassName MSCluster_Disk -Namespace 'Root\\MSCluster' -Filter "UniqueId = ${dsc_diskid}")
+                   if ($diskInstance) {
+                     exit 1
+                   }",
+      require  => Exec['quorum_cluster_disk_add'],
+    }
 
 
     # dsc_xclusterdisk {'quorum_cluster_disk':
