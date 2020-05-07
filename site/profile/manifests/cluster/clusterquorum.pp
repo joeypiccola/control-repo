@@ -34,7 +34,10 @@ class profile::cluster::clusterquorum (
       provider => 'powershell',
       command  => "Import-Module FailoverClusters
                    Get-Disk -UniqueId ${dsc_diskid} | Add-ClusterDisk",
-      onlyif   => "$diskInstance = Get-CimInstance -ClassName MSCluster_Disk -Namespace \'Root\\MSCluster\' | Where-Object {$_.UniqueId -eq ${dsc_diskid}}
+      onlyif   => "
+                   new-item c:\\before.txt
+                   $diskInstance = Get-CimInstance -ClassName MSCluster_Disk -Namespace \'Root\\MSCluster\' #| Where-Object {$_.UniqueId -eq ${dsc_diskid}}
+                   new-item c:\\after.txt
                    $diskInstance.CimInstanceProperties | ConvertTo-Json -Depth 1 | out-file c:\\di_add.json
                    if ($null -ne $diskInstance) {
                      exit 1
@@ -53,7 +56,6 @@ class profile::cluster::clusterquorum (
                    $diskResource.Name = ${dsc_fslabel}
                    $diskResource.Update()",
       onlyif   => "$diskInstance = Get-CimInstance -ClassName MSCluster_Disk -Namespace \'Root\\MSCluster\' | Where-Object {$_.UniqueId -eq ${dsc_diskid}}
-
                    $diskResource = Get-ClusterResource |
                                    Where-Object -FilterScript { $_.ResourceType -eq 'Physical Disk' } |
                                        Where-Object -FilterScript {
