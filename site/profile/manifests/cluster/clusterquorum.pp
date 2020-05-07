@@ -58,7 +58,7 @@ class profile::cluster::clusterquorum (
                                        Where-Object -FilterScript {
                                            ($_ | Get-ClusterParameter -Name DiskIdGuid).Value -eq $diskInstance.Id
                                        }
-                   if ($dsc_fslabel -eq $diskResource.name) {
+                   if (${dsc_diskid} -eq $diskResource.name) {
                        exit 1
                    }",
       require  => Exec['quorum_cluster_disk_add'],
