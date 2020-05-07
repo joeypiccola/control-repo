@@ -38,7 +38,11 @@ class profile::cluster::clusterquorum (
                    new-item c:\\before.txt
                    $diskInstance = Get-CimInstance -ClassName MSCluster_Disk -Namespace \'Root\\MSCluster\' #| Where-Object {$_.UniqueId -eq ${dsc_diskid}}
                    new-item c:\\after.txt
-                   $diskInstance.CimInstanceProperties | ConvertTo-Json -Depth 1 | out-file c:\\di_add.json
+                   if ($diskInstance) {
+                     new-item c:\\present.txt
+                   } else {
+                     new-item c:\\absent.txt
+                   }
                    if ($null -ne $diskInstance) {
                      exit 1
                    }",
