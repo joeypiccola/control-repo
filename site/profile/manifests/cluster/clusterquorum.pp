@@ -20,7 +20,7 @@ class profile::cluster::clusterquorum (
       dsc_allocationunitsize => $dsc_allocationunitsize,
       dsc_diskid             => $dsc_diskid,
       dsc_diskidtype         => $dsc_diskidtype,
-      dsc_drivelabel         => $dsc_drivelabel,
+      #dsc_drivelabel         => $dsc_drivelabel,
       dsc_driveletter        => $dsc_driveletter,
       dsc_partitionstyle     => $dsc_partitionstyle,
     }
