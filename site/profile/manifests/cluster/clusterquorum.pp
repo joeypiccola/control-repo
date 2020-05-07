@@ -43,11 +43,22 @@ class profile::cluster::clusterquorum (
 
     exec {'quorum_cluster_disk_label':
       provider => 'powershell',
-      command  => "Import-Module FailoverClusters
-                   Get-Disk -UniqueId ${dsc_diskid} | Add-ClusterDisk",
-      onlyif   => "$diskInstance = Get-CimInstance -ClassName MSCluster_Disk -Namespace 'Root\\MSCluster' -Filter "UniqueId = ${dsc_diskid}")
-                   if ($diskInstance) {
-                     exit 1
+      command  => "$diskInstance = Get-CimInstance -ClassName MSCluster_Disk -Namespace \'Root\\MSCluster\' | Where-Object {$_.UniqueId -eq ${dsc_diskid}}
+                   $diskResource = Get-ClusterResource |
+                                   Where-Object -FilterScript { $_.ResourceType -eq 'Physical Disk' } |
+                                       Where-Object -FilterScript {
+                                           ($_ | Get-ClusterParameter -Name DiskIdGuid).Value -eq $diskInstance.Id
+                                       }
+                   $diskResource.Name = ${dsc_fslabel}
+                   $diskResource.Update()",
+      onlyif   => "$diskInstance = Get-CimInstance -ClassName MSCluster_Disk -Namespace \'Root\\MSCluster\' | Where-Object {$_.UniqueId -eq ${dsc_diskid}}
+                   $diskResource = Get-ClusterResource |
+                                   Where-Object -FilterScript { $_.ResourceType -eq 'Physical Disk' } |
+                                       Where-Object -FilterScript {
+                                           ($_ | Get-ClusterParameter -Name DiskIdGuid).Value -eq $diskInstance.Id
+                                       }
+                   if ($dsc_fslabel -ne $diskResource.name) {
+                       exit 1
                    }",
       require  => Exec['quorum_cluster_disk_add'],
     }
