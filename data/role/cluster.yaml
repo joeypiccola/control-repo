@@ -18,7 +18,7 @@ profile::base::localaccounts::groups:
         - ad.piccola.us\svc_ad_cluster
 profile::cluster::clusterquorum::dsc_allocationunitsize: '4096'
 profile::cluster::clusterquorum::dsc_driveletter: W
-profile::cluster::clusterquorum::dsc_drivelabel: Witness
+profile::cluster::clusterquorum::dsc_fslabel: Witness
 profile::cluster::clusterquorum::dsc_partitionstyle: GPT
 profile::cluster::clusterquorum::dsc_diskidtype: UniqueId
 profile::cluster::clusterquorum::dsc_issingleinstance: 'Yes'
