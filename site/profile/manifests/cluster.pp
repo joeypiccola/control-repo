@@ -2,7 +2,6 @@
 class profile::cluster {
   include profile::cluster::cluster
   include profile::cluster::clusternetwork
-  #include profile::cluster::clusterprefferedowner
   include profile::cluster::clusterproperty
   include profile::cluster::clusterquorum
   include profile::cluster::services
