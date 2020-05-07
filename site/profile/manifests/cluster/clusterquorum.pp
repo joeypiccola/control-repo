@@ -67,7 +67,7 @@ class profile::cluster::clusterquorum (
       dsc_issingleinstance => $dsc_issingleinstance,
       dsc_type             => $dsc_type,
       dsc_resource         => $dsc_fslabel,
-      require              => Dsc_xclusterdisk['quorum_cluster_disk_label'],
+      require              => Exec['quorum_cluster_disk_label'],
     }
   }
 
