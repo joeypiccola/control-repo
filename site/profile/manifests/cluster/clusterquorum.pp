@@ -31,20 +31,50 @@ class profile::cluster::clusterquorum (
       dsc_retryintervalsec => $dsc_retryintervalsec,
     }
 
+    #exec {'quorum_cluster_disk':
+    #  provider => 'powershell',
+    #  command  => "import-module failoverclusters
+    #               Get-Disk -SerialNumber ${dsc_diskid} | | Add-ClusterDisk
+    #  ",
+    #  onlyif   => '',
+    #  require  => Dsc_waitforvolume['quorum_disk_wait'],
+    #}
     # dsc_xclusterdisk {'quorum_cluster_disk':
     #   dsc_number => $dsc_number,
     #   dsc_label  => $dsc_drivelabel,
     #   require    => Dsc_waitforvolume['quorum_disk_wait']
     # }
 
-    dsc_xclusterquorum {'SetQuorumToDiskOnly':
-      dsc_issingleinstance => $dsc_issingleinstance,
-      dsc_type             => $dsc_type,
-      dsc_resource         => $dsc_fslabel,
-      require              => Dsc_xclusterdisk['quorum_cluster_disk']
-    }
+    #dsc_xclusterquorum {'create_quorum':
+    #  dsc_issingleinstance => $dsc_issingleinstance,
+    #  dsc_type             => $dsc_type,
+    #  dsc_resource         => $dsc_fslabel,
+    #  require              => Dsc_xclusterdisk['quorum_cluster_disk'],
+    #}
   }
 
 }
 
 
+  #exec { 'task_executiontimelimit':
+  #  provider => 'powershell',
+  #  command  => '$taskName = "Windows Update (Puppet Managed Scheduled Task)"
+  #               $scheduler = New-Object -ComObject Schedule.Service
+  #               $scheduler.Connect($null, $null, $null, $null)
+  #               $taskFolder = $scheduler.GetFolder("")
+  #               $task = $taskFolder.GetTask($taskName).Definition
+  #               $task.Settings.ExecutionTimeLimit="PT6H"
+  #               $taskFolder.RegisterTaskDefinition($taskName, $task, 4, $null, $null, 3) | Out-Null',
+  #  onlyif   => '$taskName = "Windows Update (Puppet Managed Scheduled Task)"
+  #               $scheduler = New-Object -ComObject Schedule.Service
+  #               $scheduler.Connect($null, $null, $null, $null)
+  #               $taskFolder = $scheduler.GetFolder("")
+  #               $task = $taskFolder.GetTask($taskName).Definition
+  #               $executionTimeLimit = $task.Settings.ExecutionTimeLimit
+  #               # check both in H and S bc srv12 reports in H and srv08 reports in S.
+  #               if (($executionTimeLimit -eq "PT6H")) -or ($executionTimeLimit -eq "PT21600S")) {
+  #                 exit 1
+  #               }',
+  #  require  => Scheduled_task['windows_update'],
+  #}
+#
