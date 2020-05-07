@@ -38,10 +38,10 @@ class profile::cluster::clusterquorum (
     # }
 
     dsc_xclusterquorum {'SetQuorumToDiskOnly':
-      issingleinstance => $dsc_issingleinstance,
-      type             => $dsc_type,
-      resource         => $dsc_fslabel,
-      require          => Dsc_xclusterdisk['quorum_cluster_disk']
+      dsc_issingleinstance => $dsc_issingleinstance,
+      dsc_type             => $dsc_type,
+      dsc_resource         => $dsc_fslabel,
+      require              => Dsc_xclusterdisk['quorum_cluster_disk']
     }
   }
 
