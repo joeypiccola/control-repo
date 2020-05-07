@@ -36,7 +36,7 @@ class profile::cluster::clusterquorum (
                    Get-Disk -UniqueId ${dsc_diskid} | Add-ClusterDisk",
       onlyif   => "$diskInstance = Get-CimInstance -ClassName MSCluster_Disk -Namespace \'Root\\MSCluster\' | Where-Object {$_.UniqueId -eq ${dsc_diskid}}
                    $diskInstance.CimInstanceProperties | ConvertTo-Json -Depth 1 | out-file c:\\di.json
-                   if ($null -eq $diskInstance) {
+                   if ($null -ne $diskInstance) {
                      exit 1
                    }",
       require  => Dsc_waitforvolume['quorum_disk_wait'],
@@ -58,7 +58,7 @@ class profile::cluster::clusterquorum (
                                        Where-Object -FilterScript {
                                            ($_ | Get-ClusterParameter -Name DiskIdGuid).Value -eq $diskInstance.Id
                                        }
-                   if ($dsc_fslabel -ne $diskResource.name) {
+                   if ($dsc_fslabel -eq $diskResource.name) {
                        exit 1
                    }",
       require  => Exec['quorum_cluster_disk_add'],
