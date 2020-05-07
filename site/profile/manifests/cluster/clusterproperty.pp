@@ -8,7 +8,7 @@ class profile::cluster::clusterproperty (
 ) {
 
   if $facts['hostname'] == $dsc_master {
-    dsc_clusterproperty {'set_cluster_properties':
+    dsc_xclusterproperty {'set_cluster_properties':
       dsc_name            => $dsc_name,
       dsc_clusterloglevel => $dsc_clusterloglevel,
       dsc_clusterlogsize  => $dsc_clusterlogsize,
