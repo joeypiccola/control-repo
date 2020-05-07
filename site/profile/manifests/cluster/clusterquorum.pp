@@ -34,8 +34,8 @@ class profile::cluster::clusterquorum (
       provider => 'powershell',
       command  => "Import-Module FailoverClusters
                    Get-Disk -UniqueId '${dsc_diskid}' | Add-ClusterDisk",
-      onlyif   => "$diskInstance = Get-CimInstance -ClassName MSCluster_Disk -Namespace \'Root\\MSCluster\' | Where-Object {$_.UniqueId -eq '${dsc_diskid}'}
-                   if ($null -ne $diskInstance) {
+      onlyif   => "\$diskInstance = Get-CimInstance -ClassName MSCluster_Disk -Namespace \'Root\\MSCluster\' | Where-Object {\$_.UniqueId -eq '${dsc_diskid}'}
+                   if (\$null -ne \$diskInstance) {
                      exit 1
                    }",
       require  => Dsc_waitforvolume['quorum_disk_wait'],
