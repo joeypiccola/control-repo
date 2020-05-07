@@ -25,3 +25,6 @@ profile::cluster::clusterquorum::dsc_issingleinstance: 'Yes'
 profile::cluster::clusterquorum::dsc_type: DiskOnly
 profile::cluster::clusterquorum::dsc_retryintervalsec: 30
 profile::cluster::clusterquorum::dsc_retrycount: 10
+
+profile::cluster::clusterproperty::dsc_clusterloglevel: 3
+profile::cluster::clusterproperty::dsc_clusterlogsize: 1024
