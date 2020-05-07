@@ -35,7 +35,7 @@ class profile::cluster::clusterquorum (
       provider => 'powershell',
       command  => "Import-Module FailoverClusters
                    Get-Disk -UniqueId ${dsc_diskid} | Add-ClusterDisk",
-      onlyif   => "$diskInstance = Get-CimInstance -ClassName MSCluster_Disk -Namespace 'Root\\MSCluster' -Filter \"UniqueId = ${dsc_diskid}\"
+      onlyif   => "$diskInstance = Get-CimInstance -ClassName MSCluster_Disk -Namespace \'Root\\MSCluster\' -Filter \"UniqueId = ${dsc_diskid}\"
                    if ($diskInstance) {
                      exit 1
                    }",
