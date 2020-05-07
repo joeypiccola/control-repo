@@ -8,4 +8,3 @@ profile::cluster::clusternetwork::dsc_client_addressmask: 255.255.255.0
 profile::cluster::clusternetwork::dsc_client_name: Client
 profile::cluster::clusternetwork::dsc_client_role: '3'
 profile::cluster::clusterquorum::dsc_diskid: 600140535066864D66B8D4725DA3B7D6
-profile::cluster::clusterquorum::dsc_number: '2'
