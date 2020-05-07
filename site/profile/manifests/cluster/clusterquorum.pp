@@ -1,34 +1,34 @@
 # == Class: profile::cluster::clusterquorum
 class profile::cluster::clusterquorum (
-  String $dsc_allocationunitsize,
-  String $dsc_driveletter,
-  String $dsc_drivelabel,
-  String $dsc_partitionstyle,
-  String $dsc_diskidtype,
-  String $dsc_diskid,
-  Integer $dsc_retryintervalsec,
+  String  $dsc_allocationunitsize,
+  String  $dsc_diskid,
+  String  $dsc_diskidtype,
+  String  $dsc_drivelabel,
+  String  $dsc_driveletter,
+  String  $dsc_issingleinstance,
+  String  $dsc_master,
+  String  $dsc_number,
+  String  $dsc_partitionstyle,
   Integer $dsc_retrycount,
-  String $dsc_issingleinstance,
-  String $dsc_type,
-  String $dsc_number,
-  String $dsc_master
+  Integer $dsc_retryintervalsec,
+  String  $dsc_type,
 ) {
 
   if $facts['hostname'] == $dsc_master {
     # online, init, format, letter and label the quorum drive
     dsc_disk {'quorum_disk':
       dsc_allocationunitsize => $dsc_allocationunitsize,
-      dsc_driveletter        => $dsc_driveletter,
-      dsc_drivelabel         => $dsc_drivelabel,
-      dsc_partitionstyle     => $dsc_partitionstyle,
-      dsc_diskidtype         => $dsc_diskidtype,
       dsc_diskid             => $dsc_diskid,
+      dsc_diskidtype         => $dsc_diskidtype,
+      dsc_drivelabel         => $dsc_drivelabel,
+      dsc_driveletter        => $dsc_driveletter,
+      dsc_partitionstyle     => $dsc_partitionstyle,
     }
 
     dsc_waitforvolume {'quorum_disk_wait':
       dsc_driveletter      => $dsc_driveletter,
-      dsc_retryintervalsec => $dsc_retryintervalsec,
       dsc_retrycount       => $dsc_retrycount,
+      dsc_retryintervalsec => $dsc_retryintervalsec,
     }
 
     # dsc_xclusterdisk {'quorum_cluster_disk':
@@ -46,3 +46,5 @@ class profile::cluster::clusterquorum (
   }
 
 }
+
+
