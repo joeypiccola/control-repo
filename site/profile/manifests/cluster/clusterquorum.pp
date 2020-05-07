@@ -33,8 +33,9 @@ class profile::cluster::clusterquorum (
     exec {'quorum_cluster_disk_add':
       provider => 'powershell',
       command  => "Import-Module FailoverClusters
-                   Get-Disk -UniqueId ${dsc_diskid} | Add-ClusterDisk",
+                   Get-Disk -UniqueId '${dsc_diskid}' | Add-ClusterDisk",
       onlyif   => "$diskInstance = Get-CimInstance -ClassName MSCluster_Disk -Namespace \'Root\\MSCluster\' | Where-Object {$_.UniqueId -eq '${dsc_diskid}'}
+                   $diskInstance | ConvertTo-Json -Depth 1 | out-file c:\\di.txt
                    if ($null -ne $diskInstance) {
                      exit 1
                    }",
