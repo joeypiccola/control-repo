@@ -35,6 +35,7 @@ class profile::cluster::clusterquorum (
       command  => "Import-Module FailoverClusters
                    Get-Disk -UniqueId ${dsc_diskid} | Add-ClusterDisk",
       onlyif   => "$diskInstance = Get-CimInstance -ClassName MSCluster_Disk -Namespace \'Root\\MSCluster\' | Where-Object {$_.UniqueId -eq ${dsc_diskid}}
+                   $diskInstance.CimInstanceProperties | ConvertTo-Json -Depth 1 | out-file c:\\di.json
                    if ($null -eq $diskInstance) {
                      exit 1
                    }",
@@ -62,13 +63,6 @@ class profile::cluster::clusterquorum (
                    }",
       require  => Exec['quorum_cluster_disk_add'],
     }
-
-
-    # dsc_xclusterdisk {'quorum_cluster_disk':
-    #   dsc_number => $dsc_number,
-    #   dsc_label  => $dsc_drivelabel,
-    #   require    => Dsc_waitforvolume['quorum_disk_wait']
-    # }
 
     #dsc_xclusterquorum {'create_quorum':
     #  dsc_issingleinstance => $dsc_issingleinstance,
