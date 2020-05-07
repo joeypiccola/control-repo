@@ -31,14 +31,29 @@ class profile::cluster::clusterquorum (
       dsc_retryintervalsec => $dsc_retryintervalsec,
     }
 
-    #exec {'quorum_cluster_disk':
+    exec {'quorum_cluster_disk_add':
+      provider => 'powershell',
+      command  => "Import-Module FailoverClusters
+                   Get-Disk -UniqueId ${dsc_diskid} | Add-ClusterDisk",
+      onlyif   => "$diskInstance = Get-CimInstance -ClassName MSCluster_Disk -Namespace 'Root\\MSCluster' -Filter \"UniqueId = ${dsc_diskid}\"
+                   if ($diskInstance) {
+                     exit 1
+                   }",
+      require  => Dsc_waitforvolume['quorum_disk_wait'],
+    }
+
+    #exec {'quorum_cluster_disk_label':
     #  provider => 'powershell',
-    #  command  => "import-module failoverclusters
-    #               Get-Disk -SerialNumber ${dsc_diskid} | | Add-ClusterDisk
-    #  ",
-    #  onlyif   => '',
-    #  require  => Dsc_waitforvolume['quorum_disk_wait'],
+    #  command  => "Import-Module FailoverClusters
+    #               Get-Disk -UniqueId ${dsc_diskid} | Add-ClusterDisk",
+    #  onlyif   => "$diskInstance = Get-CimInstance -ClassName MSCluster_Disk -Namespace 'Root\\MSCluster' -Filter "UniqueId = ${dsc_diskid}")
+    #               if ($diskInstance) {
+    #                 exit 1
+    #               }",
+    #  require  => Exec['quorum_cluster_disk_add'],
     #}
+
+
     # dsc_xclusterdisk {'quorum_cluster_disk':
     #   dsc_number => $dsc_number,
     #   dsc_label  => $dsc_drivelabel,
