@@ -5,8 +5,8 @@ class profile::cluster::clusterproperty (
   String $dsc_clusterlogsize,
   String $dsc_description,
   String $dsc_master,
-  String $user,
-  String $pass,
+  String $dsc_psdscrunascredential_user = $profile::cluster::cluster::dsc_domainadministratorcredential_user,
+  String $dsc_psdscrunascredential_password = $profile::cluster::cluster::dsc_domainadministratorcredential_password,
 ) {
 
   if $facts['hostname'] == $dsc_master {
@@ -16,8 +16,8 @@ class profile::cluster::clusterproperty (
       dsc_clusterlogsize       => $dsc_clusterlogsize,
       dsc_description          => $dsc_description,
       dsc_psdscrunascredential => {
-        'user'     => $user,
-        'password' => Sensitive($pass)
+        'user'     => $dsc_psdscrunascredential_user,
+        'password' => Sensitive($dsc_psdscrunascredential_password)
       },
     }
   }
