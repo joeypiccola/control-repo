@@ -6,11 +6,11 @@ class profile::cluster::clusterquorum (
   String  $dsc_fslabel,
   String  $dsc_driveletter,
   String  $dsc_issingleinstance,
-  String  $dsc_master,
   String  $dsc_partitionstyle,
   Integer $dsc_retrycount,
   Integer $dsc_retryintervalsec,
   String  $dsc_type,
+  String  $dsc_master = $profile::cluster::cluster::dsc_master,
 ) {
 
   if $facts['hostname'] == $dsc_master {
