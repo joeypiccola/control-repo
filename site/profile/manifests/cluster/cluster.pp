@@ -17,6 +17,7 @@ class profile::cluster::cluster (
       },
       dsc_name                          => $dsc_name,
       dsc_staticipaddress               => $dsc_staticipaddress,
+      require                           => Group['Administrator'],
     }
   } else {
     dsc_xwaitforcluster {'wait':
@@ -30,7 +31,10 @@ class profile::cluster::cluster (
         'password' => Sensitive($dsc_domainadministratorcredential_password)
       },
       dsc_name                          => $dsc_name,
-      require                           => Dsc_xWaitForCluster['wait'],
+      require                           => [
+        Dsc_xWaitForCluster['wait'],
+        Group['Administrator'],
+      ],
     }
   }
 
