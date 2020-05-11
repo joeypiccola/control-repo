@@ -17,7 +17,7 @@ class profile::cluster::cluster (
       },
       dsc_name                          => $dsc_name,
       dsc_staticipaddress               => $dsc_staticipaddress,
-      require                           => Group['Administrator'],
+      require                           => Group['Administrators'],
     }
   } else {
     dsc_xwaitforcluster {'wait':
@@ -33,7 +33,7 @@ class profile::cluster::cluster (
       dsc_name                          => $dsc_name,
       require                           => [
         Dsc_xWaitForCluster['wait'],
-        Group['Administrator'],
+        Group['Administrators'],
       ],
     }
   }
