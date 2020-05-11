@@ -32,7 +32,7 @@ class profile::cluster::cluster (
       },
       dsc_name                          => $dsc_name,
       require                           => [
-        Dsc_xWaitForCluster['wait'],
+        Dsc_xwaitforcluster['wait'],
         Group['Administrators'],
       ],
     }
