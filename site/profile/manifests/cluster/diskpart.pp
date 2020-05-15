@@ -8,6 +8,12 @@ class profile::cluster::diskpart (
     onlyif   => "if ((\"automount\" | diskpart) -contains \'Automatic mounting of new volumes enabled.\') {exit 1}"
   }
 
+  exec { 'sanpolicy':
+    command  => "\"san policy=onlineall\" | diskpart",
+    provider => 'powershell',
+    onlyif   => "if ((\"san\" | diskpart) -contains \'SAN Policy  : Online All\') {exit 1}"
+  }
+
 }
 
 
