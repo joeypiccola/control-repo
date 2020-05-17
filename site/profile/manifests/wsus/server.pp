@@ -54,9 +54,9 @@ class profile::wsus::server (
     dsc_managedpipelinemode       => 'Integrated',
     dsc_queuelength               => 2000,
     dsc_identitytype              => 'NetworkService',
-    dsc_idletimeout               => 0,
+    dsc_idletimeout               => '0',
     dsc_pingingenabled            => true,
-    dsc_restartprivatememorylimit => 0,
+    dsc_restartprivatememorylimit => '0',
     require                       => Exec['WsusUtil PostInstall'],
   }
 
