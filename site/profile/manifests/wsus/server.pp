@@ -35,16 +35,20 @@ class profile::wsus::server (
   }
 
   iis_application_pool { 'WSUSPool':
-    ensure                       => 'present',
-    identity_type                => 'NetworkService',
-    idle_timeout                 => '00:00:00',
-    managed_pipeline_mode        => 'Integrated',
-    pinging_enabled              => false,
-    queue_length                 => 2000,
-    restart_private_memory_limit => 1024,
-    restart_time_limit           => '00:00:00',
-    state                        => 'started',
-    require                      => Iis_feature['Web-WebServer'],
+    ensure                => 'present',
+    identity_type         => 'NetworkService',
+    idle_timeout          => '00:00:00',
+    managed_pipeline_mode => 'Integrated',
+    pinging_enabled       => false,
+    queue_length          => 2000,
+    restart_time_limit    => '00:00:00',
+    state                 => 'started',
+    require               => Iis_feature['Web-WebServer'],
   }
 
 }
+
+
+
+#Get-WebConfiguration "/system.applicationHost/applicationPools/add[@name='WSUSPool']/recycling/periodicRestart/@privateMemory"
+#Set-WebConfiguration "/system.applicationHost/applicationPools/add[@name='WSUSPool']/recycling/periodicRestart/@privateMemory" -Value 0
