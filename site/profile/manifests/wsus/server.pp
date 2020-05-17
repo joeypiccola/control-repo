@@ -13,8 +13,8 @@ class profile::wsus::server (
     ensure => present,
   }
 
-  dsc_xwebapppool { 'WSUSPool':
-    dsc_name                      => 'WSUSPool',
+  dsc_xwebapppool { 'WSUSPool2':
+    dsc_name                      => 'WSUSPool2',
     dsc_ensure                    => 'present',
     dsc_state                     => 'Started',
     dsc_managedpipelinemode       => 'Integrated',
@@ -25,28 +25,28 @@ class profile::wsus::server (
     dsc_restartprivatememorylimit => '0',
   }
 
-  exec { 'WsusUtil PostInstall':
-    command     => "if (!(Test-Path -Path \$env:TMP)) {
-                      New-Item -Path \$env:TMP -ItemType Directory
-                    }
-                    & 'C:\\Program Files\\Update Services\\Tools\\WsusUtil.exe' PostInstall CONTENT_DIR=\"${wsus_directory}\" MU_ROLLUP=0
-                    if (\$LASTEXITCODE -eq 1) {
-                      Exit 1
-                    }
-                    else {
-                      Exit 0
-                    }",
-    logoutput   => true,
-    refreshonly => true,
-    timeout     => 1200,
-    provider    => 'powershell',
-    require     => [
-      Dsc_xwebapppool['WSUSPool'],
-      File[$wsus_directory],
-      Windowsfeature['UpdateServices-UI'],
-      Windowsfeature['UpdateServices'],
-    ]
-  }
+  #exec { 'WsusUtil PostInstall':
+  #  command     => "if (!(Test-Path -Path \$env:TMP)) {
+  #                    New-Item -Path \$env:TMP -ItemType Directory
+  #                  }
+  #                  & 'C:\\Program Files\\Update Services\\Tools\\WsusUtil.exe' PostInstall CONTENT_DIR=\"${wsus_directory}\" MU_ROLLUP=0
+  #                  if (\$LASTEXITCODE -eq 1) {
+  #                    Exit 1
+  #                  }
+  #                  else {
+  #                    Exit 0
+  #                  }",
+  #  logoutput   => true,
+  #  refreshonly => true,
+  #  timeout     => 1200,
+  #  provider    => 'powershell',
+  #  require     => [
+  #    Dsc_xwebapppool['WSUSPool'],
+  #    File[$wsus_directory],
+  #    Windowsfeature['UpdateServices-UI'],
+  #    Windowsfeature['UpdateServices'],
+  #  ]
+  #}
 
 }
 
