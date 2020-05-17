@@ -37,7 +37,7 @@ class profile::wsus::server (
   iis_application_pool { 'WSUSPool':
     ensure                       => 'present',
     identity_type                => 'NetworkService',
-    idle_timeout                 => 0,
+    idle_timeout                 => '00:00:00',
     managed_pipeline_mode        => 'Integrated',
     pinging_enabled              => false,
     queue_length                 => 2000,
