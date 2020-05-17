@@ -39,7 +39,7 @@ class profile::wsus::server (
     identity_type                => 'NetworkService',
     idle_timeout                 => 0,
     managed_pipeline_mode        => 'Integrated',
-    pinging_enabled              => False,
+    pinging_enabled              => false,
     queue_length                 => 2000,
     restart_private_memory_limit => 0,
     restart_time_limit           => 0,
