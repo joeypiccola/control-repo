@@ -10,6 +10,7 @@ class profile::wsus::server (
 
   file { $wsus_directory:
     ensure => 'directory',
+    notify => Exec["post install wsus content directory ${wsus_directory}"],
   }
 
   exec { "post install wsus content directory ${wsus_directory}":
@@ -28,9 +29,8 @@ class profile::wsus::server (
     timeout     => 1200,
     provider    => 'powershell',
     require     => [
-      #Windowsfeature['UpdateServices'],
-      #Windowsfeature['UpdateServices-UI'],
-      File[$wsus_directory],
+      Windowsfeature['UpdateServices'],
+      Windowsfeature['UpdateServices-UI']
     ],
   }
 
