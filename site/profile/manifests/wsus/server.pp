@@ -41,7 +41,7 @@ class profile::wsus::server (
     managed_pipeline_mode        => 'Integrated',
     pinging_enabled              => false,
     queue_length                 => 2000,
-    restart_private_memory_limit => 0,
+    restart_private_memory_limit => 1024,
     restart_time_limit           => 0,
     state                        => 'started',
     require                      => Iis_feature['Web-WebServer'],
