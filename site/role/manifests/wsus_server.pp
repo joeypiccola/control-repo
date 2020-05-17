@@ -3,8 +3,8 @@
 class role::wsus_server {
   include profile::base
   include profile::webserver::iis
-  include profile::wsus
+  include profile::wsus::server
   Class['profile::base']
-  -> Class['profile::web::iis']
-  -> Class['profile::wsus']
+  -> Class['profile::webserver::iis']
+  -> Class['profile::wsus::server']
 }
