@@ -9,11 +9,15 @@ class profile::wsus::server (
   }
 
   file { $wsus_directory:
-    ensure => 'directory',
-    notify => Exec["post install wsus content directory ${wsus_directory}"],
+    ensure  => 'directory',
+    notify  => Exec['WsusUtil PostInstall'],
+    require => [
+      Windowsfeature['UpdateServices'],
+      Windowsfeature['UpdateServices-UI']
+    ],
   }
 
-  exec { "post install wsus content directory ${wsus_directory}":
+  exec { 'WsusUtil PostInstall':
     command     => "if (!(Test-Path -Path \$env:TMP)) {
                       New-Item -Path \$env:TMP -ItemType Directory
                     }
@@ -28,10 +32,7 @@ class profile::wsus::server (
     refreshonly => true,
     timeout     => 1200,
     provider    => 'powershell',
-    require     => [
-      Windowsfeature['UpdateServices'],
-      Windowsfeature['UpdateServices-UI']
-    ],
+    require     => File[$wsus_directory],
   }
 
   iis_application_pool { 'WSUSPool':
@@ -43,7 +44,7 @@ class profile::wsus::server (
     queue_length          => 2000,
     restart_time_limit    => '00:00:00',
     state                 => 'started',
-    require               => Iis_feature['Web-WebServer'],
+    require               => Exec['WsusUtil PostInstall'],
   }
 
 }
