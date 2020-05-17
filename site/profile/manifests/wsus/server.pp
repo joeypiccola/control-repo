@@ -28,10 +28,10 @@ class profile::wsus::server (
     timeout     => 1200,
     provider    => 'powershell',
     require     => [
-        Windowsfeature['UpdateServices'],
-        Windowsfeature['UpdateServices-UI'],
-        File[$wsus_directory]
-      ]
+      #Windowsfeature['UpdateServices'],
+      #Windowsfeature['UpdateServices-UI'],
+      File[$wsus_directory],
+    ],
   }
 
   iis_application_pool { 'WSUSPool':
