@@ -35,16 +35,29 @@ class profile::wsus::server (
     require     => File[$wsus_directory],
   }
 
-  iis_application_pool { 'WSUSPool':
-    ensure                => 'present',
-    identity_type         => 'NetworkService',
-    idle_timeout          => '00:00:00',
-    managed_pipeline_mode => 'Integrated',
-    pinging_enabled       => false,
-    queue_length          => 2000,
-    restart_time_limit    => '00:00:00',
-    state                 => 'started',
-    require               => Exec['WsusUtil PostInstall'],
+  # iis_application_pool { 'WSUSPool':
+  #   ensure                => 'present',
+  #   identity_type         => 'NetworkService',
+  #   idle_timeout          => '00:00:00',
+  #   managed_pipeline_mode => 'Integrated',
+  #   pinging_enabled       => false,
+  #   queue_length          => 2000,
+  #   restart_time_limit    => '00:00:00',
+  #   state                 => 'started',
+  #   require               => Exec['WsusUtil PostInstall'],
+  # }
+
+  dsc_xwebapppool { 'WSUSPool':
+    dsc_name                      => 'WSUSPool',
+    dsc_ensure                    => 'present',
+    dsc_state                     => 'Started',
+    dsc_managedpipelinemode       => 'Integrated',
+    dsc_queuelength               => 2000,
+    dsc_identitytype              => 'NetworkService',
+    dsc_idletimeout               => 0,
+    dsc_pingingenabled            => true,
+    dsc_restartprivatememorylimit => 0,
+    require                       => Exec['WsusUtil PostInstall'],
   }
 
 }
