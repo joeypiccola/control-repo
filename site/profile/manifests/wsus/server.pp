@@ -1,21 +1,50 @@
 # == Class: profile::wsus::server
-
 class profile::wsus::server (
-  Array[String] $wsusserver_computer_target_groups = [],
+  String $wsus_directory
 ) {
-  # include wsusserver module
-  include wsusserver
 
-  # if wsusserver_computer_target_groups then add me some target groups (if in hiera)!
-  wsusserver_computer_target_group { $wsusserver_computer_target_groups: }
-
-  # for downstream server switch to replica mode
-  if $facts['application_component'] == 'downstream' {
-    exec { 'set downstream replica mode':
-      command  => "Set-WsusServerSynchronization -UssServerName ${wsusserver::upstream_wsus_server_name} -PortNumber ${wsusserver::upstream_wsus_server_port} -Replica",
-      provider => powershell,
-      onlyif   => 'if (((Get-WsusServer).GetConfiguration()).IsReplicaServer) {exit 1} else {exit 0}',
-      require  => Class['wsusserver::service'],
-    }
+  $wsus_server_features = ['UpdateServices','UpdateServices-Services','UpdateServices-RSAT','UpdateServices-API','UpdateServices-UI']
+  windowsfeature { $wsus_server_features:
+    ensure => present,
   }
+
+  file { $wsus_directory:
+    ensure => 'directory',
+  }
+
+  exec { "post install wsus content directory ${wsus_directory}":
+    command     => "if (!(Test-Path -Path \$env:TMP)) {
+                      New-Item -Path \$env:TMP -ItemType Directory
+                    }
+                    & 'C:\\Program Files\\Update Services\\Tools\\WsusUtil.exe' PostInstall CONTENT_DIR=\"${wsus_directory}\" MU_ROLLUP=0
+                    if (\$LASTEXITCODE -eq 1) {
+                      Exit 1
+                    }
+                    else {
+                      Exit 0
+                    }",
+    logoutput   => true,
+    refreshonly => true,
+    timeout     => 1200,
+    provider    => 'powershell',
+    require     => [
+        Windowsfeature['UpdateServices'],
+        Windowsfeature['UpdateServices-UI'],
+        File[$wsus_directory]
+      ]
+  }
+
+  iis_application_pool { 'WSUSPool':
+    ensure                       => 'present',
+    identity_type                => 'NetworkService',
+    idle_timeout                 => 0,
+    managed_pipeline_mode        => 'Integrated',
+    pinging_enabled              => False,
+    queue_length                 => 2000,
+    restart_private_memory_limit => 0,
+    restart_time_limit           => 0,
+    state                        => 'started',
+    require                      => Iis_feature['Web-WebServer'],
+  }
+
 }
