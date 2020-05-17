@@ -1,3 +1,3 @@
 ---
 profile::webserver::iis::disable_default_website: false
-profile::wsus::server::wsus_directory: d://wsus
+profile::wsus::server::wsus_directory: d:/wsus
