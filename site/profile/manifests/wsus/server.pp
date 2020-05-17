@@ -42,7 +42,7 @@ class profile::wsus::server (
     pinging_enabled              => false,
     queue_length                 => 2000,
     restart_private_memory_limit => 1024,
-    restart_time_limit           => 0,
+    restart_time_limit           => '00:00:00',
     state                        => 'started',
     require                      => Iis_feature['Web-WebServer'],
   }
