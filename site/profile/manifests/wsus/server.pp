@@ -14,15 +14,15 @@ class profile::wsus::server (
   }
 
   dsc_xwebapppool { 'WSUSPool':
-    dsc_name                      => 'WSUSPool',
     dsc_ensure                    => 'present',
-    dsc_state                     => 'Started',
-    dsc_managedpipelinemode       => 'Integrated',
-    dsc_queuelength               => 2000,
     dsc_identitytype              => 'NetworkService',
     dsc_idletimeout               => '0:00:00',
+    dsc_managedpipelinemode       => 'Integrated',
+    dsc_name                      => 'WSUSPool',
     dsc_pingingenabled            => true,
+    dsc_queuelength               => 2000,
     dsc_restartprivatememorylimit => 0,
+    dsc_state                     => 'Started',
   }
 
   exec { 'WsusUtil PostInstall':
@@ -49,8 +49,3 @@ class profile::wsus::server (
   }
 
 }
-
-
-
-#Get-WebConfiguration "/system.applicationHost/applicationPools/add[@name='WSUSPool']/recycling/periodicRestart/@privateMemory"
-#Set-WebConfiguration "/system.applicationHost/applicationPools/add[@name='WSUSPool']/recycling/periodicRestart/@privateMemory" -Value 0
