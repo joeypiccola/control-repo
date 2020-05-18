@@ -13,12 +13,12 @@ class profile::wsus::server (
     notify => Exec['WsusUtil PostInstall'],
   }
 
-  dsc_xwebapppool { 'WSUSPool':
+  dsc_xwebapppool { 'WsusPool':
     dsc_ensure                    => 'present',
     dsc_identitytype              => 'NetworkService',
     dsc_idletimeout               => '0:00:00',
     dsc_managedpipelinemode       => 'Integrated',
-    dsc_name                      => 'WSUSPool',
+    dsc_name                      => 'WsusPool',
     dsc_pingingenabled            => true,
     dsc_queuelength               => 2000,
     dsc_restartprivatememorylimit => 0,
@@ -41,7 +41,7 @@ class profile::wsus::server (
     timeout     => 1200,
     provider    => 'powershell',
     require     => [
-      Dsc_xwebapppool['WSUSPool'],
+      Dsc_xwebapppool['WsusPool'],
       File[$wsus_directory],
       Windowsfeature['UpdateServices-UI'],
       Windowsfeature['UpdateServices'],
