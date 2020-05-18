@@ -22,7 +22,7 @@ class profile::wsus::server (
     dsc_identitytype              => 'NetworkService',
     dsc_idletimeout               => '0',
     dsc_pingingenabled            => true,
-    dsc_restartprivatememorylimit => '0',
+    dsc_restartprivatememorylimit => 0,
   }
 
   #exec { 'WsusUtil PostInstall':
