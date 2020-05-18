@@ -5,7 +5,7 @@ class profile::wsus::server (
 
   file { $wsus_directory:
     ensure => 'directory',
-    notify => Exec['WsusUtil PostInstall'],
+    #notify => Exec['WsusUtil PostInstall'],
   }
 
   $wsus_server_features = ['UpdateServices','UpdateServices-Services','UpdateServices-RSAT','UpdateServices-API','UpdateServices-UI']
