@@ -1,16 +1,19 @@
 # == Class: profile::webserver::iis
 class profile::webserver::iis (
+  Optional[Boolean] $disable_default_website = $true
 ) {
 
-  $iis_features = ['web-webserver','Web-Mgmt-Tools','Web-Mgmt-Console']
+  $iis_features = ['Web-WebServer','Web-Mgmt-Tools','Web-Mgmt-Console']
   iis_feature { $iis_features:
     ensure => 'present',
   }
 
-  # remove default web site
-  iis_site {'Default Web Site':
-    ensure          => absent,
-    applicationpool => 'DefaultAppPool',
+  if $disable_default_website {
+    iis_site {'Default Web Site':
+      ensure          => absent,
+      applicationpool => 'DefaultAppPool',
+      require         => Iis_feature['Web-WebServer'],
+    }
   }
 
 }

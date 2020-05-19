@@ -1,0 +1,4 @@
+---
+profile::cluster::services::service_names:
+  - Failover-Clustering
+  - Windows-Internal-DataBase

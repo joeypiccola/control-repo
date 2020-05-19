@@ -1,0 +1,32 @@
+---
+profile::cluster::cluster::dsc_retryintervalsec: 60
+profile::cluster::cluster::dsc_retrycount: 60
+profile::cluster::cluster::dsc_domainadministratorcredential_user: svc_ad_cluster@ad.piccola.us
+profile::cluster::cluster::dsc_domainadministratorcredential_password: >
+  ENC[PKCS7,MIIBiQYJKoZIhvcNAQcDoIIBejCCAXYCAQAxggEhMIIBHQIBADAFMAACAQEw
+  DQYJKoZIhvcNAQEBBQAEggEAP2qXuqXJEX+KkEGWZBl50CWZepP///os6/cy
+  mGlGyFcAwDqqz4uFmwA0yg7up8UBUy8fLrsMY5ErG8D7uwsTxUIKSoWoPxkV
+  0oDfw+i06OjmZqSgBW9Nc/idIBwapbfmyjt6VvPwiqjdc6ifpce+ATPChrWT
+  zAFY7F1QQBW24fgDJsRM6bqjtUbJIQETN0uIcbSv3GEeL6DOoI4Trm+ibVCD
+  ru8636z1YMRizbxWjGGYUnAVL+xTNx24S8kUzVvnvK8MSRvrcvT/Xls3F5UL
+  4mYtO3PwnpLpvyrHlOMFWU31azhxjT1C69Ar/3ThZENXuSzg6c8cWL17DQu8
+  IJKgojBMBgkqhkiG9w0BBwEwHQYJYIZIAWUDBAEqBBDYATMgIjYDJ8BALnjE
+  p6+VgCCRkRlMqiE08bUL2V6Xe5uF7MzZTlY7Pi1Pm02wrTo/5Q==]
+
+profile::cluster::clusterquorum::dsc_allocationunitsize: '4096'
+profile::cluster::clusterquorum::dsc_driveletter: W
+profile::cluster::clusterquorum::dsc_fslabel: Witness
+profile::cluster::clusterquorum::dsc_partitionstyle: GPT
+profile::cluster::clusterquorum::dsc_diskidtype: UniqueId
+profile::cluster::clusterquorum::dsc_issingleinstance: 'Yes'
+profile::cluster::clusterquorum::dsc_type: DiskOnly
+profile::cluster::clusterquorum::dsc_retryintervalsec: 30
+profile::cluster::clusterquorum::dsc_retrycount: 10
+
+profile::cluster::clusterproperty::dsc_clusterloglevel: '3'
+profile::cluster::clusterproperty::dsc_clusterlogsize: '1024'
+
+profile::base::localaccounts::groups:
+  Administrators:
+    members:
+      - ad.piccola.us\svc_ad_cluster

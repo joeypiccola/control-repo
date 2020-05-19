@@ -13,14 +13,15 @@ mod 'puppetlabs-acl', '2.1.0'
 mod 'puppetlabs-apt', '6.1.1'
 mod 'puppetlabs-bolt_shim', '0.3.0'
 mod 'puppetlabs-chocolatey', '3.3.0'
-mod 'puppetlabs-dsc', '1.9.2'
+mod 'puppetlabs-dsc', '1.9.4'
 mod 'puppetlabs-dsc_lite', '1.2.1'
-mod 'puppetlabs-iis', '4.5.0'
+mod 'puppetlabs-iis', '7.0.1'
 mod 'puppetlabs-inifile', '2.4.0'
-mod 'puppetlabs-powershell', '2.3.0'
+mod 'puppetlabs-powershell', '3.0.1'
 mod 'puppetlabs-puppet_agent', '2.1.2'
 mod 'puppetlabs-puppet_metrics_collector', '5.2.0'
-# mod 'puppetlabs-reboot', '2.2.0'
+mod 'puppetlabs-pwshlib', '0.4.1'
+mod 'puppetlabs-reboot', '3.0.0'
 mod 'puppetlabs-registry', '2.1.0'
 mod 'puppetlabs-scheduled_task', '1.0.1'
 mod 'puppetlabs-stdlib', '5.2.0'
@@ -46,9 +47,9 @@ mod 'lastbootuptime_win',
   :git    => 'https://github.com/joeypiccola/lastbootuptime_win',
   :branch => 'master'
 
-mod 'puppetlabs-reboot',
-  :git    => 'https://github.com/joeypiccola/puppetlabs-reboot',
-  :branch => 'master'
+#mod 'puppetlabs-reboot',
+#  :git    => 'https://github.com/joeypiccola/puppetlabs-reboot',
+#  :branch => 'master'
 
 # mod 'updatereporting_win',
 #   :git    => 'https://github.com/joeypiccola/updatereporting_win',
