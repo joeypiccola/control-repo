@@ -23,6 +23,7 @@ class profile::wsus::server (
     dsc_queuelength               => 2000,
     dsc_restartprivatememorylimit => 0,
     dsc_state                     => 'Started',
+    require                       => Exec['WsusUtil PostInstall'],
   }
 
   exec { 'WsusUtil PostInstall':
@@ -41,7 +42,7 @@ class profile::wsus::server (
     timeout     => 1200,
     provider    => 'powershell',
     require     => [
-      Dsc_xwebapppool['WsusPool'],
+      #Dsc_xwebapppool['WsusPool'],
       File[$wsus_directory],
       Windowsfeature['UpdateServices-UI'],
       Windowsfeature['UpdateServices'],
