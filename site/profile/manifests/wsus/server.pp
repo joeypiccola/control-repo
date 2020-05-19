@@ -16,7 +16,7 @@ class profile::wsus::server (
   dsc_xwebapppool { 'WsusPool':
     dsc_ensure                    => 'present',
     dsc_identitytype              => 'NetworkService',
-    #dsc_idletimeout               => '0:00:00',
+    dsc_idletimeout               => '0:00:00',
     #dsc_managedpipelinemode       => 'Integrated',
     dsc_name                      => 'WsusPool',
     #dsc_pingingenabled            => true,
