@@ -10,9 +10,9 @@ $ProgressPreference = 'SilentlyContinue'
 
 # Stop the Windows Update service
 Write-Host "Stopping service... bits"
-Stop-Service -Name bits
+Stop-Service -Name bits -force
 Write-Host "Stopping service... wuauserv"
-Stop-Service -Name wuauserv
+Stop-Service -Name wuauserv -force
 
 # Remove the downloaded updates
 Write-Host "Removing downloaded updates... $env:systemroot\SoftwareDistribution\Download"
