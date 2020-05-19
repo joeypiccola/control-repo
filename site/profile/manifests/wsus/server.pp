@@ -1,21 +1,51 @@
 # == Class: profile::wsus::server
-
 class profile::wsus::server (
-  Array[String] $wsusserver_computer_target_groups = [],
+  String $wsus_directory
 ) {
-  # include wsusserver module
-  include wsusserver
 
-  # if wsusserver_computer_target_groups then add me some target groups (if in hiera)!
-  wsusserver_computer_target_group { $wsusserver_computer_target_groups: }
-
-  # for downstream server switch to replica mode
-  if $facts['application_component'] == 'downstream' {
-    exec { 'set downstream replica mode':
-      command  => "Set-WsusServerSynchronization -UssServerName ${wsusserver::upstream_wsus_server_name} -PortNumber ${wsusserver::upstream_wsus_server_port} -Replica",
-      provider => powershell,
-      onlyif   => 'if (((Get-WsusServer).GetConfiguration()).IsReplicaServer) {exit 1} else {exit 0}',
-      require  => Class['wsusserver::service'],
-    }
+  file { $wsus_directory:
+    ensure => 'directory',
   }
+
+  $wsus_server_features = ['UpdateServices','UpdateServices-Services','UpdateServices-RSAT','UpdateServices-API','UpdateServices-UI']
+  windowsfeature { $wsus_server_features:
+    ensure => present,
+    notify => Exec['WsusUtil PostInstall'],
+  }
+
+  dsc_xwebapppool { 'WsusPool':
+    dsc_ensure                    => 'present',
+    dsc_identitytype              => 'NetworkService',
+    dsc_idletimeout               => '0:00:00',
+    dsc_managedpipelinemode       => 'Integrated',
+    dsc_name                      => 'WsusPool',
+    dsc_pingingenabled            => true,
+    dsc_queuelength               => 2000,
+    dsc_restartprivatememorylimit => 0,
+    dsc_state                     => 'Started',
+  }
+
+  exec { 'WsusUtil PostInstall':
+    command     => "if (!(Test-Path -Path \$env:TMP)) {
+                      New-Item -Path \$env:TMP -ItemType Directory
+                    }
+                    & 'C:\\Program Files\\Update Services\\Tools\\WsusUtil.exe' PostInstall CONTENT_DIR=\"${wsus_directory}\" MU_ROLLUP=0
+                    if (\$LASTEXITCODE -eq 1) {
+                      Exit 1
+                    }
+                    else {
+                      Exit 0
+                    }",
+    logoutput   => true,
+    refreshonly => true,
+    timeout     => 1200,
+    provider    => 'powershell',
+    require     => [
+      Dsc_xwebapppool['WsusPool'],
+      File[$wsus_directory],
+      Windowsfeature['UpdateServices-UI'],
+      Windowsfeature['UpdateServices'],
+    ]
+  }
+
 }
