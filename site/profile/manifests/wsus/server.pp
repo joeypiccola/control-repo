@@ -22,7 +22,7 @@ class profile::wsus::server (
     dsc_pingingenabled            => true,
     dsc_queuelength               => 2000,
     dsc_restartprivatememorylimit => 0,
-    dsc_state                     => 'Started',
+    #dsc_state                     => 'Started',
     require                       => Exec['WsusUtil PostInstall'],
   }
 
