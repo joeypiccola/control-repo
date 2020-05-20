@@ -34,7 +34,6 @@ class profile::wsus::server (
     queue_length       => 2000,
     restart_time_limit => '00:00:00',
     identity_type      => 'NetworkService',
-    notify             => Exec['WsusPoolPrivateMemoryLimit'],
   }
 
   exec { 'WsusPoolPrivateMemoryLimit':
