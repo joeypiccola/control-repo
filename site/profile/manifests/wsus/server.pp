@@ -14,14 +14,15 @@ class profile::wsus::server (
   }
 
   dsc_xwebapppool { 'WsusPool':
-    dsc_ensure                    => 'present',
-    dsc_identitytype              => 'NetworkService',
+    #dsc_ensure                    => 'present',
+    #dsc_identitytype              => 'NetworkService',
     dsc_idletimeout               => '0:00:00',
     #dsc_managedpipelinemode       => 'Integrated',
     dsc_name                      => 'WsusPool',
-    #dsc_pingingenabled            => true,
-    #dsc_queuelength               => 2000,
-    #dsc_restartprivatememorylimit => 0,
+    dsc_pingingenabled            => false,
+    dsc_queuelength               => 2000,
+    dsc_restartprivatememorylimit => 0,
+    dsc_restartTimeLimit          => '0:00:00',
     #dsc_state                     => 'Started',
     #require                       => Exec['WsusUtil PostInstall'],
   }
