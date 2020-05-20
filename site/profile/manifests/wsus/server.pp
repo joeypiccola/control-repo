@@ -46,7 +46,7 @@ class profile::wsus::server (
                  } else {
                       1
                  }",
-    requires => Iis_application_pool['WsusPool'],
+    require  => Iis_application_pool['WsusPool'],
   }
 
   # exec { 'WsusUtil PostInstall':
