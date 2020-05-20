@@ -13,18 +13,26 @@ class profile::wsus::server (
     #notify => Exec['WsusUtil PostInstall'],
   }
 
-  dsc_xwebapppool { 'WsusPool':
-    #dsc_ensure                    => 'present',
-    #dsc_identitytype              => 'NetworkService',
-    dsc_idletimeout               => '0:00:00',
-    #dsc_managedpipelinemode       => 'Integrated',
-    dsc_name                      => 'WsusPool',
-    dsc_pingingenabled            => false,
-    dsc_queuelength               => 2000,
-    dsc_restartprivatememorylimit => 0,
-    dsc_restarttimelimit          => '0:00:00',
-    #dsc_state                     => 'Started',
-    #require                       => Exec['WsusUtil PostInstall'],
+  # dsc_xwebapppool { 'WsusPool':
+  #   #dsc_ensure                    => 'present',
+  #   #dsc_identitytype              => 'NetworkService',
+  #   dsc_idletimeout               => '0:00:00',
+  #   #dsc_managedpipelinemode       => 'Integrated',
+  #   dsc_name                      => 'WsusPool',
+  #   dsc_pingingenabled            => false,
+  #   dsc_queuelength               => 2000,
+  #   dsc_restartprivatememorylimit => 0,
+  #   dsc_restarttimelimit          => '0:00:00',
+  #   #dsc_state                     => 'Started',
+  #   #require                       => Exec['WsusUtil PostInstall'],
+  # }
+
+  iis_appliation_pool { 'WsusPool':
+    idle_timeout       => '0:00:00',
+    name               => 'WsusPool',
+    pinging_enabled    => false,
+    queue_length       => 2000,
+    restart_time_limit => '0:00:00',
   }
 
   # exec { 'WsusUtil PostInstall':
