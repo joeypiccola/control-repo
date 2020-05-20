@@ -14,12 +14,12 @@ class profile::wsus::server (
   }
 
   iis_application_pool { 'WsusPool':
-    idle_timeout       => '00:00:00',
     name               => 'WsusPool',
+    identity_type      => 'NetworkService',
+    idle_timeout       => '00:00:00',
     pinging_enabled    => false,
     queue_length       => 2000,
     restart_time_limit => '00:00:00',
-    identity_type      => 'NetworkService',
   }
 
   exec { 'WsusPoolPrivateMemoryLimit':
