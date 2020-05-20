@@ -34,6 +34,7 @@ class profile::wsus::server (
     queue_length       => 2000,
     restart_time_limit => '00:00:00',
     identity_type      => 'NetworkService',
+    notify             => Exec['WsusPoolPrivateMemoryLimit'],
   }
 
   exec { 'WsusPoolPrivateMemoryLimit':
@@ -41,10 +42,10 @@ class profile::wsus::server (
     command  => "\$privateMemoryPath = \"/system.applicationHost/applicationPools/add[@name=\'WsusPool\']/recycling/periodicRestart/@privateMemory\"
                  Set-WebConfiguration \$privateMemoryPath -Value 0",
     onlyif   => "\$privateMemoryPath = \"/system.applicationHost/applicationPools/add[@name=\'WsusPool\']/recycling/periodicRestart/@privateMemory\"
-                 if ((Get-WebConfiguration \$privateMemoryPath).value -ne 0) {
-                      0
+                 if ((Get-WebConfiguration \$privateMemoryPath).value -eq 0) {
+                   exit 1
                  } else {
-                      1
+                   exit 0
                  }",
     require  => Iis_application_pool['WsusPool'],
   }
