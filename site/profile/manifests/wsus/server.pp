@@ -37,10 +37,10 @@ class profile::wsus::server (
   }
 
   exec { 'WsusPoolPrivateMemoryLimit':
-    command  => "\$privateMemoryPath = "/system.applicationHost/applicationPools/add[@name='WsusPool']/recycling/periodicRestart/\@privateMemory"
-                 Set-WebConfiguration \$privateMemoryPath -Value 0",
     provider => 'powershell',
-    onlyif   => "\$privateMemoryPath = "/system.applicationHost/applicationPools/add[@name='WsusPool']/recycling/periodicRestart/\@privateMemory"
+    command  => "\$privateMemoryPath = "/system.applicationHost/applicationPools/add[\@name='WsusPool']/recycling/periodicRestart/\@privateMemory"
+                 Set-WebConfiguration \$privateMemoryPath -Value 0",
+    onlyif   => "\$privateMemoryPath = "/system.applicationHost/applicationPools/add[\@name='WsusPool']/recycling/periodicRestart/\@privateMemory"
                  if ((Get-WebConfiguration \$privateMemoryPath).value -ne 0) {
                       0
                  } else {
