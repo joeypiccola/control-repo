@@ -27,7 +27,7 @@ class profile::wsus::server (
   #   #require                       => Exec['WsusUtil PostInstall'],
   # }
 
-  iis_appliation_pool { 'WsusPool':
+  iis_application_pool { 'WsusPool':
     idle_timeout       => '0:00:00',
     name               => 'WsusPool',
     pinging_enabled    => false,
