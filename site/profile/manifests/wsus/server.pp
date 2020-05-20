@@ -36,6 +36,19 @@ class profile::wsus::server (
     identity_type      => 'NetworkService',
   }
 
+  exec { 'WsusPoolPrivateMemoryLimit':
+    command  => "\$privateMemoryPath = "/system.applicationHost/applicationPools/add[@name='WsusPool']/recycling/periodicRestart/\@privateMemory"
+                 Set-WebConfiguration \$privateMemoryPath -Value 0",
+    provider => 'powershell',
+    onlyif   => "\$privateMemoryPath = "/system.applicationHost/applicationPools/add[@name='WsusPool']/recycling/periodicRestart/\@privateMemory"
+                 if ((Get-WebConfiguration \$privateMemoryPath).value -ne 0) {
+                      0
+                 } else {
+                      1
+                 }",
+    requires => Iis_application_pool['WsusPool'],
+  }
+
   # exec { 'WsusUtil PostInstall':
   #   command     => "if (!(Test-Path -Path \$env:TMP)) {
   #                     New-Item -Path \$env:TMP -ItemType Directory
