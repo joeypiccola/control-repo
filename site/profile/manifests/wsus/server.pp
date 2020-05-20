@@ -33,6 +33,7 @@ class profile::wsus::server (
     pinging_enabled    => false,
     queue_length       => 2000,
     restart_time_limit => '00:00:00',
+    identity_type      => 'NetworkService',
   }
 
   # exec { 'WsusUtil PostInstall':
