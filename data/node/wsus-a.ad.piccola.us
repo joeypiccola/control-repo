@@ -1,0 +1,2 @@
+---
+profile::wsus::server::wsus_directory: w:/wsus
