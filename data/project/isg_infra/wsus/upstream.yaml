@@ -1,6 +1,0 @@
----
-wsusserver::sync_from_microsoft_update: true
-profile::wsus::server::wsusserver_computer_target_groups:
-  - Development
-  - Staging
-  - Production
