@@ -3,7 +3,7 @@
 failovercluster_win::client_network_address_mask: 255.255.255.0
 failovercluster_win::client_network_address: 10.0.3.0
 failovercluster_win::client_network_name: Client
-failovercluster_win::client_network_role: 3
+failovercluster_win::client_network_role: '3'
 failovercluster_win::cluster_ip: 10.0.3.227
 failovercluster_win::cluster_name: cluster-a-01
 failovercluster_win::primary_node: cluster-a
