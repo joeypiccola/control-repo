@@ -1,5 +1,5 @@
-# == Class: profile::cluster::diskpart
-class profile::cluster::diskpart (
+# == Class: failovercluster_win::diskpart
+class failovercluster_win::diskpart (
 ) {
 
   exec { 'automount':
