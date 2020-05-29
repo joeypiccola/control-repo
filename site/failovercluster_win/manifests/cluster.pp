@@ -1,7 +1,7 @@
 # == Class: failovercluster_win::cluster
 class failovercluster_win::cluster {
 
-  if $failovercluster_win::facts['hostname'] == $failovercluster_win::primary_node {
+  if $facts['hostname'] == $failovercluster_win::primary_node {
     dsc_xcluster {'create':
       dsc_domainadministratorcredential => {
         'user'     => $failovercluster_win::ad_user,
