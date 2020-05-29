@@ -1,4 +1,4 @@
-# == Class: profile::cluster
-class profile::cluster {
+# == Class: profile::wfc
+class profile::wfc {
   include failovercluster_win
 }
