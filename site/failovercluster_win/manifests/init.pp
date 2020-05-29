@@ -10,6 +10,7 @@ class failovercluster_win (
   String  $cluster_name,
   String  $primary_node,
   String  $quorum_diskid,
+  Array   $service_names,
   Integer $ancillary_node_retry_count        = 60,
   Integer $ancillary_node_retry_interval_sec = 60,
   Integer $quorum_retry_count                = 10,
