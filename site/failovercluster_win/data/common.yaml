@@ -1,0 +1,5 @@
+---
+
+failovercluster_win::service_names:
+  - Failover-Clustering
+
