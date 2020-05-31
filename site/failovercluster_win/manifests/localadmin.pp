@@ -2,8 +2,8 @@
 class failovercluster_win::localadmin (
 ) {
 
-  group { $failovercluster_win::local_admin_identity:
-    members => 'Administrators',
+  group { 'Administrators':
+    members => $failovercluster_win::local_admin_identity,
   }
 
 }
