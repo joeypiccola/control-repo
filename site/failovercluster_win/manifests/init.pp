@@ -8,6 +8,7 @@ class failovercluster_win (
   String  $client_network_role,
   String  $cluster_ip,
   String  $cluster_name,
+  String  $local_admin_identity,
   String  $primary_node,
   String  $quorum_diskid,
   Array   $service_names,
@@ -32,9 +33,11 @@ class failovercluster_win (
   include failovercluster_win::clusterproperty
   include failovercluster_win::clusterquorum
   include failovercluster_win::diskpart
+  include failovercluster_win::localadmin
   include failovercluster_win::services
 
-  Class['failovercluster_win::diskpart']
+  Class['failovercluster_win::localadmin']
+  -> Class['failovercluster_win::diskpart']
   -> Class['failovercluster_win::services']
   -> Class['failovercluster_win::cluster']
   -> Class['failovercluster_win::clusternetwork']

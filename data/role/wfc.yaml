@@ -11,7 +11,4 @@ failovercluster_win::ad_password: >
   4mYtO3PwnpLpvyrHlOMFWU31azhxjT1C69Ar/3ThZENXuSzg6c8cWL17DQu8
   IJKgojBMBgkqhkiG9w0BBwEwHQYJYIZIAWUDBAEqBBDYATMgIjYDJ8BALnjE
   p6+VgCCRkRlMqiE08bUL2V6Xe5uF7MzZTlY7Pi1Pm02wrTo/5Q==]
-profile::base::localaccounts::groups:
-  Administrators:
-    members:
-      - ad.piccola.us\svc_ad_cluster
+failovercluster_win::local_admin_identity: svc_ad_cluster
