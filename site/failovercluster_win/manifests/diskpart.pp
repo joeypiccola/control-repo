@@ -15,6 +15,3 @@ class failovercluster_win::diskpart (
   }
 
 }
-
-
-
