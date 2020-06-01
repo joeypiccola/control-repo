@@ -15,7 +15,7 @@ class failovercluster_win (
   Integer $quorum_retry_count                = 10,
   Integer $quorum_retry_interval_sec         = 30,
   String  $description                       = 'Microsoft Windows Failover Cluster',
-  String  $local_admin_identity              = undef,
+  String  $local_admin_identity              = '',
   String  $log_level                         = '3',
   String  $log_size                          = '1024',
   Boolean $manage_local_admin                = false,
