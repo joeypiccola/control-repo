@@ -16,7 +16,7 @@ class failovercluster_win (
   Integer $ancillary_node_retry_interval_sec = 60,
   Integer $quorum_retry_count = 10,
   Integer $quorum_retry_interval_sec = 30,
-  Optional[String]  $local_admin_identity = undef,
+  Optional[String] $local_admin_identity = undef,
   Optional[Boolean] $manage_local_admin = undef,
   String $description = 'Microsoft Windows Failover Cluster',
   String $log_level = '3',
