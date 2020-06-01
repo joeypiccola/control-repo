@@ -11,4 +11,7 @@ failovercluster_win::ad_password: >
   4mYtO3PwnpLpvyrHlOMFWU31azhxjT1C69Ar/3ThZENXuSzg6c8cWL17DQu8
   IJKgojBMBgkqhkiG9w0BBwEwHQYJYIZIAWUDBAEqBBDYATMgIjYDJ8BALnjE
   p6+VgCCRkRlMqiE08bUL2V6Xe5uF7MzZTlY7Pi1Pm02wrTo/5Q==]
-failovercluster_win::local_admin_identity: ad.piccola.us\wfc-admins
+profile::base::localaccounts::groups:
+  Administrators:
+    members:
+      - wfc-admins@ad.piccola.us

@@ -12,7 +12,7 @@ class failovercluster_win::clusterquorum {
       dsc_partitionstyle     => $failovercluster_win::quorum_partition_style,
     }
 
-    if $failovercluster_win::manage {
+    if $failovercluster_win::manage_quorum {
       dsc_waitforvolume {'quorum_disk_wait':
         dsc_driveletter      => $failovercluster_win::quorum_drive_letter,
         dsc_retrycount       => $failovercluster_win::quorum_retry_count,

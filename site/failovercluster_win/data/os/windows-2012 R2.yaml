@@ -2,4 +2,4 @@
 
 # The CIM class MSCluster_Disk on 2012r2 does not provide UniqueID
 # so we have no way to identify disks once added to the cluster.
-failovercluster_win::quorum_manage: false
+failovercluster_win::manage_quorum: false

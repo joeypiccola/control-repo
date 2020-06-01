@@ -11,7 +11,6 @@ class failovercluster_win (
   String  $local_admin_identity,
   String  $primary_node,
   String  $quorum_diskid,
-  Array   $service_names,
   Integer $ancillary_node_retry_count        = 60,
   Integer $ancillary_node_retry_interval_sec = 60,
   Integer $quorum_retry_count                = 10,
@@ -19,14 +18,16 @@ class failovercluster_win (
   String  $description                       = 'Microsoft Windows Failover Cluster',
   String  $log_level                         = '3',
   String  $log_size                          = '1024',
+  Boolean $manage_local_admin                = false,
+  Boolean $manage_quorum                     = true,
   String  $quorum_allocation_unit_size       = '4096',
   String  $quorum_disk_id_type               = 'UniqueId',
   String  $quorum_drive_letter               = 'W',
   String  $quorum_fs_label                   = 'Witness',
   String  $quorum_is_single_instance         = 'Yes',
-  Boolean $quorum_manage                     = true,
   String  $quorum_partition_style            = 'GPT',
   String  $quorum_type                       = 'DiskOnly',
+  Array   $service_names                     = ['Failover-Clustering'],
 ) {
   include failovercluster_win::cluster
   include failovercluster_win::clusternetwork
