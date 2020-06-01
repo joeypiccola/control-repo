@@ -31,7 +31,7 @@ class failovercluster_win (
 ) {
 
   if $manage_local_admin {
-    assert_type(String, $local_admin_identity)
+    assert_type(Array[NotUndef], [$manage_local_admin])
   }
 
   include failovercluster_win::cluster
