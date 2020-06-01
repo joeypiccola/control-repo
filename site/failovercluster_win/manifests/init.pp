@@ -1,7 +1,7 @@
 # == Class failovercluster_win
 class failovercluster_win (
-  Optional[String]  $local_admin_identity,
-  Optional[Boolean] $manage_local_admin,
+  Optional[String]  $local_admin_identity = undef,
+  Optional[Boolean] $manage_local_admin = undef,
   String  $ad_password,
   String  $ad_user,
   String  $client_network_address_mask,
