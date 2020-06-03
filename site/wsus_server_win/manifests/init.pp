@@ -1,14 +1,22 @@
 # == Class: wsus_server_win
 class wsus_server_win (
-  Array $iis_features = $wsus_server_win::params::iis_features,
-  Array $wsus_features = $wsus_server_win::params::wsus_features,
-  String $wsus_directory = $wsus_server_win::params::wsus_directory,
-) inherits wsus_server_win::params {
+  Array $iis_features,
+  Array $wsus_features,
+  String $iis_identity_type,
+  String $iis_idle_timeout,
+  String $iis_pinging_enabled,
+  String $iis_private_memory,
+  String $iis_queue_length,
+  String $iis_restart_time_limit,
+  String $wsus_directory,
+) {
 
-  include wsus_server_win::iis
-  include wsus_server_win::wsus
+  include wsus_server_win::iis::install
+  include wsus_server_win::iis::config
+  include wsus_server_win::wsus::install
 
-  Class['wsus_server_win::iis']
-  -> Class['wsus_server_win::wsus']
+  Class['wsus_server_win::iis::install']
+  -> Class['wsus_server_win::iis::config']
+  -> Class['wsus_server_win::wsus::install']
 
 }

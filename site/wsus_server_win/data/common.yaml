@@ -1,0 +1,19 @@
+---
+
+wsus_server_win::iis_features:
+  - Web-WebServer
+  - Web-Mgmt-Tools
+  - Web-Mgmt-Console
+wsus_server_win::iis_identity_type: NetworkService
+wsus_server_win::iis_idle_timeout: 00:00:00
+wsus_server_win::iis_pinging_enabled: false
+wsus_server+win::iis_private_memory: 0
+wsus_server_win::iis_queue_length: 2000
+wsus_server_win::iis_restart_time_limit: 00:00:00
+wsus_server_win::wsus_directory: undef
+wsus_server_win::wsus_features:
+  - UpdateServices
+  - UpdateServices-Services
+  - UpdateServices-RSAT
+  - UpdateServices-API
+  - UpdateServices-UI
