@@ -1,13 +1,12 @@
 # == Class: profile::wsus::client
 class profile::wsus::client (
-    Optional[Boolean] $manage = true,
+    Optional[Boolean] $manage = false,
 ) {
 
   if $manage {
     if $facts['patch_group'] {
       class { 'wsus_client':
-        target_group => $facts['patch_group'],
-        notify       => Exec['wuauclt'],
+        notify => Exec['wuauclt'] ,
       }
       exec { 'wuauclt':
         provider    => 'powershell',

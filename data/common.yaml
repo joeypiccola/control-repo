@@ -24,15 +24,6 @@ lookup_options:
 
 # Profile - define default data
 ################################################################################
-# profile::base::updatereporting::pswindowsupdate_url: 'http://nuget.ad.piccola.us:8081/pswindowsupdate.zip'
-# profile::base::updatereporting::wsusscn_url: 'http://nuget.ad.piccola.us:8081/wsusscn2.cab'
-# profile::base::updatereporting::download_directory: 'c:/windows/temp/ISG-Puppet/updatereporting_win'
-# profile::base::updatereporting::task_day_of_week: 'sat'
-# profile::base::updatereporting::task_every: 1
-# profile::base::updatereporting::task_ensure: 'present'
-# profile::base::updatereporting::task_schedule: 'weekly'
-# profile::base::updatereporting::task_enabled: true
-# profile::base::updatereporting::pswindowsupdate_force_download: true
 profile::base::powershell::reboot: false
 profile::base::powershell::upgrade: false
 
@@ -45,9 +36,13 @@ crypto_win::sha: true
 profile::wsus::client::manage: true
 wsus_client::auto_update_option: 'AutoNotify'
 wsus_client::detection_frequency_hours: 1
-wsus_client::purge_values: true
-wsus_client::server_url: 'http://wsus-a.ad.piccola.us:8530'
 wsus_client::enable_status_server: true
+wsus_client::no_auto_reboot_with_logged_on_users: true
+wsus_client::no_auto_update : true
+wsus_client::purge_values: true
+wsus_client::target_group : "%{patch_group}"
+wsus_client::server_url: 'http://wsus-a.ad.piccola.us:8530'
+
 
 chocolatey::chocolatey_version: 0.10.15
 chocolatey::chocolatey_download_url: 'http://nuget.ad.piccola.us:8081/chocolatey.0.10.15.nupkg'
