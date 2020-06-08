@@ -5,7 +5,16 @@ class wsus_server_win::wsus::install {
     ensure => 'directory',
   }
 
-  windowsfeature { $wsus_server_win::wsus_features:
+  case $wsus_server_win::database_type {
+    'sql': {
+      $features = concat($wsus_server_win::wsus_features, 'UpdateServices-DB')
+    }
+    default: {
+      $features = concat($wsus_server_win::wsus_features, 'UpdateServices-WidDB')
+    }
+  }
+
+  windowsfeature { $features:
     ensure => present,
     #notify => Exec['WsusUtil PostInstall'],
   }

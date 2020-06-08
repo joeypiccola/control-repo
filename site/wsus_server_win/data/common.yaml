@@ -17,3 +17,6 @@ wsus_server_win::wsus_features:
   - UpdateServices-RSAT
   - UpdateServices-API
   - UpdateServices-UI
+wsus_server_win::database_type: wid
+wsus_server_win::database_sql_instance: undef
+wsus_server_win::database_sql_server: undef
