@@ -7,24 +7,16 @@ class wsus_server_win::wsus::install {
 
   case $wsus_server_win::database_type {
     'sql': {
-      windowsfeature { 'database_type':
-        ensure => present,
-        name   => 'UpdateServices-DB',
-      }
-      #$features = concat($wsus_server_win::wsus_features, 'UpdateServices-DB')
+      $features = concat('UpdateServices-DB', $wsus_server_win::wsus_features)
     }
     default: {
-      windowsfeature { 'database_type':
-        ensure => present,
-        name   => 'UpdateServices-WidDB',
-      }
-      #$features = concat($wsus_server_win::wsus_features, 'UpdateServices-WidDB')
+
+      $features = concat('UpdateServices-WidDB', $wsus_server_win::wsus_features)
     }
   }
 
-  windowsfeature { $wsus_server_win::wsus_features:
+  windowsfeature { $features:
     ensure  => present,
-    require => Windowsfeature['database_type'],
     #notify => Exec['WsusUtil PostInstall'],
   }
 
