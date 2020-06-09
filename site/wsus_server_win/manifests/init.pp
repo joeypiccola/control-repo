@@ -9,7 +9,7 @@ class wsus_server_win (
   String $iis_wsus_app_pool_queue_length,
   String $iis_wsus_app_pool_restart_time_limit,
   String $wsus_directory,
-  String $database_type,
+  Wsus_server_win::Database_type $database_type,
   #Optional[String]$database_sql_instance,
   #Optional[String]$database_sql_server,
 ) {
