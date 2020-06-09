@@ -1,0 +1,31 @@
+{
+  "puppet_task_version": 1,
+  "description": "A Puppet task to patch a SQL instance.",
+  "input_method": "powershell",
+  "parameters": {
+    "binary_url": {
+      "description": "The URL of the SQL patch binary.",
+      "type": "String"
+    },
+    "instance_name": {
+      "description": "The SQL instance to patch.",
+      "type": "String"
+    },
+    "component": {
+      "description": "The SQL component to patch. Default: sql.",
+      "type": "Optional[Enum[sql, rs, olap]]"
+    },
+    "destination_directory_path": {
+      "description": "The destination directory where the SQL patch will be downloaded.",
+      "type": "String"
+    },
+    "force_download": {
+      "description": "Forcibly build out the destination directory and \\ or overwrite an existing patch binary.",
+      "type": "Optional[Boolean]"
+    },
+    "delete_binary_after_install": {
+      "description": "Delete the downloaded binary after an attempted install.",
+      "type": "Optional[Boolean]"
+    }
+  }
+}

@@ -1,0 +1,6 @@
+{
+    "puppet_task_version": 1,
+    "description": "A Puppet task to report on SQL instances.",
+    "input_method": "powershell",
+    "parameters": {}
+}
