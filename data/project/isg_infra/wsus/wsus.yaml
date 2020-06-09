@@ -2,4 +2,4 @@
 profile::webserver::iis::disable_default_website: false
 profile::wsus::server::wsus_directory: d:/wsus
 wsus_server_win::wsus_directory: d:/wsus
-wsus_server_win::database_type: sql
+wsus_server_win::database_type: blah
