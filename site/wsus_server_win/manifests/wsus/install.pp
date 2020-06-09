@@ -7,11 +7,11 @@ class wsus_server_win::wsus::install {
 
   case $wsus_server_win::database_type {
     'sql': {
-      $features = concat('UpdateServices-DB', $wsus_server_win::wsus_features)
+      $features = concat(['UpdateServices-DB'], $wsus_server_win::wsus_features)
     }
     default: {
 
-      $features = concat('UpdateServices-WidDB', $wsus_server_win::wsus_features)
+      $features = concat(['UpdateServices-WidDB'], $wsus_server_win::wsus_features)
     }
   }
 
