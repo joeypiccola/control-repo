@@ -41,7 +41,7 @@ wsus_client::no_auto_reboot_with_logged_on_users: true
 wsus_client::no_auto_update : true
 wsus_client::purge_values: true
 wsus_client::target_group : "%{patch_group}"
-wsus_client::server_url: 'http://wsus-a.ad.piccola.us:8530'
+wsus_client::server_url: 'http://wsus01.ad.piccola.us:8530'
 
 
 chocolatey::chocolatey_version: 0.10.15
@@ -52,7 +52,7 @@ profile::base::chocolatey::packages:
     ensure: '0.10.15'
     provider: 'chocolatey'
   chocolatey-core.extension:
-    ensure: '1.3.3'
+    ensure: '1.3.5.1'
     provider: 'chocolatey'
 
 #####
