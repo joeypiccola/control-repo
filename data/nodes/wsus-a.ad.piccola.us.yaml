@@ -1,3 +1,0 @@
----
-profile::wsus::server::wsus_directory: w:/wsus_data
-wsus_server_win::wsus_directory: w:/wsus_data

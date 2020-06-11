@@ -1,0 +1,2 @@
+---
+wsus_client::server_url: 'http://wsus01.ad.piccola.us:8530'
