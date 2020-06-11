@@ -11,7 +11,12 @@ class profile::wsus::client (
       exec { 'wuauclt':
         provider    => 'powershell',
         command     => "Start-Sleep -Seconds 10
-                        wuauclt /detectnow",
+                       \$osMajorVersion = ([version](Get-WmiObject -Class win32_operatingsystem).Version).major
+                       if (\$osMajorVersion -ge 10) {
+                         usoclient startscan
+                       } else {
+                         wuauclt /detectnow
+                       }",
         refreshonly => true,
       }
     } else {
@@ -22,4 +27,10 @@ class profile::wsus::client (
   }
 
 }
-
+Start-Sleep -Seconds 10
+$osVersion = ([version](Get-WmiObject -Class win32_operatingsystem).Version).major
+if (/$osVersion -ge 10) {
+  usoclient startscan
+} else {
+  wuauclt /detectnow
+}
