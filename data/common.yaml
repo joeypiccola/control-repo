@@ -38,7 +38,7 @@ wsus_client::auto_update_option: 'AutoNotify'
 wsus_client::detection_frequency_hours: 1
 wsus_client::enable_status_server: true
 wsus_client::no_auto_reboot_with_logged_on_users: true
-wsus_client::no_auto_update : true
+wsus_client::no_auto_update: false
 wsus_client::purge_values: true
 wsus_client::target_group : "%{patch_group}"
 wsus_client::server_url: 'http://wsus01.ad.piccola.us:8530'
