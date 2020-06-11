@@ -27,10 +27,3 @@ class profile::wsus::client (
   }
 
 }
-Start-Sleep -Seconds 10
-$osVersion = ([version](Get-WmiObject -Class win32_operatingsystem).Version).major
-if (/$osVersion -ge 10) {
-  usoclient startscan
-} else {
-  wuauclt /detectnow
-}
