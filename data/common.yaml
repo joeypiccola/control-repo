@@ -34,7 +34,7 @@ crypto_win::sha: true
 
 # all things WSUS client
 profile::wsus::client::manage: true
-wsus_client::auto_update_option: 'AutoNotify'
+wsus_client::auto_update_option: 'NotifyOnly'
 wsus_client::detection_frequency_hours: 1
 wsus_client::enable_status_server: true
 wsus_client::no_auto_reboot_with_logged_on_users: true
