@@ -8,15 +8,17 @@ class profile::wsus::client (
       class { 'wsus_client':
         notify => Exec['wuauclt'] ,
       }
+
+      # If running a kernelmajversion >= 10.0 then use usoclient else use wuauclt
+      if versioncmp($facts[kernelmajversion], '10.0') >= 0 {
+        $cmd = 'usoclient startscan'
+      } else {
+        $cmd = 'wuauclt /detectnow'
+      }
+
       exec { 'wuauclt':
         provider    => 'powershell',
-        command     => "Start-Sleep -Seconds 10
-                       \$osMajorVersion = ([version](Get-WmiObject -Class win32_operatingsystem).Version).major
-                       if (\$osMajorVersion -ge 10) {
-                         usoclient startscan
-                       } else {
-                         wuauclt /detectnow
-                       }",
+        command     => $cmd,
         refreshonly => true,
       }
     } else {
