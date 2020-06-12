@@ -5,8 +5,9 @@ wsus_server_win::database_type: sql
 profile::base::chocolatey::packages:
   reportviewer2012:
     ensure: 11.0.3452.0
+    package_settings:
+      ignore-checksums: true
     provider: chocolatey
   sqlserver-cmdlineutils:
     ensure: 15.0.1300.359001
     provider: chocolatey
-
