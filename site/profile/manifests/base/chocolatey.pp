@@ -7,14 +7,16 @@ class profile::base::chocolatey (
   include chocolatey
 
   chocolateysource {'chocolatey':
-    ensure => disabled,
-  }
-
-  chocolateysource {'artifactory':
     ensure   => present,
-    location => $location,
+    location => 'https://chocolatey.org/api/v2',
     priority => 1,
   }
+
+  #chocolateysource {'artifactory':
+  #  ensure   => present,
+  #  location => $location,
+  #  priority => 1,
+  #}
 
   $packages.each | String $package, Hash $attributes | {
     package { $package:
