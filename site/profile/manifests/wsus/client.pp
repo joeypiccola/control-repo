@@ -6,20 +6,18 @@ class profile::wsus::client (
   if $manage {
     if $facts['patch_group'] {
       class { 'wsus_client':
-        notify => Exec['wuauclt'] ,
+        notify => Exec['wu_detect'] ,
       }
 
-    registry_value { 'HKLM\Software\Policies\Microsoft\Windows\WindowsUpdate\AU\NoAUShutdownOption':
-      type => dword,
-      data => 1,
-      #require => Registry_key['HKLM\SYSTEM\CurrentControlSet\services\mrxsmb10']
-    }
-
-    registry_value { 'HKLM\Software\Policies\Microsoft\Windows\WindowsUpdate\AU\NoAUAsDefaultShutdownOption':
-      type => dword,
-      data => 1,
-      #require => Registry_key['HKLM\SYSTEM\CurrentControlSet\services\mrxsmb10']
-    }
+      # manage additional settings not included with wsus_client module
+      registry_value { 'HKLM\Software\Policies\Microsoft\Windows\WindowsUpdate\AU\NoAUShutdownOption':
+        type => dword,
+        data => 1,
+      }
+      registry_value { 'HKLM\Software\Policies\Microsoft\Windows\WindowsUpdate\AU\NoAUAsDefaultShutdownOption':
+        type => dword,
+        data => 1,
+      }
 
       # If running a kernelmajversion >= 10.0 then use usoclient else use wuauclt
       if versioncmp($facts[kernelmajversion], '10.0') >= 0 {
@@ -28,7 +26,7 @@ class profile::wsus::client (
         $cmd = 'wuauclt /detectnow'
       }
 
-      exec { 'wuauclt':
+      exec { 'wu_detect':
         provider    => 'powershell',
         command     => $cmd,
         refreshonly => true,
@@ -41,3 +39,4 @@ class profile::wsus::client (
   }
 
 }
+
