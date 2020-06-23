@@ -58,3 +58,5 @@ profile::base::chocolatey::packages:
 # puppet_enterprise::profile::certificate_authority
 puppet_enterprise::profile::certificate_authority::client_whitelist:
   - joey.piccola.us
+puppet_enterprise::profile::puppetdb:report_ttl: 4
+puppet_enterprise::profile::puppetdb:node_purge_ttl: 8
