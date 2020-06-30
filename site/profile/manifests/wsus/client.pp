@@ -34,7 +34,7 @@ class profile::wsus::client (
           enabled       => false,
           #ensure        => absent,
           compatibility => 4,
-          command       => 'echo This task has been administratively removed by Puppet.',
+          command       => 'echo This task has been administratively disabled by Puppet.',
           provider      => 'taskscheduler_api2',
         }
         $cmd = 'usoclient startscan'
