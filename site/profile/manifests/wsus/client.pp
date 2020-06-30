@@ -23,14 +23,16 @@ class profile::wsus::client (
       if versioncmp($facts[kernelmajversion], '10.0') >= 0 {
         $scheduled_tasks = [
           'Microsoft/Windows/UpdateOrchestrator/Backup Scan',
+          'Microsoft/Windows/UpdateOrchestrator/Maintenance Install',
           'Microsoft/Windows/UpdateOrchestrator/MusUx_UpdateInterval',
-          'Microsoft/Windows/UpdateOrchestrator/Schedule Scan',
+          'Microsoft/Windows/UpdateOrchestrator/Reboot',
           'Microsoft/Windows/UpdateOrchestrator/Schedule Scan Static Task',
+          'Microsoft/Windows/UpdateOrchestrator/Schedule Scan',
           'Microsoft/Windows/UpdateOrchestrator/USO_UxBroker',
         ]
-        scheduled_task { $scheduled_tasks:
+        scheduled_task { 'Microsoft/Windows/UpdateOrchestrator/Backup Scan':
           enabled  => false,
-          provider => 'taskscheduler_api2',
+          #provider => 'taskscheduler_api2',
         }
         $cmd = 'usoclient startscan'
       } else {
