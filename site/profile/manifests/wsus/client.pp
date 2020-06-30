@@ -1,6 +1,7 @@
 # == Class: profile::wsus::client
 class profile::wsus::client (
     Optional[Boolean] $manage = false,
+    Optional[Array] $scheduled_tasks_to_remove = false,
 ) {
 
   if $manage {
@@ -19,24 +20,19 @@ class profile::wsus::client (
         data => 1,
       }
 
-      # If running a kernelmajversion >= 10.0 then use usoclient else use wuauclt
-      if versioncmp($facts[kernelmajversion], '10.0') >= 0 {
-        $scheduled_tasks = [
-          'Microsoft\\Windows\\UpdateOrchestrator\\Backup Scan',
-          'Microsoft\\Windows\\UpdateOrchestrator\\Maintenance Install',
-          'Microsoft\\Windows\\UpdateOrchestrator\\MusUx_UpdateInterval',
-          'Microsoft\\Windows\\UpdateOrchestrator\\Reboot',
-          'Microsoft\\Windows\\UpdateOrchestrator\\Schedule Scan Static Task',
-          'Microsoft\\Windows\\UpdateOrchestrator\\Schedule Scan',
-          'Microsoft\\Windows\\UpdateOrchestrator\\USO_UxBroker',
-        ]
-        scheduled_task { $scheduled_tasks:
+      # remove scheduled tasks that cuase unwanted desktop/user notifications
+      if $scheduled_tasks_to_remove.length > 0 {
+        scheduled_task { $scheduled_tasks_to_remove:
           enabled       => false,
           #ensure        => absent,
           compatibility => 4,
-          command       => 'echo This task has been administratively disabled by Puppet.',
+          #command       => 'echo This task has been administratively disabled by Puppet.',
           provider      => 'taskscheduler_api2',
         }
+      }
+
+      # If running a kernelmajversion >= 10.0 then use usoclient else use wuauclt
+      if versioncmp($facts[kernelmajversion], '10.0') >= 0 {
         $cmd = 'usoclient startscan'
       } else {
         $cmd = 'wuauclt /detectnow'
