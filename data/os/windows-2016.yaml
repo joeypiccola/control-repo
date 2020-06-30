@@ -1,4 +1,7 @@
 ---
-profile::cluster::services::service_names:
-  - Failover-Clustering
-  - Windows-Internal-DataBase
+profile::wsus::client::scheduled_tasks_to_remove:
+  - Microsoft\\Windows\\UpdateOrchestrator\\Policy Install
+  - Microsoft\\Windows\\UpdateOrchestrator\\Refresh Settings
+  - Microsoft\\Windows\\UpdateOrchestrator\\Resume On Boot
+  - Microsoft\\Windows\\UpdateOrchestrator\\USO_UxBroker_Display
+  - Microsoft\\Windows\\UpdateOrchestrator\\USO_UxBroker_ReadyToReboot
