@@ -31,9 +31,10 @@ class profile::wsus::client (
           'Microsoft\\Windows\\UpdateOrchestrator\\USO_UxBroker',
         ]
         scheduled_task { $scheduled_tasks:
-          #enabled       => false,
-          ensure        => absent,
+          enabled       => false,
+          #ensure        => absent,
           compatibility => 4,
+          command       => 'echo This task has been administratively removed by Puppet.',
           provider      => 'taskscheduler_api2',
         }
         $cmd = 'usoclient startscan'
