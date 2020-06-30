@@ -21,6 +21,17 @@ class profile::wsus::client (
 
       # If running a kernelmajversion >= 10.0 then use usoclient else use wuauclt
       if versioncmp($facts[kernelmajversion], '10.0') >= 0 {
+        $scheduled_tasks = ['',
+          'Microsoft/Windows/UpdateOrchestrator/Backup Scan',
+          'Microsoft/Windows/UpdateOrchestrator/MusUx_UpdateInterval',
+          'Microsoft/Windows/UpdateOrchestrator/Schedule Scan',
+          'Microsoft/Windows/UpdateOrchestrator/Schedule Scan Static Task',
+          'Microsoft/Windows/UpdateOrchestrator/USO_UxBroker',
+        ]
+        scheduled_task { $scheduled_tasks:
+          enabled  => false,
+          provider => 'taskscheduler_api2',
+        }
         $cmd = 'usoclient startscan'
       } else {
         $cmd = 'wuauclt /detectnow'
