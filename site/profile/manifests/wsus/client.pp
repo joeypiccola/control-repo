@@ -31,7 +31,8 @@ class profile::wsus::client (
           'Microsoft\\Windows\\UpdateOrchestrator\\USO_UxBroker',
         ]
         scheduled_task { $scheduled_tasks:
-          enabled       => false,
+          #enabled       => false,
+          ensure        => absent,
           compatibility => 4,
           provider      => 'taskscheduler_api2',
         }
