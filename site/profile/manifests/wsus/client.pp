@@ -30,9 +30,10 @@ class profile::wsus::client (
           'Microsoft/Windows/UpdateOrchestrator/Schedule Scan',
           'Microsoft/Windows/UpdateOrchestrator/USO_UxBroker',
         ]
-        scheduled_task { '/Microsoft/Windows/UpdateOrchestrator/Backup Scan':
-          enabled  => false,
-          #provider => 'taskscheduler_api2',
+        scheduled_task { $scheduled_tasks:
+          enabled       => false,
+          compatibility => 4,
+          provider      => 'taskscheduler_api2',
         }
         $cmd = 'usoclient startscan'
       } else {
