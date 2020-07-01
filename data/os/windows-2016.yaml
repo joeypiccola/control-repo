@@ -8,10 +8,10 @@
 
 
 profile::wsus::client::scheduled_tasks_to_remove:
-  Microsoft\\Windows\\UpdateOrchestrator\\Maintenance Install:
+  Microsoft\Windows\UpdateOrchestrator\Maintenance Install:
     enabled: false
-    command: c:\\windows\\system32\\usoclient.exe
-    compatibility: 4
+    command: c:\windows\system32\usoclient.exe
+    compatibility: 5
 #  Microsoft\\Windows\\UpdateOrchestrator\\Policy Install:
 #    enabled: false
 #    command: c:\\windows\\system32\\usoclient.exe
