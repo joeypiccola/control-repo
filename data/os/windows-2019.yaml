@@ -1,6 +1,5 @@
 ---
 
-
 profile::wsus::client::scheduled_tasks_to_remove:
   Microsoft\Windows\UpdateOrchestrator\USO_UxBroker:
     enabled: false
