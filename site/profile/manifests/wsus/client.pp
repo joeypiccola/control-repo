@@ -1,7 +1,7 @@
 # == Class: profile::wsus::client
 class profile::wsus::client (
     Optional[Boolean] $manage = false,
-    Optional $scheduled_tasks_to_remove = false,
+    Optional[Array] $scheduled_tasks_to_remove = false,
 ) {
 
   if $manage {
