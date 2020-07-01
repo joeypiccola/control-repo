@@ -36,6 +36,7 @@ class profile::wsus::client (
         $cmd = 'wuauclt /detectnow'
       }
 
+
       exec { 'wu_detect':
         provider    => 'powershell',
         command     => $cmd,
