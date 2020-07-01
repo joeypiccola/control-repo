@@ -1,7 +1,7 @@
 ---
 
 profile::wsus::client::scheduled_tasks_to_remove:
-Microsoft\Windows\UpdateOrchestrator\Scheduled Scan:
+Microsoft\Windows\UpdateOrchestrator\Schedule Scan:
   enabled: false
   command: c:\windows\system32\usoclient.exe
   compatibility: 5
