@@ -1,9 +1,7 @@
 ---
+
 profile::wsus::client::scheduled_tasks_to_remove:
-  - Microsoft\\Windows\\UpdateOrchestrator\\Backup Scan
-  - Microsoft\\Windows\\UpdateOrchestrator\\Maintenance Install
-  - Microsoft\\Windows\\UpdateOrchestrator\\MusUx_UpdateInterval
-  - Microsoft\\Windows\\UpdateOrchestrator\\Reboot
-  - Microsoft\\Windows\\UpdateOrchestrator\\Schedule Scan Static Task
-  - Microsoft\\Windows\\UpdateOrchestrator\\Schedule Scan
-  - Microsoft\\Windows\\UpdateOrchestrator\\USO_UxBroker
+Microsoft\Windows\UpdateOrchestrator\Scheduled Scan:
+  enabled: false
+  command: c:\windows\system32\usoclient.exe
+  compatibility: 5
