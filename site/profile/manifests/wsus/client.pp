@@ -23,9 +23,9 @@ class profile::wsus::client (
       # remove scheduled tasks that cuase unwanted desktop/user notifications
       if $scheduled_tasks_to_remove.length > 0 {
         scheduled_task { '\\Microsoft\\Windows\\UpdateOrchestrator\\Refresh Settings':
-          enabled   => false,
-          command   => '%systemroot%\\system32\\usoclient.exe',
-          arguments => 'RefreshSettings',
+          enabled => false,
+          command => '%systemroot%\\system32\\usoclient.exe',
+          #arguments => 'RefreshSettings',
           #ensure        => absent,
           #compatibility => 4,                                                              <-- this is with APL
           #command       => 'echo This task has been administratively disabled by Puppet.',
