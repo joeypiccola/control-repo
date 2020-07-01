@@ -5,3 +5,4 @@ profile::wsus::client::scheduled_tasks_to_remove:
   - Microsoft\\Windows\\UpdateOrchestrator\\Resume On Boot
   - Microsoft\\Windows\\UpdateOrchestrator\\USO_UxBroker_Display
   - Microsoft\\Windows\\UpdateOrchestrator\\USO_UxBroker_ReadyToReboot
+scheduled_task::compatibility: 4
