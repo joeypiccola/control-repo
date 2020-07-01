@@ -1,7 +1,32 @@
 ---
 
+
 profile::wsus::client::scheduled_tasks_to_remove:
+  Microsoft\Windows\UpdateOrchestrator\USO_UxBroker:
+    enabled: false
+    command: c:\windows\system32\MusNotification.exe
+    compatibility: 5
+  Microsoft\Windows\UpdateOrchestrator\SSchedule Scan Static Task:
+    enabled: false
+    command: c:\windows\system32\usoclient.exe
+    compatibility: 5
   Microsoft\Windows\UpdateOrchestrator\Schedule Scan:
+    enabled: false
+    command: c:\windows\system32\usoclient.exe
+    compatibility: 5
+  Microsoft\Windows\UpdateOrchestrator\Reboot:
+    enabled: false
+    command: c:\windows\system32\MusNotification.exe
+    compatibility: 5
+  Microsoft\Windows\UpdateOrchestrator\MusUx_UpdateInterval:
+    enabled: false
+    command: c:\windows\system32\MusNotification.exe
+    compatibility: 5
+  Microsoft\Windows\UpdateOrchestrator\Maintenance Install:
+    enabled: false
+    command: c:\windows\system32\usoclient.exe
+    compatibility: 5
+  Microsoft\Windows\UpdateOrchestrator\Backup Scan:
     enabled: false
     command: c:\windows\system32\usoclient.exe
     compatibility: 5
