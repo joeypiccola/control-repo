@@ -12,23 +12,23 @@ profile::wsus::client::scheduled_tasks_to_remove:
     enabled: false
     command: c:\\windows\\system32\\usoclient.exe
     compatibility: 4
-  Microsoft\\Windows\\UpdateOrchestrator\\Policy Install:
-    enabled: false
-    command: c:\\windows\\system32\\usoclient.exe
-    compatibility: 4
-  Microsoft\\Windows\\UpdateOrchestrator\\Refresh Settings:
-    enabled: false
-    command: c:\\windows\\system32\\usoclient.exe
-    compatibility: 4
-  Microsoft\\Windows\\UpdateOrchestrator\\Resume On Boot:
-    enabled: false
-    command: c:\\windows\\system32\\usoclient.exe
-    compatibility: 4
-  Microsoft\\Windows\\UpdateOrchestrator\\USO_UxBroker_Display:
-    enabled: false
-    command: c:\\windows\\system32\\MusNotification.exe
-    compatibility: 4
-  Microsoft\\Windows\\UpdateOrchestrator\\USO_UxBroker_ReadyToReboot:
-    enabled: false
-    command: c:\\windows\\system32\\MusNotification.exe
-    compatibility: 4
+#  Microsoft\\Windows\\UpdateOrchestrator\\Policy Install:
+#    enabled: false
+#    command: c:\\windows\\system32\\usoclient.exe
+#    compatibility: 4
+#  Microsoft\\Windows\\UpdateOrchestrator\\Refresh Settings:
+#    enabled: false
+#    command: c:\\windows\\system32\\usoclient.exe
+#    compatibility: 4
+#  Microsoft\\Windows\\UpdateOrchestrator\\Resume On Boot:
+#    enabled: false
+#    command: c:\\windows\\system32\\usoclient.exe
+#    compatibility: 4
+#  Microsoft\\Windows\\UpdateOrchestrator\\USO_UxBroker_Display:
+#    enabled: false
+#    command: c:\\windows\\system32\\MusNotification.exe
+#    compatibility: 4
+#  Microsoft\\Windows\\UpdateOrchestrator\\USO_UxBroker_ReadyToReboot:
+#    enabled: false
+#    command: c:\\windows\\system32\\MusNotification.exe
+#    compatibility: 4

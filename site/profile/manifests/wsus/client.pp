@@ -21,24 +21,24 @@ class profile::wsus::client (
       }
 
       # remove scheduled tasks that cuase unwanted desktop/user notifications
-      # if $scheduled_tasks_to_remove.length > 0 {
-      #   scheduled_task { 'Microsoft\\Windows\\UpdateOrchestrator\\Refresh Settings':
-      #     enabled       => false,
-      #     command       => 'c:\\windows\\system32\\usoclient.exe',
-      #     compatibility => 4,
-      #     #arguments    => 'RefreshSettings',
-      #     #ensure       => absent,
-#
-      #     #command       => 'echo This task has been administratively disabled by Puppet.',
-      #     #provider      => 'taskscheduler_api2',
-      #   }
-      # }
-
-      $scheduled_tasks_to_remove.each | String $scheduled_task_to_remove, Hash $attributes | {
-        scheduled_task { $scheduled_task_to_remove:
-          * => $attributes
+      if $scheduled_tasks_to_remove.length > 0 {
+        # scheduled_task { 'Microsoft\\Windows\\UpdateOrchestrator\\Refresh Settings':
+        #   enabled       => false,
+        #   command       => 'c:\\windows\\system32\\usoclient.exe',
+        #   compatibility => 4,
+        #   #arguments    => 'RefreshSettings',
+        #   #ensure       => absent,
+        #   #command       => 'echo This task has been administratively disabled by Puppet.',
+        #   #provider      => 'taskscheduler_api2',
+        # }
+        $scheduled_tasks_to_remove.each | String $scheduled_task_to_remove, Hash $attributes | {
+          scheduled_task { $scheduled_task_to_remove:
+            * => $attributes
+          }
         }
       }
+
+
 
 
       # If running a kernelmajversion >= 10.0 then use usoclient else use wuauclt
