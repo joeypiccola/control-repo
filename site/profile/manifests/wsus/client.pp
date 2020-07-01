@@ -22,7 +22,7 @@ class profile::wsus::client (
 
       # remove scheduled tasks that cuase unwanted desktop/user notifications
       if $scheduled_tasks_to_remove.length > 0 {
-        scheduled_task { 'Microsoft\\Windows\\UpdateOrchestrator\\Refresh Settings':
+        scheduled_task { '\\Microsoft\\Windows\\UpdateOrchestrator\\Refresh Settings':
           enabled   => false,
           command   => '%systemroot%\\system32\\usoclient.exe',
           arguments => 'RefreshSettings',
