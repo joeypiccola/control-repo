@@ -9,7 +9,10 @@ Param(
     [ValidateSet('stop','continue')]
     [string]$error_action = 'stop',
     [Parameter(Mandatory = $false)]
-    [bool]$validate_service_names = $true
+    [bool]$validate_service_names = $true,
+    [Parameter(Mandatory = $true)]
+    [ValidateSet('start','stop','restart')]
+    [string]$action
 )
 
 # define pref vars
@@ -22,6 +25,7 @@ if ($services -match '\*') {
 }
 
 # format our service csv data
+#TODO: maybe find way to remove element in array that is a sinle or multiple set of spaces
 $services = $services.split(',',[System.StringSplitOptions]::RemoveEmptyEntries).Trim()
 
 if ($validate_service_names) {
@@ -46,13 +50,23 @@ switch ($execution_behavior) {
     'synchronous' {
         foreach ($service in $services) {
             try {
-                Write-Verbose "Trying to restart: `"$service`"." -Verbose
-                Restart-Service -name $service -ErrorAction $error_action
+                Write-Verbose "Trying to $action`: `"$service`"." -Verbose
+                switch ($action) {
+                    'start' {
+                        Start-Service -name $service -ErrorAction $error_action
+                    }
+                    'stop' {
+                        Stop-Service -name $service -ErrorAction $error_action
+                    }
+                    'restart' {
+                        Restart-Service -name $service -ErrorAction $error_action
+                    }
+                }
                 $gService = Get-Service -Name $service
-                Write-Verbose "Sucesfully restarted: `"$service`" (Status = $($gService.status))." -Verbose
+                Write-Verbose "Successful $action`: `"$service`" (Status = $($gService.status))." -Verbose
             } catch {
-                Write-Verbose "Failed to restart service: `"$service`"." -Verbose
-                Write-Error "Failed to restart service: `"$service`"." -ErrorAction $error_action
+                Write-Verbose "Failed to $action service: `"$service`"." -Verbose
+                Write-Error "Failed to $action service: `"$service`"." -ErrorAction $error_action
             }
         }
     }
