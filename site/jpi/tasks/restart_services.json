@@ -1,0 +1,24 @@
+{
+    "puppet_task_version": 1,
+    "supports_noop": false,
+    "description": "Restart Windows Services.",
+    "input_method": "powershell",
+    "parameters": {
+        "services": {
+            "description": "Comma separated list of services to restart.",
+            "type": "String"
+        },
+        "execution_behavior": {
+            "description": "Service restart behavior. Default: synchronous",
+            "type": "Optional[Enum[synchronous, asynchronous]]"
+        },
+        "validate_service_names": {
+            "description": "Validate service names before attempting restarts. Default: true",
+            "type": "Optional[Boolean]"
+        },
+        "error_action": {
+            "description": "When synchronously restarting services stop or continue on error. Default: stop",
+            "type": "Optional[Enum[stop, continue]]"
+        }
+    }
+}
