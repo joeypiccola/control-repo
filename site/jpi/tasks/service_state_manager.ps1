@@ -20,6 +20,7 @@ $ErrorActionPreference = 'Stop'
 $WarningPreference     = 'Continue'
 $VerbosePreference     = 'SilentlyContinue'
 
+#TODO evaluate usecase for leveraging -foce to restart dependant services
 if ($services -match '\*') {
     Write-Error "Asterisk deteced in service names." -ErrorAction Stop
 }
