@@ -1,15 +1,11 @@
 ---
 
-#failovercluster_win::client_network_name: VLAN3_client
-#failovercluster_win::client_network_role: '0'
-#failovercluster_win::cluster_network_name: VLAN5_cluster
-#failovercluster_win::cluster_network_role: '1'
 failovercluster_win::client_network_address_mask: 255.255.255.0
 failovercluster_win::client_network_address: 10.0.3.0
 failovercluster_win::cluster_ip: 10.0.3.227
 failovercluster_win::cluster_name: cluster-a
-failovercluster_win::cluster_network_address_mask: 255.255.255.0
-failovercluster_win::cluster_network_address: 10.0.5.0
-failovercluster_win::network_strategy: separate_cluster_client_network
+#failovercluster_win::cluster_network_address_mask: 255.255.255.0
+#failovercluster_win::cluster_network_address: 10.0.5.0
+failovercluster_win::network_strategy: single_cluster_client_network
 failovercluster_win::primary_node: cluster-a-01
 failovercluster_win::quorum_diskid: 600140535066864D66B8D4725DA3B7D6

@@ -16,7 +16,7 @@ class failovercluster_win (
   Integer $quorum_retry_count = 10,
   Integer $quorum_retry_interval_sec = 30,
   String $client_network_name = 'Client Network',
-  String $client_network_role = '0',
+  String $client_network_role = '3',
   String $cluster_network_name = 'Cluster Network',
   String $cluster_network_role = '1',
   String $description = 'Microsoft Windows Failover Cluster',
@@ -44,6 +44,7 @@ class failovercluster_win (
   if $network_strategy == 'separate_cluster_client_network' {
     assert_type(Array[NotUndef], [$cluster_network_address_mask])
     assert_type(Array[NotUndef], [$cluster_network_address])
+    $client_network_role = '0'
   }
 
   include failovercluster_win::cluster
