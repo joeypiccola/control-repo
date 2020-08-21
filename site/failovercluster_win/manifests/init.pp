@@ -40,11 +40,21 @@ class failovercluster_win (
     assert_type(Array[NotUndef], [$local_admin_identity])
   }
 
-  # if network strategy indicates two separate networks ensure optional cluster network params
-  # are defined and override client_network_role to 0 in support of two separate networks
+  # if network strategy indicates two separate networks ensure optional cluster network params are defined
   if $network_strategy == 'separate_cluster_client_network' {
     assert_type(Array[NotUndef], [$cluster_network_address_mask])
     assert_type(Array[NotUndef], [$cluster_network_address])
+    $_client_network_name = $client_network_name
+    $_client_network_role = $client_network_role
+  } else {
+    # override client network role from 'client only' to 'cluster and client' if not already overridden
+    if $client_network_name == 'Client Network' {
+      $_client_network_name = 'Cluster and Client Network'
+    } else {
+      $_client_network_name = $client_network_name
+    }
+    # set client network role to 3 when single network strategy is specified. it can be no other value.
+    $_client_network_role = '3'
   }
 
   include failovercluster_win::cluster
