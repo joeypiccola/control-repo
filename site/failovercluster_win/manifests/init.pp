@@ -10,13 +10,13 @@ class failovercluster_win (
   String $quorum_diskid,
   Array $service_names = ['Failover-Clustering'],
   Boolean $manage_quorum = true,
-  Enum['separate_cluster_client_network','single_cluster_client_network'] $network_strategy = 'single_cluster_client_network',
+  Enum['separate_cluster_client_network','single_cluster_client_network'] $network_strategy = 'separate_cluster_client_network',
   Integer $ancillary_node_retry_count = 60,
   Integer $ancillary_node_retry_interval_sec = 60,
   Integer $quorum_retry_count = 10,
   Integer $quorum_retry_interval_sec = 30,
   String $client_network_name = 'Client Network',
-  String $client_network_role = '3',
+  String $client_network_role = '0',
   String $cluster_network_name = 'Cluster Network',
   String $cluster_network_role = '1',
   String $description = 'Microsoft Windows Failover Cluster',
@@ -40,11 +40,11 @@ class failovercluster_win (
     assert_type(Array[NotUndef], [$local_admin_identity])
   }
 
-  # if network strategy indicates two seperate networks ensure optional cluster network params are defined
+  # if network strategy indicates two separate networks ensure optional cluster network params
+  # are defined and override client_network_role to 0 in support of two separate networks
   if $network_strategy == 'separate_cluster_client_network' {
     assert_type(Array[NotUndef], [$cluster_network_address_mask])
     assert_type(Array[NotUndef], [$cluster_network_address])
-    $client_network_role = '0'
   }
 
   include failovercluster_win::cluster
