@@ -10,4 +10,5 @@ failovercluster_win::primary_node: cluster-a-01
 failovercluster_win::quorum_diskid: 600140535066864D66B8D4725DA3B7D6
 
 failovercluster_win::network_strategy: single_cluster_client_network
-failovercluster_win::client_network_role: '3'
+
+failovercluster_win::client_network_name: 'vlan3 cluster and client network'
