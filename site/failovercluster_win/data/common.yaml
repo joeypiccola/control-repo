@@ -4,15 +4,15 @@ failovercluster_win::ancillary_node_retry_count: 60
 failovercluster_win::ancillary_node_retry_interval_sec: 60
 failovercluster_win::client_network_name: Client Network
 failovercluster_win::client_network_role: '0'
-#failovercluster_win::cluster_network_address_mask: undef
-#failovercluster_win::cluster_network_address: undef
+failovercluster_win::cluster_network_address_mask: ~
+failovercluster_win::cluster_network_address: ~
 failovercluster_win::cluster_network_name: Cluster Network
 failovercluster_win::cluster_network_role: '1'
 failovercluster_win::description: Microsoft Windows Failover Cluster
-#failovercluster_win::local_admin_identity: undef
+failovercluster_win::local_admin_identity: ~
 failovercluster_win::log_level: '3'
 failovercluster_win::log_size: '1024'
-#failovercluster_win::manage_local_admin: undef
+failovercluster_win::manage_local_admin: ~
 failovercluster_win::manage_quorum: true
 failovercluster_win::network_strategy: separate_cluster_client_network
 failovercluster_win::quorum_allocation_unit_size: '4096'
