@@ -19,7 +19,7 @@ failovercluster_win::quorum_allocation_unit_size: '4096'
 failovercluster_win::quorum_disk_id_type: UniqueId
 failovercluster_win::quorum_drive_letter: W
 failovercluster_win::quorum_fs_label: Witness
-failovercluster_win::quorum_is_single_instance: Yes
+failovercluster_win::quorum_is_single_instance: 'Yes'
 failovercluster_win::quorum_partition_style: GPT
 failovercluster_win::quorum_retry_count: 10
 failovercluster_win::quorum_retry_interval_sec: 30
