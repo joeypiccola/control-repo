@@ -24,17 +24,17 @@ class profile::domaincontroller (
       message => 'I am 01.',
     }
     dsc_xaddomain {'create':
-      dsc_credential                => {
+      dsc_domainadministratorcredential => {
         'user'     => $ad_user,
         'password' => Sensitive($ad_password),
       },
-      safemodeadministratorpassword => {
+      safemodeadministratorpassword     => {
         'user'     => 'dummy',
         'password' => Sensitive($safemodeadministratorpassword),
       },
-      dsc_domainname                => $dsc_domain_name,
-      dsc_forestmode                => 'WinThreshold',
-      require                       => Windowsfeature[$features],
+      dsc_domainname                    => $dsc_domain_name,
+      dsc_forestmode                    => 'WinThreshold',
+      require                           => Windowsfeature[$features],
     }
   } else {
     notify { 'not_01':
