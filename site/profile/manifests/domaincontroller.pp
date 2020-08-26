@@ -23,7 +23,7 @@ class profile::domaincontroller (
     notify { '01':
       message => 'I am 01.',
     }
-    dsc_addomain {'create':
+    dsc_xaddomain {'create':
       dsc_credential                => {
         'user'     => $ad_user,
         'password' => Sensitive($ad_password),
