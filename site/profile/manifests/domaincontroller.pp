@@ -34,7 +34,7 @@ class profile::domaincontroller (
       },
       dsc_domainname                => $dsc_domain_name,
       dsc_forestmode                => 'WinThreshold',
-      require                       => windowsfeature[$features],
+      require                       => Windowsfeature[$features],
     }
   } else {
     notify { 'not_01':
