@@ -60,3 +60,6 @@ puppet_enterprise::profile::certificate_authority::client_whitelist:
   - joey.piccola.us
 puppet_enterprise::profile::puppetdb:report_ttl: 4
 puppet_enterprise::profile::puppetdb:node_purge_ttl: 8
+
+
+kms_win::key_management_service_name: kms.ad.piccola.us
