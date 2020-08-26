@@ -61,5 +61,6 @@ puppet_enterprise::profile::certificate_authority::client_whitelist:
 puppet_enterprise::profile::puppetdb:report_ttl: 4
 puppet_enterprise::profile::puppetdb:node_purge_ttl: 8
 
-
+# defaults that may not be found in other hiera data
 kms_win::key_management_service_name: kms.ad.piccola.us
+timezone_win::timezone: 'Mountain Standard Time'
