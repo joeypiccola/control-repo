@@ -1,0 +1,5 @@
+---
+
+profile::domaincontroller::ad_user: Administrator
+profile::domaincontroller::ad_password: '>H!Hok~T2M,3'
+profile::domaincontroller::safemodeadministratorpassword: '-N@St.kQJgW#'
