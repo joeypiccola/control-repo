@@ -1,9 +1,9 @@
 # == Class: profile::domaincontroller
 class profile::domaincontroller (
-  String $domain_name                   = 'contoso.com',
-  String $ad_user                       = 'Administrator',
-  String $ad_password                   = '>H!Hok~T2M,3',
-  String $safemodeadministratorpassword = '-N@St.kQJgW#',
+  String $ad_user,
+  String $ad_password,
+  String $safemodeadministratorpassword,
+  String $domain_name = 'contoso.com',
 ) {
 
   # if deployed with a custom domain_name fact then use it
@@ -43,10 +43,10 @@ class profile::domaincontroller (
   }
 
 
-  reboot { 'dsc_reboot' :
-    message => 'DSC has requested a reboot',
-    when    => 'pending',
-    onlyif  => 'pending_dsc_reboot',
-  }
+#  reboot { 'dsc_reboot' :
+#    message => 'DSC has requested a reboot',
+#    when    => 'pending',
+#    onlyif  => 'pending_dsc_reboot',
+#  }
 
 }
