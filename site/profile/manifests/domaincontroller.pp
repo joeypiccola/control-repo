@@ -38,7 +38,7 @@ class profile::domaincontroller (
     # stuff for all other DCs
     dsc_xaddomaincontroller {'add':
       dsc_domainadministratorcredential => {
-        'user'     => $ad_user,
+        'user'     => "${dsc_domain_name}\\${ad_user}",
         'password' => Sensitive($ad_password),
       },
       dsc_safemodeadministratorpassword => {
@@ -55,7 +55,7 @@ class profile::domaincontroller (
     dsc_xwaitforaddomain {'wait':
       dsc_domainname           => $dsc_domain_name,
       dsc_domainusercredential => {
-        'user'     => $ad_user,
+        'user'     => "${dsc_domain_name}\\${ad_user}",
         'password' => Sensitive($ad_password),
       },
     }
