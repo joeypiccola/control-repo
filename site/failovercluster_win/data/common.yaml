@@ -4,6 +4,7 @@ failovercluster_win::ancillary_node_retry_count: 60
 failovercluster_win::ancillary_node_retry_interval_sec: 60
 failovercluster_win::client_network_name: Client Network
 failovercluster_win::client_network_role: '0'
+failovercluster_win::cluster_ip: ~
 failovercluster_win::cluster_network_address_mask: ~
 failovercluster_win::cluster_network_address: ~
 failovercluster_win::cluster_network_name: Cluster Network

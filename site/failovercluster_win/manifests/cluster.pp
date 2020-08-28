@@ -8,7 +8,7 @@ class failovercluster_win::cluster {
         'password' => Sensitive($failovercluster_win::ad_password)
       },
       dsc_name                          => $failovercluster_win::cluster_name,
-      dsc_staticipaddress               => $failovercluster_win::dsc_staticipaddress,
+      dsc_staticipaddress               => $failovercluster_win::cluster_ip,
       require                           => Group['Administrators'],
     }
   } else {
