@@ -27,7 +27,7 @@ class profile::domaincontroller (
         'password' => Sensitive($ad_password),
       },
       dsc_safemodeadministratorpassword => {
-        'user'     => 'dummy',
+        'user'     => 'notused',
         'password' => Sensitive($safemodeadministratorpassword),
       },
       dsc_domainname                    => $dsc_domain_name,
@@ -42,7 +42,7 @@ class profile::domaincontroller (
         'password' => Sensitive($ad_password),
       },
       dsc_safemodeadministratorpassword => {
-        'user'     => 'dummy',
+        'user'     => 'notused',
         'password' => Sensitive($safemodeadministratorpassword),
       },
       dsc_domainname                    => $dsc_domain_name,
