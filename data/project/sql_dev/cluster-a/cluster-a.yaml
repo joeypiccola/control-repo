@@ -12,4 +12,4 @@ failovercluster_win::quorum_diskid: 600140535066864D66B8D4725DA3B7D6
 failovercluster_win::client_network_name: Client Network VLAN3
 failovercluster_win::cluster_network_name: Cluster Network VLAN5
 failovercluster_win::description: Development Cluster A
-failovercluster_win::client_network_role: '3'
+#failovercluster_win::client_network_role: '3'
