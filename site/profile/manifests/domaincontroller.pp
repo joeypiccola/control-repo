@@ -14,15 +14,13 @@ class profile::domaincontroller (
   }
 
   # install features
-  $features = ['AD-Domain-Services','RSAT-AD-PowerShell']
+  $features = ['AD-Domain-Services','RSAT-AD-PowerShell', 'RSAT-ADDS']
   windowsfeature { $features:
     ensure => 'present',
   }
 
   if $facts['hostname'] =~ /01/ {
-    notify { '01':
-      message => 'I am 01.',
-    }
+    # stuff for first DC
     dsc_xaddomain {'create':
       dsc_domainadministratorcredential => {
         'user'     => $ad_user,
@@ -37,16 +35,13 @@ class profile::domaincontroller (
       require                           => Windowsfeature[$features],
     }
   } else {
-    notify { 'not_01':
-      message => 'I am not 01.',
-    }
+    # stuff for all other DCs
   }
 
-
-#  reboot { 'dsc_reboot' :
-#    message => 'DSC has requested a reboot',
-#    when    => 'pending',
-#    onlyif  => 'pending_dsc_reboot',
-#  }
+  reboot { 'dsc_reboot' :
+    message => 'DSC has requested a reboot',
+    when    => 'pending',
+    onlyif  => 'pending_dsc_reboot',
+  }
 
 }
