@@ -36,6 +36,29 @@ class profile::domaincontroller (
     }
   } else {
     # stuff for all other DCs
+    dsc_xaddomaincontroller {'add':
+      dsc_domainadministratorcredential => {
+        'user'     => $ad_user,
+        'password' => Sensitive($ad_password),
+      },
+      dsc_safemodeadministratorpassword => {
+        'user'     => 'dummy',
+        'password' => Sensitive($safemodeadministratorpassword),
+      },
+      dsc_domainname                    => $dsc_domain_name,
+      require                           => [
+        Dsc_xwaitforaddomain['wait'],
+        Windowsfeature[$features],
+      ]
+    }
+
+    dsc_xwaitforaddomain {'wait':
+      dsc_domainname           => $dsc_domain_name,
+      dsc_domainusercredential => {
+        'user'     => $ad_user,
+        'password' => Sensitive($ad_password),
+      },
+    }
   }
 
   reboot { 'dsc_reboot' :
