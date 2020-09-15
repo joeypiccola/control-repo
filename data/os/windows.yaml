@@ -2,7 +2,7 @@
 profile::base::bginfo::bginfo_install: true
 profile::base::chocolatey::packages:
   notepadplusplus:
-    ensure: '7.5.9'
+    ensure: '7.8.9'
     provider: 'chocolatey'
 profile::base::smbv1::manage: true
 profile::wsus::client::manage: true
