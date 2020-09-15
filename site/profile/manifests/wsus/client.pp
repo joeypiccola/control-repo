@@ -1,7 +1,7 @@
 # == Class: profile::wsus::client
 class profile::wsus::client (
-    Optional[Boolean] $manage = false,
-    Optional[Hash] $scheduled_tasks_to_remove = false,
+    Boolean $manage                    = false,
+    Hash    $scheduled_tasks_to_remove = {},
 ) {
 
   if $manage {
@@ -22,8 +22,8 @@ class profile::wsus::client (
 
       # remove scheduled tasks that cuase unwanted desktop/user notifications
       if $scheduled_tasks_to_remove.length > 0 {
-        $scheduled_tasks_to_remove.each | String $scheduled_task_to_remove, Hash $attributes | {
-          scheduled_task { $scheduled_task_to_remove:
+        $scheduled_tasks_to_remove.each | String $task, Hash $attributes | {
+          scheduled_task { $task:
             * => $attributes
           }
         }
@@ -35,7 +35,6 @@ class profile::wsus::client (
       } else {
         $cmd = 'wuauclt /detectnow'
       }
-
 
       exec { 'wu_detect':
         provider    => 'powershell',
@@ -50,4 +49,3 @@ class profile::wsus::client (
   }
 
 }
-
