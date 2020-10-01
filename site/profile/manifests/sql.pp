@@ -4,7 +4,7 @@ class profile::sql {
   $instance_name = 'MSSQLSERVER'
   $source_iso_url = 'http://nuget.ad.piccola.us:8081/SQLServer2019-x64-ENU-Dev.iso'
   $source_iso_download_dir = 'F:/install_media'
-  $source_iso_mount_drive_letter = 'G'
+  $source_iso_mount_drive_letter = 'G:/'
   $soruce_iso_file = basename($source_iso_url) # SQLServer2019-x64-ENU-Dev.iso
   $source_iso_file_path = "${source_iso_download_dir}/${soruce_iso_file}" # d:/install_media/SQLServer2019-x64-ENU-Dev.iso
 
