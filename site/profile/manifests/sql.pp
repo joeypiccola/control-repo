@@ -14,10 +14,10 @@ class profile::sql {
   #}
 
   file { 'download_source_iso':
-    ensure  => 'present',
-    source  => $source_iso_url,
-    path    => $source_iso_download_dir,
-    require => File['create_source_iso_download_dir'],
+    ensure => 'present',
+    source => $source_iso_url,
+    path   => $source_iso_download_dir,
+    #require => File['create_source_iso_download_dir'],
   }
 
   mount_iso { 'mount_source_iso':
