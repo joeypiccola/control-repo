@@ -33,29 +33,29 @@ class profile::sql {
     require      => File['download_source_iso'],
   }
 
-  file { 'copy_source_iso_contents':
-    ensure  => 'directory',
-    source  => "${source_iso_mount_drive_letter}:\\",
-    path    => $source_iso_extracted_dir,
-    recurse => true,
-  }
+  #ile { 'copy_source_iso_contents':
+  #  ensure  => 'directory',
+  #  source  => "${source_iso_mount_drive_letter}:/",
+  #  path    => $source_iso_extracted_dir,
+  #  recurse => true,
+  #}
 
-  # sqlserver_instance { 'install_instance':
-  #   name                  => $instance_name,
-  #   source                => "${source_iso_mount_drive_letter}:/",
-  #   features              => ['SQL'],
-  #   sql_sysadmin_accounts => [$facts['id']],
-  #   install_switches      => {
-  #     'TCPENABLED'          => 1,
-  #     'SQLBACKUPDIR'        => "F:\\instances\\${instance_name}\\Backup",
-  #     'SQLTEMPDBDIR'        => "F:\\instances\\${instance_name}\\TempDb",
-  #     'INSTALLSQLDATADIR'   => "F:\\instances\\${instance_name}",
-  #     'INSTANCEDIR'         => 'F:\\Program Files\\Microsoft SQL Server',
-  #     'INSTALLSHAREDDIR'    => 'F:\\Program Files\\Microsoft SQL Server',
-  #     'INSTALLSHAREDWOWDIR' => 'C:\\Program Files (x86)\\Microsoft SQL Server',
-  #   },
-  #   require               => Mount_iso[mount_source_iso],
-  # }
+  sqlserver_instance { 'install_instance':
+    name                  => $instance_name,
+    source                => "${source_iso_mount_drive_letter}:/",
+    features              => ['SQL'],
+    sql_sysadmin_accounts => [$facts['id']],
+    install_switches      => {
+      'TCPENABLED'          => 1,
+      'SQLBACKUPDIR'        => "F:\\instances\\${instance_name}\\Backup",
+      'SQLTEMPDBDIR'        => "F:\\instances\\${instance_name}\\TempDb",
+      'INSTALLSQLDATADIR'   => "F:\\instances\\${instance_name}",
+      'INSTANCEDIR'         => 'F:\\Program Files\\Microsoft SQL Server',
+      'INSTALLSHAREDDIR'    => 'F:\\Program Files\\Microsoft SQL Server',
+      'INSTALLSHAREDWOWDIR' => 'C:\\Program Files (x86)\\Microsoft SQL Server',
+    },
+    require               => Mount_iso[mount_source_iso],
+  }
 
 
 }
