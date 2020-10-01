@@ -4,10 +4,11 @@ class profile::sql {
   $instance_name                 = 'SHRD01'
   $source_iso_url                = 'http://nuget.ad.piccola.us:8081/SQLServer2019-x64-ENU-Dev.iso'
   $source_iso_download_dir       = 'F:/install_media'
-  $source_iso_extracted_dir      = 'F:/install_media/extracted'
   $source_iso_mount_drive_letter = 'G'
-  $soruce_iso_file_name          = basename($source_iso_url) # SQLServer2019-x64-ENU-Dev.iso
-  $source_iso_file_path          = "${source_iso_download_dir}/${soruce_iso_file_name}" # d:/install_media/SQLServer2019-x64-ENU-Dev.iso
+  $source_iso_file_name          = basename($source_iso_url) # SQLServer2019-x64-ENU-Dev.iso
+  $source_iso_file_name_no_ext   = basename($source_iso_url, '.iso') # SQLServer2019-x64-ENU-Dev
+  $source_iso_extracted_dir      = "F:/install_media/${$source_iso_file_name_no_ext}_extracted" # F:/install_media/SQLServer2019-x64-ENU-Dev_extracted
+  $source_iso_file_path          = "${source_iso_download_dir}/${source_iso_file_name}" # F:/install_media/SQLServer2019-x64-ENU-Dev.iso
 
   file { 'create_source_iso_download_dir':
     ensure => 'directory',
@@ -32,10 +33,11 @@ class profile::sql {
     require      => File['download_source_iso'],
   }
 
-  file { 'copy_source_iso_contents':
-    source => "${source_iso_mount_drive_letter}:/",
-    path   => $source_iso_extracted_dir,
-  }
+  #file { 'copy_source_iso_contents':
+  #  source  => "${source_iso_mount_drive_letter}:/",
+  #  path    => $source_iso_extracted_dir,
+  #  recurse => true,
+  #}
 
   # sqlserver_instance { 'install_instance':
   #   name                  => $instance_name,
