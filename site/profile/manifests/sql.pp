@@ -15,10 +15,10 @@ class profile::sql {
     path   => $source_iso_download_dir,
   }
 
-  file { 'create_source_iso_extracted_dir':
-    ensure => 'directory',
-    path   => $source_iso_extracted_dir,
-  }
+  #file { 'create_source_iso_extracted_dir':
+  #  ensure => 'directory',
+  #  path   => $source_iso_extracted_dir,
+  #}
 
   file { 'download_source_iso':
     ensure  => 'present',
@@ -33,11 +33,11 @@ class profile::sql {
     require      => File['download_source_iso'],
   }
 
-  #file { 'copy_source_iso_contents':
-  #  source  => "${source_iso_mount_drive_letter}:/",
-  #  path    => $source_iso_extracted_dir,
-  #  recurse => true,
-  #}
+  file { 'copy_source_iso_contents':
+    source  => "${source_iso_mount_drive_letter}:/",
+    path    => $source_iso_extracted_dir,
+    recurse => true,
+  }
 
   # sqlserver_instance { 'install_instance':
   #   name                  => $instance_name,
