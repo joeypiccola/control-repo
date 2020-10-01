@@ -8,10 +8,10 @@ class profile::sql {
   $soruce_iso_file = basename($source_iso_url) #SQLServer2019-x64-ENU-Dev.iso
   $source_iso_file_path = "${source_iso_download_dir}/${soruce_iso_file}" # d:/install_media/SQLServer2019-x64-ENU-Dev.iso
 
-  file { 'create_source_iso_download_dir':
-    ensure => 'directory',
-    path   => $source_iso_download_dir,
-  }
+  #file { 'create_source_iso_download_dir':
+  #  ensure => 'directory',
+  #  path   => $source_iso_download_dir,
+  #}
 
   file { 'download_source_iso':
     ensure  => 'present',
