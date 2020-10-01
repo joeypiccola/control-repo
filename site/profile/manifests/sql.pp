@@ -34,6 +34,7 @@ class profile::sql {
   }
 
   file { 'copy_source_iso_contents':
+    ensure  => 'directory',
     source  => "${source_iso_mount_drive_letter}:/",
     path    => $source_iso_extracted_dir,
     recurse => true,
