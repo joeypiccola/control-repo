@@ -33,12 +33,12 @@ class profile::sql {
     sql_sysadmin_accounts => [$facts['id']],
     install_switches      => {
       'TCPENABLED'          => 1,
-      'SQLBACKUPDIR'        => 'f:/MSSQLSERVER/backupdir',
-      'SQLTEMPDBDIR'        => 'f:/MSSQLSERVER/tempdbdir',
-      'INSTALLSQLDATADIR'   => 'f:/MSSQLSERVER/datadir',
-      'INSTANCEDIR'         => 'f:/Program Files/Microsoft SQL Server',
-      'INSTALLSHAREDDIR'    => 'f:/Program Files/Microsoft SQL Server',
-      'INSTALLSHAREDWOWDIR' => 'f:/Program Files (x86)/Microsoft SQL Server'
+      'SQLBACKUPDIR'        => 'f:\\MSSQLSERVER\\backupdir',
+      'SQLTEMPDBDIR'        => 'f:\\MSSQLSERVER\\tempdbdir',
+      'INSTALLSQLDATADIR'   => 'f:\\MSSQLSERVER\\datadir',
+      'INSTANCEDIR'         => 'f:\\Program Files\\Microsoft SQL Server',
+      'INSTALLSHAREDDIR'    => 'f:\\Program Files\\Microsoft SQL Server',
+      'INSTALLSHAREDWOWDIR' => 'f:\\Program Files (x86)\\Microsoft SQL Server',
     },
     require               => Mount_iso[mount_source_iso],
   }
