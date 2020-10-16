@@ -411,13 +411,13 @@ $duraton = $stop - $start
 
 $details = $null
 $details = [PSCustomObject]@{
-    files_count             = $files.count
-    files_found             = $files
+    search_type             = $search_type
+    search_duration_seconds = $duraton.seconds
     paths                   = $paths
     patterns                = $patternsArray
-    search_duration_seconds = $duraton.seconds
     search_strings          = $searchStrings
-    search_type             = $search_type
+    files_count             = $files.count
+    files_found             = $files
 }
 
 
