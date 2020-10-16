@@ -1,0 +1,19 @@
+{
+    "puppet_task_version": 1,
+    "description": "A task to find files.",
+    "input_method": "powershell",
+    "parameters": {
+        "search_type": {
+            "description": "The search type.",
+            "type": "Enum[all_local_fixed_disks, user_specified_path]"
+        },
+        "patterns": {
+            "description": "The pattern.",
+            "type": "String"
+        },
+        "path": {
+            "description": "The path.",
+            "type": "Optional[String]"
+        }
+    }
+}
