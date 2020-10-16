@@ -10,9 +10,9 @@ Param(
 )
 
 # define pref vars
-$VerbosePreference = 'Continue'
+$VerbosePreference     = 'SilentlyContinue'
 $ErrorActionPreference = 'Stop'
-$WarningPreference = 'Continue'
+$WarningPreference     = 'Continue'
 
 
 #region JSON Converter PSV2
