@@ -417,7 +417,7 @@ $details = [PSCustomObject]@{
     patterns                = $patternsArray
     search_strings          = $searchStrings
     files_count             = $files.count
-    files_found             = $files
+    files_found             = @($files)
 }
 
 
