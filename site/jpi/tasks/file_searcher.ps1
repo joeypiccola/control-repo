@@ -408,7 +408,7 @@ $start = get-date
 try {
     $files = cmd /r dir $searchStrings /A:-D /s /b >2 $null
 } catch {
-    # this does nothing for now
+    Write-Information 'no files'
 }
 $stop = Get-Date
 $duraton = $stop - $start
@@ -421,7 +421,7 @@ $details = [PSCustomObject]@{
     patterns                = $patternsArray
     search_strings          = $searchStrings
     files_count             = $files.count
-    files_found             = if (files.count -eq 1) {@($files)} else {@()}
+    files_found             = if ($files.count -eq 1) {@($files)} else {@()}
 }
 
 
