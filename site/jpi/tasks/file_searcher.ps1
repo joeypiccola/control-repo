@@ -10,8 +10,8 @@ Param(
 )
 
 # define pref vars
-$VerbosePreference     = 'SilentlyContinue'
 $ErrorActionPreference = 'Stop'
+$VerbosePreference     = 'SilentlyContinue'
 $WarningPreference     = 'Continue'
 
 
@@ -421,4 +421,4 @@ $details = [PSCustomObject]@{
 }
 
 
-$details | ConvertTo-STJson
+$details | ConvertTo-STJson | Out-String -Width 4096
