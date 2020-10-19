@@ -422,13 +422,15 @@ foreach ($pattern in $patternsArray) {
     }
 }
 
-$start = get-date
-$dirCmd = Execute-Command -commandTitle 'file_searcher_PuppetTask' -commandPath 'cmd' -commandArguments "/c dir $searchStrings /A:-D /S /B"
-$stop = Get-Date
+# run cmd with counters
+$start   = get-date
+$dirCmd  = Execute-Command -commandTitle 'file_searcher_PuppetTask' -commandPath 'cmd' -commandArguments "/c dir $searchStrings /A:-D /S /B"
+$stop    = Get-Date
 $duraton = $stop - $start
 
-# execute command i think returns a here string. so below we split on new lines and remove trailing empty item
-$files = $dirCmd.stdout -split "\r\n" | Where-Object { $_ }
+# execute command i think returns here strings for out and err. so below we split on new lines and remove trailing empty item
+$files  = $dirCmd.stdout -split "\r\n" | Where-Object { $_ }
+$stderr = $dirCmd.stderr -split "\r\n" | Where-Object { $_ }
 
 $details = $null
 $details = [PSCustomObject]@{
@@ -440,7 +442,7 @@ $details = [PSCustomObject]@{
     files_count             = $files.count
     files_found             = @($files)
     exit_code               = $dirCmd.ExitCode
-    stderr                  = $dirCmd.stderr
+    stderr                  = @($stderr)
 }
 
 Write-Output $details | ConvertTo-STJson
