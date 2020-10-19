@@ -423,10 +423,12 @@ foreach ($pattern in $patternsArray) {
 }
 
 $start = get-date
-#$files = cmd /r dir $searchStrings /A:-D /s /b >2 $null
 $dirCmd = Execute-Command -commandTitle 'file_searcher_PuppetTask' -commandPath 'cmd' -commandArguments "/c dir $searchStrings /A:-D /S /B"
 $stop = Get-Date
 $duraton = $stop - $start
+
+# execute command i think returns a here string. so below we split on new lines and remove trailing empty item
+$files = $dirCmd.stdout -split "\r\n" | Where-Object { $_ }
 
 $details = $null
 $details = [PSCustomObject]@{
@@ -435,9 +437,9 @@ $details = [PSCustomObject]@{
     paths                   = $paths
     patterns                = $patternsArray
     search_strings          = $searchStrings
-    files_count             = $dirCmd.stdout.count
-    files_found             = @($dirCmd.stdout)
+    files_count             = $files.count
+    files_found             = @($files)
     exit_code               = $dirCmd.ExitCode
 }
 
-Write-Output ($details | ConvertTo-STJson -Compress:$true )
+Write-Output $details | ConvertTo-STJson
