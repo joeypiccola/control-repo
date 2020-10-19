@@ -392,6 +392,36 @@ Function Execute-Command ($commandTitle, $commandPath, $commandArguments)
     }
 }
 
+
+Function Execute-Command ($commandTitle, $commandPath, $commandArguments)
+{
+  Try {
+    $pinfo = New-Object System.Diagnostics.ProcessStartInfo
+    $pinfo.FileName = $commandPath
+    $pinfo.RedirectStandardError = $true
+    $pinfo.RedirectStandardOutput = $true
+    $pinfo.UseShellExecute = $false
+    $pinfo.Arguments = $commandArguments
+    $p = New-Object System.Diagnostics.Process
+    $p.StartInfo = $pinfo
+    $p.Start() | Out-Null
+    $stdout = $p.StandardOutput.ReadToEnd()
+    $stderr = $p.StandardError.ReadToEnd()
+    $p.WaitForExit()
+    [pscustomobject]@{
+        commandTitle = $commandTitle
+        stdout = $stdout
+        stderr = $stderr
+        ExitCode = $p.ExitCode
+    }
+
+  }
+  Catch {
+     exit
+  }
+}
+
+
 #endregion helper functions
 
 # define paths to search
@@ -416,6 +446,7 @@ foreach ($pathItem in $paths) {
     }
 }
 
+# join our search strings (e.g. C:\*.jpg E:\*.jpg)
 foreach ($pattern in $patternsArray) {
     foreach ($pathItem in $paths) {
         $searchStrings += Join-Path $pathItem $pattern
