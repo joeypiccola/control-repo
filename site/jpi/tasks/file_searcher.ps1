@@ -15,7 +15,7 @@ $VerbosePreference     = 'SilentlyContinue'
 $WarningPreference     = 'Continue'
 
 
-#region JSON Converter PSV2
+#region helper functions
 
 # Author: Joakim Borger Svendsen, 2017.
 # JSON info: http://www.json.org
@@ -372,7 +372,27 @@ function ConvertTo-STJson {
 
 }
 
-#endregion JSON Converter PSV2
+Function Execute-Command ($commandTitle, $commandPath, $commandArguments)
+{
+    $pinfo = New-Object System.Diagnostics.ProcessStartInfo
+    $pinfo.FileName = $commandPath
+    $pinfo.RedirectStandardError = $true
+    $pinfo.RedirectStandardOutput = $true
+    $pinfo.UseShellExecute = $false
+    $pinfo.Arguments = $commandArguments
+    $p = New-Object System.Diagnostics.Process
+    $p.StartInfo = $pinfo
+    $p.Start() | Out-Null
+    $p.WaitForExit()
+    [pscustomobject]@{
+        commandTitle = $commandTitle
+        stdout = $p.StandardOutput.ReadToEnd()
+        stderr = $p.StandardError.ReadToEnd()
+        ExitCode = $p.ExitCode
+    }
+}
+
+#endregion helper functions
 
 # define paths to search
 switch ($search_type)
@@ -396,20 +416,15 @@ foreach ($pathItem in $paths) {
     }
 }
 
-
 foreach ($pattern in $patternsArray) {
     foreach ($pathItem in $paths) {
         $searchStrings += Join-Path $pathItem $pattern
     }
 }
 
-
 $start = get-date
-try {
-    $files = cmd /r dir $searchStrings /A:-D /s /b >2 $null
-} catch {
-    Write-Information 'no files'
-}
+#$files = cmd /r dir $searchStrings /A:-D /s /b >2 $null
+$dirCmd = Execute-Command -commandTitle 'file_searcher_PuppetTask' -commandPath 'cmd' -commandArguments "/c dir $searchStrings /A:-D /S /B"
 $stop = Get-Date
 $duraton = $stop - $start
 
@@ -420,9 +435,9 @@ $details = [PSCustomObject]@{
     paths                   = $paths
     patterns                = $patternsArray
     search_strings          = $searchStrings
-    files_count             = $files.count
-    files_found             = if ($files.count -eq 1) {@($files)} else {@()}
+    files_count             = $dirCmd.stdout.count
+    files_found             = @($dirCmd.stdout)
+    exit_code               = $dirCmd.ExitCode
 }
-
 
 Write-Output ($details | ConvertTo-STJson -Compress:$true )
