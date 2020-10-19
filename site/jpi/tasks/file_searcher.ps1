@@ -421,4 +421,4 @@ $details = [PSCustomObject]@{
 }
 
 
-$details | ConvertTo-STJson | Out-String -Width 4096
+return ($details | ConvertTo-STJson)
