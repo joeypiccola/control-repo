@@ -421,4 +421,4 @@ $details = [PSCustomObject]@{
 }
 
 
-return ($details | ConvertTo-STJson)
+Write-Output ($details | ConvertTo-STJson)
