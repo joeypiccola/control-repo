@@ -374,27 +374,6 @@ function ConvertTo-STJson {
 
 Function Execute-Command ($commandTitle, $commandPath, $commandArguments)
 {
-    $pinfo = New-Object System.Diagnostics.ProcessStartInfo
-    $pinfo.FileName = $commandPath
-    $pinfo.RedirectStandardError = $true
-    $pinfo.RedirectStandardOutput = $true
-    $pinfo.UseShellExecute = $false
-    $pinfo.Arguments = $commandArguments
-    $p = New-Object System.Diagnostics.Process
-    $p.StartInfo = $pinfo
-    $p.Start() | Out-Null
-    $p.WaitForExit()
-    [pscustomobject]@{
-        commandTitle = $commandTitle
-        stdout = $p.StandardOutput.ReadToEnd()
-        stderr = $p.StandardError.ReadToEnd()
-        ExitCode = $p.ExitCode
-    }
-}
-
-
-Function Execute-Command ($commandTitle, $commandPath, $commandArguments)
-{
   Try {
     $pinfo = New-Object System.Diagnostics.ProcessStartInfo
     $pinfo.FileName = $commandPath
@@ -420,7 +399,6 @@ Function Execute-Command ($commandTitle, $commandPath, $commandArguments)
      exit
   }
 }
-
 
 #endregion helper functions
 
