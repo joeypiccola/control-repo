@@ -405,7 +405,11 @@ foreach ($pattern in $patternsArray) {
 
 
 $start = get-date
-$files = cmd /r dir $searchStrings /A:-D /s /b
+try {
+    $files = cmd /r dir $searchStrings /A:-D /s /b >2 $null
+} catch {
+    # this does nothing for now
+}
 $stop = Get-Date
 $duraton = $stop - $start
 
@@ -417,7 +421,7 @@ $details = [PSCustomObject]@{
     patterns                = $patternsArray
     search_strings          = $searchStrings
     files_count             = $files.count
-    files_found             = @($files)
+    files_found             = if (files.count -eq 1) {@($files)} else {@()}
 }
 
 
