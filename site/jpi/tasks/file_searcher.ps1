@@ -421,4 +421,4 @@ $details = [PSCustomObject]@{
 }
 
 
-Write-Output ($details | ConvertTo-STJson | Out-String -Width 1000000)
+Write-Output ($details | ConvertTo-STJson -Compress:$true )
