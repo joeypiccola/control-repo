@@ -440,6 +440,7 @@ $details = [PSCustomObject]@{
     files_count             = $files.count
     files_found             = @($files)
     exit_code               = $dirCmd.ExitCode
+    stderr                  = $dirCmd.stderr
 }
 
 Write-Output $details | ConvertTo-STJson
