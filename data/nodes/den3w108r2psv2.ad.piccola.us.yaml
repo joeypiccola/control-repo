@@ -1,2 +1,4 @@
 ---
-profile::test::dir_name: this_is_my_dir
+profile::test::dir_name:
+  - this_is_my_dir_0
+  - this_is_my_dir_1
