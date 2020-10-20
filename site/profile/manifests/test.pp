@@ -9,9 +9,8 @@ class profile::test (
   #}
 
   $dir_names.each |String $dir_name| {
-    file {"create ${dir_name}":
+    file {"c:/${dir_name}":
       ensure => 'directory',
-      target => "c:/${dir_name}",
     }
   }
 
