@@ -6,6 +6,10 @@
         "update_report": {
             "description": "Valid reports are, installed, missing or both.",
             "type": "Enum[installed, missing, both]"
+        },
+        "offset_task_execution": {
+            "description": "Offset this task's execution client side between 1 and 180 seconds?",
+            "type": "Optional[Boolean]"
         }
     }
 }

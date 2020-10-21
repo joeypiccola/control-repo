@@ -3,8 +3,14 @@
 Param (
     [Parameter(Mandatory = $True)]
     [ValidateSet('installed', 'missing', 'both')]
-    [string]$update_report
+    [string]$update_report,
+    [Parameter(Mandatory = $false)]
+    [switch]$offset_task_execution
 )
+
+if ($offset_task_execution) {
+    Start-Sleep -Seconds (Get-Random -Minimum 1 -Maximum 180)
+}
 
 #TODO: add better catch logic for when $updateSearcher.Search("IsInstalled=0") fails and resultCode is not 0
 
