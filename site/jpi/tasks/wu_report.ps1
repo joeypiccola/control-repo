@@ -9,7 +9,10 @@ Param (
 )
 
 if ($offset_task_execution) {
-    Start-Sleep -Seconds (Get-Random -Minimum 1 -Maximum 180)
+    $offset = Get-Random -Minimum 1 -Maximum 180
+    Start-Sleep -Seconds $offset
+} else {
+    $offset = 'na'
 }
 
 #TODO: add better catch logic for when $updateSearcher.Search("IsInstalled=0") fails and resultCode is not 0
@@ -85,10 +88,11 @@ switch ($update_report) {
     'missing' {
         # build an object with all the missing update info
         $update_meta = [PSCustomObject]@{
-            missing_update_count        = $missingUpdateCollection.count
-            missing_updates             = $missingUpdateCollection
-            report_date                 = $report_date
-            last_boot_time              = $last_boot_time
+            missing_update_count  = $missingUpdateCollection.count
+            missing_updates       = $missingUpdateCollection
+            report_date           = $report_date
+            last_boot_time        = $last_boot_time
+            offset_task_execution = $offset
         }
     }
     'installed' {
@@ -100,6 +104,7 @@ switch ($update_report) {
             report_date                 = $report_date
             updates_last_installed      = $updatesLastInstalled
             last_boot_time              = $last_boot_time
+            offset_task_execution       = $offset
         }
     }
     'both' {
@@ -113,6 +118,7 @@ switch ($update_report) {
             report_date                 = $report_date
             updates_last_installed      = $updatesLastInstalled
             last_boot_time              = $last_boot_time
+            offset_task_execution       = $offset
         }
     }
 }
