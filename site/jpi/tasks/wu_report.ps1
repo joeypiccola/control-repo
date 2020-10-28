@@ -5,38 +5,33 @@ Param (
     [ValidateSet('installed', 'missing', 'both')]
     [string]$update_report,
     [Parameter(Mandatory = $false)]
-    [switch]$offset_task_execution,
-    [Parameter(Mandatory = $false)]
-    [boolean]$test_wsus_connection_first = $true
+    [switch]$offset_task_execution
 )
 
+# if offset_task_execution is true then sleep
 if ($offset_task_execution) {
     $offset = Get-Random -Minimum 1 -Maximum 180
     Start-Sleep -Seconds $offset
 } else {
-    $offset = 'na'
+    $offset = 0
 }
 
-if ($test_wsus_connection_first) {
+# get missing update data
+if ('missing','both' -contains $update_report) {
+    # get the WUServer from the registry and attempt a connection
     $WUServerUri = (Get-ItemProperty -Path 'HKLM:\SOFTWARE\Policies\Microsoft\Windows\WindowsUpdate\').WUServer
-    if ($WUServerUri) {
-        $WUServerFQDN = ([System.Uri]$WUServerUri).host
+    if (-not [string]::IsNullOrWhiteSpace($WUServerUri)) {
+        $WUServerHost = ([System.Uri]$WUServerUri).host
         $WUServerPort = ([System.Uri]$WUServerUri).port
         try {
-            (New-Object Net.Sockets.TcpClient).Connect($WUServerFQDN, $WUServerPort)
+            (New-Object Net.Sockets.TcpClient).Connect($WUServerHost, $WUServerPort)
             $WUServerConnectionTest = $true
         } catch {
             $WUServerConnectionTest = $false
         }
     }
-} else {
-    # if we do not perform a connection test the forcibly set WUServerConnectionTest to $true
-    $WUServerConnectionTest = $true
-}
-
-if ($WUServerConnectionTest) {
-    # get missing update data
-    if ('missing','both' -contains $update_report) {
+    # if there is a valid WUServer in the registry and we could connect to it then peform a report
+    if ($WUServerConnectionTest -and (-not [string]::IsNullOrWhiteSpace($WUServerUri))) {
         # Represents a session in which the caller can perform operations that involve updates.
         $session = New-Object -ComObject 'Microsoft.Update.Session'
         # Returns an IUpdateSearcher interface for this session.
@@ -72,86 +67,78 @@ if ($WUServerConnectionTest) {
             }
         }
     }
+}
 
-    # get installed update data
-    if ('installed','both' -contains $update_report) {
-        # define empty installed update collection
-        $installedUpdateCollection = @()
-        # A collection of installed updates
-        $installedUpdates = Get-HotFix
-        # loop through all installed updates and format a pretty object with desired update details
-        if ($installedUpdates.count -gt 0) {
-            $installedUpdates | ForEach-Object {
-                $updateObject = $null
-                $updateObject = [PSCustomObject]@{
-                    Description = $_.Description
-                    HotFixID    = @($_.HotFixID | ForEach-Object {$_})
-                    InstalledBy = "$($_.InstalledBy)"
-                    InstalledOn = "$($_.InstalledOn)"
-                }
-                $installedUpdateCollection += $updateObject
+# get installed update data
+if ('installed','both' -contains $update_report) {
+    # define empty installed update collection
+    $installedUpdateCollection = @()
+    # A collection of installed updates
+    $installedUpdates = Get-HotFix
+    # loop through all installed updates and format a pretty object with desired update details
+    if ($installedUpdates.count -gt 0) {
+        $installedUpdates | ForEach-Object {
+            $updateObject = $null
+            $updateObject = [PSCustomObject]@{
+                Description = $_.Description
+                HotFixID    = @($_.HotFixID | ForEach-Object {$_})
+                InstalledBy = "$($_.InstalledBy)"
+                InstalledOn = "$($_.InstalledOn)"
             }
-        }
-        # get and format some useful installed update data
-        $dateOfLastUpdateInstall = ($installedUpdates | Sort-Object -Property InstalledOn)[-1].InstalledOn
-        $updatesLastInstalled = @($installedUpdates | Where-Object {$_.InstalledOn -eq $dateOfLastUpdateInstall} | ForEach-Object {$_.HotFixID})
-    }
-
-    # get and format some useful system data
-    $report_date = "$(Get-Date)" # string needed for proper json
-    $last_boot_time = (Get-CimInstance Win32_OperatingSystem).LastBootUpTime.ToString("G")
-
-    # build an object based on the selected update report
-    switch ($update_report) {
-        'missing' {
-            # build an object with all the missing update info
-            $update_meta = [PSCustomObject]@{
-                missing_update_count        = $missingUpdateCollection.count
-                missing_updates             = $missingUpdateCollection
-                date_of_last_update_install = "$dateOfLastUpdateInstall" # string needed for proper json
-                report_date                 = $report_date
-                last_boot_time              = $last_boot_time
-                offset_task_execution       = $offset
-                wu_server_uri               = $WUServerUri
-                wu_server_connection_test   = $WUServerConnectionTest
-            }
-        }
-        'installed' {
-            # build an object with all the installed update info
-            $update_meta = [PSCustomObject]@{
-                installed_update_count      = $installedUpdateCollection.count
-                installed_updates           = $installedUpdateCollection
-                date_of_last_update_install = "$dateOfLastUpdateInstall" # string needed for proper json
-                report_date                 = $report_date
-                updates_last_installed      = $updatesLastInstalled
-                last_boot_time              = $last_boot_time
-                offset_task_execution       = $offset
-                wu_server_uri               = $WUServerUri
-                wu_server_connection_test   = $WUServerConnectionTest
-            }
-        }
-        'both' {
-            # build an object with both missing and installed update info
-            $update_meta = [PSCustomObject]@{
-                missing_update_count        = $missingUpdateCollection.count
-                missing_updates             = $missingUpdateCollection
-                installed_update_count      = $installedUpdateCollection.count
-                installed_updates           = $installedUpdateCollection
-                date_of_last_update_install = "$dateOfLastUpdateInstall" # string needed for proper json
-                report_date                 = $report_date
-                updates_last_installed      = $updatesLastInstalled
-                last_boot_time              = $last_boot_time
-                offset_task_execution       = $offset
-                wu_server_uri               = $WUServerUri
-                wu_server_connection_test   = $WUServerConnectionTest
-            }
+            $installedUpdateCollection += $updateObject
         }
     }
-} else {
-    $update_meta = [PSCustomObject]@{
-        wu_server_uri             = $WUServerUri
-        wu_server_connection_test = $WUServerConnectionTest
+    # get and format some useful installed update data
+    $dateOfLastUpdateInstall = ($installedUpdates | Sort-Object -Property InstalledOn)[-1].InstalledOn
+    $updatesLastInstalled = @($installedUpdates | Where-Object {$_.InstalledOn -eq $dateOfLastUpdateInstall} | ForEach-Object {$_.HotFixID})
+}
+
+# get and format some useful system data
+$report_date = "$(Get-Date)" # string needed for proper json
+$last_boot_time = (Get-CimInstance Win32_OperatingSystem).LastBootUpTime.ToString("G")
+
+# build an object based on the selected update report
+switch ($update_report) {
+    'missing' {
+        # build an object with all the missing update info
+        $update_meta = [PSCustomObject]@{
+            missing_update_count        = $missingUpdateCollection.count
+            missing_updates             = $missingUpdateCollection
+            report_date                 = $report_date
+            last_boot_time              = $last_boot_time
+            offset_task_execution       = $offset
+            wu_server_uri               = $WUServerUri
+            wu_server_connection_test   = $WUServerConnectionTest
+        }
+    }
+    'installed' {
+        # build an object with all the installed update info
+        $update_meta = [PSCustomObject]@{
+            installed_update_count      = $installedUpdateCollection.count
+            installed_updates           = $installedUpdateCollection
+            date_of_last_update_install = "$dateOfLastUpdateInstall" # string needed for proper json
+            report_date                 = $report_date
+            updates_last_installed      = $updatesLastInstalled
+            last_boot_time              = $last_boot_time
+            offset_task_execution       = $offset
+        }
+    }
+    'both' {
+        # build an object with both missing and installed update info
+        $update_meta = [PSCustomObject]@{
+            missing_update_count        = $missingUpdateCollection.count
+            missing_updates             = $missingUpdateCollection
+            installed_update_count      = $installedUpdateCollection.count
+            installed_updates           = $installedUpdateCollection
+            date_of_last_update_install = "$dateOfLastUpdateInstall" # string needed for proper json
+            report_date                 = $report_date
+            updates_last_installed      = $updatesLastInstalled
+            last_boot_time              = $last_boot_time
+            offset_task_execution       = $offset
+            wu_server_uri               = $WUServerUri
+            wu_server_connection_test   = $WUServerConnectionTest
+        }
     }
 }
-# write it out in json!
+
 $update_meta | ConvertTo-Json

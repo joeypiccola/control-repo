@@ -10,10 +10,6 @@
         "offset_task_execution": {
             "description": "Offset this task's execution client side between 1 and 180 seconds?",
             "type": "Optional[Boolean]"
-        },
-        "test_wsus_connection_first": {
-            "description": "Offset this task's execution client side between 1 and 180 seconds?",
-            "type": "Optional[Boolean]"
         }
     }
 }
