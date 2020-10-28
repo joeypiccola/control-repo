@@ -106,13 +106,14 @@ if ($WUServerConnectionTest) {
         'missing' {
             # build an object with all the missing update info
             $update_meta = [PSCustomObject]@{
-                missing_update_count      = $missingUpdateCollection.count
-                missing_updates           = $missingUpdateCollection
-                report_date               = $report_date
-                last_boot_time            = $last_boot_time
-                offset_task_execution     = $offset
-                wu_server_uri             = $WUServerUri
-                wu_server_connection_test = $WUServerConnectionTest
+                missing_update_count        = $missingUpdateCollection.count
+                missing_updates             = $missingUpdateCollection
+                date_of_last_update_install = "$dateOfLastUpdateInstall" # string needed for proper json
+                report_date                 = $report_date
+                last_boot_time              = $last_boot_time
+                offset_task_execution       = $offset
+                wu_server_uri               = $WUServerUri
+                wu_server_connection_test   = $WUServerConnectionTest
             }
         }
         'installed' {
