@@ -144,4 +144,4 @@ switch ($update_report) {
     }
 }
 
-$update_meta | ConvertTo-Json
+$update_meta | ConvertTo-Json -Depth 5
