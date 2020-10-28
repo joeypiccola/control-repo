@@ -26,7 +26,7 @@ if ('missing','both' -contains $update_report) {
         $WUServerHost = ([System.Uri]$WUServerUri).host
         $WUServerPort = ([System.Uri]$WUServerUri).port
         try {
-            (New-Object System.Net.Sockets.TcpClient).Connect($WUServerHost, $WUServerPort)
+            (New-Object Net.Sockets.TcpClient).Connect($WUServerHost, $WUServerPort)
             $WUServerConnectionTest = $true
         } catch {
             $WUServerConnectionTest = $false
@@ -60,10 +60,11 @@ if ('missing','both' -contains $update_report) {
                 $updateObject = [PSCustomObject]@{
                     KBArticleIDs             = @($_.KBArticleIDs | ForEach-Object {$_})
                     LastDeploymentChangeTime = "$([System.TimeZoneInfo]::ConvertTimeFromUtc($_.LastDeploymentChangeTime, $timezone))"
-                    Size                     = "$([Math]::round($_.maxdownloadsize / 1MB,0))MB"
+                    Size                     = "$([Math]::round($_.MaxDownloadSize / 1MB,0))MB"
                     MsrcSeverity             = $_.MsrcSeverity
                     Title                    = $_.Title
                     RevisionNumber           = $_.Identity.RevisionNumber
+                    Categories               = @($_.Categories | ForEach-Object {$_.Name})
                 }
                 $missingUpdateCollection += $updateObject
             }
