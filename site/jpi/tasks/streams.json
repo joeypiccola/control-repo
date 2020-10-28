@@ -1,0 +1,7 @@
+{
+    "puppet_task_version": 1,
+    "description": "A task to test powershell output streams.",
+    "input_method": "powershell",
+    "parameters": {
+    }
+}
