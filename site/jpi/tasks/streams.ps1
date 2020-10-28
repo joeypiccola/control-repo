@@ -1,5 +1,5 @@
-$VerbosePreference     = 'Contiune'
-$InformationPreference = 'Contiune'
+$VerbosePreference     = 'Continue'
+$InformationPreference = 'Continue'
 
 Write-Verbose "this is verbose"
 Write-Host "this is host"
