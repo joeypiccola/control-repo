@@ -8,6 +8,8 @@ Param (
     [switch]$offset_task_execution
 )
 
+$ErrorActionPreference = 'stop'
+
 # if offset_task_execution is true then sleep
 if ($offset_task_execution) {
     $offset = Get-Random -Minimum 1 -Maximum 180
