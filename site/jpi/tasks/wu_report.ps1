@@ -32,7 +32,7 @@ if ('missing','both' -contains $update_report) {
             $WUServerConnectionTest = $false
         }
     }
-    # if there is a valid WUServer in the registry and we could connect to it then peform a report
+    # if there is a valid WUServer in the registry and we can connect to it then peform a search
     if ($WUServerConnectionTest -and (-not [string]::IsNullOrWhiteSpace($WUServerUri))) {
         # Represents a session in which the caller can perform operations that involve updates.
         $session = New-Object -ComObject 'Microsoft.Update.Session'
@@ -42,8 +42,9 @@ if ('missing','both' -contains $update_report) {
         $updateSearcher.ServerSelection = 1
         try {
             # Performs a synchronous search for updates. The search uses the search options that are currently configured.
-            # "IsInstalled=1" finds updates that are installed on the destination computer.
-            $searchResult = $updateSearcher.Search("IsInstalled=0")
+            # "IsInstalled=0" finds updates that are not installed on the destination computer.
+            # "IsHidden=0" finds updates that are not marked as hidden.
+            $searchResult = $updateSearcher.Search("IsInstalled=0 and IsHidden=0")
         } catch {
             Write-Error "Failed to perform synchronous search for updates"
         }
