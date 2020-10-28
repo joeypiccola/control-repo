@@ -26,7 +26,7 @@ if ('missing','both' -contains $update_report) {
         $WUServerHost = ([System.Uri]$WUServerUri).host
         $WUServerPort = ([System.Uri]$WUServerUri).port
         try {
-            (New-Object Net.Sockets.TcpClient).Connect($WUServerHost, $WUServerPort)
+            (New-Object System.Net.Sockets.TcpClient).Connect($WUServerHost, $WUServerPort)
             $WUServerConnectionTest = $true
         } catch {
             $WUServerConnectionTest = $false
