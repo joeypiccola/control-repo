@@ -5,9 +5,9 @@ Param (
     [ValidateSet('installed', 'missing', 'both')]
     [string]$update_report,
     [Parameter(Mandatory = $false)]
-    [boolean]$offset_task_execution,
-    [Parameter(Mandatory = $true)]
-    [boolean]$exclude_office_updates
+    [boolean]$offset_task_execution = $false,
+    [Parameter(Mandatory = $false)]
+    [boolean]$include_office_updates = $false
 )
 
 $ErrorActionPreference = 'stop'
@@ -51,9 +51,9 @@ if ('missing','both' -contains $update_report) {
         } catch {
             Write-Error "Failed to perform synchronous search for updates"
         }
-        # filter as needed
-        if ($exclude_office_updates) {
-            $missingUpdates = $searchResult | Where-Object { -not (($_.Categories | Select-Object -ExpandProperty name) -like "*security*") } | Select-Object -Property Title
+        # filter out updates with categories that contain office in their name
+        if ($include_office_updates -eq $false) {
+            $missingUpdates = $searchResult | Where-Object { -not (($_.Categories | Select-Object -ExpandProperty name) -like "*office*") }
         } else {
             $missingUpdates = $searchResult
         }
