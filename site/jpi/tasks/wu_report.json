@@ -8,7 +8,11 @@
             "type": "Enum[installed, missing, both]"
         },
         "offset_task_execution": {
-            "description": "Offset this task's execution client side between 1 and 180 seconds?",
+            "description": "Offset this task's execution client side between 1 and 180 seconds? Default: FALSE",
+            "type": "Optional[Boolean]"
+        },
+        "exclude_office_updates": {
+            "description": "Exclude updates with categories that contain the word office in their name. Default: TRUE",
             "type": "Optional[Boolean]"
         }
     }

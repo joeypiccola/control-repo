@@ -5,7 +5,9 @@ Param (
     [ValidateSet('installed', 'missing', 'both')]
     [string]$update_report,
     [Parameter(Mandatory = $false)]
-    [switch]$offset_task_execution
+    [boolean]$offset_task_execution,
+    [Parameter(Mandatory = $true)]
+    [boolean]$exclude_office_updates
 )
 
 $ErrorActionPreference = 'stop'
@@ -40,16 +42,21 @@ if ('missing','both' -contains $update_report) {
         $updateSearcher = $session.CreateUpdateSearcher()
         # Gets and sets a ServerSelection value that indicates the server to search for updates. 1 is ssManagedServer.
         $updateSearcher.ServerSelection = 1
+        # Try and get a collection of updates that match the search criteria.
         try {
             # Performs a synchronous search for updates. The search uses the search options that are currently configured.
             # "IsInstalled=0" finds updates that are not installed on the destination computer.
             # "IsHidden=0" finds updates that are not marked as hidden.
-            $searchResult = $updateSearcher.Search("IsInstalled=0 and IsHidden=0")
+            $searchResult = ($updateSearcher.Search("IsInstalled=0 and IsHidden=0")).Updates
         } catch {
             Write-Error "Failed to perform synchronous search for updates"
         }
-        # Try and get a collection of updates that match the search criteria.
-        $missingUpdates = $searchResult.Updates
+        # filter as needed
+        if ($exclude_office_updates) {
+            $missingUpdates = $searchResult | Where-Object { -not (($_.Categories | Select-Object -ExpandProperty name) -like "*security*") } | Select-Object -Property Title
+        } else {
+            $missingUpdates = $searchResult
+        }
         # define timezone used by LastDeploymentChangeTime formatting
         $timezone = [System.TimeZoneInfo]::FindSystemTimeZoneById((Get-WmiObject -Class Win32_TimeZone).StandardName)
         # define empty missing update collection
