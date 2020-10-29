@@ -62,7 +62,8 @@ if ('missing','both' -contains $update_report) {
         # define empty missing update collection
         $missingUpdateCollection = @()
         # loop through all missing updates and format a pretty object with desired update details
-        if ($missingUpdates.count -gt 0) {
+        # using $obj | measure as native .count does not work on single instance of Selected.System.__ComObject
+        if (($missingUpdates | Measure-Object).count -gt 0) {
             $missingUpdates | ForEach-Object {
                 $updateObject = $null
                 $updateObject = [PSCustomObject]@{
