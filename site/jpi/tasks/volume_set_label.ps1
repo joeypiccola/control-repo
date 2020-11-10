@@ -29,6 +29,6 @@ switch (($volume | Measure-Object).count)
 }
 
 @{
-    newLabel = $label
+    newLabel = $new_label
     oldLabel = $volume.FileSystemLabel
 } | ConvertTo-Json
