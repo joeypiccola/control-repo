@@ -1,6 +1,6 @@
 plan jpi::rt (
   TargetSpec $nodes,
-  #String $serial,
+  String $serial,
   String $label_key,
   String $label_new,
 ) {
