@@ -16,7 +16,7 @@ if (($disk | Measure-Object).count -eq 1) {
         'online' {
             # if the disk is not online bring it online!
             if ($disk.OperationalStatus -ne 'Online') {
-                Set-Disk -Number $disk.number -IsOffline $false
+                Set-Disk -Number $disk.number -IsOffline $false -IsReadOnly $false
             }
         }
         'offline' {
