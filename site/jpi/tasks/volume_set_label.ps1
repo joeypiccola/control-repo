@@ -8,7 +8,8 @@ Param(
 
 $ErrorActionPreference = 'stop'
 
-$volume = Get-Volume | Where-Object { $_.FileSystemLabel -eq $label_key }
+#$volume = Get-Volume | Where-Object { $_.FileSystemLabel -eq $label_key }
+$volume = Get-WmiObject win32_volume -Filter "Label = `'$label_key`'"
 $proposedVolumeLabel = Get-Volume | Where-Object { $_.FileSystemLabel -eq $label_new }
 
 if (($proposedVolumeLabel | Measure-Object).count -gt 0) {
@@ -21,7 +22,9 @@ switch (($volume | Measure-Object).count)
         Write-Error "No volume found for provided label: $label_key"
     }
     1 {
-        $volume | Set-Volume -NewFileSystemLabel $label_new
+        #$volume | Set-Volume -NewFileSystemLabel $label_new
+        $volume.label = $label_new
+        $volume.put()
     }
     {$_ -gt 1} {
         Write-Error "More than one volume found for provided label: $label_key"

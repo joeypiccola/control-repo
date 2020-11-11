@@ -6,8 +6,8 @@ class profile::sql {
   $source_iso_download_dir       = 'F:/install_media'
   $source_iso_mount_drive_letter = 'G'
   $source_iso_file_name          = basename($source_iso_url) # SQLServer2019-x64-ENU-Dev.iso
-  $source_iso_file_name_no_ext   = basename($source_iso_url, '.iso') # SQLServer2019-x64-ENU-Dev
-  $source_iso_extracted_dir      = "F:/install_media/${$source_iso_file_name_no_ext}_extracted" # F:/install_media/SQLServer2019-x64-ENU-Dev_extracted
+  #$source_iso_file_name_no_ext   = basename($source_iso_url, '.iso') # SQLServer2019-x64-ENU-Dev
+  #$source_iso_extracted_dir      = "F:/install_media/${$source_iso_file_name_no_ext}_extracted" # F:/install_media/SQLServer2019-x64-ENU-Dev_extracted
   $source_iso_file_path          = "${source_iso_download_dir}/${source_iso_file_name}" # F:/install_media/SQLServer2019-x64-ENU-Dev.iso
 
   file { 'create_source_iso_download_dir':
@@ -54,7 +54,7 @@ class profile::sql {
       'INSTALLSHAREDDIR'    => 'F:\\Program Files\\Microsoft SQL Server',
       'INSTALLSHAREDWOWDIR' => 'C:\\Program Files (x86)\\Microsoft SQL Server',
     },
-    require               => Mount_iso[mount_source_iso],
+    require               => Mount_iso['mount_source_iso'],
   }
 
 
