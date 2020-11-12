@@ -5,7 +5,7 @@ profile::wsus::client::scheduled_tasks_to_remove:
     enabled: false
     command: c:\windows\system32\MusNotification.exe
     compatibility: 5
-  Microsoft\Windows\UpdateOrchestrator\SSchedule Scan Static Task:
+  Microsoft\Windows\UpdateOrchestrator\Schedule Scan Static Task:
     enabled: false
     command: c:\windows\system32\usoclient.exe
     compatibility: 5
