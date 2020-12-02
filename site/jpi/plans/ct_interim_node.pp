@@ -1,8 +1,8 @@
-plan jpi::ct_interim (
+plan jpi::ct_interim_node (
   TargetSpec $nodes,
-  Optional[String] $serial,
-  Optional[String] $label_key,
-  Optional[String] $label_new,
+  String $serial,
+  String $label_key,
+  String $label_new,
 ) {
     run_task('jpi::disk_set_status', $nodes, status => 'online', serial => $serial)
     run_task('jpi::volume_set_label', $nodes, label_key => $label_key, label_new => $label_new)

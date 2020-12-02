@@ -3,8 +3,9 @@ plan jpi::rt (
   Optional[String] $serial,
   Optional[String] $label_key,
   Optional[String] $label_new,
+  Optional[String] $disk_status,
 ) {
-    run_task('jpi::disk_set_status', $nodes, status => 'online', serial => $serial)
+    run_task('jpi::disk_set_status', $nodes, status => $disk_status, serial => $serial)
     run_task('jpi::volume_set_label', $nodes, label_key => $label_key, label_new => $label_new)
     run_task('jpi::disk_new_guid', $nodes, serial => $serial)
     run_task('jpi::cluster_add_disk', $nodes, name => $label_new, serial => $serial)
