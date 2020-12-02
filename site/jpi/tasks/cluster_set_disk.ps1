@@ -15,9 +15,9 @@ $ErrorActionPreference = 'stop'
 
 switch ($status) {
     'add' {
-        # ensure needed params IsNullOrEmpty
-        if (![string]::IsNullOrEmpty($name) -and ![string]::IsNullOrEmpty($serial)) {
-            Write-Error "Mandartory params missing"
+        # ensure needed params -not IsNullOrEmpty
+        if ([string]::IsNullOrEmpty($name) -or [string]::IsNullOrEmpty($serial)) {
+            Write-Error "Mandatory params missing"
         }
         $disk = get-disk | Where-Object { $_.SerialNumber -eq $serial }
         # if a disk was found
@@ -37,9 +37,9 @@ switch ($status) {
         }
     }
     'remove' {
-        # ensure needed params IsNullOrEmpty
-        if (![string]::IsNullOrEmpty($name)) {
-            Write-Error "Mandartory params missing"
+        # ensure needed params -not IsNullOrEmpty
+        if ([string]::IsNullOrEmpty($name)) {
+            Write-Error "Mandatory params missing"
         }
         $diskResource = Get-ClusterResource -Name $name -ErrorAction SilentlyContinue
         # if a disk was found
