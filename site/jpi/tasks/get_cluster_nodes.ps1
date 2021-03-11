@@ -3,3 +3,9 @@ $clusterNodes = Get-ClusterNode | Select-Object -ExpandProperty name | ForEach-O
 @{
     data = $clusterNodes
 } | ConvertTo-Json
+
+<#
+    {
+        "data" : [ "cluster-a-01.ad.piccola.us", "cluster-a-02.ad.piccola.us" ]
+    }
+#>
