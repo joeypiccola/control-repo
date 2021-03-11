@@ -1,8 +1,8 @@
 plan jpi::plan_a (
   TargetSpec $nodes,
-  String $message,
 ) {
-  run_task('jpi::task_a', $nodes, message => $message)
-  run_task('jpi::task_b', $nodes, message => $message)
-  run_task('jpi::task_c', $nodes, message => $message)
+  $some_value = lookup('something::some_value')
+
+  run_task('jpi::create_file', $node, file_contents => $some_value)
 }
+
