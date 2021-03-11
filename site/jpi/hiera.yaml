@@ -13,6 +13,6 @@ hierarchy:
   - name: "Common data"
     path: "common.yaml"
 
-#plan_hierarchy:
-#  - name: "Static data"
-#    path: "static.yaml"
+plan_hierarchy:
+  - name: "Static data"
+    path: "static.yaml"
