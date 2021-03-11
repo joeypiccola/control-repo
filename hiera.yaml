@@ -58,6 +58,7 @@ hierarchy:
   - name: "Common data"
     path: "common.yaml"
 
+
 plan_hierarchy:
   - name: "Common plan data"
     datadir: data/plans
