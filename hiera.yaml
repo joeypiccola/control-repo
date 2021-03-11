@@ -60,6 +60,5 @@ hierarchy:
 
 
 plan_hierarchy:
-  - name: "Common plan data"
-    datadir: data/plans
-    path: "common.yaml"
+  - name: "Static data"
+    path: "static.yaml"
