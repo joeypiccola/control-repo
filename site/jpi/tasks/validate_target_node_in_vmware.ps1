@@ -26,10 +26,10 @@ Connect-VIServer -Server $vcenter -Credential $credObject | Out-Null
 # split the passed name into hostname only
 $vm = Get-VM -Name $target_node.Split('.')[0] -ErrorAction Stop
 # if a vm was found ensure passed FQDN matches hostname known by VMware Tools
-if ($vm.Guest.HostName -eq $system) {
+if ($vm.Guest.HostName -eq $target_node) {
     $vm | Select-Object -Property name, powerstate, guest, vmhost, memorygb, numcpu, folder, resourcepool, version | ConvertTo-Json -Depth 1
 } else {
-    Write-Error "VM found for $target_name does not match VMware guest hostname of $($vm.Guest.HostName)."
+    Write-Error "VM found for $target_node does not match VMware guest hostname of $($vm.Guest.HostName)."
 }
 
 # disconnect from vmware
