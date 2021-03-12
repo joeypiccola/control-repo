@@ -2,6 +2,8 @@ plan jpi::extend_disk (
   TargetSpec $target_node,
   String     $drive_letter,
 ) {
+  # ensure passed target_node exists
+  $target_node_target = get_target($target_node)
   # lookup values needed to make changes in VMware
   $vcenter = lookup('jpi::vcenter')
   $svc_vmware_username = lookup('jpi::svc_vmware_username')
