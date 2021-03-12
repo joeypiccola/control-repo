@@ -2,14 +2,15 @@
 
 jpi::some_value: hello_from_control_repo_common
 jpi::vcenter: vcenter.ad.piccola.us
+jpi::powercli_proxy_host: jenkins.ad.piccola.us
 jpi::svc_vmware_username: svc_vmware@ad.piccola.us
 jpi::svc_vmware_password: >
-  ENC[PKCS7,MIIBeQYJKoZIhvcNAQcDoIIBajCCAWYCAQAxggEhMIIBHQIBADAFMAACAQEw
-  DQYJKoZIhvcNAQEBBQAEggEAX9uoi83Ar16F/g23CuD8zTkkcbMQhMt2/CMV
-  KHvt4lX/t1gYr/XfneEyv7bzcdyoLm5L9LryDiar4LzoWt8RVmKvPAhW5ovv
-  V1qh9GtZlHderJuOozZYBXFeG6wMO4JNJSqjoOB0Nsrrwnf7cZ89e4EwZNHW
-  bBY64gj90qSfHmwQZW02WWkD1X4S68qtgHcgLy7iIucesvpYETLwzBbF2AZk
-  fTIe+kQhmyf910VzTTCye5FAJHWh2OgkAl9jhGT5rPBnqwudJVjzlCETegd6
-  QOnhWnw0G9EOiJ4VbYV4Go4udCq6RQeoJ2uylMoH+rln7KEs4/qKM4LuCceL
-  cTOBzzA8BgkqhkiG9w0BBwEwHQYJYIZIAWUDBAEqBBCMWwl27wxjoJlaDn7N
-  1e+egBCXQ72dwXwY+31s2+81im9h]
+  ENC[PKCS7,MIIBiQYJKoZIhvcNAQcDoIIBejCCAXYCAQAxggEhMIIBHQIBADAFMAACAQEw
+  DQYJKoZIhvcNAQEBBQAEggEAH2pCw8R4VVaXAlMW+aV7908RRPfKGjCov8R+
+  QqtkCFT75NIx2dAb8+VmNFV0vZCkdrfht65P7yUnmGSm2Tc7eCO/twhrJs7O
+  ZWEZhyDJcThdG5q+uFBRYDBFXHbwj4Ypn6kGE0T40Gi7kVuTPKag6zftmMuS
+  FBMwVAQa/ErI3pNuVb8fhEDI2xysXzQ08XLaPcR5pnRi1q5U3Rp2/4woelSG
+  YZjHUxuKtp/gzvMPFE+Coxzu6fxxjLqrNJwayxKXkAJdvgkSyYzcC6LQZPgs
+  V/OzDdImHrU+TNFtdQo6y4LJM2BlFqE6O/pdPC6MAve2lZg/ioXySgWQP++5
+  Xcy0zzBMBgkqhkiG9w0BBwEwHQYJYIZIAWUDBAEqBBArwLL0Fp+sXd50n0EZ
+  QcLtgCDWeLompDrqi67+DfhK0txlwkcwaKl/LAM+q2BVyxU5/A==]
