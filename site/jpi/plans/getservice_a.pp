@@ -2,5 +2,5 @@ plan jpi::getservice_a (
   TargetSpec $nodes,
   String $service
 ) {
-  return run_command("Get-Service -Name ${service}", $nodes)
+  run_command("Get-Service -Name ${service} | ConvertTo-Json -Depth 1", $nodes)
 }
