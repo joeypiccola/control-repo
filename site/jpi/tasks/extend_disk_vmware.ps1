@@ -31,7 +31,7 @@ $vm = Get-VM -Name $target_node.Split('.')[0] -ErrorAction Stop
 if ($vm.Guest.HostName -eq $target_node) {
     # hacky AF, lets just get a functional demo before we spend hours finding a way to validate guest OS disk matches vmware disk (FML)
     $diskToExtend = $vm | Get-HardDisk | Select-Object -Last 1
-    $diskToExtend | Set-HardDisk -CapacityGB ($diskToExtend.CapacityGB + $gb_to_add)
+    $diskToExtend | Set-HardDisk -CapacityGB ($diskToExtend.CapacityGB + $gb_to_add) -Confirm:$false
 
 } else {
     Write-Error "VM found for $target_node does not match VMware guest hostname of $($vm.Guest.HostName)."
