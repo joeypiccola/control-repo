@@ -1,5 +1,5 @@
 plan jpi::demo_c (
-  String $service
+  String $email
 ) {
   $target_node = 'jenkins.ad.piccola.us'
   run_command('<#   get_mailbox   #>', $target_node)
